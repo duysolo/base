@@ -37,8 +37,6 @@ class SettingController extends BaseAdminController
     {
         $this->setPageTitle('Settings');
 
-        $this->dis['settings'] = $this->CMSSettings;
-
         return do_filter('settings.index.get', $this)->viewAdmin('index');
     }
 

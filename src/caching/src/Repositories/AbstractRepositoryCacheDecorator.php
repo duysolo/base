@@ -44,7 +44,9 @@ abstract class AbstractRepositoryCacheDecorator implements BaseMethodsContract
      */
     public function __call($method, $parameters)
     {
-        return call_user_func_array([$this->repository, $method], $parameters);
+        call_user_func_array([$this->repository, $method], $parameters);
+
+        return $this;
     }
 
     /**
