@@ -23,18 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "WebEd\\Base\\Core\\": "src/core/src",
-            "WebEd\\Base\\Hook\\": "src/hook/src",
-            "WebEd\\Base\\Caching\\": "src/caching/src",
-            "WebEd\\Base\\ModulesManagement\\": "src/modules-management/src",
-            "WebEd\\Base\\ThemesManagement\\": "src/themes-management/src",
-            "WebEd\\Base\\Menu\\": "src/menu/src",
-            "WebEd\\Base\\Users\\": "src/users/src",
-            "WebEd\\Base\\AssetsManagement\\": "src/assets-management/src",
-            "WebEd\\Base\\Auth\\": "src/auth/src",
-            "WebEd\\Base\\ACL\\": "src/acl/src",
-            "WebEd\\Base\\Settings\\": "src/settings/src",
-            "WebEd\\Base\\Elfinder\\": "src/elfinder/src"
+            "WebEd\\Base\\Core\\": "src"
         },
         "files": [
 
