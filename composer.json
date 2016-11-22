@@ -14,7 +14,18 @@
         }
     ],
     "require": {
-        "php": ">=5.6.4"
+        "php": ">=5.6.4",
+        "sgsoft-studio/acl": "2.*",
+        "sgsoft-studio/assets-management": "2.*",
+        "sgsoft-studio/auth": "2.*",
+        "sgsoft-studio/caching": "2.*",
+        "sgsoft-studio/elfinder": "2.*",
+        "sgsoft-studio/hook": "2.*",
+        "sgsoft-studio/menu": "2.*",
+        "sgsoft-studio/modules-management": "2.*",
+        "sgsoft-studio/settings": "2.*",
+        "sgsoft-studio/themes-management": "2.*",
+        "sgsoft-studio/users": "2.*"
     },
     "require-dev": {
         "illuminate/database": "5.3.*",
