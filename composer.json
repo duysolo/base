@@ -27,11 +27,6 @@
         "sgsoft-studio/themes-management": "2.*",
         "sgsoft-studio/users": "2.*"
     },
-    "require-dev": {
-        "illuminate/database": "5.3.*",
-        "mockery/mockery": "~0.9.4",
-        "phpunit/phpunit": "~5.4"
-    },
     "autoload": {
         "psr-4": {
             "WebEd\\Base\\Core\\": "src"

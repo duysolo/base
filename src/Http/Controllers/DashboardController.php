@@ -8,8 +8,6 @@ class DashboardController extends BaseAdminController
     {
         parent::__construct();
 
-        $this->middleware('has-permission:access-dashboard');
-
         $this->getDashboardMenu('webed-dashboard');
     }
 

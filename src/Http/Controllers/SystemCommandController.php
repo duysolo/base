@@ -4,13 +4,6 @@ class SystemCommandController extends BaseAdminController
 {
     protected $module = 'webed-core';
 
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->middleware('has-permission:access-dashboard');
-    }
-
     /**
      * Call command composer dump-autoload
      * @return \Illuminate\Http\RedirectResponse

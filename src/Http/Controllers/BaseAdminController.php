@@ -1,5 +1,8 @@
 <?php namespace WebEd\Base\Core\Http\Controllers;
 
+use WebEd\Base\Users\Repositories\Contracts\UserContract;
+use WebEd\Base\Users\Repositories\UserRepository;
+
 abstract class BaseAdminController extends BaseController
 {
     /**
@@ -21,6 +24,11 @@ abstract class BaseAdminController extends BaseController
      * @var \WebEd\Base\Core\Services\FlashMessages
      */
     public $flashMessagesHelper;
+
+    /**
+     * @var UserRepository
+     */
+    protected $userRepository;
 
     public function __construct()
     {
@@ -56,6 +64,8 @@ abstract class BaseAdminController extends BaseController
             ], 'bottom');
 
         $this->flashMessagesHelper = \FlashMessages::getFacadeRoot();
+
+        $this->userRepository = app(UserContract::class);
     }
 
     /**
