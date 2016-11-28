@@ -1,5 +1,15 @@
 <?php
 
+if (!function_exists('load_module_helpers')) {
+    /**
+     * @param $dir
+     */
+    function load_module_helpers($dir)
+    {
+        \WebEd\Base\Core\Support\Helper::loadModuleHelpers($dir);
+    }
+}
+
 if (!function_exists('get_image')) {
     /**
      * @param $fields

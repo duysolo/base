@@ -3,6 +3,7 @@
 use Illuminate\Support\ServiceProvider;
 use WebEd\Base\Core\Facades\BreadcrumbsFacade;
 use WebEd\Base\Core\Facades\FlashMessagesFacade;
+use WebEd\Base\Core\Support\Helper;
 
 class ModuleProvider extends ServiceProvider
 {
@@ -39,7 +40,7 @@ class ModuleProvider extends ServiceProvider
         config(['webed.version' => '2.0.3']);
 
         //Load helpers
-        $this->loadHelpers();
+        Helper::loadModuleHelpers(__DIR__);
 
         //Register related facades
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();
@@ -62,16 +63,19 @@ class ModuleProvider extends ServiceProvider
         $this->app->register(BootstrapModuleServiceProvider::class);
 
         /**
-         * Auto register modules
+         * Other module providers
          */
+        $this->app->register(\WebEd\Base\Caching\Providers\ModuleProvider::class);
+        $this->app->register(\WebEd\Base\ACL\Providers\ModuleProvider::class);
         $this->app->register(\WebEd\Base\ModulesManagement\Providers\ModuleProvider::class);
-    }
-
-    private function loadHelpers()
-    {
-        $helpers = $this->app['files']->glob(__DIR__ . '/../../helpers/*.php');
-        foreach ($helpers as $helper) {
-            require_once $helper;
-        }
+        $this->app->register(\WebEd\Base\AssetsManagement\Providers\ModuleProvider::class);
+        $this->app->register(\WebEd\Base\Auth\Providers\ModuleProvider::class);
+        $this->app->register(\WebEd\Base\Elfinder\Providers\ModuleProvider::class);
+        $this->app->register(\WebEd\Base\Hook\Providers\ModuleProvider::class);
+        $this->app->register(\WebEd\Base\Menu\Providers\ModuleProvider::class);
+        $this->app->register(\WebEd\Base\Settings\Providers\ModuleProvider::class);
+        $this->app->register(\WebEd\Base\ThemesManagement\Providers\ModuleProvider::class);
+        $this->app->register(\WebEd\Base\Users\Providers\ModuleProvider::class);
+        $this->app->register(\WebEd\Base\Pages\Providers\ModuleProvider::class);
     }
 }

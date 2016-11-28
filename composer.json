@@ -25,7 +25,8 @@
         "sgsoft-studio/modules-management": "2.*",
         "sgsoft-studio/settings": "2.*",
         "sgsoft-studio/themes-management": "2.*",
-        "sgsoft-studio/users": "2.*"
+        "sgsoft-studio/users": "2.*",
+        "sgsoft-studio/pages": "2.*"
     },
     "autoload": {
         "psr-4": {
