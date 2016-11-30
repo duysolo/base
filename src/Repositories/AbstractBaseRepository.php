@@ -47,7 +47,7 @@ abstract class AbstractBaseRepository implements ModelNeedValidate, BaseMethodsC
      */
     public function getTable()
     {
-        return $this->getModel()->getTable();
+        return $this->model->getTable();
     }
 
     /**
@@ -56,7 +56,7 @@ abstract class AbstractBaseRepository implements ModelNeedValidate, BaseMethodsC
      */
     public function getPrimaryKey()
     {
-        return $this->getModel()->getPrimaryKey();
+        return $this->model->getPrimaryKey();
     }
 
     /**

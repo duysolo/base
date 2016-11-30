@@ -15,6 +15,9 @@
     ],
     "require": {
         "php": ">=5.6.4",
+        "barryvdh/laravel-debugbar": "^2.2",
+        "yajra/laravel-datatables-oracle": "~6.0",
+        "laravelcollective/html": "^5.3.0",
         "sgsoft-studio/acl": "2.*",
         "sgsoft-studio/assets-management": "2.*",
         "sgsoft-studio/auth": "2.*",
@@ -26,7 +29,8 @@
         "sgsoft-studio/settings": "2.*",
         "sgsoft-studio/themes-management": "2.*",
         "sgsoft-studio/users": "2.*",
-        "sgsoft-studio/pages": "2.*"
+        "sgsoft-studio/pages": "2.*",
+        "sgsoft-studio/shortcode": "2.*"
     },
     "autoload": {
         "psr-4": {

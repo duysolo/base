@@ -40,33 +40,43 @@ if (!function_exists('convert_timestamp_format')) {
     }
 }
 
-if (!function_exists('json_encode_pretify')) {
+if (!function_exists('convert_unix_time_format')) {
+    /**
+     * @param $dateTime
+     * @param $format
+     * @return string|null
+     */
+    function convert_unix_time_format($unix, $format = 'Y-m-d H:i:s')
+    {
+        try {
+            return date($format, $unix);
+        } catch (\Exception $exception) {
+            return null;
+        }
+    }
+}
+
+if (!function_exists('json_encode_prettify')) {
     /**
      * @param array $files
      */
-    function json_encode_pretify($data)
+    function json_encode_prettify($data)
     {
         return json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
     }
 }
 
-if (!function_exists('save_file_data')) {
+if (!function_exists('is_in_dashboard')) {
     /**
-     * @param string $path
-     * @param string|array|object $data
-     * @param bool $json
      * @return bool
      */
-    function save_file_data($path, $data, $jsonFormat = false)
+    function is_in_dashboard()
     {
-        try {
-            if ($jsonFormat === true) {
-                $data = json_encode_pretify($data);
-            }
-            \File::put($path, $data);
+        $segments = request()->segments();
+        if(isset($segments[0]) && $segments[0] === env('WEBED_ADMIN_ROUTE')) {
             return true;
-        } catch (Exception $exception) {
-            return false;
         }
+
+        return false;
     }
 }

@@ -100,3 +100,45 @@ if (!function_exists('get_file_data')) {
         return File::get($path, true);
     }
 }
+
+if (!function_exists('save_file_data')) {
+    /**
+     * @param string $path
+     * @param string|array|object $data
+     * @param bool $json
+     * @return bool
+     */
+    function save_file_data($path, $data, $jsonFormat = false)
+    {
+        try {
+            if ($jsonFormat === true) {
+                $data = json_encode_prettify($data);
+            }
+            \File::put($path, $data);
+            return true;
+        } catch (Exception $exception) {
+            return false;
+        }
+    }
+}
+
+if (!function_exists('format_file_size')) {
+    /**
+     * Format the file size to bytes, KB, MB, GB, TB...
+     * @param $size
+     * @param int $precision
+     * @return int|string
+     */
+    function format_file_size($size, $precision = 2)
+    {
+        if ($size > 0) {
+            $size = (int)$size;
+            $precision = (int)$precision;
+
+            $units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+            $power = $size > 0 ? floor(log($size, 1024)) : 0;
+            return number_format($size / pow(1024, $power), $precision, '.', ',') . ' ' . $units[$power];
+        }
+        return $size;
+    }
+}

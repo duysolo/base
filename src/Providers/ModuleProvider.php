@@ -54,6 +54,16 @@ class ModuleProvider extends ServiceProvider
             $this->mergeConfigFrom($row, $key);
         }
 
+        /**
+         * Other packages
+         */
+        $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
+        $this->app->register(\Yajra\Datatables\DatatablesServiceProvider::class);
+        $this->app->register(\Collective\Html\HtmlServiceProvider::class);
+
+        /**
+         * Base providers
+         */
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(ValidateServiceProvider::class);
         $this->app->register(HookServiceProvider::class);
@@ -65,6 +75,7 @@ class ModuleProvider extends ServiceProvider
         /**
          * Other module providers
          */
+        $this->app->register(\WebEd\Base\Shortcode\Providers\ModuleProvider::class);
         $this->app->register(\WebEd\Base\Caching\Providers\ModuleProvider::class);
         $this->app->register(\WebEd\Base\ACL\Providers\ModuleProvider::class);
         $this->app->register(\WebEd\Base\ModulesManagement\Providers\ModuleProvider::class);
