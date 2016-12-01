@@ -109,7 +109,7 @@ class BootstrapModuleServiceProvider extends ServiceProvider
                 'type' => 'customCheckbox',
                 'piority' => 5,
                 'label' => null,
-                'helper' => 'Mark this site on maintenance mode',
+                'helper' => 'Mark this site on maintenance mode. Just logged in admin can access front site.',
             ], function () {
                 return [
                     [['construction_mode', '1', 'On construction mode', get_settings('construction_mode'),]],

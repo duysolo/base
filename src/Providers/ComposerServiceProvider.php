@@ -1,6 +1,7 @@
 <?php namespace WebEd\Base\Core\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use WebEd\Base\Core\Http\ViewComposers\AdminBar;
 use WebEd\Base\Core\Http\ViewComposers\AdminBreadcrumbs;
 
 class ComposerServiceProvider extends ServiceProvider
@@ -17,6 +18,9 @@ class ComposerServiceProvider extends ServiceProvider
         view()->composer([
             'webed-core::admin._partials.breadcrumbs',
         ], AdminBreadcrumbs::class);
+        view()->composer([
+            'webed-core::front._admin-bar',
+        ], AdminBar::class);
     }
 
     /**

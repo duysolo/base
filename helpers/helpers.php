@@ -72,8 +72,8 @@ if (!function_exists('is_in_dashboard')) {
      */
     function is_in_dashboard()
     {
-        $segments = request()->segments();
-        if(isset($segments[0]) && $segments[0] === env('WEBED_ADMIN_ROUTE')) {
+        $segment = request()->segment(1);
+        if($segment === env('WEBED_ADMIN_ROUTE')) {
             return true;
         }
 

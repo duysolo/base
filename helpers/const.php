@@ -4,6 +4,11 @@ if (!defined('ERROR_CODE')) {
     define('ERROR_CODE', 500);
 }
 
+if (!defined('MAINTENANCE_MODE')) {
+    define('MAINTENANCE_MODE', 503);
+}
+
+
 if (!defined('NOT_FOUND_CODE')) {
     define('NOT_FOUND_CODE', 404);
 }
