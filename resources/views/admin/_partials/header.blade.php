@@ -2,7 +2,7 @@
     <!-- Logo -->
     <a href="/" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>WD</b></span>
+        <span class="logo-mini"><b>WE</b></span>
         <!-- logo for regular state and mobile devices -->
         <span class="logo-lg"><b>WebEd</b></span>
     </a>
@@ -22,7 +22,7 @@
                        data-close-others="true">
                         <img alt=""
                              class="img-circle user-image"
-                             src="{{ $loggedInUser->resolved_avatar or '' }}"
+                             src="{{ $loggedInUser->avatar or '' }}"
                              width="25"
                              height="25">
                         <span class="hidden-xs">{{ $loggedInUser->display_name or '' }}</span>
@@ -33,7 +33,7 @@
                         <li class="user-header">
                             <img alt=""
                                  class="img-circle"
-                                 src="{{ $loggedInUser->resolved_avatar or '' }}">
+                                 src="{{ $loggedInUser->avatar or '' }}">
                             <p>{{ $loggedInUser->display_name or '' }}</p>
                         </li>
                         <!-- Menu Footer-->

@@ -8,7 +8,7 @@
         <div class="table-actions-wrapper">
             <span></span>
             {!! $tableActions !!}
-            <button class="btn btn-sm green table-group-action-submit" data-toggle="confirmation">
+            <button class="btn btn-sm green table-group-action-submit" data-toggle="confirmation" data-placement="left">
                 <i class="fa fa-check"></i> Submit
             </button>
         </div>
