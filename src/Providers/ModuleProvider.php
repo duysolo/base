@@ -4,6 +4,7 @@ use Illuminate\Support\ServiceProvider;
 use WebEd\Base\Core\Facades\AdminBarFacade;
 use WebEd\Base\Core\Facades\BreadcrumbsFacade;
 use WebEd\Base\Core\Facades\FlashMessagesFacade;
+use WebEd\Base\Core\Facades\ViewCountFacade;
 use WebEd\Base\Core\Support\Helper;
 
 class ModuleProvider extends ServiceProvider
@@ -19,6 +20,8 @@ class ModuleProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'webed-core');
         /*Load translations*/
         $this->loadTranslationsFrom(__DIR__ . '/../../resources/lang', 'webed-core');
+        /*Load migrations*/
+        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
 
         $this->publishes([
             __DIR__ . '/../../resources/views' => config('view.paths')[0] . '/vendor/webed-core',
@@ -29,6 +32,13 @@ class ModuleProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../config' => base_path('config'),
         ], 'config');
+        $this->publishes([
+            __DIR__ . '/../../resources/assets' => resource_path('assets'),
+        ], 'webed-assets');
+        $this->publishes([
+            __DIR__ . '/../../resources/public' => public_path(),
+            __DIR__ . '/../../resources/front-views' => resource_path('views'),
+        ], 'webed-public-assets');
     }
 
     /**
@@ -38,7 +48,7 @@ class ModuleProvider extends ServiceProvider
      */
     public function register()
     {
-        config(['webed.version' => '2.0.7']);
+        config(['webed.version' => '2.0.8']);
 
         //Load helpers
         Helper::loadModuleHelpers(__DIR__);
@@ -48,6 +58,7 @@ class ModuleProvider extends ServiceProvider
         $loader->alias('Breadcrumbs', BreadcrumbsFacade::class);
         $loader->alias('FlashMessages', FlashMessagesFacade::class);
         $loader->alias('AdminBar', AdminBarFacade::class);
+        $loader->alias('ViewCount', ViewCountFacade::class);
 
         //Merge configs
         $configs = split_files_with_basename($this->app['files']->glob(__DIR__ . '/../../config/*.php'));

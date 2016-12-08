@@ -22,16 +22,14 @@
 
     @yield('css')
 
-    <link rel="shortcut icon" href="{{ asset(get_settings('favicon')) }}"/>
+    <link rel="shortcut icon" href="{{ asset(get_settings('favicon', 'favicon.png')) }}"/>
 
     <script type="text/javascript">
         var BASE_URL = '{{ asset('') }}',
             FILE_MANAGER_URL = '{{ route('admin::elfinder.popup.get') }}';
     </script>
 
-    {{--BEGIN plugins--}}
     {!! \Assets::renderScripts('top') !!}
-    {{--END plugins--}}
 
     @php do_action('header_js') @endphp
 </head>
