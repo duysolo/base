@@ -34,8 +34,6 @@ abstract class BaseController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['construction-mode', 'admin-bar']);
-
         $this->request = request();
 
         $this->adminRoute = config('webed.admin_route');

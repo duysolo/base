@@ -28,8 +28,7 @@ class MiddlewareServiceProvider extends ServiceProvider
          * @var Router $router
          */
         $router = $this->app['router'];
-
-        $router->middleware('construction-mode', ConstructionModeMiddleware::class);
-        $router->middleware('admin-bar', AdminBarMiddleware::class);
+        $router->pushMiddlewareToGroup('web', ConstructionModeMiddleware::class);
+        $router->pushMiddlewareToGroup('web', AdminBarMiddleware::class);
     }
 }

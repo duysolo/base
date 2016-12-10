@@ -59,6 +59,8 @@ class ModuleProvider extends ServiceProvider
         $loader->alias('FlashMessages', FlashMessagesFacade::class);
         $loader->alias('AdminBar', AdminBarFacade::class);
         $loader->alias('ViewCount', ViewCountFacade::class);
+        $loader->alias('Form', \Collective\Html\FormFacade::class);
+        $loader->alias('Html', \Collective\Html\HtmlFacade::class);
 
         //Merge configs
         $configs = split_files_with_basename($this->app['files']->glob(__DIR__ . '/../../config/*.php'));
@@ -77,8 +79,8 @@ class ModuleProvider extends ServiceProvider
         /**
          * Base providers
          */
-        $this->app->register(RouteServiceProvider::class);
         $this->app->register(MiddlewareServiceProvider::class);
+        $this->app->register(RouteServiceProvider::class);
         $this->app->register(ValidateServiceProvider::class);
         $this->app->register(HookServiceProvider::class);
         $this->app->register(ComposerServiceProvider::class);

@@ -117,7 +117,7 @@ if (!function_exists('save_file_data')) {
             \File::put($path, $data);
             return true;
         } catch (Exception $exception) {
-            return false;
+            return $exception->getMessage();
         }
     }
 }
@@ -141,4 +141,8 @@ if (!function_exists('format_file_size')) {
         }
         return $size;
     }
+}
+
+if (!function_exists('save_env')) {
+    //
 }
