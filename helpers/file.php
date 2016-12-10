@@ -108,10 +108,10 @@ if (!function_exists('save_file_data')) {
      * @param bool $json
      * @return bool
      */
-    function save_file_data($path, $data, $jsonFormat = false)
+    function save_file_data($path, $data, $json = false)
     {
         try {
-            if ($jsonFormat === true) {
+            if ($json === true) {
                 $data = json_encode_prettify($data);
             }
             \File::put($path, $data);
@@ -141,8 +141,4 @@ if (!function_exists('format_file_size')) {
         }
         return $size;
     }
-}
-
-if (!function_exists('save_env')) {
-    //
 }

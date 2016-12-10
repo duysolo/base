@@ -24,11 +24,13 @@ class MiddlewareServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        /**
-         * @var Router $router
-         */
-        $router = $this->app['router'];
-        $router->pushMiddlewareToGroup('web', ConstructionModeMiddleware::class);
-        $router->pushMiddlewareToGroup('web', AdminBarMiddleware::class);
+        if(!is_in_dashboard()) {
+            /**
+             * @var Router $router
+             */
+            $router = $this->app['router'];
+            $router->pushMiddlewareToGroup('web', ConstructionModeMiddleware::class);
+            $router->pushMiddlewareToGroup('web', AdminBarMiddleware::class);
+        }
     }
 }
