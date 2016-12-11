@@ -1,46 +1,49 @@
-WebEd.showNotification = function ($message, $type) {
+WebEd.showNotification = function (message, type, options) {
     "use strict";
-    switch ($type) {
+    options = options || {};
+
+    switch (type) {
         case 'success': {
-            $type = 'lime';
+            type = 'lime';
         }
             break;
         case 'info': {
-            $type = 'teal';
+            type = 'teal';
         }
             break;
         case 'warning': {
-            $type = 'tangerine';
+            type = 'tangerine';
         }
             break;
         case 'danger': {
-            $type = 'ruby';
+            type = 'ruby';
         }
             break;
         case 'error': {
-            $type = 'ruby';
+            type = 'ruby';
         }
             break;
         default: {
-            $type = 'ebony';
+            type = 'ebony';
         }
             break;
     }
     $.notific8('zindex', 11500);
 
-    var settings = {
-        theme: $type,
+    var settings = $.extend(true, {
+        theme: type,
         sticky: false,
         horizontalEdge: 'bottom',
-        verticalEdge: 'right'
-    };
+        verticalEdge: 'right',
+        life: 10000
+    }, options);
 
-    if ($message instanceof Array) {
-        $message.forEach(function (value) {
+    if (message instanceof Array) {
+        message.forEach(function (value) {
             $.notific8($.trim(value), settings);
         });
     }
     else {
-        $.notific8($.trim($message), settings);
+        $.notific8($.trim(message), settings);
     }
 };

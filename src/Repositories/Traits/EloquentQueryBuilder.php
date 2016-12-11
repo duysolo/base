@@ -27,8 +27,6 @@ trait EloquentQueryBuilder
 
     private $orderBy = [];
 
-    private $orderByRandom = false;
-
     /**
      *
      * Since 2016-10-15
@@ -170,20 +168,6 @@ trait EloquentQueryBuilder
             }
         } else {
             $this->orderBy[$field] = $value;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Order by random
-     * @param bool $enable
-     * @return $this
-     */
-    public function orderByRandom($enable = true)
-    {
-        if ($enable === true) {
-            $this->orderByRandom = true;
         }
 
         return $this;
@@ -472,13 +456,6 @@ trait EloquentQueryBuilder
         }
 
         /**
-         * Order by random
-         */
-        if ($this->orderByRandom === true) {
-            $model = $model->orderByRaw('RAND()');
-        }
-
-        /**
          * Custom select fields
          */
         if ((array)$this->select) {
@@ -562,7 +539,6 @@ trait EloquentQueryBuilder
         $this->select = null;
         $this->skip = null;
         $this->orderBy = [];
-        $this->orderByRandom = false;
 
         /**
          *
@@ -601,7 +577,6 @@ trait EloquentQueryBuilder
             'select' => $this->select,
             'skip' => $this->skip,
             'orderBy' => $this->orderBy,
-            'orderByRandom' => $this->orderByRandom,
             /**
              *
              * Since 2016-10-15

@@ -45,13 +45,6 @@ interface BaseMethodsContract
     public function orderBy($field, $value = null);
 
     /**
-     * Order by random
-     * @param bool $enable
-     * @return $this
-     */
-    public function orderByRandom($enable = true);
-
-    /**
      * Join to other table
      * @param $joinTo
      * @param $firstTableField
