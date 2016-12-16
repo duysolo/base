@@ -12,11 +12,6 @@ use WebEd\Base\Caching\Repositories\Traits\Cacheable;
 
 abstract class AbstractBaseRepository implements ModelNeedValidate, BaseMethodsContract
 {
-    const ERROR_CODE = 500;
-    const NOT_FOUND_CODE = 404;
-    const SUCCESS_CODE = 201;
-    const SUCCESS_NO_CONTENT_CODE = 200;
-
     use RepositoryRules;
 
     use BaseMethods;
@@ -68,6 +63,6 @@ abstract class AbstractBaseRepository implements ModelNeedValidate, BaseMethodsC
      */
     public function setMessages($messages, $error = false, $responseCode = null, $data = null)
     {
-        return response_with_messages($messages, $error, $responseCode ?: $this::SUCCESS_NO_CONTENT_CODE, $data);
+        return response_with_messages($messages, $error, $responseCode ?: \Constants::SUCCESS_NO_CONTENT_CODE, $data);
     }
 }

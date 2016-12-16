@@ -18,7 +18,7 @@ class BaseFrontController extends BaseController
     {
         parent::__construct();
 
-        $currentThemeName = \ThemesManagement::getCurrentTheme();
+        $currentThemeName = themes_management()->getCurrentTheme();
         if($currentThemeName) {
             $this->currentThemeName = 'webed-theme-' . array_get($currentThemeName, 'alias');
         }

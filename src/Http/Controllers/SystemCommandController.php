@@ -10,7 +10,7 @@ class SystemCommandController extends BaseAdminController
      */
     public function getCallDumpAutoload()
     {
-        \ModulesManagement::refreshComposerAutoload();
+        modules_management()->refreshComposerAutoload();
         $this->flashMessagesHelper
             ->addMessages('Composer autoload refreshed', 'success')
             ->showMessagesOnSession();

@@ -1,22 +1,14 @@
 <?php
 
-if (!defined('ERROR_CODE')) {
-    define('ERROR_CODE', 500);
-}
+class Constants
+{
+    const ERROR_CODE = 500;
 
-if (!defined('MAINTENANCE_MODE')) {
-    define('MAINTENANCE_MODE', 503);
-}
+    const MAINTENANCE_MODE = 503;
 
+    const NOT_FOUND_CODE = 404;
 
-if (!defined('NOT_FOUND_CODE')) {
-    define('NOT_FOUND_CODE', 404);
-}
+    const SUCCESS_CODE = 201;
 
-if (!defined('SUCCESS_CODE')) {
-    define('SUCCESS_CODE', 201);
-}
-
-if (!defined('SUCCESS_NO_CONTENT_CODE')) {
-    define('SUCCESS_NO_CONTENT_CODE', 200);
+    const SUCCESS_NO_CONTENT_CODE = 200;
 }

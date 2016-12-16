@@ -54,7 +54,7 @@ trait EloquentBaseMethods
             if ($allowCreateNew != true) {
                 $item = $this->find($id);
                 if (!$item) {
-                    return $this->setMessages(['Model not exists with id: ' . $id], true, $this::NOT_FOUND_CODE);
+                    return $this->setMessages(['Model not exists with id: ' . $id], true, \Constants::NOT_FOUND_CODE);
                 }
             } else {
                 $item = $this->findOrNew($id);
@@ -82,7 +82,7 @@ trait EloquentBaseMethods
          * Nothing to update
          */
         if (!$data) {
-            return $this->setMessages(array_merge(['Request completed'], $cannotEdit), false, $this::SUCCESS_NO_CONTENT_CODE, $item);
+            return $this->setMessages(array_merge(['Request completed'], $cannotEdit), false, \Constants::SUCCESS_NO_CONTENT_CODE, $item);
         }
 
         /**
@@ -94,7 +94,7 @@ trait EloquentBaseMethods
          * Do not passed validate
          */
         if (!$validate) {
-            return $this->setMessages(array_merge($this->getRuleErrorMessages(), $cannotEdit), true, $this::ERROR_CODE);
+            return $this->setMessages(array_merge($this->getRuleErrorMessages(), $cannotEdit), true, \Constants::ERROR_CODE);
         }
 
         $primaryKey = $this->getPrimaryKey();
@@ -113,10 +113,10 @@ trait EloquentBaseMethods
             $item->save();
         } catch (\Exception $exception) {
             $this->resetQuery();
-            return $this->setMessages(array_merge([$exception->getMessage()], $cannotEdit), true, $this::ERROR_CODE);
+            return $this->setMessages(array_merge([$exception->getMessage()], $cannotEdit), true, \Constants::ERROR_CODE);
         }
         $this->resetQuery();
-        return $this->setMessages(array_merge(['Request completed'], $cannotEdit), false, $this::SUCCESS_CODE, $item);
+        return $this->setMessages(array_merge(['Request completed'], $cannotEdit), false, \Constants::SUCCESS_CODE, $item);
     }
 
     /**
@@ -140,7 +140,7 @@ trait EloquentBaseMethods
 
         $validate = $this->validateModel($data, $justUpdateSomeFields);
         if (!$validate) {
-            return $this->setMessages(array_merge($this->getRuleErrorMessages(), $cannotEdit), true, $this::ERROR_CODE);
+            return $this->setMessages(array_merge($this->getRuleErrorMessages(), $cannotEdit), true, \Constants::ERROR_CODE);
         }
 
         $items = $this->getModel()->whereIn('id', $ids);
@@ -149,10 +149,10 @@ trait EloquentBaseMethods
             $items->update($data);
         } catch (\Exception $exception) {
             $this->resetQuery();
-            return $this->setMessages(array_merge([$exception->getMessage()], $cannotEdit), true, $this::ERROR_CODE);
+            return $this->setMessages(array_merge([$exception->getMessage()], $cannotEdit), true, \Constants::ERROR_CODE);
         }
         $this->resetQuery();
-        return $this->setMessages(array_merge(['Request completed'], $cannotEdit), false, $this::SUCCESS_NO_CONTENT_CODE);
+        return $this->setMessages(array_merge(['Request completed'], $cannotEdit), false, \Constants::SUCCESS_NO_CONTENT_CODE);
     }
 
     /**
@@ -176,7 +176,7 @@ trait EloquentBaseMethods
 
         $validate = $this->validateModel($data, $justUpdateSomeFields);
         if (!$validate) {
-            return $this->setMessages(array_merge($this->getRuleErrorMessages(), $cannotEdit), true, $this::ERROR_CODE);
+            return $this->setMessages(array_merge($this->getRuleErrorMessages(), $cannotEdit), true, \Constants::ERROR_CODE);
         }
 
         $model = $this->getModel();
@@ -189,10 +189,10 @@ trait EloquentBaseMethods
             $model->update($data);
         } catch (\Exception $exception) {
             $this->resetQuery();
-            return $this->setMessages(array_merge([$exception->getMessage()], $cannotEdit), true, $this::ERROR_CODE);
+            return $this->setMessages(array_merge([$exception->getMessage()], $cannotEdit), true, \Constants::ERROR_CODE);
         }
         $this->resetQuery();
-        return $this->setMessages(array_merge(['Request completed'], $cannotEdit), false, $this::SUCCESS_NO_CONTENT_CODE);
+        return $this->setMessages(array_merge(['Request completed'], $cannotEdit), false, \Constants::SUCCESS_NO_CONTENT_CODE);
     }
 
     /**
@@ -233,9 +233,9 @@ trait EloquentBaseMethods
             }
         } catch (\Exception $exception) {
             $this->resetQuery();
-            return $this->setMessages([$exception->getMessage()], true, $this::ERROR_CODE);
+            return $this->setMessages([$exception->getMessage()], true, \Constants::ERROR_CODE);
         }
         $this->resetQuery();
-        return $this->setMessages(['Request completed'], false, $this::SUCCESS_NO_CONTENT_CODE);
+        return $this->setMessages(['Request completed'], false, \Constants::SUCCESS_NO_CONTENT_CODE);
     }
 }

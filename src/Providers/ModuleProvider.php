@@ -4,6 +4,7 @@ use Illuminate\Support\ServiceProvider;
 use WebEd\Base\Core\Facades\AdminBarFacade;
 use WebEd\Base\Core\Facades\BreadcrumbsFacade;
 use WebEd\Base\Core\Facades\FlashMessagesFacade;
+use WebEd\Base\Core\Facades\SeoFacade;
 use WebEd\Base\Core\Facades\ViewCountFacade;
 use WebEd\Base\Core\Support\Helper;
 
@@ -61,6 +62,7 @@ class ModuleProvider extends ServiceProvider
         $loader->alias('ViewCount', ViewCountFacade::class);
         $loader->alias('Form', \Collective\Html\FormFacade::class);
         $loader->alias('Html', \Collective\Html\HtmlFacade::class);
+        $loader->alias('Seo', SeoFacade::class);
 
         //Merge configs
         $configs = split_files_with_basename($this->app['files']->glob(__DIR__ . '/../../config/*.php'));
