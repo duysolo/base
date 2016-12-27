@@ -24,6 +24,20 @@ class RepositoryEngine extends BaseEngine
         $this->request = $request;
         $this->columns = array_get($this->repository->getQueryBuilderData(), 'select', []);
         $this->connection = $this->repository->getModel()->getConnection();
+
+        $this->query = $repository;
+        $this->query_type = 'repository';
+    }
+
+    /**
+     * Get Query Builder object.
+     *
+     * @param mixed $instance
+     * @return mixed
+     */
+    public function getQueryBuilder($instance = null)
+    {
+        return $this->query;
     }
 
     /**

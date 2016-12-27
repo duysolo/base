@@ -20,7 +20,7 @@
                 <li class="dropdown user-menu">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                        data-close-others="true">
-                        <img alt=""
+                        <img alt="{{ $loggedInUser->display_name or '' }}"
                              class="img-circle user-image"
                              src="{{ $loggedInUser->avatar or '' }}"
                              width="25"

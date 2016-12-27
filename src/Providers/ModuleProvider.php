@@ -49,7 +49,7 @@ class ModuleProvider extends ServiceProvider
      */
     public function register()
     {
-        config(['webed.version' => '2.0.12']);
+        config(['webed.version' => '2.0.14']);
 
         //Load helpers
         Helper::loadModuleHelpers(__DIR__);

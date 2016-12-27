@@ -1,13 +1,15 @@
 @php
-    $hasFilter = isset($filter) && $filter ? true : false;
-    $hasTableActions = isset($tableActions) && $tableActions ? true : false;
+    $hasFilter = isset($filters) && $filters ? true : false;
+    $hasTableActions = isset($groupActions) && $groupActions ? true : false;
     $totalColumns = sizeof($headings);
 @endphp
 <div class="table-container">
     @if($hasTableActions)
         <div class="table-actions-wrapper">
             <span></span>
-            {!! $tableActions !!}
+            {!! form()->select('', $groupActions, null, [
+                'class' => 'table-group-action-input form-control input-inline input-small input-sm'
+            ]) !!}
             <button class="btn btn-sm green table-group-action-submit" data-toggle="confirmation" data-placement="left">
                 <i class="fa fa-check"></i> Submit
             </button>
@@ -24,7 +26,7 @@
                 </th>
             @endif
             @foreach($headings as $heading)
-                <th width="{{ $heading['width'] or '' }}">{{ $heading['name'] or '' }}</th>
+                <th width="{{ $heading['width'] or '' }}">{{ $heading['title'] or '' }}</th>
             @endforeach
         </tr>
         @if($hasFilter)
@@ -34,7 +36,7 @@
                 @endif
                 @for($i = 1; $i < $totalColumns; $i++)
                     <td>
-                        {!! $filter[(($hasTableActions) ? $i : $i - 1)] or '' !!}
+                        {!! $filters[(($hasTableActions) ? $i : $i - 1)] or '' !!}
                     </td>
                 @endfor
                 <td>
