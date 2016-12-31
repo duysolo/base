@@ -159,6 +159,25 @@ abstract class AbstractDataTables
     }
 
     /**
+     * @return mixed|RepositoryEngine|CollectionEngine|EloquentEngine|QueryBuilderEngine
+     */
+    public function getDataTableData()
+    {
+        return $this->fetch;
+    }
+
+    /**
+     * @param CollectionEngine|EloquentEngine|RepositoryEngine|QueryBuilderEngine|mixed $engine
+     * @return $this
+     */
+    public function setDataTableData($engine)
+    {
+        $this->fetch = $engine;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     abstract public function run();

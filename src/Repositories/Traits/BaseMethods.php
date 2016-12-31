@@ -2,9 +2,9 @@
 
 use WebEd\Base\Core\Models\Contracts\BaseModelContract;
 
-trait EloquentBaseMethods
+trait BaseMethods
 {
-    use EloquentQueryBuilder;
+    use QueryBuilder;
 
     /**
      * Create a new item.
@@ -223,11 +223,6 @@ trait EloquentBaseMethods
         $models = $models->get();
 
         try {
-            /**
-             * In order to use method delete from Eloquent
-             * Uncomment this line to use delete method in QueryBuilder
-             */
-            //$model->delete();
             foreach ($models as $model) {
                 $model->delete();
             }

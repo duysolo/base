@@ -1,8 +1,9 @@
 <?php namespace WebEd\Base\Core\Repositories\Traits;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use WebEd\Base\Core\Models\EloquentBase;
 
-trait EloquentQueryBuilder
+trait QueryBuilder
 {
     private $with = [];
 
@@ -183,13 +184,13 @@ trait EloquentQueryBuilder
      */
     public function join($joinTo, $firstTableField, $operator = null, $secondTableField = null)
     {
-        if($firstTableField instanceof \Closure) {
+        if ($firstTableField instanceof \Closure) {
             $this->join[$joinTo] = [
                 'type' => 'leftJoin',
                 'firstTableField' => $firstTableField,
             ];
         } else {
-            if(!$operator || !$secondTableField) {
+            if (!$operator || !$secondTableField) {
                 return $this;
             }
         }
@@ -214,13 +215,13 @@ trait EloquentQueryBuilder
      */
     public function leftJoin($joinTo, $firstTableField, $operator = null, $secondTableField = null)
     {
-        if($firstTableField instanceof \Closure) {
+        if ($firstTableField instanceof \Closure) {
             $this->join[$joinTo] = [
                 'type' => 'leftJoin',
                 'firstTableField' => $firstTableField,
             ];
         } else {
-            if(!$operator || !$secondTableField) {
+            if (!$operator || !$secondTableField) {
                 return $this;
             }
         }
@@ -406,7 +407,7 @@ trait EloquentQueryBuilder
     private function _prepareQuery()
     {
         /**
-         * @var EloquentBase $model
+         * @var EloquentBase|SoftDeletes $models
          */
         $model = $this->getModel();
         /**
@@ -414,7 +415,7 @@ trait EloquentQueryBuilder
          */
         foreach ($this->join as $key => $row) {
             $type = $row['type'];
-            if($row['firstTableField'] instanceof \Closure) {
+            if ($row['firstTableField'] instanceof \Closure) {
                 $model = $model->$type($key, $row['firstTableField']);
             } else {
                 $model = $model->$type($key, $row['firstTableField'], $row['compare'], $row['secondTableField']);
@@ -514,6 +515,16 @@ trait EloquentQueryBuilder
         }
         if ($this->inRandomOrder) {
             $model = $model->inRandomOrder();
+        }
+
+        /**
+         * Since 2016.12.31 - Soft deletes
+         */
+        if (property_exists($this, 'onlyTrashed') && $this->onlyTrashed) {
+            $model = $model->onlyTrashed();
+        }
+        if (property_exists($this, 'withTrashed') && $this->withTrashed) {
+            $model = $model->withTrashed();
         }
 
         return $model;

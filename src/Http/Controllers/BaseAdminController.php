@@ -1,6 +1,6 @@
 <?php namespace WebEd\Base\Core\Http\Controllers;
 
-use WebEd\Base\Users\Repositories\Contracts\UserContract;
+use WebEd\Base\Users\Repositories\Contracts\UserRepositoryContract;
 use WebEd\Base\Users\Repositories\UserRepository;
 
 abstract class BaseAdminController extends BaseController
@@ -11,7 +11,7 @@ abstract class BaseAdminController extends BaseController
     public $breadcrumbs;
 
     /**
-     * @var \WebEd\Base\Users\Models\EloquentUser
+     * @var \WebEd\Base\Users\Models\User
      */
     protected $loggedInUser;
 
@@ -65,7 +65,7 @@ abstract class BaseAdminController extends BaseController
 
         $this->flashMessagesHelper = \FlashMessages::getFacadeRoot();
 
-        $this->userRepository = app(UserContract::class);
+        $this->userRepository = app(UserRepositoryContract::class);
     }
 
     /**

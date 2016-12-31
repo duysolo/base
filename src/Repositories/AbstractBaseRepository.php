@@ -2,19 +2,22 @@
 
 use WebEd\Base\Core\Models\Contracts\BaseModelContract;
 
-use WebEd\Base\Core\Repositories\Traits\EloquentBaseMethods as BaseMethods;
+use WebEd\Base\Core\Repositories\Traits\BaseMethods as BaseMethods;
 use WebEd\Base\Core\Repositories\Traits\RepositoryRules;
 
 use WebEd\Base\Core\Repositories\Contracts\ModelNeedValidate;
 use WebEd\Base\Core\Repositories\Contracts\BaseMethodsContract;
 
 use WebEd\Base\Caching\Repositories\Traits\Cacheable;
+use WebEd\Base\Core\Repositories\Traits\SoftDeletes;
 
 abstract class AbstractBaseRepository implements ModelNeedValidate, BaseMethodsContract
 {
     use RepositoryRules;
 
     use BaseMethods;
+
+    use SoftDeletes;
 
     use Cacheable;
 

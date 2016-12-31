@@ -37,7 +37,7 @@ class RepositoryEngine extends BaseEngine
      */
     public function getQueryBuilder($instance = null)
     {
-        return $this->query;
+        return $this->repository;
     }
 
     /**
@@ -68,8 +68,20 @@ class RepositoryEngine extends BaseEngine
             $column = $this->getColumnName($index);
             $keyword = $this->getSearchKeyword($index);
 
-            if ($keyword) {
-                $this->repository->where($column, 'LIKE', $keyword);
+            if (isset($this->columnDef['filter'][$column])) {
+                $columnDef = $this->columnDef['filter'][$column];
+
+                if ($columnDef['method'] instanceof Closure) {
+                    $this->repository = $this->query = call_user_func_array($columnDef['method'], [$this->repository, $keyword]);
+                } else {
+                    if ($keyword) {
+                        $this->repository->where($column, 'LIKE', $keyword);
+                    }
+                }
+            } else {
+                if ($keyword) {
+                    $this->repository->where($column, 'LIKE', $keyword);
+                }
             }
 
             $this->isFilterApplied = true;
@@ -122,6 +134,8 @@ class RepositoryEngine extends BaseEngine
     {
         // TODO: Implement filter() method.
         $this->overrideGlobalSearch($callback, $this->repository, $globalSearch);
+
+        return $this;
     }
 
     public function count()
