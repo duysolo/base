@@ -15,7 +15,7 @@
             </div>
         </div>
         <ul class="sidebar-menu">
-            {!! $CMSDashboardMenu or '' !!}
+            {!! DashboardMenu::render() !!}
         </ul>
     </section>
 </aside>
