@@ -43,7 +43,7 @@ class BootstrapModuleServiceProvider extends ServiceProvider
          */
         \DashboardMenu::registerItem([
             'id' => 'webed-dashboard',
-            'piority' => -999,
+            'priority' => -999,
             'parent_id' => null,
             'heading' => 'Dashboard',
             'title' => 'Dashboard',
@@ -54,7 +54,7 @@ class BootstrapModuleServiceProvider extends ServiceProvider
 
         \DashboardMenu::registerItem([
             'id' => 'webed-configuration',
-            'piority' => 999,
+            'priority' => 999,
             'parent_id' => null,
             'heading' => 'Advanced',
             'title' => 'Configurations',
@@ -70,7 +70,7 @@ class BootstrapModuleServiceProvider extends ServiceProvider
             ->addSettingField('site_title', [
                 'group' => 'basic',
                 'type' => 'text',
-                'piority' => 5,
+                'priority' => 5,
                 'label' => 'Site title',
                 'helper' => 'Our site title'
             ], function () {
@@ -83,7 +83,7 @@ class BootstrapModuleServiceProvider extends ServiceProvider
             ->addSettingField('site_logo', [
                 'group' => 'basic',
                 'type' => 'selectImageBox',
-                'piority' => 5,
+                'priority' => 5,
                 'label' => 'Site logo',
                 'helper' => 'Our site logo'
             ], function () {
@@ -95,7 +95,7 @@ class BootstrapModuleServiceProvider extends ServiceProvider
             ->addSettingField('favicon', [
                 'group' => 'basic',
                 'type' => 'selectImageBox',
-                'piority' => 5,
+                'priority' => 5,
                 'label' => 'Favicon',
                 'helper' => '16x16, support png, gif, ico, jpg'
             ], function () {
@@ -107,7 +107,7 @@ class BootstrapModuleServiceProvider extends ServiceProvider
             ->addSettingField('construction_mode', [
                 'group' => 'advanced',
                 'type' => 'customCheckbox',
-                'piority' => 5,
+                'priority' => 5,
                 'label' => null,
                 'helper' => 'Mark this site on maintenance mode. Just logged in admin can access front site.',
             ], function () {
@@ -118,7 +118,7 @@ class BootstrapModuleServiceProvider extends ServiceProvider
             ->addSettingField('show_admin_bar', [
                 'group' => 'advanced',
                 'type' => 'customCheckbox',
-                'piority' => 5,
+                'priority' => 5,
                 'label' => null,
                 'helper' => 'When admin logged in, still show admin bar on front site.'
             ], function () {
@@ -147,7 +147,7 @@ class BootstrapModuleServiceProvider extends ServiceProvider
             cms_settings()->addSettingField($key, [
                 'group' => 'socials',
                 'type' => 'text',
-                'piority' => 1,
+                'priority' => 1,
                 'label' => $row['label'],
                 'helper' => null
             ], function () use ($key) {
