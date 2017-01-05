@@ -1,5 +1,7 @@
 <?php namespace WebEd\Base\Core\Support\DataTable\Engines;
 
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use WebEd\Base\Core\Repositories\AbstractBaseRepository;
 use WebEd\Base\Caching\Repositories\AbstractRepositoryCacheDecorator;
 use Yajra\Datatables\Engines\BaseEngine;
@@ -12,6 +14,11 @@ class RepositoryEngine extends BaseEngine
      * @var AbstractBaseRepository|AbstractRepositoryCacheDecorator
      */
     protected $repository;
+
+    /**
+     * @var Collection|LengthAwarePaginator
+     */
+    protected $results;
 
     public function __construct($repository, Request $request)
     {
@@ -40,24 +47,8 @@ class RepositoryEngine extends BaseEngine
         return $this->repository;
     }
 
-    /**
-     * Check if model use SoftDeletes trait
-     *
-     * @return boolean
-     */
-    private function modelUseSoftDeletes()
-    {
-        $model = $this->repository->getModel();
-        if ($model instanceof \Illuminate\Database\Eloquent\SoftDeletes) {
-            return true;
-        }
-
-        return false;
-    }
-
     public function columnSearch()
     {
-        // TODO: Implement columnSearch() method.
         $columns = $this->request->get('columns', []);
 
         foreach ($columns as $index => $column) {
@@ -75,12 +66,12 @@ class RepositoryEngine extends BaseEngine
                     $this->repository = $this->query = call_user_func_array($columnDef['method'], [$this->repository, $keyword]);
                 } else {
                     if ($keyword) {
-                        $this->repository->where($column, 'LIKE', $keyword);
+                        $this->repository = $this->repository->where($column, 'LIKE', $keyword);
                     }
                 }
             } else {
                 if ($keyword) {
-                    $this->repository->where($column, 'LIKE', $keyword);
+                    $this->repository = $this->repository->where($column, 'LIKE', $keyword);
                 }
             }
 
@@ -90,7 +81,6 @@ class RepositoryEngine extends BaseEngine
 
     public function filtering()
     {
-        // TODO: Implement filtering() method.
         $globalKeyword = $this->request->keyword();
         foreach ($this->request->searchableColumnIndex() as $index) {
             $columnName = $this->getColumnName($index);
@@ -99,7 +89,7 @@ class RepositoryEngine extends BaseEngine
             }
             $keyword = $this->request->get('columns[' . $index . '][search][value]');
 
-            $this->repository->where(function ($q) use ($columnName, $keyword, $globalKeyword) {
+            $this->repository = $this->repository->where(function ($q) use ($columnName, $keyword, $globalKeyword) {
                 $q
                     ->where($columnName, 'LIKE', $keyword)
                     ->orWhere($columnName, 'LIKE', $globalKeyword);
@@ -111,7 +101,6 @@ class RepositoryEngine extends BaseEngine
 
     public function ordering()
     {
-        // TODO: Implement ordering() method.
         foreach ($this->request->orderableColumns() as $orderable) {
             $column = $this->getColumnName($orderable['column'], true);
 
@@ -125,48 +114,36 @@ class RepositoryEngine extends BaseEngine
 
     public function paging()
     {
-        // TODO: Implement paging() method.
         $this->repository->skip($this->request['start'])
             ->take((int)$this->request['length'] > 0 ? $this->request['length'] : 10);
     }
 
     public function filter(Closure $callback, $globalSearch = false)
     {
-        // TODO: Implement filter() method.
         $this->overrideGlobalSearch($callback, $this->repository, $globalSearch);
-
         return $this;
     }
 
     public function count()
     {
-        // TODO: Implement count() method.
         $repository = clone $this->repository;
-        if (!$this->withTrashed && $this->modelUseSoftDeletes()) {
-            if ($repository->isUseJoin()) {
-                $repository = $repository->where($repository->getModel()->getTable() . '.deleted_at', '=', null);
-            } else {
-                $repository = $repository->where('deleted_at', '=', null);
-            }
-        }
+
         $repository = $repository->get();
+
         try {
-            $total = $repository->total();
+            return $repository->total();
         } catch (\Exception $exception) {
-            $total = $repository->count();
+            return $repository->count();
         }
-        return $total;
     }
 
     public function totalCount()
     {
-        // TODO: Implement totalCount() method.
-        return $this->totalRecords ? $this->totalRecords : $this->count();
+        return $this->count();
     }
 
     public function results()
     {
-        // TODO: Implement results() method.
         return $this->repository->get();
     }
 

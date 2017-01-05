@@ -155,7 +155,7 @@ abstract class AbstractDataTables
      */
     public function ajax()
     {
-        return $this->fetch->make(true);
+        return $this->fetch->make(true, true);
     }
 
     /**

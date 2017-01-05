@@ -3,17 +3,17 @@
 use WebEd\Base\Core\Models\Contracts\BaseModelContract;
 
 use WebEd\Base\Core\Repositories\Traits\BaseMethods as BaseMethods;
-use WebEd\Base\Core\Repositories\Traits\RepositoryRules;
 
-use WebEd\Base\Core\Repositories\Contracts\ModelNeedValidate;
+use WebEd\Base\Core\Repositories\Contracts\ModelNeedValidateContract;
 use WebEd\Base\Core\Repositories\Contracts\BaseMethodsContract;
 
-use WebEd\Base\Caching\Repositories\Traits\Cacheable;
+use WebEd\Base\Caching\Services\Traits\Cacheable;
+use WebEd\Base\Core\Repositories\Traits\ModelNeedValidate;
 use WebEd\Base\Core\Repositories\Traits\SoftDeletes;
 
-abstract class AbstractBaseRepository implements ModelNeedValidate, BaseMethodsContract
+abstract class AbstractBaseRepository implements ModelNeedValidateContract, BaseMethodsContract
 {
-    use RepositoryRules;
+    use ModelNeedValidate;
 
     use BaseMethods;
 

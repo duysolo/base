@@ -404,7 +404,7 @@ trait QueryBuilder
     /**
      * @return mixed
      */
-    private function _prepareQuery()
+    protected function _prepareQuery()
     {
         /**
          * @var EloquentBase|SoftDeletes $models

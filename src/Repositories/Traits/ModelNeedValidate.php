@@ -7,7 +7,7 @@
  * @package WebEd\Base\Core\Repositories\Traits
  * @author Tedozi Manson <duyphan.developer@gmail.com>
  */
-trait RepositoryRules
+trait ModelNeedValidate
 {
     protected $ruleErrors = [];
 
@@ -18,11 +18,18 @@ trait RepositoryRules
      */
     protected $validator;
 
+    /**
+     * @return array
+     */
     public function getModelRules()
     {
         return $this->rules;
     }
 
+    /**
+     * @param array $rules
+     * @return $this
+     */
     public function setModelRules(array $rules)
     {
         $this->rules = $rules;
@@ -30,6 +37,10 @@ trait RepositoryRules
         return $this;
     }
 
+    /**
+     * @param array $rules
+     * @return $this
+     */
     public function expandModelRules(array $rules)
     {
         $this->rules = array_merge($this->rules, $rules);
@@ -37,11 +48,18 @@ trait RepositoryRules
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function getEditableFields()
     {
         return (property_exists($this, 'editableFields')) ? $this->editableFields : ['*'];
     }
 
+    /**
+     * @param array $fields
+     * @return $this
+     */
     public function setEditableFields(array $fields)
     {
         $this->editableFields = $fields;
@@ -49,6 +67,10 @@ trait RepositoryRules
         return $this;
     }
 
+    /**
+     * @param array $fields
+     * @return $this
+     */
     public function expandEditableFields(array $fields)
     {
         $this->editableFields = array_merge($this->getEditableFields(), $fields);
@@ -56,6 +78,10 @@ trait RepositoryRules
         return $this;
     }
 
+    /**
+     * @param $fields
+     * @return $this
+     */
     public function unsetEditableFields($fields)
     {
         if (!is_array($fields)) {
@@ -71,6 +97,10 @@ trait RepositoryRules
         return $this;
     }
 
+    /**
+     * @param array $data
+     * @return array
+     */
     protected function unsetNotEditableFields(array &$data)
     {
         $editableCollection = collect($this->getEditableFields());
