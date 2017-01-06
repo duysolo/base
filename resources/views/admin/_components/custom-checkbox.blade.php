@@ -17,8 +17,9 @@ $values = (array)$values;
             <input type="checkbox"
                    value="{{ $curentValue }}"
                    {{ $selected ? 'checked' : '' }}
-                   name="{{ $name }}" {{ $disabled ? 'disabled' : '' }}> {{ $label }}
+                   name="{{ $name }}" {{ $disabled ? 'disabled' : '' }}>
             <span></span>
+            <span class="text">{{ $label }}</span>
         </label>
     @endforeach
 @if(sizeof($values) > 1) </div> @endif
