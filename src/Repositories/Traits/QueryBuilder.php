@@ -58,6 +58,11 @@ trait QueryBuilder
     private $when = [];
 
     /**
+     * Since 2017-01-06
+     */
+    private $distinct;
+
+    /**
      * Eager loading
      * @param $entityName
      * @return $this
@@ -407,7 +412,7 @@ trait QueryBuilder
     protected function _prepareQuery()
     {
         /**
-         * @var EloquentBase|SoftDeletes $models
+         * @var EloquentBase|SoftDeletes $model
          */
         $model = $this->getModel();
         /**
@@ -527,6 +532,13 @@ trait QueryBuilder
             $model = $model->withTrashed();
         }
 
+        /**
+         * Since 2017-01-06
+         */
+        if ($this->distinct) {
+            $model = $model->distinct();
+        }
+
         return $model;
     }
 
@@ -569,6 +581,13 @@ trait QueryBuilder
         $this->inRandomOrder = null;
         $this->when = [];
 
+        /**
+         *
+         * Since 2017-01-06
+         *
+         */
+        $this->distinct = null;
+
         return $this;
     }
 
@@ -605,6 +624,12 @@ trait QueryBuilder
             'orWhereNotExists' => $this->orWhereNotExists,
             'inRandomOrder' => $this->inRandomOrder,
             'when' => $this->when,
+            /**
+             *
+             * Since 2017-01-06
+             *
+             */
+            'distinct' => $this->distinct,
         ];
     }
 
@@ -815,6 +840,18 @@ trait QueryBuilder
     public function when($bool, \Closure $callback)
     {
         $this->when[] = [$bool, $callback];
+        return $this;
+    }
+
+    /**
+     * Since 2017-01-06
+     */
+    /**
+     * @return $this
+     */
+    public function distinct()
+    {
+        $this->distinct = true;
         return $this;
     }
 }

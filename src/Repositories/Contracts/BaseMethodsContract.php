@@ -273,4 +273,14 @@ interface BaseMethodsContract
      * @return $this
      */
     public function when($bool, \Closure $callback);
+
+    /**
+     *
+     * Since 2017-01-06
+     *
+     */
+    /**
+     * @return $this
+     */
+    public function distinct();
 }
