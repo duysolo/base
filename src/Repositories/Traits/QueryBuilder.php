@@ -372,7 +372,7 @@ trait QueryBuilder
     public function find($id)
     {
         $this->resetQuery();
-        return $this->where($this->getPrimaryKey(), '=', $id)->take(1)->get();
+        return $this->where($this->getPrimaryKey(), '=', $id)->first();
     }
 
     /**
@@ -384,7 +384,7 @@ trait QueryBuilder
      */
     public function findByFieldsOrCreate($fields, $optionalFields = null, $forceCreate = false)
     {
-        $result = $this->where($fields)->take(1)->get();
+        $result = $this->where($fields)->first();
         if (!$result) {
             $data = array_merge((array)$optionalFields, $fields);
             if ($forceCreate) {
@@ -392,7 +392,7 @@ trait QueryBuilder
             } else {
                 $this->create($data);
             }
-            return $this->where($fields)->take(1)->get();
+            return $this->where($fields)->first();
         }
         return $result;
     }
