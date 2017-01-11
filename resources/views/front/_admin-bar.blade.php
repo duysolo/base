@@ -1,7 +1,7 @@
 <nav id="admin_bar">
     <div class="admin-bar-container">
         <div class="admin-bar-logo">
-            <a class="navbar-brand" href="{{ route('admin::dashboard.index.get') }}" title="Go to dashboard">
+            <a href="{{ route('admin::dashboard.index.get') }}" title="Go to dashboard">
                 WebEd CMS
             </a>
         </div>

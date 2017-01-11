@@ -826,7 +826,7 @@ trait QueryBuilder
      * @param $bool
      * @return $this
      */
-    public function inRandomOrder($bool)
+    public function inRandomOrder($bool = true)
     {
         $this->inRandomOrder = !!$bool;
         return $this;

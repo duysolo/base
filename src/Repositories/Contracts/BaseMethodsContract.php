@@ -263,9 +263,9 @@ interface BaseMethodsContract
 
     /**
      * @param $bool
-     * @return bool
+     * @return $this
      */
-    public function inRandomOrder($bool);
+    public function inRandomOrder($bool = true);
 
     /**
      * @param $bool
