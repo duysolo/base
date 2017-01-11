@@ -1,5 +1,21 @@
 <?php
 
+if (!function_exists('get_cms_version')) {
+    /**
+     * @return string
+     */
+    function get_cms_version()
+    {
+        try {
+            $composerLockFile = json_decode(get_file_data(base_path('composer.lock')), true);
+            $packages = collect(array_get($composerLockFile, 'packages'));
+            return array_get($packages->where('name', '=', 'sgsoft-studio/base')->first(), 'version');
+        } catch (\Exception $exception) {
+            return '2.0';
+        }
+    }
+}
+
 if (!function_exists('load_module_helpers')) {
     /**
      * @param $dir

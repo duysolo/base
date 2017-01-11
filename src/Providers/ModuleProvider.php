@@ -49,8 +49,6 @@ class ModuleProvider extends ServiceProvider
      */
     public function register()
     {
-        config(['webed.version' => '2.0.19']);
-
         //Load helpers
         Helper::loadModuleHelpers(__DIR__);
 
@@ -106,5 +104,7 @@ class ModuleProvider extends ServiceProvider
         $this->app->register(\WebEd\Base\ThemesManagement\Providers\ModuleProvider::class);
         $this->app->register(\WebEd\Base\Users\Providers\ModuleProvider::class);
         $this->app->register(\WebEd\Base\Pages\Providers\ModuleProvider::class);
+
+        config(['webed.version' => get_cms_version()]);
     }
 }
