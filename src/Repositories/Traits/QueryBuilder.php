@@ -191,7 +191,7 @@ trait QueryBuilder
     {
         if ($firstTableField instanceof \Closure) {
             $this->join[$joinTo] = [
-                'type' => 'leftJoin',
+                'type' => 'join',
                 'firstTableField' => $firstTableField,
             ];
         } else {

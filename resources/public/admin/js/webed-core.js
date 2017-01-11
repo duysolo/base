@@ -223,6 +223,7 @@ WebEd.ckeditor = function ($elements, config) {
         filebrowserBrowseUrl: FILE_MANAGER_URL + '?method=ckeditor',
         extraPlugins: 'codeTag,insertpre',
         allowedContent: true,
+        autoParagraph: false,
         height: '500px'
     }, config);
     $elements.ckeditor($.noop, config);
