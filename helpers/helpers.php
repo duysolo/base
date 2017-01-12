@@ -89,10 +89,47 @@ if (!function_exists('is_in_dashboard')) {
     function is_in_dashboard()
     {
         $segment = request()->segment(1);
-        if($segment === env('WEBED_ADMIN_ROUTE')) {
+        if ($segment === env('WEBED_ADMIN_ROUTE')) {
             return true;
         }
 
         return false;
+    }
+}
+
+if (!function_exists('custom_strip_tags')) {
+    /**
+     * @param array|string $data
+     * @param string $allowTags
+     * @return array|string
+     */
+    function custom_strip_tags($data, $allowTags = '<p><a><br><br/><b><strong>')
+    {
+        if (!is_array($data)) {
+            return strip_tags($data, $allowTags);
+        }
+        foreach ($data as $key => $row) {
+            $data[$key] = strip_tags($row, $allowTags);
+        }
+        return $data;
+    }
+}
+
+if (!function_exists('limit_chars')) {
+    /**
+     * @param $string
+     * @param null $limit
+     * @param string $append
+     * @return string
+     */
+    function limit_chars($string, $limit = null, $append = '...')
+    {
+        if (!$limit) {
+            return $string;
+        }
+        if (strlen($string) <= $limit) {
+            $append = '';
+        }
+        return substr($string, 0, $limit) . $append;
     }
 }
