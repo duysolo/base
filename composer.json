@@ -29,8 +29,7 @@
         "sgsoft-studio/themes-management": "2.*",
         "sgsoft-studio/users": "2.*",
         "sgsoft-studio/pages": "2.*",
-        "sgsoft-studio/shortcode": "2.*",
-        "sgsoft-studio/analytics": "1.*"
+        "sgsoft-studio/shortcode": "2.*"
     },
     "autoload": {
         "psr-4": {

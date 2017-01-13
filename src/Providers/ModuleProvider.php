@@ -102,7 +102,6 @@ class ModuleProvider extends ServiceProvider
         $this->app->register(\WebEd\Base\ThemesManagement\Providers\ModuleProvider::class);
         $this->app->register(\WebEd\Base\Users\Providers\ModuleProvider::class);
         $this->app->register(\WebEd\Base\Pages\Providers\ModuleProvider::class);
-        $this->app->register(\WebEd\Base\Analytics\Providers\ModuleProvider::class);
 
         config(['webed.version' => get_cms_version()]);
     }
