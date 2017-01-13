@@ -854,4 +854,16 @@ trait QueryBuilder
         $this->distinct = true;
         return $this;
     }
+
+    /**
+     * Since 2017-01-13
+     */
+    /**
+     * @return integer
+     */
+    public function count()
+    {
+        $this->_prepareQuery();
+        return $this->model->count();
+    }
 }

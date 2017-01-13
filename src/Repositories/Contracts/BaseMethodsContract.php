@@ -283,4 +283,12 @@ interface BaseMethodsContract
      * @return $this
      */
     public function distinct();
+
+    /**
+     * Since 2017-01-13
+     */
+    /**
+     * @return integer
+     */
+    public function count();
 }
