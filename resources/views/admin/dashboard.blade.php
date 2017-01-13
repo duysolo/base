@@ -13,20 +13,10 @@
 @endsection
 
 @section('content')
+    <div class="row stat-boxes">
+        @php do_action('webed-dashboard.index.stat-boxes.get') @endphp
+    </div>
     <div class="row">
-        <div class="col-lg-12">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">
-                        <i class="icon-layers font-dark"></i>
-                        Dashboard statistics
-                    </h3>
-                </div>
-                <div class="box-body">
-                    Comming soon!
-                </div>
-            </div>
-        </div>
-        @php do_action('meta_boxes', 'main', 'webed-dashboard.index') @endphp
+        @php do_action('webed-dashboard.index.other.get') @endphp
     </div>
 @endsection
