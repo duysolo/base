@@ -38,7 +38,6 @@ class ModuleProvider extends ServiceProvider
         ], 'webed-assets');
         $this->publishes([
             __DIR__ . '/../../resources/public' => public_path(),
-            __DIR__ . '/../../resources/front-views' => resource_path('views'),
         ], 'webed-public-assets');
     }
 
@@ -72,7 +71,6 @@ class ModuleProvider extends ServiceProvider
         /**
          * Other packages
          */
-        $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
         $this->app->register(\Yajra\Datatables\DatatablesServiceProvider::class);
         $this->app->register(\Collective\Html\HtmlServiceProvider::class);
 
@@ -104,6 +102,7 @@ class ModuleProvider extends ServiceProvider
         $this->app->register(\WebEd\Base\ThemesManagement\Providers\ModuleProvider::class);
         $this->app->register(\WebEd\Base\Users\Providers\ModuleProvider::class);
         $this->app->register(\WebEd\Base\Pages\Providers\ModuleProvider::class);
+        $this->app->register(\WebEd\Base\Analytics\Providers\ModuleProvider::class);
 
         config(['webed.version' => get_cms_version()]);
     }
