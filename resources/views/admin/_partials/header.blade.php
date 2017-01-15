@@ -22,7 +22,7 @@
                        data-close-others="true">
                         <img alt="{{ $loggedInUser->display_name or '' }}"
                              class="img-circle user-image"
-                             src="{{ $loggedInUser->avatar or '' }}"
+                             src="{{ get_image($loggedInUser->avatar) }}"
                              width="25"
                              height="25">
                         <span class="hidden-xs">{{ $loggedInUser->display_name or '' }}</span>
@@ -33,7 +33,7 @@
                         <li class="user-header">
                             <img alt=""
                                  class="img-circle"
-                                 src="{{ $loggedInUser->avatar or '' }}">
+                                 src="{{ get_image($loggedInUser->avatar) }}">
                             <p>{{ $loggedInUser->display_name or '' }}</p>
                         </li>
                         <!-- Menu Footer-->

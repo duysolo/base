@@ -2,7 +2,7 @@
     <section class="sidebar">
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{ $loggedInUser->avatar or '' }}"
+                <img src="{{ get_image($loggedInUser->avatar) }}"
                      class="img-circle"
                      alt="{{ $loggedInUser->display_name or '' }}">
             </div>
