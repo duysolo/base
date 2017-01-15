@@ -11299,9 +11299,9 @@ body, h1, h2, h3, h4, h5, h6, * {
   .layout-2columns .column {
     padding: 0 10px; }
 
-.sidebar-menu > li > a .fa,
-.sidebar-menu > li > a .glyphicon,
-.sidebar-menu > li > a .ion {
+.sidebar-menu > li a .fa,
+.sidebar-menu > li a .glyphicon,
+.sidebar-menu > li a .ion {
   display: inline-block; }
 
 .multi-choices-widget ul {
