@@ -1,66 +1,73 @@
 <?php namespace WebEd\Base\Core\Repositories\Traits;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use WebEd\Base\Core\Models\Contracts\BaseModelContract;
 use WebEd\Base\Core\Models\EloquentBase;
+use WebEd\Base\Core\Repositories\Contracts\UseSoftDeletesContract;
 
 trait QueryBuilder
 {
-    private $with = [];
+    /**
+     * @var BaseModelContract
+     */
+    protected $modelAfterSetQueries;
 
-    private $join = [];
+    protected $with = [];
 
-    private $where = [];
+    protected $join = [];
 
-    private $orWhere = [];
+    protected $where = [];
 
-    private $paginate = [
+    protected $orWhere = [];
+
+    protected $paginate = [
         'perPage' => 0,
         'columns' => ['*'],
         'pageName' => 'page',
         'page' => null
     ];
 
-    private $take = 0;
+    protected $take = 0;
 
-    private $select;
+    protected $select;
 
-    private $skip;
+    protected $skip;
 
-    private $orderBy = [];
+    protected $orderBy = [];
 
     /**
      *
      * Since 2016-10-15
      *
      */
-    private $groupBy;
+    protected $groupBy;
 
-    private $having = [];
+    protected $having = [];
 
-    private $havingRaw = [];
+    protected $havingRaw = [];
 
-    private $avg;
+    protected $avg;
 
-    private $min;
+    protected $min;
 
-    private $max;
+    protected $max;
 
-    private $whereExists = [];
+    protected $whereExists = [];
 
-    private $orWhereExists = [];
+    protected $orWhereExists = [];
 
-    private $whereNotExists = [];
+    protected $whereNotExists = [];
 
-    private $orWhereNotExists = [];
+    protected $orWhereNotExists = [];
 
-    private $inRandomOrder;
+    protected $inRandomOrder;
 
-    private $when = [];
+    protected $when = [];
 
     /**
      * Since 2017-01-06
      */
-    private $distinct;
+    protected $distinct;
 
     /**
      * Eager loading
@@ -313,7 +320,7 @@ trait QueryBuilder
      */
     public function get()
     {
-        $model = $this->_prepareQuery();
+        $model = $this->prepareQuery();
 
         if ($this->take === 1) {
             $result = $model->first();
@@ -409,7 +416,7 @@ trait QueryBuilder
     /**
      * @return mixed
      */
-    protected function _prepareQuery()
+    public function prepareQuery()
     {
         /**
          * @var EloquentBase|SoftDeletes $model
@@ -525,11 +532,13 @@ trait QueryBuilder
         /**
          * Since 2016.12.31 - Soft deletes
          */
-        if (property_exists($this, 'onlyTrashed') && $this->onlyTrashed) {
-            $model = $model->onlyTrashed();
-        }
-        if (property_exists($this, 'withTrashed') && $this->withTrashed) {
-            $model = $model->withTrashed();
+        if ($this instanceof UseSoftDeletesContract) {
+            if ($this->onlyTrashed) {
+                $model = $model->onlyTrashed();
+            }
+            if ($this->withTrashed) {
+                $model = $model->withTrashed();
+            }
         }
 
         /**
@@ -538,6 +547,8 @@ trait QueryBuilder
         if ($this->distinct) {
             $model = $model->distinct();
         }
+
+        $this->modelAfterSetQueries = clone $model;
 
         return $model;
     }
@@ -588,6 +599,17 @@ trait QueryBuilder
          */
         $this->distinct = null;
 
+        /**
+         * Since 2016.12.31 - Soft deletes
+         */
+        if ($this instanceof UseSoftDeletesContract) {
+            $this->onlyTrashed = null;
+            $this->withTrashed = null;
+        }
+
+        $this->modelAfterSetQueries = null;
+        $this->model = $this->originalModel;
+
         return $this;
     }
 
@@ -630,6 +652,8 @@ trait QueryBuilder
              *
              */
             'distinct' => $this->distinct,
+
+            'model' => $this->getModel(),
         ];
     }
 
@@ -863,7 +887,15 @@ trait QueryBuilder
      */
     public function count()
     {
-        $this->_prepareQuery();
+        $this->prepareQuery();
         return $this->model->count();
+    }
+
+    /**
+     * @return BaseModelContract
+     */
+    public function getModelAfterSetQueries()
+    {
+        return $this->modelAfterSetQueries;
     }
 }

@@ -4,8 +4,6 @@ use WebEd\Base\Core\Models\Contracts\BaseModelContract;
 
 trait BaseMethods
 {
-    use QueryBuilder;
-
     /**
      * Create a new item.
      * Only fields listed in $fillable of model can be filled

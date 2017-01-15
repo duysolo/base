@@ -1,6 +1,6 @@
 <?php namespace WebEd\Base\Core\Repositories\Contracts;
 
-interface UseSoftDeletes
+interface UseSoftDeletesContract
 {
     /**
      * @param bool $bool

@@ -1,10 +1,10 @@
 <?php namespace WebEd\Base\Core\Repositories\Traits;
 
-trait SoftDeletes
+trait UseSoftDeletes
 {
-    private $withTrashed;
+    protected $withTrashed;
 
-    private $onlyTrashed;
+    protected $onlyTrashed;
 
     /**
      * @param bool $bool
@@ -87,10 +87,6 @@ trait SoftDeletes
             $models = $this->convertWhereQuery($models);
         }
 
-        /**
-         * In order to use method delete from Eloquent
-         * Comment this line to use delete method in QueryBuilder
-         */
         $models = $models->get();
 
         try {
