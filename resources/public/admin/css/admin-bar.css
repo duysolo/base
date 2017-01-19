@@ -19,6 +19,7 @@ body.show-admin-bar {
   width: 100%;
   min-width: 960px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  z-index: 1000000;
 }
 
 #admin_bar,
