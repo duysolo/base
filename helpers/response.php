@@ -12,7 +12,7 @@ if (!function_exists('response_with_messages')) {
     {
         return [
             'error' => $error,
-            'response_code' => $responseCode ?: 200,
+            'response_code' => $responseCode ?: Constants::SUCCESS_NO_CONTENT_CODE,
             'messages' => (array)$messages,
             'data' => $data
         ];
