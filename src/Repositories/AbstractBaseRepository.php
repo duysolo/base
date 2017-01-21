@@ -3,6 +3,7 @@
 use WebEd\Base\Core\Models\Contracts\BaseModelContract;
 
 use WebEd\Base\Core\Repositories\Contracts\QueryBuilderContract;
+use WebEd\Base\Core\Repositories\Contracts\WithViewTrackerContract;
 use WebEd\Base\Core\Repositories\Traits\BaseMethods as BaseMethods;
 
 use WebEd\Base\Core\Repositories\Contracts\ModelNeedValidateContract;
@@ -11,14 +12,17 @@ use WebEd\Base\Core\Repositories\Contracts\BaseMethodsContract;
 use WebEd\Base\Caching\Services\Traits\Cacheable;
 use WebEd\Base\Core\Repositories\Traits\ModelNeedValidate;
 use WebEd\Base\Core\Repositories\Traits\QueryBuilder;
+use WebEd\Base\Core\Repositories\Traits\WithViewTracker;
 
-abstract class AbstractBaseRepository implements ModelNeedValidateContract, BaseMethodsContract, QueryBuilderContract
+abstract class AbstractBaseRepository implements ModelNeedValidateContract, BaseMethodsContract, QueryBuilderContract, WithViewTrackerContract
 {
     use ModelNeedValidate;
 
     use BaseMethods;
 
     use QueryBuilder;
+
+    use WithViewTracker;
 
     use Cacheable;
 
