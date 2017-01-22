@@ -64,4 +64,19 @@ interface BaseMethodsContract
      * @return $this
      */
     public function pushModel(BaseModelContract $model);
+
+    /**
+     * @param $class
+     * @param $method
+     * @return $this
+     */
+    public function pushCriteria($class, $method);
+
+    /**
+     * @param $class
+     * @param $method
+     * @param array $args
+     * @return mixed
+     */
+    public function getByCriteria($class, $method, array $args);
 }

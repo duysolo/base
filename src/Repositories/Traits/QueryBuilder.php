@@ -69,6 +69,8 @@ trait QueryBuilder
      */
     protected $distinct;
 
+    protected $criterias = [];
+
     /**
      * Eager loading
      * @param $entityName
@@ -599,6 +601,8 @@ trait QueryBuilder
          */
         $this->distinct = null;
 
+        $this->criterias = [];
+
         /**
          * Since 2016.12.31 - Soft deletes
          */
@@ -652,6 +656,8 @@ trait QueryBuilder
              *
              */
             'distinct' => $this->distinct,
+
+            'criterias' => $this->criterias,
 
             'model' => $this->getModel(),
         ];

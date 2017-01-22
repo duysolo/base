@@ -95,4 +95,31 @@ abstract class AbstractBaseRepository implements ModelNeedValidateContract, Base
 
         return $this;
     }
+
+    /**
+     * @param $class
+     * @param $method
+     * @return $this
+     */
+    public function pushCriteria($class, $method)
+    {
+        $instance = is_object($class) ? $class : app($class);
+        $this->model = call_user_func_array([$instance, $method], [$this->model]);
+
+        $this->criterias[] = get_class($instance) . '@' . $method;
+
+        return $this;
+    }
+
+    /**
+     * @param $class
+     * @param $method
+     * @param array $args
+     * @return mixed
+     */
+    public function getByCriteria($class, $method, array $args)
+    {
+        $instance = app($class);
+        return call_user_func_array([$instance, $method], $args);
+    }
 }
