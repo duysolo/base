@@ -12,17 +12,7 @@ class BaseFrontController extends BaseController
     /**
      * @var string
      */
-    protected $currentThemeName;
-
-    public function __construct()
-    {
-        parent::__construct();
-
-        $currentThemeName = themes_management()->getCurrentTheme();
-        if($currentThemeName) {
-            $this->currentThemeName = 'webed-theme-' . array_get($currentThemeName, 'alias');
-        }
-    }
+    protected $currentThemeName = 'webed-theme';
 
     /**
      * @param $type
