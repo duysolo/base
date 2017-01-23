@@ -26,21 +26,11 @@ abstract class BaseController extends Controller
      */
     public $dis = [];
 
-    /**
-     * All cms settings
-     * @var array
-     */
-    protected $CMSSettings;
-
     public function __construct()
     {
         $this->request = request();
 
         $this->adminRoute = config('webed.admin_route');
-
-        $this->CMSSettings = get_settings();
-
-        view()->share('CMSSettings', $this->CMSSettings);
     }
 
     /**

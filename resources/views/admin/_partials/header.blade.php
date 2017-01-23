@@ -17,6 +17,7 @@
         </a>
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+                @php do_action('header_custom_menu') @endphp
                 <li class="dropdown user-menu">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                        data-close-others="true">

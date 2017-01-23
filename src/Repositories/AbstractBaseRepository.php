@@ -112,7 +112,7 @@ abstract class AbstractBaseRepository implements ModelNeedValidateContract, Base
         return $this;
     }
 
-    /**s
+    /**
      * @param $class
      * @param $method
      * @param array $args

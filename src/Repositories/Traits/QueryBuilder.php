@@ -893,8 +893,8 @@ trait QueryBuilder
      */
     public function count()
     {
-        $this->prepareQuery();
-        return $this->model->count();
+        $model = $this->prepareQuery();
+        return $model->count();
     }
 
     /**

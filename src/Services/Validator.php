@@ -5,7 +5,7 @@ class Validator
     /**
      * @var array
      */
-    private $errors = [];
+    protected $errors = [];
 
     /**
      * @return array
