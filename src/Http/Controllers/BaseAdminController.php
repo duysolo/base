@@ -49,7 +49,7 @@ abstract class BaseAdminController extends BaseController
             return $next($request);
         });
 
-        $this->assets = \Assets::getAssetsFrom('admin');
+        $this->assets = assets_management()->getAssetsFrom('admin');
 
         $this->assets
             ->addStylesheetsDirectly([
