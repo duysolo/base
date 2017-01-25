@@ -16,7 +16,7 @@
     "require": {
         "php": ">=5.6.4",
         "yajra/laravel-datatables-oracle": "~6.0",
-        "laravelcollective/html": "^5.3.0",
+        "sgsoft-studio/laravel-collective-fallback": "^5.4.0",
         "sgsoft-studio/acl": "2.*",
         "sgsoft-studio/assets-management": "2.*",
         "sgsoft-studio/auth": "2.*",
