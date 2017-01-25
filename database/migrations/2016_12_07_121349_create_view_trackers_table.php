@@ -16,7 +16,7 @@ class CreateViewTrackersTable extends Migration
         Schema::create('view_trackers', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('entity');
+            $table->string('entity', 175);
             $table->integer('entity_id')->unsigned();
             $table->bigInteger('count')->unsigned()->default(0);
 

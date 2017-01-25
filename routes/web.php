@@ -1,14 +1,10 @@
-<?php use Illuminate\Routing\Router;
-
-/**
- *
- * @var Router $router
- *
- */
+<?php
+use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Route;
 
 $adminRoute = config('webed.admin_route');
 
-$router->group(['prefix' => $adminRoute], function (Router $router) use ($adminRoute) {
+Route::group(['prefix' => $adminRoute], function (Router $router) use ($adminRoute) {
     $router->get('/', 'DashboardController@getIndex')
         ->name('admin::dashboard.index.get')
         ->middleware('has-permission:access-dashboard');
@@ -24,4 +20,4 @@ $router->group(['prefix' => $adminRoute], function (Router $router) use ($adminR
         ->middleware('has-permission:use-system-commands');
 });
 
-//$router->get('{slugNum?}', 'ResolveSlug@index')->where('slugNum', '(.*)');
+//Route::get('{slugNum?}', 'ResolveSlug@index')->where('slugNum', '(.*)');
