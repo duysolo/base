@@ -46,7 +46,7 @@ class AdminBarMiddleware
     {
         $app = $this->app;
 
-        if ($app->runningInConsole() || $this->isDebugbarRequest() || $request->ajax()) {
+        if (is_in_dashboard() || $app->runningInConsole() || $this->isDebugbarRequest() || $request->ajax()) {
             return $response;
         }
 

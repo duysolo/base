@@ -89,7 +89,7 @@ if (!function_exists('is_in_dashboard')) {
     function is_in_dashboard()
     {
         $segment = request()->segment(1);
-        if ($segment === env('WEBED_ADMIN_ROUTE')) {
+        if ($segment === env('WEBED_ADMIN_ROUTE', 'admincp')) {
             return true;
         }
 
