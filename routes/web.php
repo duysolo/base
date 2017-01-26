@@ -9,9 +9,6 @@ Route::group(['prefix' => $adminRoute], function (Router $router) use ($adminRou
         ->name('admin::dashboard.index.get')
         ->middleware('has-permission:access-dashboard');
 
-    $router->get('error/{code}', 'ErrorController@getIndex')
-        ->name('admin::error');
-
     /**
      * Commands
      */

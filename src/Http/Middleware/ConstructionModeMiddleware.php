@@ -20,7 +20,7 @@ class ConstructionModeMiddleware
     {
         if (!!(int)get_settings('construction_mode')) {
             if (!$request->user() || !$request->user()->hasPermission('access-dashboard')) {
-                abort(MAINTENANCE_MODE);
+                abort(\Constants::MAINTENANCE_MODE);
             }
         }
 

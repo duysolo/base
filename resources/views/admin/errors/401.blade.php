@@ -15,9 +15,9 @@
 @section('content')
     <div class="layout-1columns">
         <div class="column main">
-            <h2 class="headline">404</h2>
-            <h3>Page not found.</h3>
-            <p>We could not find the page you were looking for.</p>
+            <h2 class="headline">401</h2>
+            <h3>Unauthorized</h3>
+            <p>The request has not been applied because it lacks valid authentication credentials for the target resource.</p>
         </div>
     </div>
 @endsection

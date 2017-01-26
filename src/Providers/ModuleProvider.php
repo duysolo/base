@@ -1,6 +1,8 @@
 <?php namespace WebEd\Base\Core\Providers;
 
+use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Support\ServiceProvider;
+use WebEd\Base\Core\Exceptions\Handler;
 use WebEd\Base\Core\Facades\AdminBarFacade;
 use WebEd\Base\Core\Facades\BreadcrumbsFacade;
 use WebEd\Base\Core\Facades\FlashMessagesFacade;
@@ -51,6 +53,8 @@ class ModuleProvider extends ServiceProvider
     {
         //Load helpers
         Helper::loadModuleHelpers(__DIR__);
+
+        $this->app->singleton(ExceptionHandler::class, Handler::class);
 
         //Register related facades
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();

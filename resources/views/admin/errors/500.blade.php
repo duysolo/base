@@ -15,9 +15,9 @@
 @section('content')
     <div class="layout-1columns">
         <div class="column main">
-            <h2 class="headline">404</h2>
-            <h3>Page not found.</h3>
-            <p>We could not find the page you were looking for.</p>
+            <h2 class="headline">500</h2>
+            <h3>Some error occurred</h3>
+            <p>{{ $exception->getMessage() or '' }}</p>
         </div>
     </div>
 @endsection
