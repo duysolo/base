@@ -32,8 +32,6 @@ abstract class BaseAdminController extends BaseController
 
     public function __construct()
     {
-        $this->middleware('webed.auth-admin');
-
         parent::__construct();
 
         $this->breadcrumbs = \Breadcrumbs::setBreadcrumbClass('breadcrumb')

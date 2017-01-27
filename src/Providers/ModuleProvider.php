@@ -57,11 +57,6 @@ class ModuleProvider extends ServiceProvider
 
         $this->app->singleton(ExceptionHandler::class, Handler::class);
 
-        /**
-         * @var Router $router
-         */
-        //$router = $this->app['router'];
-
         //Register related facades
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();
         $loader->alias('Breadcrumbs', BreadcrumbsFacade::class);

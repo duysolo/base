@@ -2,6 +2,7 @@
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
+use WebEd\Base\Auth\Http\Middleware\AuthenticateAdmin;
 use WebEd\Base\Core\Http\Middleware\AdminBarMiddleware;
 use WebEd\Base\Core\Http\Middleware\ConstructionModeMiddleware;
 use WebEd\Base\Core\Http\Middleware\CorsMiddleware;
@@ -25,14 +26,17 @@ class MiddlewareServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        /**
+         * @var Router $router
+         */
+        $router = $this->app['router'];
+
         if(!is_in_dashboard()) {
-            /**
-             * @var Router $router
-             */
-            $router = $this->app['router'];
             $router->pushMiddlewareToGroup('web', ConstructionModeMiddleware::class);
             $router->pushMiddlewareToGroup('web', AdminBarMiddleware::class);
             $router->pushMiddlewareToGroup('api', CorsMiddleware::class);
+        } else {
+            $router->pushMiddlewareToGroup('web', AuthenticateAdmin::class);
         }
     }
 }
