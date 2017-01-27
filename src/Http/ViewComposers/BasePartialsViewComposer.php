@@ -2,7 +2,7 @@
 
 use Illuminate\View\View;
 
-class AdminBar
+class BasePartialsViewComposer
 {
     /**
      * @param View $view

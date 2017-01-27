@@ -2,7 +2,7 @@
 
 use Illuminate\View\View;
 
-class AdminBreadcrumbs
+class AdminBreadcrumbsViewComposer
 {
     /**
      * @param View $view

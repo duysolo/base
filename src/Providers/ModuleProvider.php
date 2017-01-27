@@ -1,6 +1,7 @@
 <?php namespace WebEd\Base\Core\Providers;
 
 use Illuminate\Contracts\Debug\ExceptionHandler;
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use WebEd\Base\Core\Exceptions\Handler;
 use WebEd\Base\Core\Facades\AdminBarFacade;
@@ -55,6 +56,11 @@ class ModuleProvider extends ServiceProvider
         Helper::loadModuleHelpers(__DIR__);
 
         $this->app->singleton(ExceptionHandler::class, Handler::class);
+
+        /**
+         * @var Router $router
+         */
+        //$router = $this->app['router'];
 
         //Register related facades
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();

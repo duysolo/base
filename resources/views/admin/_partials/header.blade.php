@@ -23,7 +23,7 @@
                        data-close-others="true">
                         <img alt="{{ $loggedInUser->display_name or '' }}"
                              class="img-circle user-image"
-                             src="{{ get_image($loggedInUser->avatar) }}"
+                             src="{{ isset($loggedInUser->avatar) ? get_image($loggedInUser->avatar) : get_image(null) }}"
                              width="25"
                              height="25">
                         <span class="hidden-xs">{{ $loggedInUser->display_name or '' }}</span>
@@ -34,22 +34,25 @@
                         <li class="user-header">
                             <img alt=""
                                  class="img-circle"
-                                 src="{{ get_image($loggedInUser->avatar) }}">
+                                 src="{{ isset($loggedInUser->avatar) ? get_image($loggedInUser->avatar) : get_image(null) }}">
                             <p>{{ $loggedInUser->display_name or '' }}</p>
                         </li>
                         <!-- Menu Footer-->
-                        <li class="user-footer">
-                            <div class="pull-left">
-                                <a href="{{ route('admin::users.edit.get', ['id' => $loggedInUser->id]) }}" class="btn btn-default btn-flat">
-                                    <i class="icon-user"></i> Profile
-                                </a>
-                            </div>
-                            <div class="pull-right">
-                                <a href="{{ route('admin::auth.logout.get') }}" class="btn btn-default btn-flat">
-                                    <i class="icon-logout"></i> Sign out
-                                </a>
-                            </div>
-                        </li>
+                        @if (isset($loggedInUser))
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="{{ route('admin::users.edit.get', ['id' => $loggedInUser->id]) }}"
+                                       class="btn btn-default btn-flat">
+                                        <i class="icon-user"></i> Profile
+                                    </a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="{{ route('admin::auth.logout.get') }}" class="btn btn-default btn-flat">
+                                        <i class="icon-logout"></i> Sign out
+                                    </a>
+                                </div>
+                            </li>
+                        @endif
                     </ul>
                 </li>
                 <li>
