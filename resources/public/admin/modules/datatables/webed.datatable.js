@@ -71,6 +71,10 @@ WebEd.DataTable = function () {
                 },
                 dataTableParams: {
                     dom: "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r><'table-responsive't><'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>", // datatable layout
+                    lengthMenu: [
+                        [10, 20, 50, 100, 150, -1],
+                        [10, 20, 50, 100, 150, "All"] // change per page values here
+                    ],
                     pageLength: 10, // default records per page
                     language: { // language settings
                         // metronic spesific
