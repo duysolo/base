@@ -89,7 +89,7 @@ if (!function_exists('is_in_dashboard')) {
     function is_in_dashboard()
     {
         $segment = request()->segment(1);
-        if ($segment === config('webed.admin_route')) {
+        if ($segment === config('webed.admin_route', 'admincp')) {
             return true;
         }
 
@@ -103,7 +103,7 @@ if (!function_exists('custom_strip_tags')) {
      * @param string $allowTags
      * @return array|string
      */
-    function custom_strip_tags($data, $allowTags = '<p><a><br><br/><b><strong>')
+    function custom_strip_tags($data, $allowTags = '<p><a><br><b><strong>')
     {
         if (!is_array($data)) {
             return strip_tags($data, $allowTags);
@@ -120,9 +120,10 @@ if (!function_exists('limit_chars')) {
      * @param $string
      * @param null $limit
      * @param string $append
+     * @param bool $hardCutString
      * @return string
      */
-    function limit_chars($string, $limit = null, $append = '...')
+    function limit_chars($string, $limit = null, $append = '...', $hardCutString = false)
     {
         if (!$limit) {
             return $string;
@@ -130,6 +131,21 @@ if (!function_exists('limit_chars')) {
         if (strlen($string) <= $limit) {
             $append = '';
         }
-        return substr($string, 0, $limit) . $append;
+        if (!$hardCutString) {
+            if (!$limit || $limit < 0) {
+                return $string;
+            }
+            if (strlen($string) <= $limit) {
+                $append = '';
+            }
+
+            $string = mb_substr($string, 0, $limit);
+            if (mb_substr($string, -1, 1) != ' ') {
+                $string = mb_substr($string, 0, mb_strrpos($string, ' '));
+            }
+
+            return $string . $append;
+        }
+        return mb_substr($string, 0, $limit) . $append;
     }
 }
