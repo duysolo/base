@@ -62,7 +62,7 @@ abstract class BaseAdminController extends BaseController
                 asset('admin/js/script.js'),
             ], 'bottom');
 
-        $this->flashMessagesHelper = \FlashMessages::getFacadeRoot();
+        $this->flashMessagesHelper = flash_messages();
 
         $this->userRepository = app(UserRepositoryContract::class);
     }
