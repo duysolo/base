@@ -15,7 +15,7 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace($this->namespace)
             ->group(__DIR__ . '/../../routes/web.php');
 
-        Route::prefix(config('web.api_route', 'api'))
+        Route::prefix(config('webed.api_route', 'api'))
             ->middleware('api')
             ->namespace($this->namespace)
             ->group(__DIR__ . '/../../routes/api.php');

@@ -11,7 +11,7 @@ if (!function_exists('get_cms_version')) {
             $packages = collect(array_get($composerLockFile, 'packages'));
             return array_get($packages->where('name', '=', 'sgsoft-studio/base')->first(), 'version');
         } catch (\Exception $exception) {
-            return '2.0';
+            return '2.1.0';
         }
     }
 }
@@ -89,7 +89,7 @@ if (!function_exists('is_in_dashboard')) {
     function is_in_dashboard()
     {
         $segment = request()->segment(1);
-        if ($segment === env('WEBED_ADMIN_ROUTE', 'admincp')) {
+        if ($segment === config('webed.admin_route')) {
             return true;
         }
 
