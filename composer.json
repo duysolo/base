@@ -15,6 +15,7 @@
     ],
     "require": {
         "php": ">=5.6.4",
+        "doctrine/dbal": "^2.5",
         "sgsoft-studio/laravel-datatables-oracle": "^6.24.1",
         "sgsoft-studio/laravel-collective-fallback": "^5.4.0",
         "sgsoft-studio/acl": "2.1.*",
