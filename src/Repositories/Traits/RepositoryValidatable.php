@@ -4,7 +4,6 @@
  * Class RepositoryRules
  * TODO Validate model before create/update
  * NOTE: just add model rules. No business logic here
- * @package WebEd\Base\Core\Repositories\Traits
  * @author Tedozi Manson <duyphan.developer@gmail.com>
  */
 trait ModelNeedValidate
