@@ -20,8 +20,8 @@ class ComposerServiceProvider extends ServiceProvider
         ], AdminBreadcrumbsViewComposer::class);
         view()->composer([
             'webed-core::front._admin-bar',
-            'webed-core::front._partials.header',
-            'webed-core::front._partials.sidebar',
+            'webed-core::admin._partials.header',
+            'webed-core::admin._partials.sidebar',
         ], BasePartialsViewComposer::class);
     }
 

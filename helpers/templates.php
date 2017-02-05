@@ -10,23 +10,19 @@ if (!function_exists('get_templates')) {
         if ($type === null) {
             return config('webed-templates');
         }
-        $templates = config('webed-templates.' . $type);
-        $templatesWithKeys = [];
-        foreach ((array)$templates as $row) {
-            $templatesWithKeys[$row] = $row;
-        }
-        return $templatesWithKeys;
+        $templates = config('webed-templates.' . $type, []);
+        return $templates;
     }
 }
 
 if (!function_exists('add_new_template')) {
     /**
-     * @param $template
-     * @param $type
+     * @param array $template
+     * @param string $type
      */
-    function add_new_template($template, $type)
+    function add_new_template(array $template, $type)
     {
-        $currentTemplates = config('webed-templates.' . $type);
-        config(['webed-templates.' . $type => array_merge((array)$currentTemplates, (array)$template)]);
+        $currentTemplates = config('webed-templates.' . $type, []);
+        config(['webed-templates.' . $type => array_merge($currentTemplates, $template)]);
     }
 }

@@ -6,7 +6,7 @@
  * NOTE: just add model rules. No business logic here
  * @author Tedozi Manson <duyphan.developer@gmail.com>
  */
-trait ModelNeedValidate
+trait RepositoryValidatable
 {
     protected $ruleErrors = [];
 

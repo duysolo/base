@@ -2,10 +2,10 @@
 
 if (!function_exists('datatable')) {
     /**
-     * @return \WebEd\Base\Core\Support\DataTable\DataTables
+     * @return \Yajra\Datatables\Datatables
      */
     function datatable()
     {
-        return app(\WebEd\Base\Core\Support\DataTable\DataTables::class);
+        return \Yajra\Datatables\Facades\Datatables::getFacadeRoot();
     }
 }

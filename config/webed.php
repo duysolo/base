@@ -11,12 +11,4 @@ return [
     'admin_route' => env('WEBED_ADMIN_ROUTE', 'admincp'),
 
     'api_route' => env('WEBED_API_ROUTE', 'api'),
-
-    /**
-     * Recaptcha
-     */
-    'recaptcha' => [
-        'site_key' => env('WEBED_RECAPTCHA_SITE_KEY'),
-        'secret_key' => env('WEBED_RECAPTCHA_SECRET_KEY'),
-    ],
 ];

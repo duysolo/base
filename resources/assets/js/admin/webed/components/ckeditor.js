@@ -3,7 +3,7 @@ WebEd.ckeditor = function ($elements, config) {
         filebrowserBrowseUrl: FILE_MANAGER_URL + '?method=ckeditor',
         extraPlugins: 'codeTag,insertpre',
         allowedContent: true,
-        height: '500px'
+        height: '400px'
     }, config);
     $elements.ckeditor($.noop, config);
 };

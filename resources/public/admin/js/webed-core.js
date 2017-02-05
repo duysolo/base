@@ -224,7 +224,7 @@ WebEd.ckeditor = function ($elements, config) {
         extraPlugins: 'codeTag,insertpre',
         allowedContent: true,
         autoParagraph: false,
-        height: '500px'
+        height: '400px'
     }, config);
     $elements.ckeditor($.noop, config);
 };

@@ -1,11 +1,11 @@
 <?php namespace WebEd\Base\Core\Repositories;
 
-use WebEd\Base\Caching\Repositories\AbstractRepositoryCacheDecorator;
+use WebEd\Base\Caching\Repositories\Eloquent\EloquentBaseRepositoryCacheDecorator;
 
 use WebEd\Base\Core\Models\Contracts\ViewTrackerModelContract;
 use WebEd\Base\Core\Repositories\Contracts\ViewTrackerRepositoryContract;
 
-class ViewTrackerRepositoryCacheDecorator extends AbstractRepositoryCacheDecorator  implements ViewTrackerRepositoryContract
+class ViewTrackerRepositoryCacheDecorator extends EloquentBaseRepositoryCacheDecorator  implements ViewTrackerRepositoryContract
 {
     /**
      * @param ViewTrackerModelContract $viewTracker

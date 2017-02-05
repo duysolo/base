@@ -1,8 +1,6 @@
-<?php namespace WebEd\Base\ModulesManagement\Console\Commands;
+<?php namespace WebEd\Base\Core\Console\Commands;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Helper\SymfonyQuestionHelper;
-use Symfony\Component\Console\Question\Question;
 use Illuminate\Filesystem\Filesystem;
 use WebEd\Base\ACL\Models\Role;
 use WebEd\Base\Users\Models\User;
@@ -14,7 +12,7 @@ class InstallCmsCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'cms:install {--refresh}';
+    protected $signature = 'cms:install';
 
     /**
      * The console command description.
@@ -74,11 +72,7 @@ class InstallCmsCommand extends Command
          * Migrate tables
          */
         $this->line('Migrate database...');
-        if ($this->option('refresh')) {
-            \Artisan::call('migrate:refresh');
-        } else {
-            \Artisan::call('migrate');
-        }
+        \Artisan::call('migrate');
 
         $this->line('Create super admin role...');
         $this->createSuperAdminRole();
@@ -172,6 +166,7 @@ class InstallCmsCommand extends Command
         }
         \Artisan::call('vendor:publish', [
             '--tag' => 'webed-public-assets',
+            '--force' => true,
         ]);
     }
 
