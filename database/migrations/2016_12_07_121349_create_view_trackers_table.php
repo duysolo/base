@@ -15,10 +15,11 @@ class CreateViewTrackersTable extends Migration
     {
         Schema::create('view_trackers', function (Blueprint $table) {
             $table->increments('id');
-
-            $table->string('entity', 175);
-            $table->integer('entity_id')->unsigned();
-            $table->bigInteger('count')->unsigned()->default(0);
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_unicode_ci';
+            $table->string('entity')->index();
+            $table->integer('entity_id')->unsigned()->index();
+            $table->bigInteger('count')->unsigned()->default(0)->index();
 
             $table->unique(['entity', 'entity_id']);
         });
