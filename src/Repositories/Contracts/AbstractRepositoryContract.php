@@ -14,6 +14,16 @@ interface AbstractRepositoryContract
     public function getModel();
 
     /**
+     * @return BaseModelContract
+     */
+    public function getBuilderModel();
+
+    /**
+     * @return array
+     */
+    public function getBuilder();
+
+    /**
      * Get model table
      * @return string
      */
@@ -70,4 +80,9 @@ interface AbstractRepositoryContract
      * @return $this
      */
     public function resetModel();
+
+    /**
+     * @return $this
+     */
+    public function resetBuilder();
 }

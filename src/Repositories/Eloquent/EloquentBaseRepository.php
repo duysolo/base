@@ -30,6 +30,8 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
                 $this->model = $this->model->where($field, $operator, $value);
             }
         }
+        $this->builderModel = $this->model;
+        $this->builder['where'][] = func_get_args();
 
         return $this;
     }
@@ -48,6 +50,9 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         } else {
             $this->model = $this->model->orderBy($field, $type);
         }
+        $this->builderModel = $this->model;
+        $this->builder['orderBy'][] = func_get_args();
+
         return $this;
     }
 
@@ -59,9 +64,10 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
     public function find($id, $columns = ['*'])
     {
         $this->applyCriteria();
-        $model = $this->model->find($id, $columns);
+        $this->builderModel = $this->model;
+        $result = $this->model->find($id, $columns);
         $this->resetModel();
-        return $model;
+        return $result;
     }
 
     /**
@@ -70,6 +76,7 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
     public function count()
     {
         $this->applyCriteria();
+        $this->builderModel = $this->model;
         $result = $this->model->count();
         $this->resetModel();
         return $result;
@@ -82,6 +89,9 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
     public function take($howManyItem)
     {
         $this->model = $this->model->take($howManyItem);
+        $this->builderModel = $this->model;
+        $this->builder['take'] = func_get_args();
+
         return $this;
     }
 
@@ -96,6 +106,7 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         }
 
         $this->applyCriteria();
+        $this->builderModel = $this->model;
         $result = $this->model->get($columns);
         $this->resetModel();
         return $result;
@@ -108,6 +119,7 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
     public function first($columns = ['*'])
     {
         $this->applyCriteria();
+        $this->builderModel = $this->model;
         $result = $this->model->first($columns);
         $this->resetModel();
         return $result;
@@ -123,6 +135,7 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
     public function paginate($perPage, $columns = ['*'], $pageName = 'page', $currentPaged = null)
     {
         $this->applyCriteria();
+        $this->builderModel = $this->model;
         $result = $this->model->paginate($perPage, $columns, $pageName, $currentPaged);
         $this->resetModel();
         return $result;

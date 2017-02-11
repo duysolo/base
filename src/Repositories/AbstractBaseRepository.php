@@ -24,6 +24,11 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract, Rep
     protected $originalModel;
 
     /**
+     * @var BaseModelContract
+     */
+    protected $builderModel;
+
+    /**
      * @var array
      */
     protected $criteria = [];
@@ -43,10 +48,13 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract, Rep
      */
     protected $select = [];
 
+    protected $builder = [];
+
     public function __construct(BaseModelContract $model)
     {
         $this->model = $model;
         $this->originalModel = $model;
+        $this->builderModel = $model;
         $this->cacheEnabled = config('webed-caching.repository.enabled');
     }
 
@@ -59,12 +67,28 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract, Rep
     }
 
     /**
+     * @return BaseModelContract
+     */
+    public function getBuilderModel()
+    {
+        return $this->builderModel;
+    }
+
+    /**
+     * @return array
+     */
+    public function getBuilder()
+    {
+        return $this->builder;
+    }
+
+    /**
      * Get model table
      * @return string
      */
     public function getTable()
     {
-        return $this->model->getTable();
+        return $this->originalModel->getTable();
     }
 
     /**
@@ -73,7 +97,7 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract, Rep
      */
     public function getPrimaryKey()
     {
-        return $this->model->getPrimaryKey();
+        return $this->originalModel->getPrimaryKey();
     }
 
     /**
@@ -87,6 +111,7 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract, Rep
         } else {
             $this->select = $columns;
         }
+        $this->builder['select'] = func_get_args();
         return $this;
     }
 
@@ -156,12 +181,15 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract, Rep
             foreach ($criteria as $className => $c) {
                 if ($c[0] instanceof CriteriaContract) {
                     $this->model = $c[0]->apply($this->model, $this, $c[1]);
+                    $this->builder['criteria'][$className] = [$className, $c[1]];
                 }
             }
         }
         if ($this->select) {
             $this->model = $this->model->select($this->select);
         }
+
+        $this->builderModel = $this->model;
 
         return $this;
     }
@@ -191,6 +219,16 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract, Rep
         $this->skipCriteria = false;
         $this->criteria = [];
         $this->select = [];
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function resetBuilder()
+    {
+        $this->builder = [];
+        $this->builderModel = $this->originalModel;
         return $this;
     }
 }
