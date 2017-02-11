@@ -22,7 +22,7 @@
 
     @yield('css')
 
-    <link rel="shortcut icon" href="{{ asset(get_settings('favicon', 'favicon.png')) }}"/>
+    <link rel="shortcut icon" href="{{ get_settings('favicon', 'favicon.png') }}"/>
 
     <script type="text/javascript">
         var BASE_URL = '{{ asset('') }}',
@@ -87,8 +87,8 @@
 @include('webed-core::admin._partials.modals')
 
 <!--[if lt IE 9]>
-<script src="{{ asset('admin/plugins/respond.min.js') }}"></script>
-<script src="{{ asset('admin/plugins/excanvas.min.js') }}"></script>
+<script src="admin/plugins/respond.min.js"></script>
+<script src="admin/plugins/excanvas.min.js"></script>
 <![endif]-->
 
 {{--BEGIN plugins--}}

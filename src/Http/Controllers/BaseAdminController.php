@@ -1,5 +1,6 @@
 <?php namespace WebEd\Base\Core\Http\Controllers;
 
+use Illuminate\Http\Request;
 use WebEd\Base\Users\Repositories\Contracts\UserRepositoryContract;
 use WebEd\Base\Users\Repositories\UserRepository;
 
@@ -38,7 +39,7 @@ abstract class BaseAdminController extends BaseController
             ->setContainerTag('ol')
             ->addLink('WebEd', route('admin::dashboard.index.get'), '<i class="icon-home mr5"></i>');
 
-        $this->middleware(function ($request, $next) {
+        $this->middleware(function (Request $request, $next) {
             $this->loggedInUser = $request->user();
             view()->share([
                 'loggedInUser' => $this->loggedInUser
@@ -51,15 +52,15 @@ abstract class BaseAdminController extends BaseController
 
         $this->assets
             ->addStylesheetsDirectly([
-                asset('admin/theme/lte/css/AdminLTE.min.css'),
-                asset('admin/theme/lte/css/skins/_all-skins.min.css'),
-                asset('admin/css/style.css'),
+                'admin/theme/lte/css/AdminLTE.min.css',
+                'admin/theme/lte/css/skins/_all-skins.min.css',
+                'admin/css/style.css',
             ])
             ->addJavascriptsDirectly([
-                asset('admin/theme/lte/js/app.js'),
-                asset('admin/js/webed-core.js'),
-                asset('admin/theme/lte/js/demo.js'),
-                asset('admin/js/script.js'),
+                'admin/theme/lte/js/app.js',
+                'admin/js/webed-core.js',
+                'admin/theme/lte/js/demo.js',
+                'admin/js/script.js',
             ], 'bottom');
 
         $this->flashMessagesHelper = flash_messages();

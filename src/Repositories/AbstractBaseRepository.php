@@ -1,53 +1,85 @@
 <?php namespace WebEd\Base\Core\Repositories;
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
+use WebEd\Base\Core\Criterias\Contracts\CriteriaContract;
+use WebEd\Base\Core\Exceptions\Repositories\WrongCriteria;
 use WebEd\Base\Core\Models\Contracts\BaseModelContract;
+use WebEd\Base\Core\Repositories\Contracts\AbstractRepositoryContract;
+use WebEd\Base\Core\Repositories\Contracts\RepositoryValidatorContract;
+use WebEd\Base\Core\Repositories\Traits\RepositoryValidatable;
 
-use WebEd\Base\Core\Repositories\Contracts\QueryBuilderContract;
-use WebEd\Base\Core\Repositories\Contracts\WithViewTrackerContract;
-use WebEd\Base\Core\Repositories\Traits\BaseMethods as BaseMethods;
-
-use WebEd\Base\Core\Repositories\Contracts\ModelNeedValidateContract;
-use WebEd\Base\Core\Repositories\Contracts\BaseMethodsContract;
-
-use WebEd\Base\Caching\Services\Traits\Cacheable;
-use WebEd\Base\Core\Repositories\Traits\ModelNeedValidate;
-use WebEd\Base\Core\Repositories\Traits\QueryBuilder;
-use WebEd\Base\Core\Repositories\Traits\WithViewTracker;
-
-abstract class AbstractBaseRepository implements ModelNeedValidateContract, BaseMethodsContract, QueryBuilderContract, WithViewTrackerContract
+abstract class AbstractBaseRepository implements AbstractRepositoryContract, RepositoryValidatorContract
 {
-    use ModelNeedValidate;
-
-    use BaseMethods;
-
-    use QueryBuilder;
-
-    use WithViewTracker;
-
-    use Cacheable;
+    use RepositoryValidatable;
 
     /**
-     * @var \WebEd\Base\Core\Models\EloquentBase
+     * @var BaseModelContract
      */
     protected $model;
 
     /**
-     * @var \WebEd\Base\Core\Models\EloquentBase
+     * @var BaseModelContract
      */
     protected $originalModel;
+
+    /**
+     * @var BaseModelContract
+     */
+    protected $builderModel;
+
+    /**
+     * @var array
+     */
+    protected $criteria = [];
+
+    /**
+     * @var bool
+     */
+    protected $skipCriteria = false;
+
+    /**
+     * @var int
+     */
+    protected $currentPaged;
+
+    /**
+     * @var array
+     */
+    protected $select = [];
+
+    protected $builder = [];
 
     public function __construct(BaseModelContract $model)
     {
         $this->model = $model;
         $this->originalModel = $model;
+        $this->builderModel = $model;
+        $this->cacheEnabled = config('webed-caching.repository.enabled');
     }
 
     /**
-     * @return \WebEd\Base\Core\Models\EloquentBase
+     * @return BaseModelContract
      */
     public function getModel()
     {
         return $this->model;
+    }
+
+    /**
+     * @return BaseModelContract
+     */
+    public function getBuilderModel()
+    {
+        return $this->builderModel;
+    }
+
+    /**
+     * @return array
+     */
+    public function getBuilder()
+    {
+        return $this->builder;
     }
 
     /**
@@ -56,7 +88,7 @@ abstract class AbstractBaseRepository implements ModelNeedValidateContract, Base
      */
     public function getTable()
     {
-        return $this->model->getTable();
+        return $this->originalModel->getTable();
     }
 
     /**
@@ -65,63 +97,138 @@ abstract class AbstractBaseRepository implements ModelNeedValidateContract, Base
      */
     public function getPrimaryKey()
     {
-        return $this->model->getPrimaryKey();
+        return $this->originalModel->getPrimaryKey();
     }
 
     /**
-     * @param string|array $messages
-     * @param bool $error
-     * @param int $responseCode
-     * @param array $data
+     * @param $columns
+     * @return $this
+     */
+    public function select($columns)
+    {
+        if (!is_array($columns)) {
+            $this->select = func_get_args();
+        } else {
+            $this->select = $columns;
+        }
+        $this->builder['select'] = func_get_args();
+        return $this;
+    }
+
+    /**
      * @return array
      */
-    public function setMessages($messages, $error = false, $responseCode = null, $data = null)
+    public function getCriteria()
     {
-        return response_with_messages($messages, $error, $responseCode ?: \Constants::SUCCESS_NO_CONTENT_CODE, $data);
+        return $this->criteria;
     }
 
     /**
-     * @param BaseModelContract $model
+     * @param $criteria
+     * @param array $crossData
+     * @return $this
+     * @throws WrongCriteria
+     */
+    public function pushCriteria($criteria, array $crossData = [])
+    {
+        if (is_string($criteria)) {
+            $criteria = app($criteria);
+        }
+        if (!$criteria instanceof CriteriaContract) {
+            throw new WrongCriteria('Class ' . get_class($criteria) . ' must be an instance of ' . CriteriaContract::class);
+        }
+        $this->criteria[get_class($criteria)] = [$criteria, $crossData];
+        return $this;
+    }
+
+    /**
+     * @param $criteria
      * @return $this
      */
-    public function pushModel(BaseModelContract $model)
+    public function dropCriteria($criteria)
     {
-        /**
-         * Must are the same instance
-         */
-        if (get_class($model) === get_class($this->model)) {
-            $this->model = $model;
+        $className = $criteria;
+        if (is_object($className)) {
+            $className = get_class($criteria);
         }
 
+        if (isset($this->criteria[$className])) {
+            unset($this->criteria[$className]);
+        }
         return $this;
     }
 
     /**
-     * @param $class
-     * @param $method
+     * @param bool $bool
      * @return $this
      */
-    public function pushCriteria($class, $method)
+    public function skipCriteria($bool = true)
     {
-        $instance = is_object($class) ? $class : app($class);
+        $this->skipCriteria = $bool;
+        return $this;
+    }
 
-        $this->model = call_user_func_array([$instance, $method], [$this->model]);
+    /**
+     * @return $this
+     */
+    public function applyCriteria()
+    {
+        if ($this->skipCriteria === true) {
+            return $this;
+        }
+        $criteria = $this->getCriteria();
+        if ($criteria) {
+            foreach ($criteria as $className => $c) {
+                if ($c[0] instanceof CriteriaContract) {
+                    $this->model = $c[0]->apply($this->model, $this, $c[1]);
+                    $this->builder['criteria'][$className] = [$className, $c[1]];
+                }
+            }
+        }
+        if ($this->select) {
+            $this->model = $this->model->select($this->select);
+        }
 
-        $this->criterias[] = get_class($instance) . '@' . $method;
+        $this->builderModel = $this->model;
 
         return $this;
     }
 
     /**
-     * @param $class
-     * @param $method
-     * @param array $args
-     * @return mixed
+     * @param CriteriaContract|string $criteria
+     * @return Collection|BaseModelContract|LengthAwarePaginator|null|mixed
      */
-    public function getByCriteria($class, $method, array $args)
+    public function getByCriteria($criteria, array $crossData = [])
     {
-        $instance = is_object($class) ? $class : app($class);
+        if (is_string($criteria)) {
+            $criteria = app($criteria);
+        }
+        if (!$criteria instanceof CriteriaContract) {
+            throw new WrongCriteria('Class ' . get_class($criteria) . ' must be an instance of ' . CriteriaContract::class);
+        }
 
-        return call_user_func_array([$instance, $method], $args);
+        return $criteria->apply($this->originalModel, $this, $crossData);
+    }
+
+    /**
+     * @return $this
+     */
+    public function resetModel()
+    {
+        $this->model = $this->originalModel;
+        $this->skipCriteria = false;
+        $this->criteria = [];
+        $this->select = [];
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function resetBuilder()
+    {
+        $this->builder = [];
+        $this->builderModel = $this->originalModel;
+        return $this;
     }
 }

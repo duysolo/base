@@ -1,6 +1,6 @@
 <?php namespace WebEd\Base\Core\Repositories\Contracts;
 
-interface ModelNeedValidateContract
+interface RepositoryValidatorContract
 {
     /**
      * @return array

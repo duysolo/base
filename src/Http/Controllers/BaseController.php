@@ -11,7 +11,7 @@ abstract class BaseController extends Controller
     public $request;
 
     /**
-     * @var \WebEd\Base\Core\Repositories\AbstractBaseRepository
+     * @var \WebEd\Base\Core\Repositories\EloquentBaseRepository
      */
     protected $repository;
 

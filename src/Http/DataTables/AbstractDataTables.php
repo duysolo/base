@@ -2,8 +2,7 @@
 
 use FontLib\TrueType\Collection;
 use Illuminate\Http\JsonResponse;
-use WebEd\Base\Core\Repositories\AbstractBaseRepository;
-use WebEd\Base\Core\Support\DataTable\Engines\RepositoryEngine;
+use WebEd\Base\Core\Repositories\Eloquent\EloquentBaseRepository;
 use Yajra\Datatables\Engines\CollectionEngine;
 use Yajra\Datatables\Engines\EloquentEngine;
 use Yajra\Datatables\Engines\QueryBuilderEngine;
@@ -11,7 +10,7 @@ use Yajra\Datatables\Engines\QueryBuilderEngine;
 abstract class AbstractDataTables
 {
     /**
-     * @var AbstractBaseRepository|Collection
+     * @var EloquentBaseRepository|Collection
      */
     protected $collection;
 
@@ -28,7 +27,7 @@ abstract class AbstractDataTables
     protected $selector = 'table.datatables';
 
     /**
-     * @var CollectionEngine|EloquentEngine|RepositoryEngine|QueryBuilderEngine|mixed
+     * @var CollectionEngine|EloquentEngine|QueryBuilderEngine|mixed
      */
     protected $fetch;
 
@@ -159,7 +158,7 @@ abstract class AbstractDataTables
     }
 
     /**
-     * @return mixed|RepositoryEngine|CollectionEngine|EloquentEngine|QueryBuilderEngine
+     * @return mixed|CollectionEngine|EloquentEngine|QueryBuilderEngine
      */
     public function getDataTableData()
     {
@@ -167,7 +166,7 @@ abstract class AbstractDataTables
     }
 
     /**
-     * @param CollectionEngine|EloquentEngine|RepositoryEngine|QueryBuilderEngine|mixed $engine
+     * @param CollectionEngine|EloquentEngine|QueryBuilderEngine|mixed $engine
      * @return $this
      */
     public function setDataTableData($engine)

@@ -2,14 +2,8 @@
 
 return [
     'Page' => [
-        'Homepage',
-        'About Us',
-        'Contact Us',
-    ],
-    'Post' => [
-
-    ],
-    'Category' => [
-
+        'homepage' => 'Homepage',
+        'about-us' => 'About Us',
+        'contact-us' => 'Contact Us',
     ],
 ];

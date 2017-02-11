@@ -11,7 +11,7 @@ if (!function_exists('get_cms_version')) {
             $packages = collect(array_get($composerLockFile, 'packages'));
             return array_get($packages->where('name', '=', 'sgsoft-studio/base')->first(), 'version');
         } catch (\Exception $exception) {
-            return '2.1.0';
+            return '3.0';
         }
     }
 }
@@ -31,7 +31,7 @@ if (!function_exists('get_image')) {
      * @param $fields
      * @param $updateTo
      */
-    function get_image($image, $default = 'admin/images/no-image.png')
+    function get_image($image, $default = '/admin/images/no-image.png')
     {
         if (!$image || !trim($image)) {
             return $default;
@@ -128,14 +128,14 @@ if (!function_exists('limit_chars')) {
         if (!$limit) {
             return $string;
         }
-        if (strlen($string) <= $limit) {
+        if (mb_strlen($string) <= $limit) {
             $append = '';
         }
         if (!$hardCutString) {
             if (!$limit || $limit < 0) {
                 return $string;
             }
-            if (strlen($string) <= $limit) {
+            if (mb_strlen($string) <= $limit) {
                 $append = '';
             }
 
