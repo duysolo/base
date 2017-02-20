@@ -8,9 +8,9 @@ interface CriteriaContract
 {
     /**
      * @param $model
-     * @param AbstractRepositoryContract $repository
+     * @param $repository
      * @param array $crossData
      * @return mixed
      */
-    public function apply($model, AbstractRepositoryContract $repository, array $crossData = []);
+    public function apply($model, $repository, array $crossData = []);
 }

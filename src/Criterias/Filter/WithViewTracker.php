@@ -13,7 +13,7 @@ class WithViewTracker extends AbstractCriteria
       * @param array $crossData
       * @return mixed
       */
-    public function apply($model, AbstractRepositoryContract $repository, array $crossData = [])
+    public function apply($model, $repository, array $crossData = [])
     {
         $tableName = $crossData['table'];
         $primaryKey = $crossData['primaryKey'];
