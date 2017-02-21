@@ -27,6 +27,7 @@ class Handler extends ExceptionHandler
                         return response()->json(response_with_messages('Access denied', true, \Constants::UNAUTHORIZED_CODE));
                     }
                     if (is_in_dashboard()) {
+                        assets_management()->getAssetsFrom('admin');
                         return response()->view('webed-core::admin.errors.' . \Constants::UNAUTHORIZED_CODE, [], \Constants::UNAUTHORIZED_CODE);
                     }
                     return response()->view('webed-theme::front.errors.' . \Constants::UNAUTHORIZED_CODE, [], \Constants::UNAUTHORIZED_CODE);
@@ -39,6 +40,7 @@ class Handler extends ExceptionHandler
                         return response()->json(response_with_messages('You do not have permission to access these resources', true, \Constants::FORBIDDEN_CODE));
                     }
                     if (is_in_dashboard()) {
+                        assets_management()->getAssetsFrom('admin');
                         return response()->view('webed-core::admin.errors.' . \Constants::FORBIDDEN_CODE, [], \Constants::FORBIDDEN_CODE);
                     }
                     return response()->view('webed-theme::front.errors.' . \Constants::FORBIDDEN_CODE, [], \Constants::FORBIDDEN_CODE);
@@ -51,9 +53,23 @@ class Handler extends ExceptionHandler
                         return response()->json(response_with_messages('Page not found', true, \Constants::NOT_FOUND_CODE));
                     }
                     if (is_in_dashboard()) {
+                        assets_management()->getAssetsFrom('admin');
                         return response()->view('webed-core::admin.errors.' . \Constants::NOT_FOUND_CODE, [], \Constants::NOT_FOUND_CODE);
                     }
                     return response()->view('webed-theme::front.errors.' . \Constants::NOT_FOUND_CODE, [], \Constants::NOT_FOUND_CODE);
+                    break;
+                /**
+                 * 405
+                 */
+                case \Constants::METHOD_NOT_ALLOWED:
+                    if ($request->ajax() || $request->wantsJson()) {
+                        return response()->json(response_with_messages('Method not allowed', true, \Constants::NOT_FOUND_CODE));
+                    }
+                    if (is_in_dashboard()) {
+                        assets_management()->getAssetsFrom('admin');
+                        return response()->view('webed-core::admin.errors.' . \Constants::METHOD_NOT_ALLOWED, [], \Constants::METHOD_NOT_ALLOWED);
+                    }
+                    return response()->view('webed-theme::front.errors.' . \Constants::METHOD_NOT_ALLOWED, [], \Constants::METHOD_NOT_ALLOWED);
                     break;
                 /**
                  * 500
@@ -63,6 +79,7 @@ class Handler extends ExceptionHandler
                         return response()->json(response_with_messages($exception->getMessage(), true, \Constants::ERROR_CODE));
                     }
                     if (is_in_dashboard()) {
+                        assets_management()->getAssetsFrom('admin');
                         return response()->view('webed-core::admin.errors.' . \Constants::ERROR_CODE, [
                             'exception' => $exception
                         ], \Constants::ERROR_CODE);
@@ -79,6 +96,7 @@ class Handler extends ExceptionHandler
                         return response()->json(response_with_messages('We are one maintenance mode', true, \Constants::MAINTENANCE_MODE));
                     }
                     if (is_in_dashboard()) {
+                        assets_management()->getAssetsFrom('admin');
                         return response()->view('webed-core::admin.errors.' . \Constants::MAINTENANCE_MODE, [], \Constants::MAINTENANCE_MODE);
                     }
                     return response()->view('webed-theme::front.errors.' . \Constants::MAINTENANCE_MODE, [], \Constants::MAINTENANCE_MODE);

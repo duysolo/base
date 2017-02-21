@@ -7,10 +7,9 @@ use WebEd\Base\Core\Repositories\Contracts\AbstractRepositoryContract;
 interface CriteriaContract
 {
     /**
-     * @param $model
-     * @param $repository
-     * @param array $crossData
+     * @param BaseModelContract $model
+     * @param AbstractBaseRepository $repository
      * @return mixed
      */
-    public function apply($model, $repository, array $crossData = []);
+    public function apply($model, AbstractRepositoryContract $repository);
 }

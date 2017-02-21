@@ -50,19 +50,6 @@ abstract class BaseAdminController extends BaseController
 
         $this->assets = assets_management()->getAssetsFrom('admin');
 
-        $this->assets
-            ->addStylesheetsDirectly([
-                'admin/theme/lte/css/AdminLTE.min.css',
-                'admin/theme/lte/css/skins/_all-skins.min.css',
-                'admin/css/style.css',
-            ])
-            ->addJavascriptsDirectly([
-                'admin/theme/lte/js/app.js',
-                'admin/js/webed-core.js',
-                'admin/theme/lte/js/demo.js',
-                'admin/js/script.js',
-            ], 'bottom');
-
         $this->flashMessagesHelper = flash_messages();
 
         $this->userRepository = app(UserRepositoryContract::class);

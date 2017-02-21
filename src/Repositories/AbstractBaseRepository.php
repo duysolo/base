@@ -2,6 +2,7 @@
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use WebEd\Base\Core\Criterias\AbstractCriteria;
 use WebEd\Base\Core\Criterias\Contracts\CriteriaContract;
 use WebEd\Base\Core\Exceptions\Repositories\WrongCriteria;
 use WebEd\Base\Core\Models\Contracts\BaseModelContract;
@@ -24,11 +25,6 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract, Rep
     protected $originalModel;
 
     /**
-     * @var BaseModelContract
-     */
-    protected $builderModel;
-
-    /**
      * @var array
      */
     protected $criteria = [];
@@ -38,23 +34,10 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract, Rep
      */
     protected $skipCriteria = false;
 
-    /**
-     * @var int
-     */
-    protected $currentPaged;
-
-    /**
-     * @var array
-     */
-    protected $select = [];
-
-    protected $builder = [];
-
     public function __construct(BaseModelContract $model)
     {
         $this->model = $model;
         $this->originalModel = $model;
-        $this->builderModel = $model;
         $this->cacheEnabled = config('webed-caching.repository.enabled');
     }
 
@@ -64,22 +47,6 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract, Rep
     public function getModel()
     {
         return $this->model;
-    }
-
-    /**
-     * @return BaseModelContract
-     */
-    public function getBuilderModel()
-    {
-        return $this->builderModel;
-    }
-
-    /**
-     * @return array
-     */
-    public function getBuilder()
-    {
-        return $this->builder;
     }
 
     /**
@@ -101,21 +68,6 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract, Rep
     }
 
     /**
-     * @param $columns
-     * @return $this
-     */
-    public function select($columns)
-    {
-        if (!is_array($columns)) {
-            $this->select = func_get_args();
-        } else {
-            $this->select = $columns;
-        }
-        $this->builder['select'] = func_get_args();
-        return $this;
-    }
-
-    /**
      * @return array
      */
     public function getCriteria()
@@ -124,25 +76,22 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract, Rep
     }
 
     /**
-     * @param $criteria
+     * @param AbstractCriteria $criteria
      * @param array $crossData
      * @return $this
      * @throws WrongCriteria
      */
-    public function pushCriteria($criteria, array $crossData = [])
+    public function pushCriteria(CriteriaContract $criteria)
     {
-        if (is_string($criteria)) {
-            $criteria = app($criteria);
-        }
         if (!$criteria instanceof CriteriaContract) {
             throw new WrongCriteria('Class ' . get_class($criteria) . ' must be an instance of ' . CriteriaContract::class);
         }
-        $this->criteria[get_class($criteria)] = [$criteria, $crossData];
+        $this->criteria[get_class($criteria)] = $criteria;
         return $this;
     }
 
     /**
-     * @param $criteria
+     * @param AbstractCriteria|string $criteria
      * @return $this
      */
     public function dropCriteria($criteria)
@@ -179,26 +128,18 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract, Rep
         $criteria = $this->getCriteria();
         if ($criteria) {
             foreach ($criteria as $className => $c) {
-                if ($c[0] instanceof CriteriaContract) {
-                    $this->model = $c[0]->apply($this->model, $this, $c[1]);
-                    $this->builder['criteria'][$className] = [$className, $c[1]];
-                }
+                $this->model = $c->apply($this->model, $this);
             }
         }
-        if ($this->select) {
-            $this->model = $this->model->select($this->select);
-        }
-
-        $this->builderModel = $this->model;
 
         return $this;
     }
 
     /**
-     * @param CriteriaContract|string $criteria
+     * @param AbstractCriteria|string $criteria
      * @return Collection|BaseModelContract|LengthAwarePaginator|null|mixed
      */
-    public function getByCriteria($criteria, array $crossData = [])
+    public function getByCriteria(CriteriaContract $criteria)
     {
         if (is_string($criteria)) {
             $criteria = app($criteria);
@@ -207,7 +148,7 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract, Rep
             throw new WrongCriteria('Class ' . get_class($criteria) . ' must be an instance of ' . CriteriaContract::class);
         }
 
-        return $criteria->apply($this->originalModel, $this, $crossData);
+        return $criteria->apply($this->originalModel, $this);
     }
 
     /**
@@ -218,17 +159,6 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract, Rep
         $this->model = $this->originalModel;
         $this->skipCriteria = false;
         $this->criteria = [];
-        $this->select = [];
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function resetBuilder()
-    {
-        $this->builder = [];
-        $this->builderModel = $this->originalModel;
         return $this;
     }
 }

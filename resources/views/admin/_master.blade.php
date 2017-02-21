@@ -20,6 +20,10 @@
 
     @php do_action('header_css') @endphp
 
+    <link rel="stylesheet" href="/admin/theme/lte/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="/admin/theme/lte/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="/admin/css/style.css">
+
     @yield('css')
 
     <link rel="shortcut icon" href="{{ get_settings('favicon', 'favicon.png') }}"/>
@@ -92,6 +96,10 @@
 <![endif]-->
 
 {{--BEGIN plugins--}}
+<script src="/admin/theme/lte/js/app.js"></script>
+<script src="/admin/js/webed-core.js"></script>
+<script src="/admin/theme/lte/js/demo.js"></script>
+<script src="/admin/js/script.js"></script>
 {!! \Assets::renderScripts('bottom') !!}
 {{--END plugins--}}
 

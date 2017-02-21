@@ -1,5 +1,6 @@
 <?php namespace WebEd\Base\Core\Repositories\Contracts;
 
+use WebEd\Base\Core\Criterias\AbstractCriteria;
 use WebEd\Base\Core\Models\Contracts\BaseModelContract;
 use Illuminate\Support\Collection;
 use WebEd\Base\Core\Exceptions\Repositories\WrongCriteria;
@@ -14,16 +15,6 @@ interface AbstractRepositoryContract
     public function getModel();
 
     /**
-     * @return BaseModelContract
-     */
-    public function getBuilderModel();
-
-    /**
-     * @return array
-     */
-    public function getBuilder();
-
-    /**
      * Get model table
      * @return string
      */
@@ -36,25 +27,19 @@ interface AbstractRepositoryContract
     public function getPrimaryKey();
 
     /**
-     * @param $columns
-     * @return $this
-     */
-    public function select($columns);
-
-    /**
      * @return Collection
      */
     public function getCriteria();
 
     /**
-     * @param $criteria
+     * @param AbstractCriteria $criteria
      * @return $this
      * @throws WrongCriteria
      */
-    public function pushCriteria($criteria);
+    public function pushCriteria(CriteriaContract $criteria);
 
     /**
-     * @param $criteria
+     * @param AbstractCriteria|string $criteria
      * @return $this
      */
     public function dropCriteria($criteria);
@@ -71,18 +56,14 @@ interface AbstractRepositoryContract
     public function applyCriteria();
 
     /**
-     * @param CriteriaContract|string $criteria
+     * @param AbstractCriteria $criteria
+     * @param array $constructorArgs
      * @return Collection|BaseModelContract|LengthAwarePaginator|null|mixed
      */
-    public function getByCriteria($criteria, array $crossData = []);
+    public function getByCriteria(CriteriaContract $criteria);
 
     /**
      * @return $this
      */
     public function resetModel();
-
-    /**
-     * @return $this
-     */
-    public function resetBuilder();
 }

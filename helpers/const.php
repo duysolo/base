@@ -12,6 +12,8 @@ class Constants
 
     const NOT_FOUND_CODE = 404;
 
+    const METHOD_NOT_ALLOWED = 405;
+
     const ERROR_CODE = 500;
 
     const MAINTENANCE_MODE = 503;
