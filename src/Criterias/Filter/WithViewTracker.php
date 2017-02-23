@@ -7,19 +7,22 @@ use WebEd\Base\Core\Criterias\AbstractCriteria;
 
 class WithViewTracker extends AbstractCriteria
 {
-     /**
-      * @param EloquentBase|Builder $model
-      * @param AbstractRepositoryContract $repository
-      * @param array $crossData
-      * @return mixed
-      */
-    public function apply($model, $repository, array $crossData = [])
-    {
-        $tableName = $crossData['table'];
-        $primaryKey = $crossData['primaryKey'];
+    protected $relatedModel;
 
+    public function __construct(EloquentBase $relatedModel)
+    {
+        $this->relatedModel = $relatedModel;
+    }
+
+    /**
+     * @param EloquentBase|Builder $model
+     * @param AbstractRepositoryContract $repository
+     * @return mixed
+     */
+    public function apply($model, AbstractRepositoryContract $repository)
+    {
         return $model
-            ->join('view_trackers', $tableName . '.' . $primaryKey, '=', 'view_trackers.entity_id')
-            ->where('view_trackers.entity', '=', $crossData['modelClass']);
+            ->join('view_trackers', $this->relatedModel->getTable() . '.' . $this->relatedModel->getPrimaryKey(), '=', 'view_trackers.entity_id')
+            ->where('view_trackers.entity', '=', get_class($this->relatedModel));
     }
 }

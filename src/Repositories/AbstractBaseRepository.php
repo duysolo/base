@@ -34,6 +34,11 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract, Rep
      */
     protected $skipCriteria = false;
 
+    /**
+     * @var array
+     */
+    protected $select = ['*'];
+
     public function __construct(BaseModelContract $model)
     {
         $this->model = $model;
@@ -65,6 +70,16 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract, Rep
     public function getPrimaryKey()
     {
         return $this->originalModel->getPrimaryKey();
+    }
+
+    /**
+     * @param array $fields
+     * @return $this
+     */
+    public function select(array $fields)
+    {
+        $this->select = $fields;
+        return $this;
     }
 
     /**
@@ -159,6 +174,7 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract, Rep
         $this->model = $this->originalModel;
         $this->skipCriteria = false;
         $this->criteria = [];
+        $this->select = ['*'];
         return $this;
     }
 }

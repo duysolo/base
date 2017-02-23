@@ -27,6 +27,12 @@ interface AbstractRepositoryContract
     public function getPrimaryKey();
 
     /**
+     * @param array $fields
+     * @return $this
+     */
+    public function select(array $fields);
+
+    /**
      * @return Collection
      */
     public function getCriteria();

@@ -30,8 +30,6 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
                 $this->model = $this->model->where($field, $operator, $value);
             }
         }
-        $this->builderModel = $this->model;
-        $this->builder['where'][] = func_get_args();
 
         return $this;
     }
@@ -50,8 +48,6 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         } else {
             $this->model = $this->model->orderBy($field, $type);
         }
-        $this->builderModel = $this->model;
-        $this->builder['orderBy'][] = func_get_args();
 
         return $this;
     }
@@ -64,7 +60,9 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
     public function find($id, $columns = ['*'])
     {
         $this->applyCriteria();
-        $this->builderModel = $this->model;
+        if ($this->select) {
+            $this->model = $this->model->select($this->select);
+        }
         $result = $this->model->find($id, $columns);
         $this->resetModel();
         return $result;
@@ -76,7 +74,9 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
     public function count()
     {
         $this->applyCriteria();
-        $this->builderModel = $this->model;
+        if ($this->select) {
+            $this->model = $this->model->select($this->select);
+        }
         $result = $this->model->count();
         $this->resetModel();
         return $result;
@@ -88,9 +88,10 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
      */
     public function take($howManyItem)
     {
+        if ($this->select) {
+            $this->model = $this->model->select($this->select);
+        }
         $this->model = $this->model->take($howManyItem);
-        $this->builderModel = $this->model;
-        $this->builder['take'] = func_get_args();
 
         return $this;
     }
@@ -106,7 +107,9 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         }
 
         $this->applyCriteria();
-        $this->builderModel = $this->model;
+        if ($this->select) {
+            $this->model = $this->model->select($this->select);
+        }
         $result = $this->model->get($columns);
         $this->resetModel();
         return $result;
@@ -119,7 +122,9 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
     public function first($columns = ['*'])
     {
         $this->applyCriteria();
-        $this->builderModel = $this->model;
+        if ($this->select) {
+            $this->model = $this->model->select($this->select);
+        }
         $result = $this->model->first($columns);
         $this->resetModel();
         return $result;
@@ -135,7 +140,9 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
     public function paginate($perPage, $columns = ['*'], $pageName = 'page', $currentPaged = null)
     {
         $this->applyCriteria();
-        $this->builderModel = $this->model;
+        if ($this->select) {
+            $this->model = $this->model->select($this->select);
+        }
         $result = $this->model->paginate($perPage, $columns, $pageName, $currentPaged);
         $this->resetModel();
         return $result;
@@ -147,7 +154,13 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
      */
     public function findByFields($fields)
     {
-        return $this->model->where($fields)->first();
+        $model = $this->model
+            ->where($fields);
+        if ($this->select) {
+            $model = $this->model->select($this->select)->first();
+        }
+        $this->resetModel();
+        return $model;
     }
 
     /**
@@ -158,7 +171,11 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
      */
     public function findByFieldsOrCreate($fields, $optionalFields = null, $forceCreate = false)
     {
-        $result = $this->model->where($fields)->first();
+        $result = $this->model->where($fields);
+        if ($this->select) {
+            $result = $result->select($this->select)->first();
+        }
+        $result = $result->first();
         if (!$result) {
             $data = array_merge((array)$optionalFields, $fields);
             if ($forceCreate) {
@@ -166,7 +183,11 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
             } else {
                 $this->model->create($data);
             }
-            $result = $this->model->where($fields)->first();
+            $result = $this->model->where($fields);
+            if ($this->select) {
+                $result = $result->select($this->select)->first();
+            }
+            $result = $result->first();
         }
         return $result;
     }

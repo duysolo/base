@@ -5,6 +5,7 @@
  * TODO Validate model before create/update
  * NOTE: just add model rules. No business logic here
  * @author Tedozi Manson <duyphan.developer@gmail.com>
+ * @property array $editableFields
  */
 trait RepositoryValidatable
 {
@@ -72,7 +73,7 @@ trait RepositoryValidatable
      */
     public function expandEditableFields(array $fields)
     {
-        $this->editableFields = array_merge($this->getEditableFields(), $fields);
+        $this->editableFields = array_merge($this->editableFields, $fields);
 
         return $this;
     }
@@ -102,7 +103,7 @@ trait RepositoryValidatable
      */
     protected function unsetNotEditableFields(array &$data)
     {
-        $editableCollection = collect($this->getEditableFields());
+        $editableCollection = collect($this->editableFields);
         if ($editableCollection->contains('*')) {
             return [];
         }
@@ -142,7 +143,7 @@ trait RepositoryValidatable
     public function validateModel($data, $justUpdateSomeFields = false)
     {
         if ($justUpdateSomeFields == true) {
-            $originalRules = $this->getModelRules();
+            $originalRules = $this->rules;
             $rules = [];
             foreach ($data as $key => $row) {
                 if (isset($originalRules[$key])) {
@@ -150,7 +151,7 @@ trait RepositoryValidatable
                 }
             }
         } else {
-            $rules = $this->getModelRules();
+            $rules = $this->rules;
         }
 
         $this->ruleErrors = [];
