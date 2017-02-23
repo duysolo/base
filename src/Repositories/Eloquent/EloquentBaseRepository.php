@@ -154,11 +154,10 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
      */
     public function findByFields($fields)
     {
-        $model = $this->model
-            ->where($fields);
         if ($this->select) {
-            $model = $this->model->select($this->select)->first();
+            $this->model = $this->model->select($this->select);
         }
+        $model = $this->model->where($fields)->first();
         $this->resetModel();
         return $model;
     }
@@ -171,11 +170,10 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
      */
     public function findByFieldsOrCreate($fields, $optionalFields = null, $forceCreate = false)
     {
-        $result = $this->model->where($fields);
         if ($this->select) {
-            $result = $result->select($this->select)->first();
+            $this->model = $this->model->select($this->select);
         }
-        $result = $result->first();
+        $result = $this->model->where($fields)->first();
         if (!$result) {
             $data = array_merge((array)$optionalFields, $fields);
             if ($forceCreate) {
