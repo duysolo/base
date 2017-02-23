@@ -14,6 +14,29 @@ use WebEd\Base\Core\Repositories\AbstractBaseRepository;
 abstract class EloquentBaseRepository extends AbstractBaseRepository
 {
     /**
+     * @var array
+     */
+    protected $builderData = [];
+
+    /**
+     * @return array
+     */
+    public function getBuilderData()
+    {
+        return $this->builderData;
+    }
+
+    /**
+     * @return $this
+     */
+    public function resetBuilderData()
+    {
+        $this->builderData = [];
+
+        return $this;
+    }
+
+    /**
      * @param $field
      * @param null $operator
      * @param null $value
@@ -21,6 +44,8 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
      */
     public function where($field, $operator = null, $value = null)
     {
+        $this->builderData['where'][] = func_get_args();
+
         if (is_array($field)) {
             $this->model = $this->model->where($field);
         } else {
@@ -41,6 +66,8 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
      */
     public function orderBy($field, $type = null)
     {
+        $this->builderData['orderBy'][] = func_get_args();
+
         if (is_array($field)) {
             foreach ($field as $key => $row) {
                 $this->model = $this->model->orderBy($key, $row);
@@ -48,6 +75,22 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         } else {
             $this->model = $this->model->orderBy($field, $type);
         }
+
+        return $this;
+    }
+
+    /**
+     * @param $howManyItem
+     * @return $this
+     */
+    public function take($howManyItem)
+    {
+        $this->builderData['take'] = $howManyItem;
+
+        if ($this->select) {
+            $this->model = $this->model->select($this->select);
+        }
+        $this->model = $this->model->take($howManyItem);
 
         return $this;
     }
@@ -80,20 +123,6 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         $result = $this->model->count();
         $this->resetModel();
         return $result;
-    }
-
-    /**
-     * @param $howManyItem
-     * @return $this
-     */
-    public function take($howManyItem)
-    {
-        if ($this->select) {
-            $this->model = $this->model->select($this->select);
-        }
-        $this->model = $this->model->take($howManyItem);
-
-        return $this;
     }
 
     /**
@@ -157,7 +186,8 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         if ($this->select) {
             $this->model = $this->model->select($this->select);
         }
-        $model = $this->model->where($fields)->first();
+        $this->model = $this->model->where($fields);
+        $model = $this->model->first();
         $this->resetModel();
         return $model;
     }
@@ -173,7 +203,9 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         if ($this->select) {
             $this->model = $this->model->select($this->select);
         }
-        $result = $this->model->where($fields)->first();
+        $this->model = $this->model->where($fields);
+
+        $result = $this->model->first();
         if (!$result) {
             $data = array_merge((array)$optionalFields, $fields);
             if ($forceCreate) {
@@ -181,11 +213,11 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
             } else {
                 $this->model->create($data);
             }
-            $result = $this->model->where($fields);
+            $this->model = $this->model->where($fields);
             if ($this->select) {
-                $result = $result->select($this->select)->first();
+                $this->model = $this->model->select($this->select)->first();
             }
-            $result = $result->first();
+            $result = $this->model->first();
         }
         return $result;
     }
