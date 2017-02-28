@@ -45,8 +45,8 @@ class BootstrapModuleServiceProvider extends ServiceProvider
             'id' => 'webed-dashboard',
             'priority' => -999,
             'parent_id' => null,
-            'heading' => 'Dashboard',
-            'title' => 'Dashboard',
+            'heading' => trans('webed-core::base.admin-menu.dashboard.heading'),
+            'title' => trans('webed-core::base.admin-menu.dashboard.title'),
             'font_icon' => 'icon-pie-chart',
             'link' => route('admin::dashboard.index.get'),
             'css_class' => null,
@@ -56,8 +56,8 @@ class BootstrapModuleServiceProvider extends ServiceProvider
             'id' => 'webed-configuration',
             'priority' => 999,
             'parent_id' => null,
-            'heading' => 'Advanced',
-            'title' => 'Configurations',
+            'heading' => trans('webed-core::base.admin-menu.configuration.heading'),
+            'title' => trans('webed-core::base.admin-menu.configuration.title'),
             'font_icon' => 'icon-settings',
             'link' => route('admin::settings.index.get'),
             'css_class' => null,
@@ -71,8 +71,8 @@ class BootstrapModuleServiceProvider extends ServiceProvider
                 'group' => 'basic',
                 'type' => 'text',
                 'priority' => 5,
-                'label' => 'Site title',
-                'helper' => 'Our site title'
+                'label' => trans('webed-core::base.settings.site_title.label'),
+                'helper' => trans('webed-core::base.settings.site_title.helper')
             ], function () {
                 return [
                     'site_title',
@@ -84,24 +84,28 @@ class BootstrapModuleServiceProvider extends ServiceProvider
                 'group' => 'basic',
                 'type' => 'selectImageBox',
                 'priority' => 5,
-                'label' => 'Site logo',
-                'helper' => 'Our site logo'
+                'label' => trans('webed-core::base.settings.site_logo.label'),
+                'helper' => trans('webed-core::base.settings.site_logo.helper')
             ], function () {
                 return [
                     'site_logo',
                     get_settings('site_logo'),
+                    null,
+                    trans('webed-core::base.form.choose-image'),
                 ];
             })
             ->addSettingField('favicon', [
                 'group' => 'basic',
                 'type' => 'selectImageBox',
                 'priority' => 5,
-                'label' => 'Favicon',
-                'helper' => '16x16, support png, gif, ico, jpg'
+                'label' => trans('webed-core::base.settings.favicon.label'),
+                'helper' => trans('webed-core::base.settings.favicon.helper'),
             ], function () {
                 return [
                     'favicon',
                     get_settings('favicon'),
+                    null,
+                    trans('webed-core::base.form.choose-image'),
                 ];
             })
             ->addSettingField('construction_mode', [
@@ -109,10 +113,10 @@ class BootstrapModuleServiceProvider extends ServiceProvider
                 'type' => 'customCheckbox',
                 'priority' => 5,
                 'label' => null,
-                'helper' => 'Mark this site on maintenance mode. Just logged in admin can access front site.',
+                'helper' => trans('webed-core::base.settings.construction_mode.helper'),
             ], function () {
                 return [
-                    [['construction_mode', '1', 'On construction mode', get_settings('construction_mode'),]],
+                    [['construction_mode', '1', trans('webed-core::base.settings.construction_mode.label'), get_settings('construction_mode'),]],
                 ];
             })
             ->addSettingField('show_admin_bar', [
@@ -120,28 +124,40 @@ class BootstrapModuleServiceProvider extends ServiceProvider
                 'type' => 'customCheckbox',
                 'priority' => 5,
                 'label' => null,
-                'helper' => 'When admin logged in, still show admin bar on front site.'
+                'helper' => trans('webed-core::base.settings.show_admin_bar.helper')
             ], function () {
                 return [
-                    [['show_admin_bar', '1', 'Show admin bar', get_settings('show_admin_bar')]],
+                    [['show_admin_bar', '1', trans('webed-core::base.settings.show_admin_bar.label'), get_settings('show_admin_bar')]],
                 ];
             });
     }
 
     private function socialNetworks()
     {
-        cms_settings()->addGroup('socials', 'Social networks');
+        cms_settings()->addGroup('socials', trans('webed-core::base.setting-tabs.socials'));
 
         $socials = [
             'facebook' => [
-                'label' => 'Facebook page',
+                'label' => trans('webed-core::base.settings.socials.facebook'),
             ],
             'youtube' => [
-                'label' => 'Youtube chanel',
+                'label' => trans('webed-core::base.settings.socials.youtube'),
             ],
             'twitter' => [
-                'label' => 'Twitter page',
-            ]
+                'label' => trans('webed-core::base.settings.socials.twitter'),
+            ],
+            'google_plus' => [
+                'label' => trans('webed-core::base.settings.socials.google_plus'),
+            ],
+            'instagram' => [
+                'label' => trans('webed-core::base.settings.socials.instagram'),
+            ],
+            'linkedin' => [
+                'label' => trans('webed-core::base.settings.socials.linkedin'),
+            ],
+            'flickr' => [
+                'label' => trans('webed-core::base.settings.socials.flickr'),
+            ],
         ];
         foreach ($socials as $key => $row) {
             cms_settings()->addSettingField($key, [

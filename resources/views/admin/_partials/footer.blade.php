@@ -1,6 +1,6 @@
 <footer class="main-footer">
     <div class="pull-right">
-        <b>Version</b> {{ config('webed.version') }}
+        <b>{{ trans('webed-core::base.version') }}</b> {{ config('webed.version') }}
     </div>
-    2016 &copy; <strong>WebEd.</strong> All rights reserved.
+    2016 &copy; <strong>WebEd CMS</strong> by <a href="http://sgsoftware.net">sgsoftware.net</a>. All rights reserved.
 </footer>
