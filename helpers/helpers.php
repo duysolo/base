@@ -9,9 +9,13 @@ if (!function_exists('get_cms_version')) {
         try {
             $composerLockFile = json_decode(get_file_data(base_path('composer.lock')), true);
             $packages = collect(array_get($composerLockFile, 'packages'));
-            return array_get($packages->where('name', '=', 'sgsoft-studio/base')->first(), 'version');
+            $webedBase = $packages->where('name', '=', 'sgsoft-studio/base')->first();
+            if (!$webedBase) {
+                return '3.1';
+            }
+            return array_get($webedBase, 'version');
         } catch (\Exception $exception) {
-            return '3.0';
+            return '3.1';
         }
     }
 }
@@ -22,7 +26,7 @@ if (!function_exists('load_module_helpers')) {
      */
     function load_module_helpers($dir)
     {
-        \WebEd\Base\Core\Support\Helper::loadModuleHelpers($dir);
+        \WebEd\Base\Support\Helper::loadModuleHelpers($dir);
     }
 }
 

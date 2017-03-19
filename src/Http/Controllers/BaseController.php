@@ -1,7 +1,8 @@
-<?php namespace WebEd\Base\Core\Http\Controllers;
+<?php namespace WebEd\Base\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
+use WebEd\Base\Repositories\Eloquent\EloquentBaseRepository;
 
 abstract class BaseController extends Controller
 {
@@ -11,7 +12,7 @@ abstract class BaseController extends Controller
     public $request;
 
     /**
-     * @var \WebEd\Base\Core\Repositories\EloquentBaseRepository
+     * @var EloquentBaseRepository
      */
     protected $repository;
 
@@ -64,7 +65,7 @@ abstract class BaseController extends Controller
      */
     protected function view($viewName, $data = null)
     {
-        if ($data === null) {
+        if ($data === null || !is_array($data)) {
             $data = $this->dis;
         }
         if(property_exists($this, 'module')) {

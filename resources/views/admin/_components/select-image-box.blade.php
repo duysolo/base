@@ -5,7 +5,7 @@
  * @var string $thumbnail
  * @var string $label
  */
-$label = isset($label) ? $label : 'Choose image';
+$label = isset($label) ? $label : trans('webed-core::base.form.choose_image');
 $value = isset($value) ? $value : '';
 $thumbnail = isset($thumbnail) ? $thumbnail : '/admin/images/no-image.png';
 ?>

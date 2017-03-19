@@ -1,4 +1,4 @@
-<?php namespace WebEd\Base\Core\Http\ViewComposers;
+<?php namespace WebEd\Base\Http\ViewComposers;
 
 use Illuminate\View\View;
 

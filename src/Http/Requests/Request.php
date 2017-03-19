@@ -1,4 +1,4 @@
-<?php namespace WebEd\Base\Core\Http\Requests;
+<?php namespace WebEd\Base\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

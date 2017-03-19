@@ -2,7 +2,7 @@
 
 if (!function_exists('view_count')) {
     /**
-     * @return \WebEd\Base\Core\Support\ViewCount
+     * @return \WebEd\Base\Support\ViewCount
      */
     function view_count()
     {

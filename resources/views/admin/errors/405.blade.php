@@ -16,8 +16,8 @@
     <div class="layout-1columns">
         <div class="column main">
             <h2 class="headline">405</h2>
-            <h3>Method not allowed</h3>
-            <p>Be right back!</p>
+            <h3>{{ trans('webed-core::errors.' . Constants::METHOD_NOT_ALLOWED . '.title') }}</h3>
+            <p>{{ trans('webed-core::errors.' . Constants::METHOD_NOT_ALLOWED . '.message') }}</p>
         </div>
     </div>
 @endsection

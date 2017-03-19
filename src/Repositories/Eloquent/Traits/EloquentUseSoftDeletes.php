@@ -1,7 +1,7 @@
-<?php namespace WebEd\Base\Core\Repositories\Eloquent\Traits;
+<?php namespace WebEd\Base\Repositories\Eloquent\Traits;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
-use WebEd\Base\Core\Models\EloquentBase;
+use WebEd\Base\Models\EloquentBase;
 
 /**
  * @property SoftDeletes|EloquentBase $model
@@ -37,7 +37,7 @@ trait EloquentUseSoftDeletes
     }
 
     /**
-     * @param \WebEd\Base\Core\Models\Contracts\BaseModelContract|int|array|null $id
+     * @param \WebEd\Base\Models\Contracts\BaseModelContract|int|array|null $id
      * @return array
      */
     public function restore($id = null)
@@ -66,7 +66,7 @@ trait EloquentUseSoftDeletes
 
     /**
      * Delete items by id
-     * @param \WebEd\Base\Core\Models\Contracts\BaseModelContract|int|array|null $id
+     * @param \WebEd\Base\Models\Contracts\BaseModelContract|int|array|null $id
      * @return array
      */
     public function forceDelete($id = null)

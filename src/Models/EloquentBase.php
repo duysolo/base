@@ -1,7 +1,7 @@
-<?php namespace WebEd\Base\Core\Models;
+<?php namespace WebEd\Base\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use WebEd\Base\Core\Models\Contracts\BaseModelContract;
+use WebEd\Base\Models\Contracts\BaseModelContract;
 
 abstract class EloquentBase extends Model implements BaseModelContract
 {

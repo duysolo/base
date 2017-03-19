@@ -1,15 +1,15 @@
-<?php namespace WebEd\Base\Core\Providers;
+<?php namespace WebEd\Base\Providers;
 
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use WebEd\Base\Core\Exceptions\Handler;
-use WebEd\Base\Core\Facades\AdminBarFacade;
-use WebEd\Base\Core\Facades\BreadcrumbsFacade;
-use WebEd\Base\Core\Facades\FlashMessagesFacade;
-use WebEd\Base\Core\Facades\SeoFacade;
-use WebEd\Base\Core\Facades\ViewCountFacade;
-use WebEd\Base\Core\Support\Helper;
+use WebEd\Base\Exceptions\Handler;
+use WebEd\Base\Facades\AdminBarFacade;
+use WebEd\Base\Facades\BreadcrumbsFacade;
+use WebEd\Base\Facades\FlashMessagesFacade;
+use WebEd\Base\Facades\SeoFacade;
+use WebEd\Base\Facades\ViewCountFacade;
+use WebEd\Base\Support\Helper;
 
 class ModuleProvider extends ServiceProvider
 {
@@ -101,7 +101,6 @@ class ModuleProvider extends ServiceProvider
         $this->app->register(\WebEd\Base\ACL\Providers\ModuleProvider::class);
         $this->app->register(\WebEd\Base\ModulesManagement\Providers\ModuleProvider::class);
         $this->app->register(\WebEd\Base\AssetsManagement\Providers\ModuleProvider::class);
-        $this->app->register(\WebEd\Base\Auth\Providers\ModuleProvider::class);
         $this->app->register(\WebEd\Base\Elfinder\Providers\ModuleProvider::class);
         $this->app->register(\WebEd\Base\Hook\Providers\ModuleProvider::class);
         $this->app->register(\WebEd\Base\Menu\Providers\ModuleProvider::class);

@@ -1,4 +1,4 @@
-<?php namespace WebEd\Base\Core\Providers;
+<?php namespace WebEd\Base\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -22,7 +22,7 @@ class ConsoleServiceProvider extends ServiceProvider
     public function register()
     {
         $this->commands([
-            \WebEd\Base\Core\Console\Commands\InstallCmsCommand::class,
+            \WebEd\Base\Console\Commands\InstallCmsCommand::class,
         ]);
     }
 }

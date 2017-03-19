@@ -1,4 +1,4 @@
-<?php namespace WebEd\Base\Core\Actions;
+<?php namespace WebEd\Base\Actions;
 
 abstract class AbstractAction
 {

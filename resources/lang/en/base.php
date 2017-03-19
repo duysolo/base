@@ -17,11 +17,30 @@ return [
         'delete' => 'delete',
         'submit' => 'Submit',
         'save' => 'Save',
-        'save-and-continue' => 'Save & continue',
-        'choose-image' => 'Choose image',
-        'choose-file' => 'Choose file',
-        'choose-images' => 'Choose images',
-        'choose-files' => 'Choose files',
+        'save_and_continue' => 'Save & continue',
+        'select' => 'Select',
+        'search' => 'Search',
+
+        'basic_info' => 'Basic information',
+
+        'choose_image' => 'Choose image',
+        'choose_file' => 'Choose file',
+        'choose_images' => 'Choose images',
+        'choose_files' => 'Choose files',
+
+        'title' => 'Title',
+        'slug' => 'Slug',
+        'content' => 'Content',
+        'keywords' => 'Keywords',
+        'description' => 'Description',
+        'templates' => 'Templates',
+        'thumbnail' => 'Thumbnail',
+        'order' => 'Order',
+        'status' => 'Status',
+        'publish' => 'Publish',
+
+        'model_not_exists' => 'Model not exists with id:',
+        'request_completed' => 'Request completed',
     ],
     'setting-tabs' => [
         'basic' => 'Basic',
@@ -59,5 +78,13 @@ return [
             'flickr' => 'Flickr',
         ],
     ],
+    'status' => [
+        'disabled' => 'Disabled',
+        'activated' => 'Activated',
+        'deleted' => 'Deleted',
+    ],
     'version' => 'Version',
+    'stat_box' => [
+        'more_info' => 'More info',
+    ],
 ];

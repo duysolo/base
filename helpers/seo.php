@@ -2,10 +2,10 @@
 
 if (!function_exists('seo')) {
     /**
-     * @return \WebEd\Base\Core\Support\SEO
+     * @return \WebEd\Base\Support\SEO
      */
     function seo()
     {
-        return \WebEd\Base\Core\Facades\SeoFacade::getFacadeRoot();
+        return \WebEd\Base\Facades\SeoFacade::getFacadeRoot();
     }
 }

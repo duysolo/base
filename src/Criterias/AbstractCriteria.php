@@ -1,6 +1,6 @@
-<?php namespace WebEd\Base\Core\Criterias;
+<?php namespace WebEd\Base\Criterias;
 
-use WebEd\Base\Core\Criterias\Contracts\CriteriaContract;
+use WebEd\Base\Criterias\Contracts\CriteriaContract;
 
 abstract class AbstractCriteria implements CriteriaContract
 {

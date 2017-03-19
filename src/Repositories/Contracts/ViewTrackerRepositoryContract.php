@@ -1,6 +1,6 @@
-<?php namespace WebEd\Base\Core\Repositories\Contracts;
+<?php namespace WebEd\Base\Repositories\Contracts;
 
-use WebEd\Base\Core\Models\Contracts\ViewTrackerModelContract;
+use WebEd\Base\Models\Contracts\ViewTrackerModelContract;
 
 interface ViewTrackerRepositoryContract
 {

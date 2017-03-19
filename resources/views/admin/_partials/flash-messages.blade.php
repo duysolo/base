@@ -29,4 +29,4 @@
         <p>{!! $row !!}</p>
     </div>
 @endforeach @endif
-@php do_action('flash_messages') @endphp
+@php do_action(BASE_ACTION_FLASH_MESSAGES) @endphp

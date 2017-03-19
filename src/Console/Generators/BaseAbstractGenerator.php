@@ -1,4 +1,4 @@
-<?php namespace WebEd\Base\Core\Console\Generators;
+<?php namespace WebEd\Base\Console\Generators;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;

@@ -1,10 +1,10 @@
-<?php namespace WebEd\Base\Core\Providers;
+<?php namespace WebEd\Base\Providers;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use WebEd\Base\Core\Http\Middleware\AdminBarMiddleware;
-use WebEd\Base\Core\Http\Middleware\ConstructionModeMiddleware;
-use WebEd\Base\Core\Http\Middleware\CorsMiddleware;
+use WebEd\Base\Http\Middleware\AdminBarMiddleware;
+use WebEd\Base\Http\Middleware\ConstructionModeMiddleware;
+use WebEd\Base\Http\Middleware\CorsMiddleware;
 
 class MiddlewareServiceProvider extends ServiceProvider
 {

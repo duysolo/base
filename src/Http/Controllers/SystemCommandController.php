@@ -1,4 +1,4 @@
-<?php namespace WebEd\Base\Core\Http\Controllers;
+<?php namespace WebEd\Base\Http\Controllers;
 
 class SystemCommandController extends BaseAdminController
 {
@@ -11,7 +11,7 @@ class SystemCommandController extends BaseAdminController
     public function getCallDumpAutoload()
     {
         modules_management()->refreshComposerAutoload();
-        $this->flashMessagesHelper
+        flash_messages()
             ->addMessages('Composer autoload refreshed', 'success')
             ->showMessagesOnSession();
 

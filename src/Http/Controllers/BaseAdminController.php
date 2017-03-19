@@ -1,4 +1,4 @@
-<?php namespace WebEd\Base\Core\Http\Controllers;
+<?php namespace WebEd\Base\Http\Controllers;
 
 use Illuminate\Http\Request;
 use WebEd\Base\Users\Repositories\Contracts\UserRepositoryContract;
@@ -7,7 +7,7 @@ use WebEd\Base\Users\Repositories\UserRepository;
 abstract class BaseAdminController extends BaseController
 {
     /**
-     * @var \WebEd\Base\Core\Support\Breadcrumbs
+     * @var \WebEd\Base\Support\Breadcrumbs
      */
     public $breadcrumbs;
 
@@ -22,11 +22,7 @@ abstract class BaseAdminController extends BaseController
     public $assets;
 
     /**
-     * @var \WebEd\Base\Core\Services\FlashMessages
-     */
-    public $flashMessagesHelper;
-
-    /**
+     * Use to check role
      * @var UserRepository
      */
     protected $userRepository;
@@ -49,8 +45,6 @@ abstract class BaseAdminController extends BaseController
         });
 
         $this->assets = assets_management()->getAssetsFrom('admin');
-
-        $this->flashMessagesHelper = flash_messages();
 
         $this->userRepository = app(UserRepositoryContract::class);
     }

@@ -1,4 +1,4 @@
-<?php namespace WebEd\Base\Core\Services;
+<?php namespace WebEd\Base\Services;
 
 class Validator
 {

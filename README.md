@@ -5,10 +5,10 @@
 
 ####Vendor publish
 ```
-php artisan vendor:publish --provider=WebEd\Base\Core\Providers\ModuleProvider
-php artisan vendor:publish --provider=WebEd\Base\Core\Providers\ModuleProvider --tag=lang
-php artisan vendor:publish --provider=WebEd\Base\Core\Providers\ModuleProvider --tag=views
-php artisan vendor:publish --provider=WebEd\Base\Core\Providers\ModuleProvider --tag=config
-php artisan vendor:publish --provider=WebEd\Base\Core\Providers\ModuleProvider --tag=webed-assets
-php artisan vendor:publish --provider=WebEd\Base\Core\Providers\ModuleProvider --tag=webed-public-assets
+php artisan vendor:publish --provider=WebEd\Base\Providers\ModuleProvider
+php artisan vendor:publish --provider=WebEd\Base\Providers\ModuleProvider --tag=lang
+php artisan vendor:publish --provider=WebEd\Base\Providers\ModuleProvider --tag=views
+php artisan vendor:publish --provider=WebEd\Base\Providers\ModuleProvider --tag=config
+php artisan vendor:publish --provider=WebEd\Base\Providers\ModuleProvider --tag=webed-assets
+php artisan vendor:publish --provider=WebEd\Base\Providers\ModuleProvider --tag=webed-public-assets
 ```

@@ -1,4 +1,4 @@
-<?php namespace WebEd\Base\Core\Repositories\Contracts;
+<?php namespace WebEd\Base\Repositories\Contracts;
 
 interface RepositoryValidatorContract
 {
@@ -63,8 +63,7 @@ interface RepositoryValidatorContract
     public function getRuleErrorMessages();
 
     /**
-     * @return \WebEd\Base\Core\Services\Validator
+     * @return \WebEd\Base\Services\Validator
      */
     public function getValidatorInstance();
-
 }

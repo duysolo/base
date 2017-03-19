@@ -2,10 +2,10 @@
 
 if (!function_exists('breadcrumbs')) {
     /**
-     * @return \WebEd\Base\Core\Support\Breadcrumbs
+     * @return \WebEd\Base\Support\Breadcrumbs
      */
     function breadcrumbs()
     {
-        return \WebEd\Base\Core\Facades\BreadcrumbsFacade::getFacadeRoot();
+        return \WebEd\Base\Facades\BreadcrumbsFacade::getFacadeRoot();
     }
 }

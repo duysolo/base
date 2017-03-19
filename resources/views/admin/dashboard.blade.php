@@ -14,9 +14,9 @@
 
 @section('content')
     <div class="row stat-boxes">
-        @php do_action('webed-dashboard.index.stat-boxes.get') @endphp
+        @php do_action(WEBED_DASHBOARD_STATS) @endphp
     </div>
-    <div class="row">
-        @php do_action('webed-dashboard.index.other.get') @endphp
+    <div class="row other-boxes">
+        @php do_action(WEBED_DASHBOARD_OTHERS) @endphp
     </div>
 @endsection

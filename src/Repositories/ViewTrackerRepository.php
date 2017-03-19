@@ -1,11 +1,11 @@
-<?php namespace WebEd\Base\Core\Repositories;
+<?php namespace WebEd\Base\Repositories;
 
 use WebEd\Base\Caching\Services\Traits\Cacheable;
-use WebEd\Base\Core\Models\Contracts\ViewTrackerModelContract;
+use WebEd\Base\Models\Contracts\ViewTrackerModelContract;
 use WebEd\Base\Caching\Services\Contracts\CacheableContract;
-use WebEd\Base\Core\Models\ViewTracker;
-use WebEd\Base\Core\Repositories\Contracts\ViewTrackerRepositoryContract;
-use WebEd\Base\Core\Repositories\Eloquent\EloquentBaseRepository;
+use WebEd\Base\Models\ViewTracker;
+use WebEd\Base\Repositories\Contracts\ViewTrackerRepositoryContract;
+use WebEd\Base\Repositories\Eloquent\EloquentBaseRepository;
 
 class ViewTrackerRepository extends EloquentBaseRepository implements ViewTrackerRepositoryContract, CacheableContract
 {

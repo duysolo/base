@@ -1,4 +1,4 @@
-<?php namespace WebEd\Base\Core\Support;
+<?php namespace WebEd\Base\Support;
 
 class AdminBar
 {

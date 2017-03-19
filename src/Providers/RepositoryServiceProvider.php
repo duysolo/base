@@ -1,10 +1,10 @@
-<?php namespace WebEd\Base\Core\Providers;
+<?php namespace WebEd\Base\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use WebEd\Base\Core\Models\ViewTracker;
-use WebEd\Base\Core\Repositories\Contracts\ViewTrackerRepositoryContract;
-use WebEd\Base\Core\Repositories\ViewTrackerRepository;
-use WebEd\Base\Core\Repositories\ViewTrackerRepositoryCacheDecorator;
+use WebEd\Base\Models\ViewTracker;
+use WebEd\Base\Repositories\Contracts\ViewTrackerRepositoryContract;
+use WebEd\Base\Repositories\ViewTrackerRepository;
+use WebEd\Base\Repositories\ViewTrackerRepositoryCacheDecorator;
 
 class RepositoryServiceProvider extends ServiceProvider
 {

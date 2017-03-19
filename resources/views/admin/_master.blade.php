@@ -18,7 +18,7 @@
 
     {!! \Assets::renderStylesheets() !!}
 
-    @php do_action('header_css') @endphp
+    @php do_action(BASE_ACTION_HEADER_CSS) @endphp
 
     <link rel="stylesheet" href="/admin/theme/lte/css/AdminLTE.min.css">
     <link rel="stylesheet" href="/admin/theme/lte/css/skins/_all-skins.min.css">
@@ -35,10 +35,10 @@
 
     {!! \Assets::renderScripts('top') !!}
 
-    @php do_action('header_js') @endphp
+    @php do_action(BASE_ACTION_HEADER_JS) @endphp
 </head>
 
-<body class="{{ $bodyClass or '' }} skin-purple sidebar-mini on-loading @php do_action('body_class') @endphp">
+<body class="{{ $bodyClass or '' }} skin-purple sidebar-mini on-loading @php do_action(BASE_ACTION_BODY_CLASS) @endphp">
 
 <!-- Loading state -->
 <div class="page-spinner-bar">
@@ -103,7 +103,7 @@
 {!! \Assets::renderScripts('bottom') !!}
 {{--END plugins--}}
 
-@php do_action('footer_js') @endphp
+@php do_action(BASE_ACTION_FOOTER_JS) @endphp
 
 @yield('js')
 

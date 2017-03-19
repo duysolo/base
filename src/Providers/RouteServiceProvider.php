@@ -1,13 +1,13 @@
 <?php
 
-namespace WebEd\Base\Core\Providers;
+namespace WebEd\Base\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    protected $namespace = 'WebEd\Base\Core\Http\Controllers';
+    protected $namespace = 'WebEd\Base\Http\Controllers';
 
     public function map()
     {

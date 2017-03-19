@@ -1,4 +1,4 @@
-<?php namespace WebEd\Base\Core\Models\Contracts;
+<?php namespace WebEd\Base\Models\Contracts;
 
 interface ViewTrackerModelContract
 {

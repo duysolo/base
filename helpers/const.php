@@ -1,5 +1,105 @@
 <?php
 
+/**
+ * Filters when update data
+ */
+if (!defined('BASE_FILTER_BEFORE_CREATE')) {
+    define('BASE_FILTER_BEFORE_CREATE', 'webed.hook-filter.before-create');
+}
+
+if (!defined('BASE_FILTER_BEFORE_UPDATE')) {
+    define('BASE_FILTER_BEFORE_UPDATE', 'webed.hook-filter.before-update');
+}
+
+if (!defined('BASE_FILTER_BEFORE_DELETE')) {
+    define('BASE_FILTER_BEFORE_DELETE', 'webed.hook-filter.before-delete');
+}
+
+if (!defined('BASE_FILTER_AFTER_CREATE')) {
+    define('BASE_FILTER_AFTER_CREATE', 'webed.hook-filter.after-create');
+}
+
+if (!defined('BASE_FILTER_AFTER_UPDATE')) {
+    define('BASE_FILTER_AFTER_UPDATE', 'webed.hook-filter.after-update');
+}
+
+if (!defined('BASE_FILTER_AFTER_DELETE')) {
+    define('BASE_FILTER_AFTER_DELETE', 'webed.hook-filter.after-delete');
+}
+
+/**
+ * Actions when update data
+ */
+if (!defined('BASE_ACTION_BEFORE_CREATE')) {
+    define('BASE_ACTION_BEFORE_CREATE', 'webed.hook-action.before-create');
+}
+
+if (!defined('BASE_ACTION_BEFORE_UPDATE')) {
+    define('BASE_ACTION_BEFORE_UPDATE', 'webed.hook-action.before-update');
+}
+
+if (!defined('BASE_ACTION_BEFORE_DELETE')) {
+    define('BASE_ACTION_BEFORE_DELETE', 'webed.hook-action.before-delete');
+}
+
+if (!defined('BASE_ACTION_AFTER_CREATE')) {
+    define('BASE_ACTION_AFTER_CREATE', 'webed.hook-action.after-create');
+}
+
+if (!defined('BASE_ACTION_AFTER_UPDATE')) {
+    define('BASE_ACTION_AFTER_UPDATE', 'webed.hook-action.after-update');
+}
+
+if (!defined('BASE_ACTION_AFTER_DELETE')) {
+    define('BASE_ACTION_AFTER_DELETE', 'webed.hook-action.after-delete');
+}
+
+/**
+ * Actions in views
+ */
+if (!defined('BASE_ACTION_HEADER_CSS')) {
+    define('BASE_ACTION_HEADER_CSS', 'header_css');
+}
+
+if (!defined('BASE_ACTION_HEADER_JS')) {
+    define('BASE_ACTION_HEADER_JS', 'header_js');
+}
+
+if (!defined('BASE_ACTION_BODY_CLASS')) {
+    define('BASE_ACTION_BODY_CLASS', 'body_class');
+}
+
+if (!defined('BASE_ACTION_FOOTER_JS')) {
+    define('BASE_ACTION_FOOTER_JS', 'footer_js');
+}
+
+if (!defined('BASE_ACTION_FLASH_MESSAGES')) {
+    define('BASE_ACTION_FLASH_MESSAGES', 'flash_messages');
+}
+
+if (!defined('BASE_ACTION_META_BOXES')) {
+    define('BASE_ACTION_META_BOXES', 'meta_boxes');
+}
+
+/**
+ * Filter controller
+ */
+if (!defined('BASE_FILTER_CONTROLLER')) {
+    define('BASE_FILTER_CONTROLLER', 'base.filter-controller');
+}
+
+/**
+ * Dashboard statistics
+ */
+if (!defined('WEBED_DASHBOARD_STATS')) {
+    define('WEBED_DASHBOARD_STATS', 'webed-dashboard.index.stat-boxes');
+}
+
+if (!defined('WEBED_DASHBOARD_OTHERS')) {
+    define('WEBED_DASHBOARD_OTHERS', 'webed-dashboard.index.other');
+}
+
+
 class Constants
 {
     const SUCCESS_CODE = 201;

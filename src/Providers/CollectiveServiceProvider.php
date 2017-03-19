@@ -1,4 +1,4 @@
-<?php namespace WebEd\Base\Core\Providers;
+<?php namespace WebEd\Base\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

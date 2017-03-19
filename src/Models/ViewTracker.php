@@ -1,7 +1,7 @@
-<?php namespace WebEd\Base\Core\Models;
+<?php namespace WebEd\Base\Models;
 
-use WebEd\Base\Core\Models\Contracts\ViewTrackerModelContract;
-use WebEd\Base\Core\Models\EloquentBase as BaseModel;
+use WebEd\Base\Models\Contracts\ViewTrackerModelContract;
+use WebEd\Base\Models\EloquentBase as BaseModel;
 
 class ViewTracker extends BaseModel implements ViewTrackerModelContract
 {

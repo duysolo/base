@@ -1,4 +1,4 @@
-<?php namespace WebEd\Base\Core\Console\Commands;
+<?php namespace WebEd\Base\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
@@ -113,7 +113,7 @@ class InstallCmsCommand extends Command
         $role = Role::where('slug', '=', 'super-admin')->first();
         if ($role) {
             $this->role = $role;
-            $this->info('Role already exists...');
+            $this->info('Admin role already exists...');
             return;
         }
 
@@ -123,7 +123,7 @@ class InstallCmsCommand extends Command
 
         try {
             $role->save();
-            $this->info('Role created successfully...');
+            $this->info('Admin role created successfully...');
             $this->role = $role;
         } catch (\Exception $exception) {
             $this->error('Error occurred when create role...');
@@ -138,7 +138,7 @@ class InstallCmsCommand extends Command
         $user->password = $this->secret('Your password');
         $user->display_name = $this->ask('Your display name', 'Super Admin');
         $user->first_name = $this->ask('Your first name', 'Admin');
-        $user->last_name = $this->ask('Your last_name', false);
+        $user->last_name = $this->ask('Your last name', false);
 
         try {
             $user->save();
@@ -157,7 +157,7 @@ class InstallCmsCommand extends Command
 
     protected function registerInstallModuleService()
     {
-        $modules = get_modules_by_type('base');
+        $modules = get_modules_by_type('core');
         foreach ($modules as $module) {
             $namespace = str_replace('\\\\', '\\', array_get($module, 'namespace', '') . '\Providers\InstallModuleServiceProvider');
             if (class_exists($namespace)) {

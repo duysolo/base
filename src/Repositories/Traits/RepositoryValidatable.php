@@ -1,4 +1,4 @@
-<?php namespace WebEd\Base\Core\Repositories\Traits;
+<?php namespace WebEd\Base\Repositories\Traits;
 
 /**
  * Class RepositoryRules
@@ -14,7 +14,7 @@ trait RepositoryValidatable
     protected $rules = [];
 
     /**
-     * @var \WebEd\Base\Core\Services\Validator
+     * @var \WebEd\Base\Services\Validator
      */
     protected $validator;
 
@@ -118,7 +118,7 @@ trait RepositoryValidatable
     }
 
     /**
-     * @param \WebEd\Base\Core\Models\EloquentBase $object
+     * @param \WebEd\Base\Models\EloquentBase $object
      * @param $data
      */
     protected function unsetNotChangedData($object, &$data)
@@ -192,12 +192,12 @@ trait RepositoryValidatable
     }
 
     /**
-     * @return \WebEd\Base\Core\Services\Validator
+     * @return \WebEd\Base\Services\Validator
      */
     public function getValidatorInstance()
     {
         if (!$this->validator) {
-            $this->validator = new \WebEd\Base\Core\Services\Validator();
+            $this->validator = new \WebEd\Base\Services\Validator();
         }
         return $this->validator;
     }

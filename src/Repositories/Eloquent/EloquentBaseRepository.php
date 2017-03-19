@@ -1,108 +1,17 @@
-<?php namespace WebEd\Base\Core\Repositories\Eloquent;
+<?php namespace WebEd\Base\Repositories\Eloquent;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
-use WebEd\Base\Core\Models\Contracts\BaseModelContract;
-use WebEd\Base\Core\Models\EloquentBase;
-use WebEd\Base\Core\Repositories\AbstractBaseRepository;
+use WebEd\Base\Models\Contracts\BaseModelContract;
+use WebEd\Base\Models\EloquentBase;
+use WebEd\Base\Repositories\AbstractBaseRepository;
 
 /**
- * @property EloquentBase|Builder $model
- * @property EloquentBase|Builder $originalModel
+ * @property BaseModelContract|EloquentBase|Builder $model
+ * @property BaseModelContract|EloquentBase|Builder $originalModel
  */
 abstract class EloquentBaseRepository extends AbstractBaseRepository
 {
-    /**
-     * @var array
-     */
-    protected $builderData = [];
-
-    /**
-     * @return array
-     */
-    public function getBuilderData()
-    {
-        return $this->builderData;
-    }
-
-    /**
-     * @return $this
-     */
-    public function resetBuilderData()
-    {
-        $this->builderData = [];
-
-        return $this;
-    }
-
-    /**
-     * @param array $fields
-     * @return $this
-     */
-    public function select(array $fields)
-    {
-        $this->model = $this->model->select($fields);
-
-        return parent::select($fields);
-    }
-
-    /**
-     * @param $field
-     * @param null $operator
-     * @param null $value
-     * @return $this
-     */
-    public function where($field, $operator = null, $value = null)
-    {
-        $this->builderData['where'][] = func_get_args();
-
-        if (is_array($field)) {
-            $this->model = $this->model->where($field);
-        } else {
-            if (sizeof(func_get_args()) == 2) {
-                $this->model = $this->model->where($field, '=', $operator);
-            } else {
-                $this->model = $this->model->where($field, $operator, $value);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param $field
-     * @param null $type
-     * @return $this
-     */
-    public function orderBy($field, $type = null)
-    {
-        $this->builderData['orderBy'][] = func_get_args();
-
-        if (is_array($field)) {
-            foreach ($field as $key => $row) {
-                $this->model = $this->model->orderBy($key, $row);
-            }
-        } else {
-            $this->model = $this->model->orderBy($field, $type);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param $howManyItem
-     * @return $this
-     */
-    public function take($howManyItem)
-    {
-        $this->builderData['take'] = $howManyItem;
-
-        $this->model = $this->model->take($howManyItem);
-
-        return $this;
-    }
-
     /**
      * @param $id
      * @param array $columns
@@ -117,7 +26,42 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
     }
 
     /**
-     * @return mixed
+     * @param array $condition
+     * @return EloquentBase|null|mixed
+     */
+    public function findWhere(array $condition)
+    {
+        $result = $this->model->where($condition)->first();
+        $this->resetModel();
+        return $result;
+    }
+
+    /**
+     * @param array $condition
+     * @param array $optionalFields
+     * @param bool $forceCreate
+     * @return EloquentBase|null
+     */
+    public function findWhereOrCreate(array $condition, array $optionalFields = [], $forceCreate = false)
+    {
+        $this->model = $this->model->where($condition);
+
+        $result = $this->model->first();
+        if (!$result) {
+            $data = array_merge((array)$optionalFields, $condition);
+            if ($forceCreate) {
+                $this->forceCreate($data);
+            } else {
+                $this->create($data);
+            }
+            $this->model = $this->model->where($condition);
+            $result = $this->model->first();
+        }
+        return $result;
+    }
+
+    /**
+     * @return int
      */
     public function count()
     {
@@ -131,14 +75,25 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
      * @param array $columns
      * @return Collection
      */
-    public function get($columns = ['*'])
+    public function get(array $columns = ['*'])
     {
-        if (!is_array($columns)) {
-            $columns = func_get_args();
-        }
-
         $this->applyCriteria();
         $result = $this->model->get($columns);
+        $this->resetModel();
+        return $result;
+    }
+
+    /**
+     * @param array $condition
+     * @param array $columns
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function getWhere(array $condition, array $columns = ['*'])
+    {
+        $this->applyCriteria();
+        $result = $this->model
+            ->where($condition)
+            ->get($columns);
         $this->resetModel();
         return $result;
     }
@@ -147,7 +102,7 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
      * @param array $columns
      * @return mixed
      */
-    public function first($columns = ['*'])
+    public function first(array $columns = ['*'])
     {
         $this->applyCriteria();
         $result = $this->model->first($columns);
@@ -158,51 +113,14 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
     /**
      * @param $perPage
      * @param array $columns
-     * @param string $pageName
-     * @param null $currentPaged
-     * @return LengthAwarePaginator
+     * @param int $currentPaged
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function paginate($perPage, $columns = ['*'], $pageName = 'page', $currentPaged = null)
+    public function paginate($perPage, array $columns = ['*'], $currentPaged = 1)
     {
         $this->applyCriteria();
-        $result = $this->model->paginate($perPage, $columns, $pageName, $currentPaged);
+        $result = $this->model->paginate($perPage, $columns, 'page', $currentPaged);
         $this->resetModel();
-        return $result;
-    }
-
-    /**
-     * @param $fields
-     * @return EloquentBase|null
-     */
-    public function findByFields($fields)
-    {
-        $this->model = $this->model->where($fields);
-        $model = $this->model->first();
-        $this->resetModel();
-        return $model;
-    }
-
-    /**
-     * @param $fields
-     * @param null $optionalFields
-     * @param bool $forceCreate
-     * @return EloquentBase|null
-     */
-    public function findByFieldsOrCreate($fields, $optionalFields = null, $forceCreate = false)
-    {
-        $this->model = $this->model->where($fields);
-
-        $result = $this->model->first();
-        if (!$result) {
-            $data = array_merge((array)$optionalFields, $fields);
-            if ($forceCreate) {
-                $this->model->forceCreate($data);
-            } else {
-                $this->model->create($data);
-            }
-            $this->model = $this->model->where($fields);
-            $result = $this->model->first();
-        }
         return $result;
     }
 
@@ -252,7 +170,7 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
             if ($allowCreateNew != true) {
                 $item = $this->find($id);
                 if (!$item) {
-                    return response_with_messages(['Model not exists with id: ' . $id], true, \Constants::NOT_FOUND_CODE);
+                    return response_with_messages(trans('webed-core::base.form.model_not_exists') . ' ' . $id, true, \Constants::NOT_FOUND_CODE);
                 }
             } else {
                 $item = $this->findOrNew($id);
@@ -269,18 +187,13 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         /**
          * Unset not editable fields
          */
-        $cannotEdit = collect($this->unsetNotEditableFields($data));
-        if ($cannotEdit->count()) {
-            $cannotEdit = ['Cannot edit these fields: ' . $cannotEdit->implode(', ')];
-        } else {
-            $cannotEdit = [];
-        }
+        $this->unsetNotEditableFields($data);
 
         /**
          * Nothing to update
          */
         if (!$data) {
-            return response_with_messages(array_merge(['Request completed'], $cannotEdit), false, \Constants::SUCCESS_NO_CONTENT_CODE, $item);
+            return response_with_messages(trans('webed-core::base.form.request_completed'), false, \Constants::SUCCESS_NO_CONTENT_CODE, $item);
         }
 
         /**
@@ -292,7 +205,7 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
          * Do not passed validate
          */
         if (!$validate) {
-            return response_with_messages(array_merge($this->getRuleErrorMessages(), $cannotEdit), true, \Constants::ERROR_CODE);
+            return response_with_messages($this->getRuleErrorMessages(), true, \Constants::ERROR_CODE);
         }
 
         $primaryKey = $this->getPrimaryKey();
@@ -312,10 +225,10 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
             $item->save();
         } catch (\Exception $exception) {
             $this->resetModel();
-            return response_with_messages(array_merge([$exception->getMessage()], $cannotEdit), true, \Constants::ERROR_CODE);
+            return response_with_messages($exception->getMessage(), true, \Constants::ERROR_CODE);
         }
         $this->resetModel();
-        return response_with_messages(array_merge(['Request completed'], $cannotEdit), false, \Constants::SUCCESS_CODE, $item);
+        return response_with_messages(trans('webed-core::base.form.request_completed'), false, \Constants::SUCCESS_CODE, $item);
     }
 
     /**
@@ -330,16 +243,11 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         /**
          * Unset not editable fields
          */
-        $cannotEdit = collect($this->unsetNotEditableFields($data));
-        if ($cannotEdit->count()) {
-            $cannotEdit = ['Cannot update these fields' . $cannotEdit->implode(', ')];
-        } else {
-            $cannotEdit = [];
-        }
+        $this->unsetNotEditableFields($data);
 
         $validate = $this->validateModel($data, $justUpdateSomeFields);
         if (!$validate) {
-            return response_with_messages(array_merge($this->getRuleErrorMessages(), $cannotEdit), true, \Constants::ERROR_CODE);
+            return response_with_messages($this->getRuleErrorMessages(), true, \Constants::ERROR_CODE);
         }
 
         $items = $this->model->whereIn('id', $ids);
@@ -348,10 +256,10 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
             $items->update($data);
         } catch (\Exception $exception) {
             $this->resetModel();
-            return response_with_messages(array_merge([$exception->getMessage()], $cannotEdit), true, \Constants::ERROR_CODE);
+            return response_with_messages($exception->getMessage(), true, \Constants::ERROR_CODE);
         }
         $this->resetModel();
-        return response_with_messages(array_merge(['Request completed'], $cannotEdit), false, \Constants::SUCCESS_NO_CONTENT_CODE);
+        return response_with_messages(trans('webed-core::base.form.request_completed'), false, \Constants::SUCCESS_NO_CONTENT_CODE);
     }
 
     /**
@@ -366,16 +274,11 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         /**
          * Unset not editable fields
          */
-        $cannotEdit = collect($this->unsetNotEditableFields($data));
-        if ($cannotEdit->count()) {
-            $cannotEdit = ['Cannot update these fields' . $cannotEdit->implode(', ')];
-        } else {
-            $cannotEdit = [];
-        }
+        $this->unsetNotEditableFields($data);
 
         $validate = $this->validateModel($data, $justUpdateSomeFields);
         if (!$validate) {
-            return response_with_messages(array_merge($this->getRuleErrorMessages(), $cannotEdit), true, \Constants::ERROR_CODE);
+            return response_with_messages($this->getRuleErrorMessages(), true, \Constants::ERROR_CODE);
         }
 
         $this->applyCriteria();
@@ -384,18 +287,18 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
             $this->model->update($data);
         } catch (\Exception $exception) {
             $this->resetModel();
-            return response_with_messages(array_merge([$exception->getMessage()], $cannotEdit), true, \Constants::ERROR_CODE);
+            return response_with_messages($exception->getMessage(), true, \Constants::ERROR_CODE);
         }
         $this->resetModel();
-        return response_with_messages(array_merge(['Request completed'], $cannotEdit), false, \Constants::SUCCESS_NO_CONTENT_CODE);
+        return response_with_messages(trans('webed-core::base.form.request_completed'), false, \Constants::SUCCESS_NO_CONTENT_CODE);
     }
 
     /**
      * Delete items by id
-     * @param EloquentBase|int|array|null $id
+     * @param EloquentBase|int|array $id
      * @return mixed
      */
-    public function delete($id = null)
+    public function delete($id)
     {
         if ($id) {
             if (is_array($id)) {
@@ -416,6 +319,6 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
             return response_with_messages($exception->getMessage(), true, \Constants::ERROR_CODE);
         }
         $this->resetModel();
-        return response_with_messages('Request completed', false, \Constants::SUCCESS_NO_CONTENT_CODE);
+        return response_with_messages(trans('webed-core::base.form.request_completed'), false, \Constants::SUCCESS_NO_CONTENT_CODE);
     }
 }

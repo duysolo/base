@@ -1,10 +1,10 @@
-<?php namespace WebEd\Base\Core\Providers;
+<?php namespace WebEd\Base\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
 class InstallModuleServiceProvider extends ServiceProvider
 {
-    protected $module = 'WebEd\Base\Core';
+    protected $module = 'WebEd\Base';
 
     /**
      * Bootstrap any application services.

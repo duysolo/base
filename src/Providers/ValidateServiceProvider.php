@@ -1,6 +1,6 @@
 <?php
 
-namespace WebEd\Base\Core\Providers;
+namespace WebEd\Base\Providers;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;

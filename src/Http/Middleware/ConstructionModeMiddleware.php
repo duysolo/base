@@ -1,4 +1,4 @@
-<?php namespace WebEd\Base\Core\Http\Middleware;
+<?php namespace WebEd\Base\Http\Middleware;
 
 use \Closure;
 

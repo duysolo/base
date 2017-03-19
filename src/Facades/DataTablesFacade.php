@@ -1,7 +1,7 @@
-<?php namespace WebEd\Base\Core\Facades;
+<?php namespace WebEd\Base\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use WebEd\Base\Core\Support\DataTable\DataTables;
+use WebEd\Base\Support\DataTable\DataTables;
 
 class DataTablesFacade extends Facade
 {

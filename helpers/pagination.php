@@ -22,11 +22,12 @@ if (!function_exists('pagination_advanced')) {
             'go_prev_title' => '&lsaquo;',
             'go_next_title' => '&rsaquo;',
             'go_last_title' => '&raquo;',
+            'view' => 'webed-core::front._components.pagination',
         ], $params);
 
         $paginator->appends($params['allowed_query_string']);
 
-        return view('webed-core::front._components.pagination', [
+        return view($params['view'], [
             'limit' => $params['limit'],
             'paginator' => $paginator,
             'wrapperClass' => $params['wrapper_class'],

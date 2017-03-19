@@ -1,9 +1,9 @@
-<?php namespace WebEd\Base\Core\Support;
+<?php namespace WebEd\Base\Support;
 
-use WebEd\Base\Core\Models\Contracts\BaseModelContract;
-use WebEd\Base\Core\Models\EloquentBase;
-use WebEd\Base\Core\Repositories\Contracts\ViewTrackerRepositoryContract;
-use WebEd\Base\Core\Repositories\ViewTrackerRepository;
+use WebEd\Base\Models\Contracts\BaseModelContract;
+use WebEd\Base\Models\EloquentBase;
+use WebEd\Base\Repositories\Contracts\ViewTrackerRepositoryContract;
+use WebEd\Base\Repositories\ViewTrackerRepository;
 
 class ViewCount
 {
@@ -30,7 +30,7 @@ class ViewCount
         if ($entity instanceof BaseModelContract) {
             $entity = get_class($entity);
         }
-        $viewTracker = $this->repository->findByFieldsOrCreate([
+        $viewTracker = $this->repository->findWhereOrCreate([
             'entity' => $entity,
             'entity_id' => $entityId,
         ]);

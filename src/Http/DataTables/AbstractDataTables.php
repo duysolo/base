@@ -1,8 +1,7 @@
-<?php namespace WebEd\Base\Core\Http\DataTables;
+<?php namespace WebEd\Base\Http\DataTables;
 
-use FontLib\TrueType\Collection;
 use Illuminate\Http\JsonResponse;
-use WebEd\Base\Core\Repositories\Eloquent\EloquentBaseRepository;
+use WebEd\Base\Repositories\Eloquent\EloquentBaseRepository;
 use Yajra\Datatables\Engines\CollectionEngine;
 use Yajra\Datatables\Engines\EloquentEngine;
 use Yajra\Datatables\Engines\QueryBuilderEngine;
@@ -10,15 +9,11 @@ use Yajra\Datatables\Engines\QueryBuilderEngine;
 abstract class AbstractDataTables
 {
     /**
-     * @var EloquentBaseRepository|Collection
+     * @var EloquentBaseRepository|\Illuminate\Support\Collection
      */
     protected $collection;
 
-    protected $headings = [];
-
     protected $filters = [];
-
-    protected $columns = [];
 
     protected $groupActions = [];
 
@@ -26,15 +21,12 @@ abstract class AbstractDataTables
 
     protected $selector = 'table.datatables';
 
+    public $dataTableView = 'webed-core::admin._components.datatables.table';
+
     /**
      * @var CollectionEngine|EloquentEngine|QueryBuilderEngine|mixed
      */
     protected $fetch;
-
-    public function __construct()
-    {
-        $this->fetch();
-    }
 
     /**
      * @param $method
@@ -44,8 +36,9 @@ abstract class AbstractDataTables
     public function __call($method, $params)
     {
         if (!$this->fetch) {
-            $this->fetch();
+            $this->fetch = $this->fetDataForAjax();
         }
+
         call_user_func_array([$this->fetch, $method], $params);
 
         return $this;
@@ -84,17 +77,6 @@ abstract class AbstractDataTables
     }
 
     /**
-     * @param $columns
-     * @return $this
-     */
-    protected function setColumns(array $columns)
-    {
-        $this->columns = $columns;
-
-        return $this;
-    }
-
-    /**
      * @param int $columnPosition
      * @param string $htmlElement
      * @return $this
@@ -107,14 +89,14 @@ abstract class AbstractDataTables
     }
 
     /**
-     * @param $name
-     * @param $title
-     * @param $width
+     * @param int $columnPosition
      * @return $this
      */
-    protected function addHeading($name, $title, $width)
+    protected function removeFilter($columnPosition)
     {
-        $this->headings[$name] = ['title' => $title, 'width' => $width];
+        if (isset($this->filters[$columnPosition])) {
+            unset($this->filters[$columnPosition]);
+        }
 
         return $this;
     }
@@ -130,21 +112,21 @@ abstract class AbstractDataTables
     protected function view()
     {
         $filters = $this->filters;
-        $headings = $this->headings;
-        $columns = json_encode($this->columns);
+        $headings = $this->headings();
+        $columns = json_encode($this->columns());
         $groupActions = $this->groupActions;
         $selector = $this->selector;
         $ajaxUrl = $this->ajaxUrl;
 
-        \Assets::addJavascripts('jquery-datatables');
+        assets_management()->addJavascripts('jquery-datatables');
 
-        add_action('footer_js', function () use ($selector, $columns, $ajaxUrl) {
+        add_action(BASE_ACTION_FOOTER_JS, function () use ($selector, $columns, $ajaxUrl) {
             echo view('webed-core::admin._components.datatables.script-renderer', compact(
                 'columns', 'selector', 'ajaxUrl'
             ))->render();
         });
 
-        return view('webed-core::admin._components.datatables.table', compact(
+        return view($this->dataTableView, compact(
             'filters', 'headings', 'groupActions'
         ))->render();
     }
@@ -154,6 +136,7 @@ abstract class AbstractDataTables
      */
     public function ajax()
     {
+        $this->fetch = $this->fetDataForAjax();
         return $this->fetch->make(true, true);
     }
 
@@ -177,13 +160,22 @@ abstract class AbstractDataTables
     }
 
     /**
+     * @return array
+     */
+    abstract public function headings();
+
+    /**
+     * @return array
+     */
+    abstract public function columns();
+
+    /**
      * @return string
      */
     abstract public function run();
 
-
     /**
      * @return $this
      */
-    abstract protected function fetch();
+    abstract protected function fetDataForAjax();
 }

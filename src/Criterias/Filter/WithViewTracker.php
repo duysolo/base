@@ -1,9 +1,9 @@
-<?php namespace WebEd\Base\Core\Criterias\Filter;
+<?php namespace WebEd\Base\Criterias\Filter;
 
 use Illuminate\Database\Eloquent\Builder;
-use WebEd\Base\Core\Models\EloquentBase;
-use WebEd\Base\Core\Repositories\Contracts\AbstractRepositoryContract;
-use WebEd\Base\Core\Criterias\AbstractCriteria;
+use WebEd\Base\Models\EloquentBase;
+use WebEd\Base\Repositories\Contracts\AbstractRepositoryContract;
+use WebEd\Base\Criterias\AbstractCriteria;
 
 class WithViewTracker extends AbstractCriteria
 {
