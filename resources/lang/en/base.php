@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'admin-menu' => [
+    'admin_menu' => [
         'dashboard' => [
             'heading' => 'Dashboard',
             'title' => 'Dashboard',
@@ -12,6 +12,7 @@ return [
         ],
     ],
     'form' => [
+        'create' => 'Create',
         'edit' => 'Edit',
         'disable' => 'Disable',
         'delete' => 'delete',
@@ -84,6 +85,7 @@ return [
         'deleted' => 'Deleted',
     ],
     'version' => 'Version',
+    'visit_page' => 'Visit page',
     'stat_box' => [
         'more_info' => 'More info',
     ],

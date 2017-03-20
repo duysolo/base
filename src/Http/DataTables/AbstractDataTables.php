@@ -36,7 +36,7 @@ abstract class AbstractDataTables
     public function __call($method, $params)
     {
         if (!$this->fetch) {
-            $this->fetch = $this->fetDataForAjax();
+            $this->fetch = $this->fetchDataForAjax();
         }
 
         call_user_func_array([$this->fetch, $method], $params);
@@ -136,7 +136,7 @@ abstract class AbstractDataTables
      */
     public function ajax()
     {
-        $this->fetch = $this->fetDataForAjax();
+        $this->fetch = $this->fetchDataForAjax();
         return $this->fetch->make(true, true);
     }
 
@@ -177,5 +177,5 @@ abstract class AbstractDataTables
     /**
      * @return $this
      */
-    abstract protected function fetDataForAjax();
+    abstract protected function fetchDataForAjax();
 }
