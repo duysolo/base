@@ -6,8 +6,6 @@ use WebEd\Base\Http\ViewComposers\BasePartialsViewComposer;
 
 class ComposerServiceProvider extends ServiceProvider
 {
-    protected $module = 'WebEd\Base';
-
     /**
      * Bootstrap any application services.
      *

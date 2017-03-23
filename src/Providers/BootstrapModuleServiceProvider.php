@@ -4,8 +4,6 @@ use Illuminate\Support\ServiceProvider;
 
 class BootstrapModuleServiceProvider extends ServiceProvider
 {
-    protected $module = 'WebEd\Base';
-
     /**
      * Bootstrap any application services.
      *

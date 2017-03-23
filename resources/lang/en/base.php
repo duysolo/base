@@ -38,6 +38,7 @@ return [
         'thumbnail' => 'Thumbnail',
         'order' => 'Order',
         'status' => 'Status',
+        'sex' => 'Sex',
         'publish' => 'Publish',
 
         'model_not_exists' => 'Model not exists with id:',
@@ -83,6 +84,11 @@ return [
         'disabled' => 'Disabled',
         'activated' => 'Activated',
         'deleted' => 'Deleted',
+    ],
+    'sex' => [
+        'male' => 'Male',
+        'female' => 'Female',
+        'other' => 'Other',
     ],
     'version' => 'Version',
     'visit_page' => 'Visit page',

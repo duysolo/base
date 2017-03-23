@@ -3,6 +3,7 @@
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use WebEd\Base\ACL\Models\Role;
+use WebEd\Base\Providers\InstallModuleServiceProvider;
 use WebEd\Base\Users\Models\User;
 
 class InstallCmsCommand extends Command
@@ -157,7 +158,8 @@ class InstallCmsCommand extends Command
 
     protected function registerInstallModuleService()
     {
-        $modules = get_modules_by_type('core');
+        $modules = get_modules_by_type('core')->where('namespace', '!=', 'WebEd\Base');
+        $this->app->register(InstallModuleServiceProvider::class);
         foreach ($modules as $module) {
             $namespace = str_replace('\\\\', '\\', array_get($module, 'namespace', '') . '\Providers\InstallModuleServiceProvider');
             if (class_exists($namespace)) {

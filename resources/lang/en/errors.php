@@ -19,7 +19,7 @@ return [
     ],
     \Constants::ERROR_CODE => [
         'title' => 'Internal error',
-        'message' => 'Some error occurred',
+        'message' => 'Some error occurred. View error log to learn more',
     ],
     \Constants::MAINTENANCE_MODE => [
         'title' => 'Maintenance mode',

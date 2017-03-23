@@ -12,10 +12,14 @@ return [
     'active_this_item' => 'Active this item',
     'disable_this_item' => 'Disable this item',
     'delete_this_item' => 'Delete this item',
+    'force_delete_this_item' => 'Force delete this item',
 
     'active' => 'Active',
     'disable' => 'Disable',
     'delete' => 'Delete',
+    'force_delete' => 'Force delete',
+    'edit' => 'Edit',
+    'restore' => 'Restore',
 
     'heading' => [
         'title' => 'Title',
@@ -23,6 +27,7 @@ return [
         'status' => 'Status',
         'order' => 'Order',
         'created_at' => 'Created at',
+        'updated_at' => 'Updated at',
         'deleted_at' => 'Deleted at',
         'actions' => 'Actions',
     ],

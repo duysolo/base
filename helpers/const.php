@@ -54,6 +54,14 @@ if (!defined('BASE_ACTION_AFTER_DELETE')) {
     define('BASE_ACTION_AFTER_DELETE', 'webed.hook-action.after-delete');
 }
 
+if (!defined('BASE_ACTION_AFTER_FORCE_DELETE')) {
+    define('BASE_ACTION_AFTER_FORCE_DELETE', 'webed.hook-action.after-force-delete');
+}
+
+if (!defined('BASE_ACTION_AFTER_RESTORE')) {
+    define('BASE_ACTION_AFTER_RESTORE', 'webed.hook-action.after-restore');
+}
+
 /**
  * Actions in views
  */
