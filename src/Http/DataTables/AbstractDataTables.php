@@ -175,7 +175,7 @@ abstract class AbstractDataTables
     abstract public function run();
 
     /**
-     * @return $this
+     * @return CollectionEngine|EloquentEngine|QueryBuilderEngine|mixed
      */
     abstract protected function fetchDataForAjax();
 }
