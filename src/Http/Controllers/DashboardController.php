@@ -9,11 +9,11 @@ class DashboardController extends BaseAdminController
         parent::__construct();
 
         $this->getDashboardMenu('webed-dashboard');
-        $this->setPageTitle(trans('webed-core::stats.dashboard_statistics'));
     }
 
     public function getIndex()
     {
+        $this->setPageTitle(trans('webed-core::stats.dashboard_statistics'));
         return do_filter(BASE_FILTER_CONTROLLER, $this, WEBED_DASHBOARD_STATS)->viewAdmin('dashboard');
     }
 }

@@ -9,6 +9,7 @@ use WebEd\Base\Facades\BreadcrumbsFacade;
 use WebEd\Base\Facades\FlashMessagesFacade;
 use WebEd\Base\Facades\SeoFacade;
 use WebEd\Base\Facades\ViewCountFacade;
+use WebEd\Base\Http\Middleware\BootstrapModuleMiddleware;
 use WebEd\Base\Support\Helper;
 
 class ModuleProvider extends ServiceProvider
@@ -43,6 +44,10 @@ class ModuleProvider extends ServiceProvider
             __DIR__ . '/../../resources/root' => base_path(),
             __DIR__ . '/../../resources/public' => public_path(),
         ], 'webed-public-assets');
+
+        app()->booted(function () {
+            $this->app->register(BootstrapModuleServiceProvider::class);
+        });
     }
 
     /**
@@ -91,7 +96,12 @@ class ModuleProvider extends ServiceProvider
         $this->app->register(ComposerServiceProvider::class);
         $this->app->register(RepositoryServiceProvider::class);
         $this->app->register(CollectiveServiceProvider::class);
-        $this->app->register(BootstrapModuleServiceProvider::class);
+
+        /**
+         * @var Router $router
+         */
+        $router = $this->app['router'];
+        $router->pushMiddlewareToGroup('web', BootstrapModuleMiddleware::class);
 
         /**
          * Other module providers

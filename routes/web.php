@@ -9,6 +9,9 @@ Route::group(['prefix' => $adminRoute], function (Router $router) use ($adminRou
         ->name('admin::dashboard.index.get')
         ->middleware('has-permission:access-dashboard');
 
+    $router->get('/change-language/{slug}', 'DashboardLanguageController@getChangeLanguage')
+        ->name('admin::dashboard-language.get');
+
     /**
      * Commands
      */

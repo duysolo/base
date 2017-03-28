@@ -44,7 +44,7 @@ return [
         'model_not_exists' => 'Model not exists with id:',
         'request_completed' => 'Request completed',
     ],
-    'setting-tabs' => [
+    'setting_group' => [
         'basic' => 'Basic',
         'advanced' => 'Advanced',
         'socials' => 'Social networks',

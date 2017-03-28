@@ -18,6 +18,25 @@
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 @php do_action('header_custom_menu') @endphp
+                <li class="dropdown">
+                    <a href="javascript:;"
+                       class="dropdown-toggle"
+                       data-toggle="dropdown"
+                       data-hover="dropdown"
+                       data-close-others="true">
+                        {{ trans('webed-core::languages.' . \WebEd\Base\Facades\DashboardLanguageFacade::getDashboardLanguage()) }}
+                        <span class="fa fa-angle-down"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        @foreach(config('webed.languages', []) as $slug => $language)
+                            <li class="{{ $slug == \WebEd\Base\Facades\DashboardLanguageFacade::getDashboardLanguage() ? 'active' : '' }}">
+                                <a href="{{ route('admin::dashboard-language.get', [$slug]) }}">
+                                    {{ trans('webed-core::languages.' . $slug) }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
                 <li class="dropdown user-menu">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                        data-close-others="true">

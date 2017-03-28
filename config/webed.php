@@ -11,4 +11,9 @@ return [
     'admin_route' => env('WEBED_ADMIN_ROUTE', 'admincp'),
 
     'api_route' => env('WEBED_API_ROUTE', 'api'),
+
+    'languages' => [
+        'vi' => 'Vietnamese',
+        'en' => 'English'
+    ],
 ];

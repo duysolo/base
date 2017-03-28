@@ -41,6 +41,7 @@ abstract class BaseAdminController extends BaseController
                 'loggedInUser' => $this->loggedInUser
             ]);
             \DashboardMenu::setUser($this->loggedInUser);
+
             return $next($request);
         });
 
