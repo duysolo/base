@@ -11,6 +11,7 @@ return [
 
     'active_this_item' => 'Kích hoạt mục này',
     'disable_this_item' => 'Vô hiệu hóa mục này',
+    'restore_this_item' => 'Phục hồi lại mục này',
     'delete_this_item' => 'Xóa mục này',
     'force_delete_this_item' => 'Xóa vĩnh viễn mục này',
 

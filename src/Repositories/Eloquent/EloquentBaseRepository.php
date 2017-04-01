@@ -13,88 +13,16 @@ use WebEd\Base\Repositories\AbstractBaseRepository;
 abstract class EloquentBaseRepository extends AbstractBaseRepository
 {
     /**
-     * @param $id
-     * @param array $columns
-     * @return EloquentBase|null
-     */
-    public function find($id, $columns = ['*'])
-    {
-        $this->applyCriteria();
-        $result = $this->model->find($id, $columns);
-        $this->resetModel();
-        return $result;
-    }
-
-    /**
-     * @param array $condition
-     * @return EloquentBase|null|mixed
-     */
-    public function findWhere(array $condition)
-    {
-        $result = $this->model->where($condition)->first();
-        $this->resetModel();
-        return $result;
-    }
-
-    /**
-     * @param array $condition
-     * @param array $optionalFields
-     * @param bool $forceCreate
-     * @return EloquentBase|null
-     */
-    public function findWhereOrCreate(array $condition, array $optionalFields = [], $forceCreate = false)
-    {
-        $this->model = $this->model->where($condition);
-
-        $result = $this->model->first();
-        if (!$result) {
-            $data = array_merge((array)$optionalFields, $condition);
-            if ($forceCreate) {
-                $this->forceCreate($data);
-            } else {
-                $this->create($data);
-            }
-            $this->model = $this->model->where($condition);
-            $result = $this->model->first();
-        }
-        return $result;
-    }
-
-    /**
      * @return int
      */
     public function count()
     {
         $this->applyCriteria();
+
         $result = $this->model->count();
-        $this->resetModel();
-        return $result;
-    }
 
-    /**
-     * @param array $columns
-     * @return Collection
-     */
-    public function get(array $columns = ['*'])
-    {
-        $this->applyCriteria();
-        $result = $this->model->get($columns);
         $this->resetModel();
-        return $result;
-    }
 
-    /**
-     * @param array $condition
-     * @param array $columns
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
-     */
-    public function getWhere(array $condition, array $columns = ['*'])
-    {
-        $this->applyCriteria();
-        $result = $this->model
-            ->where($condition)
-            ->get($columns);
-        $this->resetModel();
         return $result;
     }
 
@@ -105,49 +33,64 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
     public function first(array $columns = ['*'])
     {
         $this->applyCriteria();
+
         $result = $this->model->first($columns);
+
         $this->resetModel();
+
         return $result;
     }
 
     /**
-     * @param $perPage
+     * @param int $id
      * @param array $columns
-     * @param int $currentPaged
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @return EloquentBase|Builder|null
      */
-    public function paginate($perPage, array $columns = ['*'], $currentPaged = 1)
+    public function find($id, $columns = ['*'])
     {
         $this->applyCriteria();
-        $result = $this->model->paginate($perPage, $columns, 'page', $currentPaged);
+
+        $result = $this->model->find($id, $columns);
+
+        $this->resetModel();
+
+        return $result;
+    }
+
+    /**
+     * @param array $condition
+     * @return EloquentBase|Builder|null|mixed
+     */
+    public function findWhere(array $condition)
+    {
+        $result = $this->model->where($condition)->first();
+
+        $this->resetModel();
+
+        return $result;
+    }
+
+    /**
+     * @param array $condition
+     * @param array $optionalFields
+     * @param bool $forceCreate
+     * @return EloquentBase|Builder|null
+     */
+    public function findWhereOrCreate(array $condition, array $optionalFields = [], $forceCreate = false)
+    {
+        $result = $this->findWhere($condition);
+        if (!$result) {
+            $data = array_merge((array)$optionalFields, $condition);
+            $id = $this->create($data);
+            $result = $this->find($id);
+        }
         $this->resetModel();
         return $result;
     }
 
     /**
-     * Create a new item.
-     * Only fields listed in $fillable of model can be filled
-     * @param array $data
-     * @return EloquentBase
-     */
-    public function create(array $data)
-    {
-        return $this->model->create($data);
-    }
-
-    /**
-     * Create a new item, no validate
-     * @param $data
-     * @return EloquentBase
-     */
-    public function forceCreate(array $data)
-    {
-        return $this->model->forceCreate($data);
-    }
-
-    /**
-     * @param $id
-     * @return mixed
+     * @param int $id
+     * @return EloquentBase|Builder
      */
     public function findOrNew($id)
     {
@@ -155,150 +98,144 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
     }
 
     /**
-     * Validate model then edit
-     * @param BaseModelContract|int|null $id
-     * @param $data
-     * @param bool $allowCreateNew
-     * @param bool $justUpdateSomeFields
-     * @return array
+     * @param array $columns
+     * @return Collection
      */
-    public function editWithValidate($id, array $data, $allowCreateNew = false, $justUpdateSomeFields = false)
+    public function get(array $columns = ['*'])
     {
-        if ($id instanceof EloquentBase) {
-            $item = $id;
-        } else {
-            if ($allowCreateNew != true) {
-                $item = $this->find($id);
-                if (!$item) {
-                    return response_with_messages(trans('webed-core::base.form.model_not_exists') . ' ' . $id, true, \Constants::NOT_FOUND_CODE);
-                }
-            } else {
-                $item = $this->findOrNew($id);
-            }
+        $this->applyCriteria();
+
+        $result = $this->model->get($columns);
+
+        $this->resetModel();
+
+        return $result;
+    }
+
+    /**
+     * @param array $condition
+     * @param array $columns
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getWhere(array $condition, array $columns = ['*'])
+    {
+        $this->applyCriteria();
+
+        $result = $this->model
+            ->where($condition)
+            ->get($columns);
+
+        $this->resetModel();
+
+        return $result;
+    }
+
+    /**
+     * @param int $perPage
+     * @param array $columns
+     * @param int $currentPaged
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function paginate($perPage, array $columns = ['*'], $currentPaged = 1)
+    {
+        $this->applyCriteria();
+
+        $result = $this->model->paginate($perPage, $columns, 'page', $currentPaged);
+
+        $this->resetModel();
+
+        return $result;
+    }
+
+    /**
+     * @param array $data
+     * @param bool $force
+     * @return int|null
+     */
+    public function create(array $data, $force = false)
+    {
+        $method = $force ? 'forceCreate' : 'create';
+        try {
+            $item = $this->model->$method($data);
+        } catch (\Exception $exception) {
+            $this->resetModel();
+            return null;
         }
+        return $item->{$this->getPrimaryKey()};
+    }
 
+    /**
+     * @param EloquentBase|Builder|int|null $id
+     * @param array $data
+     * @return int|null
+     */
+    public function createOrUpdate($id, array $data)
+    {
         /**
-         * Unset some data that not changed
+         * @var EloquentBase|Builder $item
          */
-        if ($item->{$item->getPrimaryKey()}) {
-            $this->unsetNotChangedData($item, $data);
-        }
+        $item = $id instanceof EloquentBase ? $id : $this->model->find($id) ?: new $this->model;
 
-        /**
-         * Unset not editable fields
-         */
-        $this->unsetNotEditableFields($data);
-
-        /**
-         * Nothing to update
-         */
-        if (!$data) {
-            return response_with_messages(trans('webed-core::base.form.request_completed'), false, \Constants::SUCCESS_NO_CONTENT_CODE, $item);
-        }
-
-        /**
-         * Validate model
-         */
-        $validate = $this->validateModel($data, $justUpdateSomeFields);
-
-        /**
-         * Do not passed validate
-         */
-        if (!$validate) {
-            return response_with_messages($this->getRuleErrorMessages(), true, \Constants::ERROR_CODE);
-        }
-
-        $primaryKey = $this->getPrimaryKey();
-
-        /**
-         * Prevent edit the primary key
-         */
-        if (isset($data[$primaryKey])) {
-            unset($data[$primaryKey]);
-        }
-
-        foreach ($data as $key => $row) {
-            $item->$key = $row;
-        }
+        $item = $item->fill($data);
 
         try {
             $item->save();
         } catch (\Exception $exception) {
             $this->resetModel();
-            return response_with_messages($exception->getMessage(), true, \Constants::ERROR_CODE);
+            return null;
         }
         $this->resetModel();
-        return response_with_messages(trans('webed-core::base.form.request_completed'), false, \Constants::SUCCESS_CODE, $item);
+        return $item->{$this->getPrimaryKey()};
     }
 
     /**
-     * Find items by ids and edit them
-     * @param array $ids
+     * @param EloquentBase|Builder|int $id
      * @param array $data
-     * @param bool $justUpdateSomeFields
-     * @return array
+     * @return int|null
      */
-    public function updateMultiple(array $ids, array $data, $justUpdateSomeFields = false)
+    public function update($id, array $data)
     {
-        /**
-         * Unset not editable fields
-         */
-        $this->unsetNotEditableFields($data);
-
-        $validate = $this->validateModel($data, $justUpdateSomeFields);
-        if (!$validate) {
-            return response_with_messages($this->getRuleErrorMessages(), true, \Constants::ERROR_CODE);
+        if ($id instanceof EloquentBase) {
+            $item = $id;
+        } else {
+            $item = $this->model->find($id);
         }
 
+        try {
+            $item->update($data);
+        } catch (\Exception $exception) {
+            $this->resetModel();
+            return null;
+        }
+        $this->resetModel();
+        return $item->{$this->getPrimaryKey()};
+    }
+
+    /**
+     * @param array $ids
+     * @param array $data
+     * @return bool
+     */
+    public function updateMultiple(array $ids, array $data)
+    {
         $items = $this->model->whereIn('id', $ids);
 
         try {
             $items->update($data);
         } catch (\Exception $exception) {
             $this->resetModel();
-            return response_with_messages($exception->getMessage(), true, \Constants::ERROR_CODE);
+            return false;
         }
         $this->resetModel();
-        return response_with_messages(trans('webed-core::base.form.request_completed'), false, \Constants::SUCCESS_NO_CONTENT_CODE);
+        return true;
     }
 
     /**
-     * Find items by fields and edit them
-     * @param array $fields
-     * @param $data
-     * @param bool $justUpdateSomeFields
-     * @return array
+     * @param EloquentBase|Builder|int|array|null $id
+     * @param bool $force
+     * @return bool
      */
-    public function update(array $data, $justUpdateSomeFields = false)
-    {
-        /**
-         * Unset not editable fields
-         */
-        $this->unsetNotEditableFields($data);
-
-        $validate = $this->validateModel($data, $justUpdateSomeFields);
-        if (!$validate) {
-            return response_with_messages($this->getRuleErrorMessages(), true, \Constants::ERROR_CODE);
-        }
-
-        $this->applyCriteria();
-
-        try {
-            $this->model->update($data);
-        } catch (\Exception $exception) {
-            $this->resetModel();
-            return response_with_messages($exception->getMessage(), true, \Constants::ERROR_CODE);
-        }
-        $this->resetModel();
-        return response_with_messages(trans('webed-core::base.form.request_completed'), false, \Constants::SUCCESS_NO_CONTENT_CODE);
-    }
-
-    /**
-     * Delete items by id
-     * @param EloquentBase|int|array $id
-     * @return mixed
-     */
-    public function delete($id)
+    public function delete($id, $force = false)
     {
         if ($id) {
             if (is_array($id)) {
@@ -312,13 +249,15 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
             $this->applyCriteria();
         }
 
+        $method = $force ? 'forceDelete' : 'delete';
+
         try {
-            $this->model->delete();
+            $this->model->$method();
         } catch (\Exception $exception) {
             $this->resetModel();
-            return response_with_messages($exception->getMessage(), true, \Constants::ERROR_CODE);
+            return false;
         }
         $this->resetModel();
-        return response_with_messages(trans('webed-core::base.form.request_completed'), false, \Constants::SUCCESS_NO_CONTENT_CODE);
+        return true;
     }
 }

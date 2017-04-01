@@ -11,6 +11,7 @@ return [
 
     'active_this_item' => 'Active this item',
     'disable_this_item' => 'Disable this item',
+    'restore_this_item' => 'Restore this item',
     'delete_this_item' => 'Delete this item',
     'force_delete_this_item' => 'Force delete this item',
 

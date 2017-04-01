@@ -38,7 +38,7 @@ trait EloquentUseSoftDeletes
 
     /**
      * @param \WebEd\Base\Models\Contracts\BaseModelContract|int|array|null $id
-     * @return array
+     * @return bool
      */
     public function restore($id = null)
     {
@@ -58,16 +58,16 @@ trait EloquentUseSoftDeletes
             $this->model->restore();
         } catch (\Exception $exception) {
             $this->resetModel();
-            return response_with_messages([$exception->getMessage()], true, \Constants::ERROR_CODE);
+            return false;
         }
         $this->resetModel();
-        return response_with_messages(['Request completed'], false, \Constants::SUCCESS_NO_CONTENT_CODE);
+        return true;
     }
 
     /**
      * Delete items by id
      * @param \WebEd\Base\Models\Contracts\BaseModelContract|int|array|null $id
-     * @return array
+     * @return bool
      */
     public function forceDelete($id = null)
     {
@@ -87,9 +87,9 @@ trait EloquentUseSoftDeletes
             $this->model->forceDelete();
         } catch (\Exception $exception) {
             $this->resetModel();
-            return response_with_messages([$exception->getMessage()], true, \Constants::ERROR_CODE);
+            return false;
         }
         $this->resetModel();
-        return response_with_messages(['Request completed'], false, \Constants::SUCCESS_NO_CONTENT_CODE);
+        return true;
     }
 }

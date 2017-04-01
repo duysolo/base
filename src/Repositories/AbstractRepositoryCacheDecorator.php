@@ -2,21 +2,16 @@
 
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
-use WebEd\Base\Repositories\Traits\RepositoryValidatableCache;
 use WebEd\Base\Criterias\AbstractCriteria;
 use WebEd\Base\Criterias\Contracts\CriteriaContract;
 use WebEd\Base\Exceptions\Repositories\WrongCriteria;
 use WebEd\Base\Models\Contracts\BaseModelContract;
-use WebEd\Base\Repositories\AbstractBaseRepository;
 use WebEd\Base\Caching\Services\Contracts\CacheableContract;
 use WebEd\Base\Caching\Services\Traits\Cacheable;
 use WebEd\Base\Repositories\Contracts\AbstractRepositoryContract;
-use WebEd\Base\Repositories\Contracts\RepositoryValidatorContract;
 
-abstract class AbstractRepositoryCacheDecorator implements AbstractRepositoryContract, CacheableContract, RepositoryValidatorContract
+abstract class AbstractRepositoryCacheDecorator implements AbstractRepositoryContract, CacheableContract
 {
-    use RepositoryValidatableCache;
-
     /**
      * @var AbstractBaseRepository|Cacheable
      */
@@ -121,7 +116,7 @@ abstract class AbstractRepositoryCacheDecorator implements AbstractRepositoryCon
     {
         $result = call_user_func_array([$this->repository, $method], $parameters);
 
-        if ($flushCache === true && ($forceFlush === true || (is_array($result) && isset($result['error']) && !$result['error']))) {
+        if ($flushCache === true && ($forceFlush === true || $result)) {
             $this->cache->flushCache();
         }
 

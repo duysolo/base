@@ -7,13 +7,9 @@ use WebEd\Base\Criterias\Contracts\CriteriaContract;
 use WebEd\Base\Exceptions\Repositories\WrongCriteria;
 use WebEd\Base\Models\Contracts\BaseModelContract;
 use WebEd\Base\Repositories\Contracts\AbstractRepositoryContract;
-use WebEd\Base\Repositories\Contracts\RepositoryValidatorContract;
-use WebEd\Base\Repositories\Traits\RepositoryValidatable;
 
-abstract class AbstractBaseRepository implements AbstractRepositoryContract, RepositoryValidatorContract
+abstract class AbstractBaseRepository implements AbstractRepositoryContract
 {
-    use RepositoryValidatable;
-
     /**
      * @var BaseModelContract
      */
@@ -160,7 +156,18 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract, Rep
     }
 
     /**
-     * @param $id
+     * @return int
+     */
+    abstract public function count();
+
+    /**
+     * @param array $columns
+     * @return mixed
+     */
+    abstract public function first(array $columns = ['*']);
+
+    /**
+     * @param int $id
      * @param array $columns
      * @return BaseModelContract|null
      */
@@ -173,12 +180,6 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract, Rep
     abstract public function findWhere(array $condition);
 
     /**
-     * @param $id
-     * @return mixed
-     */
-    abstract public function findOrNew($id);
-
-    /**
      * @param array $condition
      * @param array $optionalFields
      * @param bool $forceCreate
@@ -187,9 +188,10 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract, Rep
     abstract public function findWhereOrCreate(array $condition, array $optionalFields = [], $forceCreate = false);
 
     /**
-     * @return int
+     * @param int $id
+     * @return BaseModelContract
      */
-    abstract public function count();
+    abstract public function findOrNew($id);
 
     /**
      * @param array $columns
@@ -200,18 +202,12 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract, Rep
     /**
      * @param array $condition
      * @param array $columns
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     abstract public function getWhere(array $condition, array $columns = ['*']);
 
     /**
-     * @param array $columns
-     * @return mixed
-     */
-    abstract public function first(array $columns = ['*']);
-
-    /**
-     * @param $perPage
+     * @param int $perPage
      * @param array $columns
      * @param int $currentPaged
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
@@ -219,52 +215,37 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract, Rep
     abstract public function paginate($perPage, array $columns = ['*'], $currentPaged = 1);
 
     /**
-     * Create a new item.
-     * Only fields listed in $fillable of model can be filled
      * @param array $data
-     * @return BaseModelContract
+     * @param bool $force
+     * @return int|null
      */
-    abstract public function create(array $data);
+    abstract public function create(array $data, $force = false);
 
     /**
-     * Create a new item, no validate
-     * @param $data
-     * @return BaseModelContract
-     */
-    abstract public function forceCreate(array $data);
-
-    /**
-     * Validate model then edit
      * @param BaseModelContract|int|null $id
-     * @param $data
-     * @param bool $allowCreateNew
-     * @param bool $justUpdateSomeFields
-     * @return array
+     * @param array $data
+     * @return int|null
      */
-    abstract public function editWithValidate($id, array $data, $allowCreateNew = false, $justUpdateSomeFields = false);
+    abstract public function createOrUpdate($id, array $data);
 
     /**
-     * Find items by ids and edit them
+     * @param BaseModelContract|int $id
+     * @param array $data
+     * @return int|null
+     */
+    abstract public function update($id, array $data);
+
+    /**
      * @param array $ids
      * @param array $data
-     * @param bool $justUpdateSomeFields
-     * @return array
+     * @return bool
      */
-    abstract public function updateMultiple(array $ids, array $data, $justUpdateSomeFields = false);
+    abstract public function updateMultiple(array $ids, array $data);
 
     /**
-     * Find items by fields and edit them
-     * @param array $fields
-     * @param $data
-     * @param bool $justUpdateSomeFields
-     * @return array
-     */
-    abstract public function update(array $data, $justUpdateSomeFields = false);
-
-    /**
-     * Delete items by id
-     * @param BaseModelContract|int|array $id
+     * @param BaseModelContract|int|array|null $id
+     * @param bool $force
      * @return mixed
      */
-    abstract public function delete($id);
+    abstract public function delete($id, $force = false);
 }

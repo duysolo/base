@@ -88,11 +88,11 @@ class ModuleProvider extends ServiceProvider
         /**
          * Base providers
          */
+        $this->app->register(HookServiceProvider::class);
         $this->app->register(ConsoleServiceProvider::class);
         $this->app->register(MiddlewareServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(ValidateServiceProvider::class);
-        $this->app->register(HookServiceProvider::class);
         $this->app->register(ComposerServiceProvider::class);
         $this->app->register(RepositoryServiceProvider::class);
         $this->app->register(CollectiveServiceProvider::class);

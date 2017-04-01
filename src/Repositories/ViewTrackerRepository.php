@@ -11,21 +11,13 @@ class ViewTrackerRepository extends EloquentBaseRepository implements ViewTracke
 {
     use Cacheable;
 
-    protected $rules = [
-
-    ];
-
-    protected $editableFields = [
-        '*',
-    ];
-
     /**
      * @param ViewTracker $viewTracker
-     * @return array
+     * @return int
      */
     public function increase(ViewTrackerModelContract $viewTracker)
     {
-        return $this->editWithValidate($viewTracker, [
+        return $this->update($viewTracker, [
             'count' => $viewTracker->count + 1
         ]);
     }

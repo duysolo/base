@@ -43,6 +43,7 @@ return [
 
         'model_not_exists' => 'Model not exists with id:',
         'request_completed' => 'Request completed',
+        'error_occurred' => 'Some error occurred during your request',
     ],
     'setting_group' => [
         'basic' => 'Basic',

@@ -18,9 +18,26 @@ use WebEd\Base\Menu\Models\MenuNode;
 abstract class EloquentBaseRepositoryCacheDecorator extends AbstractRepositoryCacheDecorator
 {
     /**
-     * @param $id
+     * @return int
+     */
+    public function count()
+    {
+        return $this->beforeGet(__FUNCTION__, func_get_args());
+    }
+
+    /**
      * @param array $columns
-     * @return EloquentBase|null
+     * @return mixed
+     */
+    public function first(array $columns = ['*'])
+    {
+        return $this->beforeGet(__FUNCTION__, func_get_args());
+    }
+
+    /**
+     * @param int $id
+     * @param array $columns
+     * @return EloquentBase|Builder|null
      */
     public function find($id, $columns = ['*'])
     {
@@ -29,7 +46,7 @@ abstract class EloquentBaseRepositoryCacheDecorator extends AbstractRepositoryCa
 
     /**
      * @param array $condition
-     * @return EloquentBase|null|mixed
+     * @return EloquentBase|Builder|null|mixed
      */
     public function findWhere(array $condition)
     {
@@ -40,17 +57,18 @@ abstract class EloquentBaseRepositoryCacheDecorator extends AbstractRepositoryCa
      * @param array $condition
      * @param array $optionalFields
      * @param bool $forceCreate
-     * @return EloquentBase|null
+     * @return EloquentBase|Builder|null
      */
     public function findWhereOrCreate(array $condition, array $optionalFields = [], $forceCreate = false)
     {
-        return $this->beforeGet(__FUNCTION__, func_get_args());
+        return $this->afterUpdate(__FUNCTION__, func_get_args());
     }
 
     /**
-     * @return int
+     * @param int $id
+     * @return EloquentBase|Builder
      */
-    public function count()
+    public function findOrNew($id)
     {
         return $this->beforeGet(__FUNCTION__, func_get_args());
     }
@@ -67,7 +85,7 @@ abstract class EloquentBaseRepositoryCacheDecorator extends AbstractRepositoryCa
     /**
      * @param array $condition
      * @param array $columns
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getWhere(array $condition, array $columns = ['*'])
     {
@@ -75,16 +93,7 @@ abstract class EloquentBaseRepositoryCacheDecorator extends AbstractRepositoryCa
     }
 
     /**
-     * @param array $columns
-     * @return mixed
-     */
-    public function first(array $columns = ['*'])
-    {
-        return $this->beforeGet(__FUNCTION__, func_get_args());
-    }
-
-    /**
-     * @param $perPage
+     * @param int $perPage
      * @param array $columns
      * @param int $currentPaged
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
@@ -95,10 +104,8 @@ abstract class EloquentBaseRepositoryCacheDecorator extends AbstractRepositoryCa
     }
 
     /**
-     * Create a new item.
-     * Only fields listed in $fillable of model can be filled
      * @param array $data
-     * @return EloquentBase
+     * @return int
      */
     public function create(array $data)
     {
@@ -106,9 +113,8 @@ abstract class EloquentBaseRepositoryCacheDecorator extends AbstractRepositoryCa
     }
 
     /**
-     * Create a new item, no validate
-     * @param $data
-     * @return EloquentBase
+     * @param array $data
+     * @return int
      */
     public function forceCreate(array $data)
     {
@@ -116,45 +122,41 @@ abstract class EloquentBaseRepositoryCacheDecorator extends AbstractRepositoryCa
     }
 
     /**
-     * @param $id
-     * @return mixed
+     * @param EloquentBase|Builder|int|null $id
+     * @param array $data
+     * @return int|null
      */
-    public function findOrNew($id)
-    {
-        return $this->beforeGet(__FUNCTION__, func_get_args());
-    }
-
-    /**
-     * Validate model then edit
-     * @param BaseModelContract|int|null $id
-     * @param $data
-     * @param bool $allowCreateNew
-     * @param bool $justUpdateSomeFields
-     * @return array
-     */
-    public function editWithValidate($id, array $data, $allowCreateNew = false, $justUpdateSomeFields = false)
+    public function createOrUpdate($id, array $data)
     {
         return $this->afterUpdate(__FUNCTION__, func_get_args());
     }
 
     /**
-     * Find items by ids and edit them
+     * @param EloquentBase|Builder|int $id
+     * @param array $data
+     * @return int|null
+     */
+    public function update($id, array $data)
+    {
+        return $this->afterUpdate(__FUNCTION__, func_get_args());
+    }
+
+    /**
      * @param array $ids
      * @param array $data
-     * @param bool $justUpdateSomeFields
-     * @return array
+     * @return bool
      */
-    public function updateMultiple(array $ids, array $data, $justUpdateSomeFields = false)
+    public function updateMultiple(array $ids, array $data)
     {
         return $this->afterUpdate(__FUNCTION__, func_get_args());
     }
 
     /**
-     * Delete items by id
-     * @param EloquentBase|int|array $id
-     * @return mixed
+     * @param EloquentBase|Builder|int|array|null $id
+     * @param bool $force
+     * @return bool
      */
-    public function delete($id)
+    public function delete($id, $force = false)
     {
         return $this->afterUpdate(__FUNCTION__, func_get_args());
     }

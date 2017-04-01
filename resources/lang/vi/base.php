@@ -43,6 +43,7 @@ return [
 
         'model_not_exists' => 'Dữ liệu không tồn tại với id:',
         'request_completed' => 'Yêu cầu đã được thực hiện thành công',
+        'error_occurred' => 'Có lỗi xảy ra trong lúc thực hiện yêu cầu',
     ],
     'setting_group' => [
         'basic' => 'Cơ bản',
