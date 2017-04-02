@@ -31,11 +31,11 @@ abstract class BaseAdminController extends BaseController
     {
         parent::__construct();
 
-        $this->breadcrumbs = \Breadcrumbs::setBreadcrumbClass('breadcrumb')
-            ->setContainerTag('ol')
-            ->addLink('WebEd', route('admin::dashboard.index.get'), '<i class="icon-home mr5"></i>');
-
         $this->middleware(function (Request $request, $next) {
+            $this->breadcrumbs = \Breadcrumbs::setBreadcrumbClass('breadcrumb')
+                ->setContainerTag('ol')
+                ->addLink('WebEd', route('admin::dashboard.index.get'), '<i class="icon-home mr5"></i>');
+
             $this->loggedInUser = $request->user();
             view()->share([
                 'loggedInUser' => $this->loggedInUser

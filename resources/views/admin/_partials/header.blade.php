@@ -24,12 +24,33 @@
                        data-toggle="dropdown"
                        data-hover="dropdown"
                        data-close-others="true">
-                        {{ trans('webed-core::languages.' . \WebEd\Base\Facades\DashboardLanguageFacade::getDashboardLanguage()) }}
+                        <i class="fa fa-plus"></i>&nbsp;&nbsp;{{ trans('webed-core::base.add_new') }}
+                    </a>
+                    <ul class="dropdown-menu">
+                        @foreach(admin_quick_link()->get() as $type => $linkData)
+                            <li>
+                                <a href="{{ $linkData['url'] }}">
+                                    @if(array_get($linkData, 'icon'))
+                                        <i class="ion {{ $linkData['icon'] }}"></i>
+                                    @endif
+                                    {{ $linkData['title'] }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:;"
+                       class="dropdown-toggle"
+                       data-toggle="dropdown"
+                       data-hover="dropdown"
+                       data-close-others="true">
+                        {{ trans('webed-core::languages.' . dashboard_language()->getDashboardLanguage()) }}
                         <span class="fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu">
                         @foreach(config('webed.languages', []) as $slug => $language)
-                            <li class="{{ $slug == \WebEd\Base\Facades\DashboardLanguageFacade::getDashboardLanguage() ? 'active' : '' }}">
+                            <li class="{{ $slug == dashboard_language()->getDashboardLanguage() ? 'active' : '' }}">
                                 <a href="{{ route('admin::dashboard-language.get', [$slug]) }}">
                                     {{ trans('webed-core::languages.' . $slug) }}
                                 </a>
@@ -62,12 +83,12 @@
                                 <div class="pull-left">
                                     <a href="{{ route('admin::users.edit.get', ['id' => $loggedInUser->id]) }}"
                                        class="btn btn-default btn-flat">
-                                        <i class="icon-user"></i> Profile
+                                        <i class="icon-user"></i> {{ trans('webed-users::base.profile') }}
                                     </a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="{{ route('admin::auth.logout.get') }}" class="btn btn-default btn-flat">
-                                        <i class="icon-logout"></i> Sign out
+                                        <i class="icon-logout"></i> {{ trans('webed-users::auth.sign_out') }}
                                     </a>
                                 </div>
                             </li>

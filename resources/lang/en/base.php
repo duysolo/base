@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'add_new' => 'Add new',
     'admin_menu' => [
         'dashboard' => [
             'heading' => 'Dashboard',
@@ -19,6 +20,7 @@ return [
         'submit' => 'Submit',
         'save' => 'Save',
         'save_and_continue' => 'Save & continue',
+        'save_change' => 'Save change',
         'select' => 'Select',
         'search' => 'Search',
 

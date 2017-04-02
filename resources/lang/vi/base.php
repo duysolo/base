@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'add_new' => 'Thêm mới',
     'admin_menu' => [
         'dashboard' => [
             'heading' => 'Bảng điều khiển',
@@ -19,6 +20,7 @@ return [
         'submit' => 'Gửi đi',
         'save' => 'Lưu',
         'save_and_continue' => 'Lưu và tiếp tục',
+        'save_change' => 'Lưu thay đổi',
         'select' => 'Chọn',
         'search' => 'Tìm kiếm',
 
