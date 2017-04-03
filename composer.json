@@ -19,7 +19,6 @@
         "yajra/laravel-datatables-oracle": "^7.0",
         "sgsoft-studio/acl": "3.1.*",
         "sgsoft-studio/assets-management": "3.1.*",
-        "sgsoft-studio/auth": "3.1.*",
         "sgsoft-studio/caching": "3.1.*",
         "sgsoft-studio/elfinder": "3.1.*",
         "sgsoft-studio/hook": "3.1.*",
