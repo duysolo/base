@@ -35,7 +35,7 @@ if (!function_exists('get_image')) {
      * @param $fields
      * @param $updateTo
      */
-    function get_image($image, $default = '/admin/images/no-image.png')
+    function get_image($image, $default = 'admin/images/no-image.png')
     {
         if (!$image || !trim($image)) {
             return $default;

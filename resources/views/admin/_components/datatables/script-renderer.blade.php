@@ -1,6 +1,6 @@
 <script>
     $(window).load(function () {
-        WebEd.DataTableAjax.init($('{{ $selector }}'), {
+        new WebEd.DataTableAjax($('{{ $selector }}'), {
             dataTableParams: {
                 ajax: {
                     url: '{!! $ajaxUrl[0] or '' !!}',

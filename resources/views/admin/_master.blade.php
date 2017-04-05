@@ -7,14 +7,14 @@
 <html lang="en">
 <!--<![endif]-->
 <head>
+    <base href="{{ asset('') }}">
+
     <meta charset="utf-8"/>
     <title>{{ $pageTitle or 'Dashboard' }} | WebEd</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content="Admin dashboard - WebEd" name="description"/>
-
-    <base href="{{ asset('') }}">
 
     {!! \Assets::renderStylesheets() !!}
 
