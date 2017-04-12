@@ -41,6 +41,7 @@ return [
         'order' => 'Order',
         'status' => 'Status',
         'sex' => 'Sex',
+        'is_featured' => 'Is featured',
         'publish' => 'Publish',
 
         'model_not_exists' => 'Model not exists with id:',

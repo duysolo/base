@@ -1,253 +1,9 @@
-/**
- * Works same as array_get function of Laravel
- * @param array
- * @param key
- * @param defaultValue
- * @returns {*}
- */
-var array_get = function (array, key, defaultValue) {
-    "use strict";
+(function (exports) {
+'use strict';
 
-    if (typeof defaultValue === 'undefined') {
-        defaultValue = null;
-    }
+var WebEd = function WebEd () {};
 
-    var result;
-
-    try {
-        result = array[key];
-    } catch (err) {
-        result = defaultValue;
-    }
-
-    if(result === null) {
-        result = defaultValue;
-    }
-
-    return result;
-};
-
-/**
- * Get the array/object length
- * @param array
- * @returns {number}
- */
-var array_length = function (array) {
-    "use strict";
-
-    return _.size(array);
-};
-
-/**
- * Get the first element.
- * Passing n will return the first n elements of the array.
- * @param array
- * @param n
- * @returns {*}
- */
-var array_first = function (array, n) {
-    "use strict";
-
-    return _.first(array, n);
-};
-
-/**
- * Get the first element.
- * Passing n will return the last n elements of the array.
- * @param array
- * @param n
- * @returns {*}
- */
-var array_last = function (array, n) {
-    "use strict";
-
-    return _.last(array, n);
-};
-
-
-/**
- * Works same as dd function of Laravel
- */
-var dd = function () {
-    "use strict";
-    console.log.apply(console, arguments);
-};
-
-/**
- * Json encode
- * @param object
- */
-var json_encode = function (object) {
-    "use strict";
-    if (typeof object === 'undefined') {
-        object = null;
-    }
-    return JSON.stringify(object);
-};
-
-/**
- * Json decode
- * @param jsonString
- * @param defaultValue
- * @returns {*}
- */
-var json_decode = function (jsonString, defaultValue) {
-    "use strict";
-    if (typeof jsonString === 'string') {
-        var result;
-        try {
-            result = $.parseJSON(jsonString);
-        } catch (err) {
-            result = defaultValue;
-        }
-        return result;
-    }
-    return jsonString;
-};
-
-var WebEd = WebEd || {};
-
-WebEd.scrollToTop = function (event) {
-    "use strict";
-    if (event) {
-        event.preventDefault();
-    }
-    $('html, body').stop().animate({
-        scrollTop: 0
-    }, 800);
-};
-
-WebEd.showLoading = function () {
-    $('body').addClass('on-loading');
-};
-
-WebEd.hideLoading = function () {
-    $('body').removeClass('on-loading');
-};
-
-WebEd.initAjax = function () {
-    "use strict";
-    WebEd.confirmation();
-    WebEd.tagsInput();
-    WebEd.slimScroll($('.scroller'));
-};
-
-/**
- * Block UI
- * @param options
- */
-WebEd.blockUI = function (options) {
-    "use strict";
-    options = $.extend(true, {
-        animate: false,
-        iconOnly: true,
-        textOnly: true,
-        boxed: true,
-        message: 'Loading...',
-        target: undefined,
-        zIndex: 1000,
-        centerY: false,
-        overlayColor: '#555',
-    }, options);
-
-    var html = '';
-    if (options.animate) {
-        html = '<div class="loading-message ' + (options.boxed ? 'loading-message-boxed' : '') + '">' + '<div class="block-spinner-bar"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div>' + '</div>';
-    } else if (options.iconOnly) {
-        html = '<div class="loading-message ' + (options.boxed ? 'loading-message-boxed' : '') + '"><img src="' + WebEd.settings.adminTheme.getGlobalImagePath() + 'loading-spinner-grey.gif" align=""></div>';
-    } else if (options.textOnly) {
-        html = '<div class="loading-message ' + (options.boxed ? 'loading-message-boxed' : '') + '"><span>&nbsp;&nbsp;' + (options.message ? options.message : 'LOADING...') + '</span></div>';
-    } else {
-        html = '<div class="loading-message ' + (options.boxed ? 'loading-message-boxed' : '') + '"><img src="' + WebEd.settings.adminTheme.getGlobalImagePath() + 'loading-spinner-grey.gif" align=""><span>&nbsp;&nbsp;' + (options.message ? options.message : 'LOADING...') + '</span></div>';
-    }
-
-    if (options.target) { // element blocking
-        var el = $(options.target);
-        if (el.height() <= ($(window).height())) {
-            options.cenrerY = true;
-        }
-        el.block({
-            message: html,
-            baseZ: options.zIndex,
-            centerY: options.cenrerY,
-            css: {
-                top: '10%',
-                border: '0',
-                padding: '0',
-                backgroundColor: 'none'
-            },
-            overlayCSS: {
-                backgroundColor: options.overlayColor,
-                opacity: options.boxed ? 0.05 : 0.1,
-                cursor: 'wait'
-            }
-        });
-    } else { // page blocking
-        $.blockUI({
-            message: html,
-            baseZ: options.zIndex,
-            css: {
-                border: '0',
-                padding: '0',
-                backgroundColor: 'none'
-            },
-            overlayCSS: {
-                backgroundColor: options.overlayColor,
-                opacity: options.boxed ? 0.05 : 0.1,
-                cursor: 'wait'
-            }
-        });
-    }
-};
-
-/**
- * Unblock UI
- * @param $target
- */
-WebEd.unblockUI = function ($target) {
-    "use strict";
-    if(!$target instanceof jQuery) {
-        $target = $($target);
-    }
-    $target.unblock({
-        onUnblock: function() {
-            $target.css('position', '');
-            $target.css('zoom', '');
-        }
-    });
-    $.unblockUI();
-};
-
-WebEd.ckeditor = function ($elements, config) {
-    config = $.extend(true, {
-        filebrowserBrowseUrl: FILE_MANAGER_URL + '?method=ckeditor',
-        extraPlugins: 'codeTag,insertpre',
-        allowedContent: true,
-        autoParagraph: false,
-        height: '400px'
-    }, config);
-    $elements.ckeditor($.noop, config);
-};
-
-WebEd.confirmation = function () {
-    if (!$().confirmation) {
-        return;
-    }
-    $('[data-toggle=confirmation]').confirmation({
-        container: 'body',
-        btnOkClass: 'btn btn-sm green',
-        btnCancelClass: 'btn btn-sm red-sunglo',
-        //placement: 'left',
-        btnOkLabel: 'OK',
-        btnCancelLabel: 'Cancel',
-        popout: true,
-        singleton: true
-    });
-};
-
-
-WebEd.isIE = function (callback) {
-    "use strict";
+WebEd.isIE = function isIE (callback) {
     var isIE8 = !!navigator.userAgent.match(/MSIE 8.0/);
     var isIE9 = !!navigator.userAgent.match(/MSIE 9.0/);
     var isIE10 = !!navigator.userAgent.match(/MSIE 10.0/);
@@ -261,6 +17,14 @@ WebEd.isIE = function (callback) {
         $('html').addClass('ie11'); // detect IE11 version
     }
 
+    if (isIE9) {
+        $('html').addClass('ie9'); // detect IE9 version
+    }
+
+    if (isIE8) {
+        $('html').addClass('ie8'); // detect IE8 version
+    }
+
     if (isIE11 || isIE10 || isIE9 || isIE8) {
         $('html').addClass('ie'); // detect IE version
         if (typeof callback === 'function') {
@@ -269,8 +33,10 @@ WebEd.isIE = function (callback) {
     }
 };
 
-WebEd.handleSelectMediaBox = function () {
-    "use strict";
+/**
+ * Handle select media box
+ */
+WebEd.handleSelectMediaBox = function handleSelectMediaBox () {
     var $body = $('body');
     $body.on('click', '.show-add-media-popup', function (event) {
         event.preventDefault();
@@ -298,7 +64,7 @@ WebEd.handleSelectMediaBox = function () {
     $body.on('click', '.select-media-box .remove-image', function (event) {
         event.preventDefault();
         document.currentMediaBox = $(this).closest('.select-media-box');
-        document.currentMediaBox.find('img.img-responsive').attr('src', '/admin/images/no-image.png');
+        document.currentMediaBox.find('img.img-responsive').attr('src', 'admin/images/no-image.png');
         document.currentMediaBox.find('.input-file').val('');
     });
     $body.on('click', '.select-media-modal-external-asset .btn', function (event) {
@@ -323,8 +89,13 @@ WebEd.handleSelectMediaBox = function () {
     });
 };
 
-WebEd.showNotification = function (message, type, options) {
-    "use strict";
+/**
+ * Show notifications
+ * @param message
+ * @param type
+ * @param options
+ */
+WebEd.showNotification = function showNotification (message, type, options) {
     options = options || {};
 
     switch (type) {
@@ -373,8 +144,12 @@ WebEd.showNotification = function (message, type, options) {
     }
 };
 
-WebEd.slimScroll = function ($element) {
-    "use strict";
+/**
+ * Handle slim scroll
+ * @param $element
+ * @returns {null}
+ */
+WebEd.slimScroll = function slimScroll ($element) {
     if (!$().slimScroll) {
         return null;
     }
@@ -408,8 +183,11 @@ WebEd.slimScroll = function ($element) {
     });
 };
 
-WebEd.destroySlimScroll = function ($element) {
-    "use strict";
+/**
+ * Distroy slim scroll
+ * @param $element
+ */
+WebEd.destroySlimScroll = function destroySlimScroll ($element) {
     if (!$().slimScroll) {
         return;
     }
@@ -453,34 +231,134 @@ WebEd.destroySlimScroll = function ($element) {
     });
 };
 
-WebEd.settings = function () {
-    "use strict";
-    var assetsPath = BASE_URL + 'admin/';
+/**
+ * Block UI
+ * @param options
+ */
+WebEd.blockUI = function blockUI (options) {
+    options = $.extend(true, {
+        animate: false,
+        iconOnly: true,
+        textOnly: true,
+        boxed: true,
+        message: 'Loading...',
+        target: undefined,
+        zIndex: 1000,
+        centerY: false,
+        overlayColor: '#555',
+    }, options);
 
-    var globalImgPath = assetsPath + 'images/global/';
-
-    var globalPluginsPath = BASE_URL + 'admin/plugins/';
-
-    return {
-        adminTheme: {
-            getAssetPath: function () {
-                return assetsPath;
-            },
-            getGlobalImagePath: function () {
-                return globalImgPath;
-            },
-            getPluginsPath: function () {
-                return globalPluginsPath;
-            },
-        }
+    var html = '';
+    if (options.animate) {
+        html = '<div class="loading-message ' + (options.boxed ? 'loading-message-boxed' : '') + '">' + '<div class="block-spinner-bar"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div>' + '</div>';
+    } else if (options.iconOnly) {
+        html = '<div class="loading-message ' + (options.boxed ? 'loading-message-boxed' : '') + '"><img src="admin/images/global/loading-spinner-grey.gif" align=""></div>';
+    } else if (options.textOnly) {
+        html = '<div class="loading-message ' + (options.boxed ? 'loading-message-boxed' : '') + '"><span>&nbsp;&nbsp;' + (options.message ? options.message : 'LOADING...') + '</span></div>';
+    } else {
+        html = '<div class="loading-message ' + (options.boxed ? 'loading-message-boxed' : '') + '"><img src="admin/images/global/loading-spinner-grey.gif" align=""><span>&nbsp;&nbsp;' + (options.message ? options.message : 'LOADING...') + '</span></div>';
     }
-}();
 
-WebEd.stringToSlug = function (text, separator) {
-    "use strict";
+    if (options.target) { // element blocking
+        var el = $(options.target);
+        if (el.height() <= ($(window).height())) {
+            options.cenrerY = true;
+        }
+        el.block({
+            message: html,
+            baseZ: options.zIndex,
+            centerY: options.cenrerY,
+            css: {
+                top: '10%',
+                border: '0',
+                padding: '0',
+                backgroundColor: 'none'
+            },
+            overlayCSS: {
+                backgroundColor: options.overlayColor,
+                opacity: options.boxed ? 0.05 : 0.1,
+                cursor: 'wait'
+            }
+        });
+    } else { // page blocking
+        $.blockUI({
+            message: html,
+            baseZ: options.zIndex,
+            css: {
+                border: '0',
+                padding: '0',
+                backgroundColor: 'none'
+            },
+            overlayCSS: {
+                backgroundColor: options.overlayColor,
+                opacity: options.boxed ? 0.05 : 0.1,
+                cursor: 'wait'
+            }
+        });
+    }
+};
+
+/**
+ * Unblock UI
+ * @param $target
+ */
+WebEd.unblockUI = function unblockUI ($target) {
+    if (!$target instanceof jQuery) {
+        $target = $($target);
+    }
+    $target.unblock({
+        onUnblock: function () {
+            $target.css('position', '');
+            $target.css('zoom', '');
+        }
+    });
+    $.unblockUI();
+};
+
+/**
+ * Render a WYSIWYG editor
+ * @param $elements
+ * @param config
+ */
+WebEd.wysiwyg = function wysiwyg ($elements, config) {
+    config = $.extend(true, {
+        filebrowserBrowseUrl: FILE_MANAGER_URL + '?method=ckeditor',
+        extraPlugins: 'codeTag,insertpre',
+        allowedContent: true,
+        height: '400px',
+    }, config);
+    $elements.ckeditor($.noop, config);
+};
+
+/**
+ * Confirmation
+ */
+WebEd.confirmation = function confirmation () {
+    if (!$().confirmation) {
+        return;
+    }
+    $('[data-toggle=confirmation]').confirmation({
+        container: 'body',
+        btnOkClass: 'btn btn-sm green',
+        btnCancelClass: 'btn btn-sm red-sunglo',
+        //placement: 'left',
+        btnOkLabel: 'OK',
+        btnCancelLabel: 'Cancel',
+        popout: true,
+        singleton: true
+    });
+};
+
+/**
+ * String to slug
+ * @param text
+ * @param separator
+ * @returns {string}
+ */
+WebEd.stringToSlug = function stringToSlug (text, separator) {
     separator = separator || '-';
     return text.toString()
-        /*To lower case*/
+    /*To lower case*/
         .toLowerCase()
         /*Vietnamese string*/
         .replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a')
@@ -502,23 +380,113 @@ WebEd.stringToSlug = function (text, separator) {
         .replace(/-+$/, '');
 };
 
-WebEd.tabChangeUrl = function () {
+/**
+ * Change url when user change tab
+ */
+WebEd.tabChangeUrl = function tabChangeUrl () {
     $('body').on('click', '.tab-change-url a[data-toggle="tab"]', function (event) {
         window.history.pushState('', '', $(this).attr('href'));
     });
 };
 
-WebEd.tagsInput = function ($element, options) {
+/**
+ * Tags input
+ * @param $element
+ * @param options
+ */
+WebEd.tagsInput = function tagsInput ($element, options) {
     "use strict";
     options = $.extend(true, {
         'tagClass': 'label label-default'
     }, options);
-    if(!$element || !$element instanceof jQuery) {
+    if (!$element || !$element instanceof jQuery) {
         $element = $('.js-tags-input');
     }
-    if($element.length) {
+    if ($element.length) {
         $element.tagsinput(options);
     }
 };
 
+
+/**
+ * Scroll to top
+ * @param event
+ */
+WebEd.scrollToTop = function scrollToTop (event) {
+    if (event) {
+        event.preventDefault();
+    }
+    $('html, body').stop().animate({
+        scrollTop: 0
+    }, 800);
+};
+
+/**
+ * Show loading
+ */
+WebEd.showLoading = function showLoading () {
+    $('body').addClass('on-loading');
+};
+
+/**
+ * Hide loading
+ */
+WebEd.hideLoading = function hideLoading () {
+    $('body').removeClass('on-loading');
+};
+
+/**
+ * Init ajax
+ */
+WebEd.initAjax = function initAjax () {
+    WebEd.confirmation();
+    WebEd.tagsInput();
+    WebEd.slimScroll($('.scroller'));
+};
+
+var Helpers = function Helpers () {};
+
+Helpers.arrayGet = function arrayGet (array, key, defaultValue) {
+        if ( defaultValue === void 0 ) defaultValue = null;
+
+    var result;
+
+    try {
+        result = array[key];
+    } catch (err) {
+        return defaultValue;
+    }
+
+    if (result === null || typeof result == 'undefined') {
+        result = defaultValue;
+    }
+
+    return result;
+};
+
+Helpers.jsonEncode = function jsonEncode (object) {
+    if (typeof object === 'undefined') {
+        object = null;
+    }
+    return JSON.stringify(object);
+};
+
+Helpers.jsonDecode = function jsonDecode (jsonString, defaultValue)
+{
+    if (typeof jsonString === 'string') {
+        var result;
+        try {
+            result = $.parseJSON(jsonString);
+        } catch (err) {
+            result = defaultValue;
+        }
+        return result;
+    }
+    return null;
+};
+
+window.WebEd = WebEd;
+window.Helpers = Helpers;
+
+}((this.LaravelElixirBundle = this.LaravelElixirBundle || {})));
 //# sourceMappingURL=webed-core.js.map

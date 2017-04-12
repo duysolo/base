@@ -18,7 +18,7 @@ class CollectiveServiceProvider extends ServiceProvider
         $this->registerHtmlComponents();
     }
 
-    private function registerFormComponents()
+    protected function registerFormComponents()
     {
         /**
          * Custom checkbox
@@ -81,7 +81,7 @@ class CollectiveServiceProvider extends ServiceProvider
         ]);
     }
 
-    private function registerHtmlComponents()
+    protected function registerHtmlComponents()
     {
         /**
          * Label

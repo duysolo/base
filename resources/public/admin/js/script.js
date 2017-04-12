@@ -1,5 +1,7 @@
+(function (exports) {
+'use strict';
+
 $(document).ready(function(){
-    "use strict";
     /**
      * Detect IE
      */
@@ -32,9 +34,8 @@ $(document).ready(function(){
 });
 
 $(window).load(function () {
-    "use strict";
-    /*Hide loading state*/
     WebEd.hideLoading();
 });
 
+}((this.LaravelElixirBundle = this.LaravelElixirBundle || {})));
 //# sourceMappingURL=script.js.map

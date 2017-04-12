@@ -24,6 +24,7 @@ return [
 
     'heading' => [
         'title' => 'Title',
+        'slug' => 'Slug',
         'page_template' => 'Page template',
         'status' => 'Status',
         'order' => 'Order',

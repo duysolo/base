@@ -32,15 +32,16 @@ return [
         'choose_files' => 'Chọn nhiều tập tin',
 
         'title' => 'Tiêu đề',
-        'slug' => 'Tên truy cập',
+        'slug' => 'Tên truy nhập',
         'content' => 'Nội dung',
         'keywords' => 'Từ khóa',
         'description' => 'Mô tả ngắn',
         'templates' => 'Mẫu giao diện',
-        'thumbnail' => 'Hình nhỏ',
+        'thumbnail' => 'Hình đại diện',
         'order' => 'Sắp xếp',
         'status' => 'Hiện trạng',
         'sex' => 'Giới tính',
+        'is_featured' => 'Là nổi bật',
         'publish' => 'Xuất bản',
 
         'model_not_exists' => 'Dữ liệu không tồn tại với id:',

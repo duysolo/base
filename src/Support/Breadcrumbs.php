@@ -47,7 +47,7 @@ class Breadcrumbs
      * @param null|string $icon
      * @return string
      */
-    private function templateLink($title, $link = null, $icon = null)
+    protected function templateLink($title, $link = null, $icon = null)
     {
         if (!isset($link)) {
             return '<span>' . $icon . $title . '</span>';

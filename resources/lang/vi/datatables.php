@@ -24,6 +24,7 @@ return [
 
     'heading' => [
         'title' => 'Tiêu đề',
+        'slug' => 'Tên truy nhập',
         'page_template' => 'Bản mẫu trang',
         'status' => 'Hiện trạng',
         'order' => 'Sắp xếp',

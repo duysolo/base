@@ -1,293 +1,292 @@
-/**
- * Created by tedozimanson on 10/21/16.
- */
-var WebEd = WebEd || {};
-WebEd.DataTable = function () {
-    "use strict";
-    var datatable;
-    var tableOptions = {
-        loadingMessage: 'Loading...'
-    };
-    var $table,
-        $tableContainer,
-        $tableWrapper;
-    var ajaxParams = {};
-    var the;
+(function (exports) {
+'use strict';
 
-    var countSelectedRows = function () {
-        var selected = $('tbody > tr > td:nth-child(1) input[type="checkbox"]:checked', $table).size();
-        var text = tableOptions.dataTableParams.language.metronicGroupActions;
+var DataTable = function DataTable($table, options) {
+    if ( options === void 0 ) options = {};
 
-        if (selected > 0) {
-            $('.table-group-actions > span', $tableWrapper).text(text.replace("_TOTAL_", selected));
-        } else {
-            $('.table-group-actions > span', $tableWrapper).text("");
-        }
+    if (!$table) {
+        return;
+    }
 
-        return selected;
-    };
+    this.datatable = null;
 
-    var getColumnInputValue = function ($column) {
-        // get all typeable inputs
-        var value = '';
-        $('textarea.form-filter, select.form-filter, input.form-filter:not([type="radio"],[type="checkbox"])', $column).each(function () {
-            value = $(this).val();
-        });
+    this.$table = $table;
 
-        // get all checkboxes
-        $('input.form-filter[type="checkbox"]:checked', $column).each(function () {
-            value = $(this).val();
-        });
+    this.ajaxParams = {};
 
-        // get all radio buttons
-        $('input.form-filter[type="radio"]:checked', $column).each(function () {
-            value = $(this).val();
-        });
+    var _self = this;
 
-        return value;
-    };
-
-    return {
-        init: function ($table, options) {
-            if (!$().DataTable) {
-                return null;
-            }
-
-            the = this;
-
-            the.initTable($table, options);
-            the.otherActions();
+    var defaultOptions = {
+        loadingMessage: 'Loading...',
+        onSuccess: function (grid, response) {
+            WebEd.initAjax();
         },
-        initTable: function (table, options) {
-            options = $.extend(true, {
-                onSuccess: function (grid, response) {
-                    WebEd.initAjax();
+        onError: function (grid) {
+
+        },
+        onDataLoad: function (grid) {
+            WebEd.initAjax();
+        },
+        dataTableParams: {
+            dom: "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r><'table-responsive't><'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>", // datatable layout
+            lengthMenu: [
+                [10, 20, 50, 100, 150, -1],
+                [10, 20, 50, 100, 150, "All"] // change per page values here
+            ],
+            pageLength: 10, // default records per page
+            language: { // language settings
+                // metronic spesific
+                groupActionCount: "_TOTAL_ records selected:  ",
+                ajaxRequestGeneralError: "Could not complete request. Please check your internet connection",
+
+                // data tables spesific
+                lengthMenu: "<span class='seperator'>|</span>View _MENU_ records",
+                info: "<span class='seperator'>|</span>Found total _TOTAL_ records",
+                infoEmpty: "No records found to show",
+                emptyTable: "No data available in table",
+                zeroRecords: "No matching records found",
+                paginate: {
+                    previous: "Prev",
+                    next: "Next",
+                    last: "Last",
+                    first: "First",
+                    page: "Page",
+                    pageOf: "of"
+                }
+            },
+            orderCellsTop: true,
+            columnDefs: [{ // define columns sorting options(by default all columns are sortable extept the first checkbox column)
+                orderable: false,
+                targets: 0
+            }],
+
+            // save datatable state(pagination, sort, etc) in cookie.
+            bStateSave: true,
+
+            pagingType: "bootstrap_extended", // pagination type(bootstrap, bootstrap_full_number or bootstrap_extended)
+            autoWidth: false, // disable fixed width and enable fluid table
+            processing: false, // enable/disable display message box on record load
+            serverSide: true, // enable/disable server side ajax loading
+
+            ajax: { // define ajax settings
+                url: "", // ajax URL
+                type: "POST", // request type
+                timeout: 20000,
+                data: function (data) { // add request parameters before submit
+                    $.each(_self.ajaxParams, function (key, value) {
+                        data[key] = value;
+                    });
+                    WebEd.blockUI({
+                        message: defaultOptions.loadingMessage,
+                        target: _self.$tableContainer,
+                        overlayColor: 'none',
+                        boxed: true
+                    });
                 },
-                onError: function (grid) {
-
-                },
-                onDataLoad: function (grid) {
-                    WebEd.initAjax();
-                },
-                dataTableParams: {
-                    dom: "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r><'table-responsive't><'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>", // datatable layout
-                    lengthMenu: [
-                        [10, 20, 50, 100, 150, -1],
-                        [10, 20, 50, 100, 150, "All"] // change per page values here
-                    ],
-                    pageLength: 10, // default records per page
-                    language: { // language settings
-                        // metronic spesific
-                        metronicGroupActions: "_TOTAL_ records selected:  ",
-                        metronicAjaxRequestGeneralError: "Could not complete request. Please check your internet connection",
-
-                        // data tables spesific
-                        lengthMenu: "<span class='seperator'>|</span>View _MENU_ records",
-                        info: "<span class='seperator'>|</span>Found total _TOTAL_ records",
-                        infoEmpty: "No records found to show",
-                        emptyTable: "No data available in table",
-                        zeroRecords: "No matching records found",
-                        paginate: {
-                            previous: "Prev",
-                            next: "Next",
-                            last: "Last",
-                            first: "First",
-                            page: "Page",
-                            pageOf: "of"
-                        }
-                    },
-
-                    orderCellsTop: true,
-                    columnDefs: [{ // define columns sorting options(by default all columns are sortable extept the first checkbox column)
-                        orderable: false,
-                        targets: 0
-                    }],
-
-                    // save datatable state(pagination, sort, etc) in cookie.
-                    bStateSave: true,
-
-                    pagingType: "bootstrap_extended", // pagination type(bootstrap, bootstrap_full_number or bootstrap_extended)
-                    autoWidth: false, // disable fixed width and enable fluid table
-                    processing: false, // enable/disable display message box on record load
-                    serverSide: true, // enable/disable server side ajax loading
-
-                    ajax: { // define ajax settings
-                        url: "", // ajax URL
-                        type: "POST", // request type
-                        timeout: 20000,
-                        data: function (data) { // add request parameters before submit
-                            $.each(ajaxParams, function (key, value) {
-                                data[key] = value;
-                            });
-                            WebEd.blockUI({
-                                message: tableOptions.loadingMessage,
-                                target: $tableContainer,
-                                overlayColor: 'none',
-                                boxed: true
-                            });
-                        },
-                        dataSrc: function (res) { // Manipulate the data returned from the server
-                            if (res.customActionMessage) {
-                                WebEd.showNotification(res.customActionMessage, res.customActionStatus);
-                            }
-
-                            if (res.customActionStatus) {
-                                if (tableOptions.resetGroupActionInputOnSuccess) {
-                                    $('.table-group-action-input', $tableWrapper).val("");
-                                }
-                            }
-
-                            if ($('.group-checkable', $table).size() === 1) {
-                                $('.group-checkable', $table).attr("checked", false);
-                            }
-
-                            if (tableOptions.onSuccess) {
-                                tableOptions.onSuccess.call(undefined, the, res);
-                            }
-
-                            WebEd.unblockUI($tableContainer);
-
-                            return res.data;
-                        },
-                        error: function () { // handle general connection errors
-                            if (tableOptions.onError) {
-                                tableOptions.onError.call(undefined, the);
-                            }
-                            WebEd.showNotification(tableOptions.dataTableParams.language.metronicAjaxRequestGeneralError, 'danger');
-
-                            WebEd.unblockUI($tableContainer);
-                        }
-                    },
-
-                    drawCallback: function (settings) {
-                        WebEd.initAjax();
+                dataSrc: function (res) { // Manipulate the data returned from the server
+                    if (res.customActionMessage) {
+                        WebEd.showNotification(res.customActionMessage, res.customActionStatus);
                     }
+
+                    if (res.customActionStatus) {
+                        if (tableOptions.resetGroupActionInputOnSuccess) {
+                            $('.table-group-action-input', _self.$tableWrapper).val("");
+                        }
+                    }
+
+                    if ($('.group-checkable', $table).size() === 1) {
+                        $('.group-checkable', $table).attr("checked", false);
+                    }
+
+                    defaultOptions.onSuccess.call(undefined, _self, res);
+
+                    WebEd.unblockUI(_self.$tableContainer);
+
+                    return res.data;
+                },
+                error: function () { // handle general connection errors
+                    this.onError.call(undefined, _self);
+                    WebEd.showNotification(this.dataTableParams.language.ajaxRequestGeneralError, 'danger');
+
+                    WebEd.unblockUI($tableContainer);
                 }
-            }, options);
+            },
 
-            tableOptions = $.extend(true, tableOptions, options);
-
-            $table = table;
-
-            tableOptions.language = options.language;
-
-            $.fn.dataTableExt.oStdClasses.sWrapper = $.fn.dataTableExt.oStdClasses.sWrapper + " dataTables_extended_wrapper";
-            $.fn.dataTableExt.oStdClasses.sFilterInput = "form-control input-xs input-sm input-inline";
-            $.fn.dataTableExt.oStdClasses.sLengthSelect = "form-control input-xs input-sm input-inline";
-
-            datatable = $table.DataTable(options.dataTableParams);
-
-            $tableContainer = $table.closest(".table-container");
-            $tableWrapper = $table.closest('.dataTables_wrapper');
-
-            $tableContainer.addClass('initialized');
-
-            /**
-             * Build table group actions panel
-             */
-            if ($('.table-actions-wrapper', $tableContainer).size() === 1) {
-                $('.table-group-actions', $tableWrapper).html($('.table-actions-wrapper', $tableContainer).html()); // place the panel inside the wrapper
-                $('.table-actions-wrapper', $tableContainer).remove(); // remove the template container
+            drawCallback: function (settings) {
+                WebEd.initAjax();
             }
+        }
+    };
 
-            /**
-             * Submit filter
-             */
-            $table.on('click', '.filter-submit', function (e) {
-                e.preventDefault();
-                the.submitFilter();
-            });
+    this.options = $.extend(true, defaultOptions, options);
 
-            /**
-             * Cancel filter
-             */
-            $table.on('click', '.filter-cancel', function (e) {
-                e.preventDefault();
-                the.resetFilter();
-            });
-        },
-        otherActions: function () {
-            // handle group checkboxes check/uncheck
-            $('[type=checkbox][name=group_checkable]', $table).change(function () {
-                var set = $table.find('tbody > tr > td:nth-child(1) input[type="checkbox"]');
-                var checked = $(this).prop("checked");
-                $(set).each(function () {
-                    $(this).prop("checked", checked);
-                });
-                countSelectedRows();
-            });
+    $.fn.dataTableExt.oStdClasses.sWrapper = $.fn.dataTableExt.oStdClasses.sWrapper + " dataTables_extended_wrapper";
+    $.fn.dataTableExt.oStdClasses.sFilterInput = "form-control input-xs input-sm input-inline";
+    $.fn.dataTableExt.oStdClasses.sLengthSelect = "form-control input-xs input-sm input-inline";
 
-            // handle row's checkbox click
-            $table.on('change', 'tbody > tr > td:nth-child(1) input[type="checkbox"]', function () {
-                countSelectedRows();
-            });
-        },
-        getDataTableHelper: function () {
-            return the;
-        },
-        getTable: function () {
-            return $table;
-        },
-        getTableContainer: function () {
-            return $tableContainer;
-        },
-        getTableWrapper: function () {
-            return $tableWrapper;
-        },
-        getDataTable: function () {
-            return datatable;
-        },
-        getSelectedRowsCount: function() {
-            return $('tbody > tr > td:nth-child(1) input[type="checkbox"]:checked', $table).size();
-        },
-        getSelectedRows: function() {
-            var rows = [];
-            $('tbody > tr > td:nth-child(1) input[type="checkbox"]:checked', $table).each(function() {
-                rows.push($(this).val());
-            });
+    this.datatable = this.$table.DataTable(this.options.dataTableParams);
 
-            return rows;
-        },
-        setAjaxParam: function (name, value) {
-            ajaxParams[name] = value;
-        },
-        addAjaxParam: function (name, value) {
-            if (!ajaxParams[name]) {
-                ajaxParams[name] = [];
-            }
+    this.$tableContainer = this.$table.closest('.table-container');
+    this.$tableWrapper = this.$table.closest('.dataTables_wrapper');
 
-            var skip = false;
-            for (var i = 0; i < (ajaxParams[name]).length; i++) { // check for duplicates
-                if (ajaxParams[name][i] === value) {
-                    skip = true;
-                }
-            }
+    this.$tableContainer.addClass('initialized');
 
-            if (skip === false) {
-                ajaxParams[name].push(value);
-            }
-        },
-        clearAjaxParams: function () {
-            ajaxParams = {};
-        },
-        submitFilter: function () {
-            var $columns = $table.find('thead tr.filter > *');
-            var totalColumnsIndex = $columns.length - 1;
+    /**
+     * Build table group actions panel
+     */
+    if ($('.table-actions-wrapper', _self.$tableContainer).size() === 1) {
+        $('.table-group-actions', _self.$tableWrapper).html($('.table-actions-wrapper', _self.$tableContainer).html()); // place the panel inside the wrapper
+        $('.table-actions-wrapper', _self.$tableContainer).remove(); // remove the template container
+    }
 
-            for(var i = 0; i < totalColumnsIndex; i++) {
-                var value = getColumnInputValue($($columns[i]));
-                datatable.columns(i).search(value);
-            }
-            datatable.ajax.reload();
-        },
-        resetFilter: function () {
-            $('textarea.form-filter, select.form-filter, input.form-filter', $table).each(function () {
-                $(this).val("");
-            });
-            $('input.form-filter[type="checkbox"]', $table).each(function () {
-                $(this).attr("checked", false);
-            });
-            the.submitFilter();
+    /**
+     * Submit filter
+     */
+    this.$table.on('click', '.filter-submit', function (e) {
+        e.preventDefault();
+        _self.submitFilter();
+    });
+
+    /**
+     * Cancel filter
+     */
+    this.$table.on('click', '.filter-cancel', function (e) {
+        e.preventDefault();
+        _self.resetFilter();
+    });
+
+    // handle group checkboxes check/uncheck
+    $('[type=checkbox][name=group_checkable]', this.$table).change(function () {
+        var set = _self.$table.find('tbody > tr > td:nth-child(1) input[type="checkbox"]');
+        var checked = $(this).prop("checked");
+        $(set).each(function () {
+            $(this).prop("checked", checked);
+        });
+        _self.countSelectedRows();
+    });
+
+    // handle row's checkbox click
+    this.$table.on('change', 'tbody > tr > td:nth-child(1) input[type="checkbox"]', function () {
+        _self.countSelectedRows();
+    });
+};
+
+DataTable.prototype.countSelectedRows = function countSelectedRows () {
+    var selected = $('tbody > tr > td:nth-child(1) input[type="checkbox"]:checked', this.$table).size();
+    var text = this.options.dataTableParams.language.groupActionCount;
+
+    if (selected > 0) {
+        $('.table-group-actions > span', this.$tableWrapper).text(text.replace("_TOTAL_", selected));
+    } else {
+        $('.table-group-actions > span', this.$tableWrapper).text("");
+    }
+
+    return selected;
+};
+
+DataTable.prototype.getColumnInputValue = function getColumnInputValue ($column) {
+    var value = '';
+    $('textarea.form-filter, select.form-filter, input.form-filter:not([type="radio"],[type="checkbox"])', $column).each(function () {
+        value = $(this).val();
+    });
+
+    // get all checkboxes
+    $('input.form-filter[type="checkbox"]:checked', $column).each(function () {
+        value = $(this).val();
+    });
+
+    // get all radio buttons
+    $('input.form-filter[type="radio"]:checked', $column).each(function () {
+        value = $(this).val();
+    });
+
+    return value;
+};
+
+DataTable.prototype.getDataTableHelper = function getDataTableHelper () {
+    return this;
+};
+
+DataTable.prototype.getTable = function getTable () {
+    return this.$table;
+};
+
+DataTable.prototype.getTableContainer = function getTableContainer () {
+    return this.$tableContainer;
+};
+
+DataTable.prototype.getTableWrapper = function getTableWrapper () {
+    return this.$tableWrapper;
+};
+
+DataTable.prototype.getDataTable = function getDataTable () {
+    return this.datatable;
+};
+
+DataTable.prototype.getSelectedRowsCount = function getSelectedRowsCount () {
+    return $('tbody > tr > td:nth-child(1) input[type="checkbox"]:checked', this.$table).size();
+};
+
+DataTable.prototype.getSelectedRows = function getSelectedRows () {
+    var rows = [];
+    $('tbody > tr > td:nth-child(1) input[type="checkbox"]:checked', this.$table).each(function () {
+        rows.push($(this).val());
+    });
+
+    return rows;
+};
+
+DataTable.prototype.setAjaxParam = function setAjaxParam (name, value) {
+    this.ajaxParams[name] = value;
+};
+
+DataTable.prototype.addAjaxParam = function addAjaxParam (name, value) {
+        var this$1 = this;
+
+    if (!this.ajaxParams[name]) {
+        this.ajaxParams[name] = [];
+    }
+
+    var skip = false;
+    for (var i = 0; i < (this.ajaxParams[name]).length; i++) { // check for duplicates
+        if (this$1.ajaxParams[name][i] === value) {
+            skip = true;
         }
     }
+
+    if (skip === false) {
+        this.ajaxParams[name].push(value);
+    }
 };
+
+DataTable.prototype.clearAjaxParams = function clearAjaxParams () {
+    this.ajaxParams = {};
+};
+
+DataTable.prototype.submitFilter = function submitFilter () {
+        var this$1 = this;
+
+    var $columns = this.$table.find('thead tr.filter > *');
+    var totalColumnsIndex = $columns.length - 1;
+
+    for (var i = 0; i < totalColumnsIndex; i++) {
+        var value = this$1.getColumnInputValue($($columns[i]));
+        this$1.datatable.columns(i).search(value);
+    }
+    this.datatable.ajax.reload();
+};
+
+DataTable.prototype.resetFilter = function resetFilter () {
+    $('textarea.form-filter, select.form-filter, input.form-filter', this.$table).each(function () {
+        $(this).val("");
+    });
+    $('input.form-filter[type="checkbox"]', this.$table).each(function () {
+        $(this).attr("checked", false);
+    });
+    this.submitFilter();
+};
+
+window.WebEd.DataTable = DataTable;
+
+}((this.LaravelElixirBundle = this.LaravelElixirBundle || {})));
+//# sourceMappingURL=webed.datatable.js.map
