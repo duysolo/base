@@ -4,6 +4,7 @@ return [
     'all' => 'Tất cả',
     'select' => 'Lựa chọn',
     'search' => 'Tìm kiếm',
+    'submit' => 'Thực hiện',
 
     'active_these_items' => 'Kích hoạt các mục này',
     'disable_these_items' => 'Vô hiệu hóa các mục này',

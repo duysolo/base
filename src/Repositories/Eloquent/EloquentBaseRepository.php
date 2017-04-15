@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 use WebEd\Base\Models\Contracts\BaseModelContract;
 use WebEd\Base\Models\EloquentBase;
 use WebEd\Base\Repositories\AbstractBaseRepository;
@@ -158,10 +159,12 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         try {
             $item = $this->model->$method($data);
         } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
             $this->resetModel();
             return null;
         }
-        return $item->{$this->getPrimaryKey()};
+        $primaryKey = $this->getPrimaryKey();
+        return $item->$primaryKey;
     }
 
     /**
@@ -181,11 +184,13 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         try {
             $item->save();
         } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
             $this->resetModel();
             return null;
         }
         $this->resetModel();
-        return $item->{$this->getPrimaryKey()};
+        $primaryKey = $this->getPrimaryKey();
+        return $item->$primaryKey;
     }
 
     /**
@@ -204,11 +209,13 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         try {
             $item->update($data);
         } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
             $this->resetModel();
             return null;
         }
         $this->resetModel();
-        return $item->{$this->getPrimaryKey()};
+        $primaryKey = $this->getPrimaryKey();
+        return $item->$primaryKey;
     }
 
     /**
@@ -223,6 +230,7 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         try {
             $items->update($data);
         } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
             $this->resetModel();
             return false;
         }
@@ -254,6 +262,7 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         try {
             $this->model->$method();
         } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
             $this->resetModel();
             return false;
         }

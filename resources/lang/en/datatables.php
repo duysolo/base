@@ -4,6 +4,7 @@ return [
     'all' => 'All',
     'select' => 'Select',
     'search' => 'Search',
+    'submit' => 'Submit',
 
     'active_these_items' => 'Active these items',
     'disable_these_items' => 'Disable these items',

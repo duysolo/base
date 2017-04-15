@@ -11,7 +11,7 @@
                 'class' => 'table-group-action-input form-control input-inline input-small input-sm'
             ]) !!}
             <button class="btn btn-sm green table-group-action-submit" data-toggle="confirmation" data-placement="left">
-                <i class="fa fa-check"></i> Submit
+                <i class="fa fa-check"></i> {{ trans('webed-core::datatables.submit') }}
             </button>
         </div>
     @endif
