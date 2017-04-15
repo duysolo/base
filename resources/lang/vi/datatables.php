@@ -10,12 +10,14 @@ return [
     'disable_these_items' => 'Vô hiệu hóa các mục này',
     'delete_these_items' => 'Xóa các mục này',
 
+    'view_this_item' => 'Xem mục này',
     'active_this_item' => 'Kích hoạt mục này',
     'disable_this_item' => 'Vô hiệu hóa mục này',
     'restore_this_item' => 'Phục hồi lại mục này',
     'delete_this_item' => 'Xóa mục này',
     'force_delete_this_item' => 'Xóa vĩnh viễn mục này',
 
+    'view' => 'Xem',
     'active' => 'Kích hoạt',
     'disable' => 'Vô hiệu hóa',
     'delete' => 'Xóa',
