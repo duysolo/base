@@ -46,18 +46,13 @@ class PageController extends AbstractController
     }
 
     /**
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     protected function defaultTemplate()
     {
+        if (view()->exists($this->currentThemeName . '::front.page-templates.' . str_slug($this->page->page_template))) {
+            return $this->view('front.page-templates.' . str_slug($this->page->page_template));
+        }
         return $this->view('front.page-templates.default');
-    }
-
-    /**
-     * @return mixed
-     */
-    protected function _template_Homepage()
-    {
-        return $this->view('front.page-templates.homepage');
     }
 }

@@ -12,6 +12,7 @@ class BootstrapModuleServiceProvider extends ServiceProvider
     public function register()
     {
         add_new_template([
+            'about_us' => 'About Us',
             'footer_custom_fields' => 'Footer custom fields',
         ], 'Page');
     }
