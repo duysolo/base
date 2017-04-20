@@ -21,7 +21,7 @@ class BaseFrontController extends BaseController
      */
     protected function getMenu($type, $relatedId)
     {
-        $menuHtml = webed_menu_render(get_settings('top_menu', 'top-menu'), [
+        $menuHtml = webed_menu_render(get_setting('top_menu', 'top-menu'), [
             'class' => 'nav navbar-nav navbar-right',
             'container_class' => 'collapse navbar-collapse',
             'has_sub_class' => 'dropdown',

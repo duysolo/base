@@ -27,7 +27,7 @@ class AdminBarMiddleware
     {
         $response = $next($request);
         if ($request->user() && $request->user()->hasPermission('access-dashboard')) {
-            if (!!(int)get_settings('show_admin_bar')) {
+            if (!!(int)get_setting('show_admin_bar')) {
                 $this->modifyResponse($request, $response);
             }
         }

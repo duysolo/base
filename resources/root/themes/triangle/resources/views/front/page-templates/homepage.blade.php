@@ -6,8 +6,8 @@
             <div class="row">
                 <div class="main-slider">
                     <div class="slide-text">
-                        <h1>{{ get_field($object, 'top_title') }}</h1>
-                        <p>{{ get_field($object, 'top_description') }}</p>
+                        <h1>{{ get_field($object->id, WEBED_PAGES, 'top_title') }}</h1>
+                        <p>{{ get_field($object->id, WEBED_PAGES, 'top_description') }}</p>
                     </div>
                     <img src="themes/triangle/images/home/slider/hill.png" class="slider-hill" alt="slider image">
                     <img src="themes/triangle/images/home/slider/house.png" class="slider-house" alt="slider image">
@@ -24,7 +24,7 @@
     <section id="services">
         <div class="container">
             <div class="row">
-                @foreach(get_field($object, 'services_section') as $key => $service)
+                @foreach(get_field($object->id, WEBED_PAGES, 'services_section', []) as $key => $service)
                     <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms"
                          data-wow-delay="{{ ($key + 1) * 300 }}ms">
                         <div class="single-service">
@@ -49,13 +49,13 @@
                 <div class="row">
                     <div class="action take-tour">
                         <div class="col-sm-7 wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="300ms">
-                            <h1 class="title">{{ get_field($object, 'tour_title') }}</h1>
-                            <p>{{ get_field($object, 'tour_description') }}</p>
+                            <h1 class="title">{{ get_field($object->id, WEBED_PAGES, 'tour_title') }}</h1>
+                            <p>{{ get_field($object->id, WEBED_PAGES, 'tour_description') }}</p>
                         </div>
                         <div class="col-sm-5 text-center wow fadeInRight" data-wow-duration="500ms"
                              data-wow-delay="300ms">
                             <div class="tour-button">
-                                <a href="{{ get_field($object, 'tour_link') }}" class="btn btn-common">TAKE THE TOUR</a>
+                                <a href="{{ get_field($object->id, WEBED_PAGES, 'tour_link') }}" class="btn btn-common">TAKE THE TOUR</a>
                             </div>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
     <section id="features">
         <div class="container">
             <div class="row">
-                @foreach(get_field($object, 'features_section') as $key => $feature)
+                @foreach(get_field($object->id, WEBED_PAGES, 'features_section', []) as $key => $feature)
                     <div class="single-features">
                         @if(($key + 1) % 2 != 0)
                             <div class="col-sm-5 wow fadeInLeft"
@@ -108,11 +108,11 @@
                 <div class="col-sm-12">
                     <div class="clients text-center wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
                         <p><img src="themes/triangle/images/home/clients.png" class="img-responsive" alt=""></p>
-                        <h1 class="title">{{ get_field($object, 'clients_title') }}</h1>
-                        <p>{{ get_field($object, 'clients_description') }}</p>
+                        <h1 class="title">{{ get_field($object->id, WEBED_PAGES, 'clients_title') }}</h1>
+                        <p>{{ get_field($object->id, WEBED_PAGES, 'clients_description') }}</p>
                     </div>
                     <div class="clients-logo wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms">
-                        @foreach(get_field($object, 'clients') as $client)
+                        @foreach(get_field($object->id, WEBED_PAGES, 'clients', []) as $client)
                         <div class="col-xs-3 col-sm-2">
                             <a target="_blank"
                                href="{{ get_sub_field($client, 'website') }}" title="{{ get_sub_field($client, 'name') }}">

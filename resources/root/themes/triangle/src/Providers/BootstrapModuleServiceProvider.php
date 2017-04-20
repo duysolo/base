@@ -1,5 +1,6 @@
 <?php namespace WebEd\Themes\Triangle\Providers;
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 
 class BootstrapModuleServiceProvider extends ServiceProvider
@@ -12,8 +13,11 @@ class BootstrapModuleServiceProvider extends ServiceProvider
     public function register()
     {
         add_new_template([
-            'about_us' => 'About Us',
             'footer_custom_fields' => 'Footer custom fields',
         ], 'Page');
+
+        add_new_template([
+            'video' => 'Video',
+        ], 'Post');
     }
 }

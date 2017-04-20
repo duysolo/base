@@ -1,7 +1,9 @@
 @extends('webed-theme::front._master')
 
 @section('content')
-    <article>
-        {!! $object->content or '' !!}
-    </article>
+    <div class="container">
+        <article>
+            {!! $object->content or '' !!}
+        </article>
+    </div>
 @endsection

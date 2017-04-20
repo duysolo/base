@@ -66,7 +66,7 @@ class BootstrapModuleMiddleware
             ], function () {
                 return [
                     'site_title',
-                    get_settings('site_title'),
+                    get_setting('site_title'),
                     ['class' => 'form-control']
                 ];
             })
@@ -79,7 +79,7 @@ class BootstrapModuleMiddleware
             ], function () {
                 return [
                     'site_logo',
-                    get_settings('site_logo'),
+                    get_setting('site_logo'),
                     null,
                     trans('webed-core::base.form.choose_image'),
                 ];
@@ -93,7 +93,7 @@ class BootstrapModuleMiddleware
             ], function () {
                 return [
                     'favicon',
-                    get_settings('favicon'),
+                    get_setting('favicon'),
                     null,
                     trans('webed-core::base.form.choose_image'),
                 ];
@@ -106,7 +106,7 @@ class BootstrapModuleMiddleware
                 'helper' => trans('webed-core::base.settings.construction_mode.helper'),
             ], function () {
                 return [
-                    [['construction_mode', '1', trans('webed-core::base.settings.construction_mode.label'), get_settings('construction_mode'),]],
+                    [['construction_mode', '1', trans('webed-core::base.settings.construction_mode.label'), get_setting('construction_mode'),]],
                 ];
             })
             ->addSettingField('show_admin_bar', [
@@ -117,7 +117,7 @@ class BootstrapModuleMiddleware
                 'helper' => trans('webed-core::base.settings.show_admin_bar.helper')
             ], function () {
                 return [
-                    [['show_admin_bar', '1', trans('webed-core::base.settings.show_admin_bar.label'), get_settings('show_admin_bar')]],
+                    [['show_admin_bar', '1', trans('webed-core::base.settings.show_admin_bar.label'), get_setting('show_admin_bar')]],
                 ];
             });
     }
@@ -159,7 +159,7 @@ class BootstrapModuleMiddleware
             ], function () use ($key) {
                 return [
                     $key,
-                    get_settings($key),
+                    get_setting($key),
                     [
                         'class' => 'form-control',
                         'placeholder' => 'https://',

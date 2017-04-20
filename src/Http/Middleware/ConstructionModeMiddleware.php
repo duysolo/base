@@ -18,7 +18,7 @@ class ConstructionModeMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (!!(int)get_settings('construction_mode')) {
+        if (!!(int)get_setting('construction_mode')) {
             if (!$request->user() || !$request->user()->hasPermission('access-dashboard')) {
                 abort(\Constants::MAINTENANCE_MODE);
             }

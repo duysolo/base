@@ -3,9 +3,9 @@
         <div class="col-sm-12 overflow">
             <div class="social-icons pull-right">
                 <ul class="nav nav-pills">
-                    <li><a href="{{ get_settings('facebook') }}"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="{{ get_settings('youtube') }}"><i class="fa fa-google-plus fa-youtube"></i></a></li>
-                    <li><a href="{{ get_settings('github') }}"><i class="fa fa-facebook fa-github"></i></a></li>
+                    <li><a href="{{ get_setting('facebook') }}"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="{{ get_setting('youtube') }}"><i class="fa fa-google-plus fa-youtube"></i></a></li>
+                    <li><a href="{{ get_setting('github') }}"><i class="fa fa-facebook fa-github"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -28,10 +28,10 @@
         </div>
         {!! $cmsMenuHtml or '' !!}
         <div class="search">
-            <form role="form">
+            <form role="form" method="GET" action="{{ route('front.search.get') }}">
                 <i class="fa fa-search"></i>
                 <div class="field-toggle">
-                    <input type="text" class="search-form" autocomplete="off" placeholder="Search">
+                    <input type="text" class="search-form" autocomplete="off" placeholder="Search" name="k">
                 </div>
             </form>
         </div>

@@ -11,7 +11,7 @@ if (!function_exists('get_templates')) {
             return config('webed-templates');
         }
         $templates = config('webed-templates.' . $type, []);
-        return $templates;
+        return $templates ?: [];
     }
 }
 

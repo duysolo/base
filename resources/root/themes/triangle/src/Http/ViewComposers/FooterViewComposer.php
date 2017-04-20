@@ -4,30 +4,19 @@ use Illuminate\View\View;
 
 class FooterViewComposer
 {
-    public function __construct()
-    {
-
-    }
-
     /**
      * @param View $view
      */
     public function compose(View $view)
     {
-        $page = get_pages([
-            'take' => 1,
-            'condition' => [
-                'id' => get_theme_options('footer_content_page', 0)
-            ],
-        ]);
+        $homepageId = get_theme_option('footer_content_page', 0);
 
-        if ($page) {
+        if ($homepageId) {
             $view->with([
-                'testimonials' => get_field($page, 'testimonials', []),
-                'contacts' => get_field($page, 'contacts'),
-                'address' => get_field($page, 'address'),
+                'testimonials' => get_field($homepageId, WEBED_PAGES, 'testimonials', []),
+                'contacts' => get_field($homepageId, WEBED_PAGES, 'contacts'),
+                'address' => get_field($homepageId, WEBED_PAGES, 'address'),
             ]);
         }
-
     }
 }

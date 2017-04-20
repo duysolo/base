@@ -26,7 +26,7 @@
 
     @yield('css')
 
-    <link rel="shortcut icon" href="{{ get_settings('favicon', 'favicon.png') }}"/>
+    <link rel="shortcut icon" href="{{ get_setting('favicon', 'favicon.png') }}"/>
 
     <script type="text/javascript">
         var BASE_URL = '{{ asset('') }}',

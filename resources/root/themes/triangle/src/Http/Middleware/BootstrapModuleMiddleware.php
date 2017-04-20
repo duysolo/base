@@ -50,7 +50,20 @@ class BootstrapModuleMiddleware
                 return [
                     'footer_content_page',
                     $pages,
-                    get_theme_options('footer_content_page'),
+                    get_theme_option('footer_content_page'),
+                    ['class' => 'form-control']
+                ];
+            })
+            ->addOptionField('items_per_page', [
+                'group' => 'basic',
+                'type' => 'number',
+                'priority' => 0,
+                'label' => 'Items per page',
+                'helper' => 'How many items will be shown on each paginated page?'
+            ], function () {
+                return [
+                    'items_per_page',
+                    get_theme_option('items_per_page'),
                     ['class' => 'form-control']
                 ];
             });

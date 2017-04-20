@@ -4,7 +4,7 @@
     "author": "Tedozi Manson",
     "description": "WebEd default theme: Triangle",
     "namespace": "WebEd\\Themes\\Triangle",
-    "version": "1.0.1",
+    "version": "1.0.5",
     "autoload": "psr-4",
     "require": {
         "webed-contact-form": "^3.1",

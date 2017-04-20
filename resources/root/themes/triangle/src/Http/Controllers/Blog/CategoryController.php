@@ -45,7 +45,23 @@ class CategoryController extends AbstractController
      */
     protected function defaultTemplate()
     {
-        $this->dis['relatedPosts'] = get_posts_by_category($this->category->id);
+        $this->dis['relatedPosts'] = get_posts_by_category($this->category->id, [
+            'select' => [
+                'posts.id', 'posts.title', 'posts.slug', 'posts.created_at',
+                'posts.updated_at', 'posts.created_by', 'posts.category_id',
+                'posts.content', 'posts.description', 'posts.keywords', 'posts.order', 'posts.thumbnail',
+            ],
+            'group_by' => [
+                'posts.id', 'posts.title', 'posts.slug', 'posts.created_at',
+                'posts.updated_at', 'posts.created_by', 'posts.category_id',
+                'posts.content', 'posts.description', 'posts.keywords', 'posts.order', 'posts.thumbnail'
+            ],
+            'with' => ['tags', 'author', 'category'],
+            'paginate' => [
+                'per_page' => get_theme_option('items_per_page', 6),
+                'current_paged' => request()->get('page', 1),
+            ],
+        ]);
 
         return $this->view('front.category-templates.default');
     }
