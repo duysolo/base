@@ -1,5 +1,25 @@
 <?php
 
+if (!function_exists('admin_bar')) {
+    /**
+     * @return \WebEd\Base\Support\AdminBar
+     */
+    function admin_bar()
+    {
+        return \WebEd\Base\Facades\AdminBarFacade::getFacadeRoot();
+    }
+}
+
+if (!function_exists('dashboard_menu')) {
+    /**
+     * @return \WebEd\Base\Menu\Support\DashboardMenu
+     */
+    function dashboard_menu()
+    {
+        return \WebEd\Base\Menu\Facades\DashboardMenuFacade::getFacadeRoot();
+    }
+}
+
 if (!function_exists('get_cms_version')) {
     /**
      * @return string
@@ -86,11 +106,11 @@ if (!function_exists('json_encode_prettify')) {
     }
 }
 
-if (!function_exists('is_in_dashboard')) {
+if (!function_exists('is_admin_panel')) {
     /**
      * @return bool
      */
-    function is_in_dashboard()
+    function is_admin_panel()
     {
         $segment = request()->segment(1);
         if ($segment === config('webed.admin_route', 'admincp')) {

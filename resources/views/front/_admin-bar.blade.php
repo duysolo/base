@@ -6,7 +6,7 @@
             </a>
         </div>
         <ul class="admin-navbar-nav">
-            @foreach(\AdminBar::getGroups() as $slug => $group)
+            @foreach(admin_bar()->getGroups() as $slug => $group)
                 @if(array_get($group, 'items'))
                     <li class="admin-bar-dropdown">
                         <a href="{{ array_get($group, 'link') }}" class="dropdown-toggle">
@@ -24,7 +24,7 @@
                     </li>
                 @endif
             @endforeach
-            @foreach(\AdminBar::getLinksNoGroup() as $item)
+            @foreach(admin_bar()->getLinksNoGroup() as $item)
                 <li>
                     <a href="{{ array_get($item, 'link') }}">{{ array_get($item, 'title') }}</a>
                 </li>

@@ -2,14 +2,9 @@
 
 use WebEd\Base\Facades\DashboardLanguageFacade;
 
-class DashboardLanguageController extends BaseAdminController
+class DashboardLanguageController extends BaseController
 {
     protected $module = 'webed-core';
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     public function getChangeLanguage($languageSlug)
     {

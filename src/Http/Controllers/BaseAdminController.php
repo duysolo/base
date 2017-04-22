@@ -40,7 +40,7 @@ abstract class BaseAdminController extends BaseController
             view()->share([
                 'loggedInUser' => $this->loggedInUser
             ]);
-            \DashboardMenu::setUser($this->loggedInUser);
+            dashboard_menu()->setUser($this->loggedInUser);
 
             return $next($request);
         });
@@ -55,7 +55,7 @@ abstract class BaseAdminController extends BaseController
      */
     protected function getDashboardMenu($activeId = null)
     {
-        \DashboardMenu::setActiveItem($activeId);
+        dashboard_menu()->setActiveItem($activeId);
     }
 
     /**

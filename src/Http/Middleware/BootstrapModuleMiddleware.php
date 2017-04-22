@@ -31,7 +31,7 @@ class BootstrapModuleMiddleware
         /**
          * Register to dashboard menu
          */
-        \DashboardMenu::registerItem([
+        dashboard_menu()->registerItem([
             'id' => 'webed-dashboard',
             'priority' => -999,
             'parent_id' => null,
@@ -42,7 +42,7 @@ class BootstrapModuleMiddleware
             'css_class' => null,
         ]);
 
-        \DashboardMenu::registerItem([
+        dashboard_menu()->registerItem([
             'id' => 'webed-configuration',
             'priority' => 999,
             'parent_id' => null,

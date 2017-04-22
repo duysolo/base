@@ -20,9 +20,9 @@
 
     @php do_action(BASE_ACTION_HEADER_CSS) @endphp
 
-    <link rel="stylesheet" href="admin/theme/lte/css/AdminLTE.min.css">
-    <link rel="stylesheet" href="admin/theme/lte/css/skins/_all-skins.min.css">
-    <link rel="stylesheet" href="admin/css/style.css">
+    <link rel="stylesheet" href="{{ asset('admin/theme/lte/css/AdminLTE.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/theme/lte/css/skins/_all-skins.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
 
     @yield('css')
 
@@ -96,14 +96,15 @@
 <![endif]-->
 
 {{--BEGIN plugins--}}
-<script src="admin/theme/lte/js/app.js"></script>
-<script src="admin/js/webed-core.js"></script>
-<script src="admin/theme/lte/js/demo.js"></script>
-<script src="admin/js/script.js"></script>
+<script src="{{ asset('admin/theme/lte/js/app.js') }}"></script>
+<script src="{{ asset('admin/js/webed-core.js') }}"></script>
+<script src="{{ asset('admin/theme/lte/js/demo.js') }}"></script>
 {!! \Assets::renderScripts('bottom') !!}
 {{--END plugins--}}
 
 @php do_action(BASE_ACTION_FOOTER_JS) @endphp
+
+<script src="{{ asset('admin/js/script.js') }}"></script>
 
 @yield('js')
 

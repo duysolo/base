@@ -26,7 +26,7 @@ class Handler extends ExceptionHandler
                     if ($request->ajax() || $request->wantsJson()) {
                         return response()->json(response_with_messages(trans('webed-core::errors.' . \Constants::UNAUTHORIZED_CODE . '.message'), true, \Constants::UNAUTHORIZED_CODE));
                     }
-                    if (is_in_dashboard()) {
+                    if (is_admin_panel()) {
                         assets_management()->getAssetsFrom('admin');
                         return response()->view('webed-core::admin.errors.' . \Constants::UNAUTHORIZED_CODE, [], \Constants::UNAUTHORIZED_CODE);
                     }
@@ -39,7 +39,7 @@ class Handler extends ExceptionHandler
                     if ($request->ajax() || $request->wantsJson()) {
                         return response()->json(response_with_messages(trans('webed-core::errors.' . \Constants::FORBIDDEN_CODE . '.message'), true, \Constants::FORBIDDEN_CODE));
                     }
-                    if (is_in_dashboard()) {
+                    if (is_admin_panel()) {
                         assets_management()->getAssetsFrom('admin');
                         return response()->view('webed-core::admin.errors.' . \Constants::FORBIDDEN_CODE, [], \Constants::FORBIDDEN_CODE);
                     }
@@ -52,7 +52,7 @@ class Handler extends ExceptionHandler
                     if ($request->ajax() || $request->wantsJson()) {
                         return response()->json(response_with_messages(trans('webed-core::errors.' . \Constants::NOT_FOUND_CODE . '.message'), true, \Constants::NOT_FOUND_CODE));
                     }
-                    if (is_in_dashboard()) {
+                    if (is_admin_panel()) {
                         assets_management()->getAssetsFrom('admin');
                         return response()->view('webed-core::admin.errors.' . \Constants::NOT_FOUND_CODE, [], \Constants::NOT_FOUND_CODE);
                     }
@@ -65,7 +65,7 @@ class Handler extends ExceptionHandler
                     if ($request->ajax() || $request->wantsJson()) {
                         return response()->json(response_with_messages(trans('webed-core::errors.' . \Constants::METHOD_NOT_ALLOWED . '.message'), true, \Constants::NOT_FOUND_CODE));
                     }
-                    if (is_in_dashboard()) {
+                    if (is_admin_panel()) {
                         assets_management()->getAssetsFrom('admin');
                         return response()->view('webed-core::admin.errors.' . \Constants::METHOD_NOT_ALLOWED, [], \Constants::METHOD_NOT_ALLOWED);
                     }
@@ -78,7 +78,7 @@ class Handler extends ExceptionHandler
                     if ($request->ajax() || $request->wantsJson()) {
                         return response()->json(response_with_messages($exception->getMessage(), true, \Constants::ERROR_CODE));
                     }
-                    if (is_in_dashboard()) {
+                    if (is_admin_panel()) {
                         assets_management()->getAssetsFrom('admin');
                         return response()->view('webed-core::admin.errors.' . \Constants::ERROR_CODE, [
                             'exception' => $exception
@@ -95,7 +95,7 @@ class Handler extends ExceptionHandler
                     if ($request->ajax() || $request->wantsJson()) {
                         return response()->json(response_with_messages(trans('webed-core::errors.' . \Constants::MAINTENANCE_MODE . '.message'), true, \Constants::MAINTENANCE_MODE));
                     }
-                    if (is_in_dashboard()) {
+                    if (is_admin_panel()) {
                         assets_management()->getAssetsFrom('admin');
                         return response()->view('webed-core::admin.errors.' . \Constants::MAINTENANCE_MODE, [], \Constants::MAINTENANCE_MODE);
                     }

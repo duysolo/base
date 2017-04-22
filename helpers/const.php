@@ -65,6 +65,10 @@ if (!defined('BASE_ACTION_AFTER_RESTORE')) {
 /**
  * Actions in views
  */
+if (!defined('BASE_ACTION_FORM_ACTIONS')) {
+    define('BASE_ACTION_FORM_ACTIONS', 'base_action_form_actions');
+}
+
 if (!defined('BASE_ACTION_HEADER_MENU')) {
     define('BASE_ACTION_HEADER_MENU', 'base_action_header_menu');
 }

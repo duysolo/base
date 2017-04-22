@@ -22,7 +22,7 @@ class MiddlewareServiceProvider extends ServiceProvider
          */
         $router = $this->app['router'];
 
-        if(!is_in_dashboard()) {
+        if(!is_admin_panel()) {
             $router->pushMiddlewareToGroup('web', ConstructionModeMiddleware::class);
             $router->pushMiddlewareToGroup('web', AdminBarMiddleware::class);
             $router->pushMiddlewareToGroup('api', CorsMiddleware::class);
