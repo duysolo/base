@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'Page' => [
+    'page' => [
         'homepage' => 'Homepage',
     ],
 ];

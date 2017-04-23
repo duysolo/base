@@ -14,10 +14,10 @@ class BootstrapModuleServiceProvider extends ServiceProvider
     {
         add_new_template([
             'footer_custom_fields' => 'Footer custom fields',
-        ], 'Page');
+        ], 'page');
 
         add_new_template([
             'video' => 'Video',
-        ], 'Post');
+        ], 'blog-post');
     }
 }
