@@ -99,4 +99,6 @@ return [
     'stat_box' => [
         'more_info' => 'Thông tin thêm',
     ],
+
+    'item_not_exists' => 'Mục này không tồn tại',
 ];

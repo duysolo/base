@@ -29,7 +29,8 @@
         "sgsoft-studio/users": "3.1.*",
         "sgsoft-studio/pages": "3.1.*",
         "sgsoft-studio/shortcode": "3.1.*",
-        "sgsoft-studio/custom-fields": "3.1.*"
+        "sgsoft-studio/custom-fields": "3.1.*",
+        "sgsoft-studio/static-blocks": "3.1.*"
     },
     "autoload": {
         "psr-4": {

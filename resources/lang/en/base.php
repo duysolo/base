@@ -99,4 +99,6 @@ return [
     'stat_box' => [
         'more_info' => 'More info',
     ],
+
+    'item_not_exists' => 'Item not exists',
 ];
