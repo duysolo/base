@@ -40,7 +40,7 @@ class HookServiceProvider extends ServiceProvider
      */
     protected function booted()
     {
-        add_filter(BASE_FILTER_BEFORE_UPDATE, function ($data, $screenName, $action) {
+        add_filter(BASE_FILTER_BEFORE_UPDATE, function ($data, $screenName, $action = null) {
             if ($screenName !== WEBED_SETTINGS) {
                 return $data;
             }
