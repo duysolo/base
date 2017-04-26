@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
-use WebEd\Base\Settings\Http\Controllers\SettingController;
 
 class HookServiceProvider extends ServiceProvider
 {
@@ -41,8 +40,11 @@ class HookServiceProvider extends ServiceProvider
      */
     protected function booted()
     {
-        add_filter('settings.before-edit.post', function ($data, SettingController $controller) {
-            if($controller->request->get('_tab') === 'advanced') {
+        add_filter(BASE_FILTER_BEFORE_UPDATE, function ($data, $screenName, $action) {
+            if ($screenName !== WEBED_SETTINGS) {
+                return $data;
+            }
+            if($this->request->get('_tab') === 'advanced') {
                 $data['construction_mode'] = (int)($this->request->has('construction_mode'));
                 $data['show_admin_bar'] = (int)($this->request->has('show_admin_bar'));
             }
