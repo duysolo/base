@@ -101,4 +101,5 @@ return [
     ],
 
     'item_not_exists' => 'Item not exists',
+    'disabled_in_demo_mode' => 'This feature is disabled in demo site',
 ];

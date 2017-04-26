@@ -101,4 +101,5 @@ return [
     ],
 
     'item_not_exists' => 'Mục này không tồn tại',
+    'disabled_in_demo_mode' => 'Chức tạm tạm thời bị khóa trên trang demo',
 ];
