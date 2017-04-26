@@ -3,15 +3,15 @@
 
  Source Server         : localhost
  Source Server Type    : MySQL
- Source Server Version : 50630
+ Source Server Version : 50631
  Source Host           : localhost
  Source Database       : webed_triangle_theme
 
  Target Server Type    : MySQL
- Target Server Version : 50630
+ Target Server Version : 50631
  File Encoding         : utf-8
 
- Date: 04/20/2017 22:15:57 PM
+ Date: 04/26/2017 19:15:07 PM
 */
 
 SET NAMES utf8;
@@ -258,13 +258,13 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 --  Records of `migrations`
 -- ----------------------------
 BEGIN;
-INSERT INTO `migrations` VALUES ('1', '2016_08_04_043730_create_users_table', '1'), ('2', '2016_08_04_043732_create_roles_table', '1'), ('3', '2016_08_04_043756_create_settings_table', '1'), ('4', '2016_11_07_102334_create_menus', '1'), ('5', '2016_11_27_120334_create_plugins_table', '1'), ('6', '2016_11_28_015813_create_pages_table', '1'), ('7', '2016_11_29_163613_create_themes_table', '1'), ('8', '2016_12_07_121349_create_view_trackers_table', '1'), ('9', '2017_04_14_073323_create_custom_fields_tables', '1');
+INSERT INTO `migrations` VALUES ('1', '2016_08_04_043730_create_users_table', '1'), ('2', '2016_08_04_043732_create_roles_table', '1'), ('3', '2016_08_04_043756_create_settings_table', '1'), ('4', '2016_11_07_102334_create_menus', '1'), ('5', '2016_11_27_120334_create_plugins_table', '1'), ('6', '2016_11_28_015813_create_pages_table', '1'), ('7', '2016_11_29_163613_create_themes_table', '1'), ('8', '2016_12_07_121349_create_view_trackers_table', '1'), ('9', '2017_04_14_073323_create_custom_fields_tables', '1'), ('10', '2017_04_23_112106_create_static_blocks_table', '2'), ('11', '2017_04_25_075346_set_theme_option_to_nullable', '2');
 COMMIT;
 
 -- ----------------------------
@@ -291,7 +291,7 @@ CREATE TABLE `pages` (
   KEY `pages_updated_by_foreign` (`updated_by`),
   CONSTRAINT `pages_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,
   CONSTRAINT `pages_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 --  Records of `pages`
@@ -489,8 +489,29 @@ CREATE TABLE `settings` (
 --  Records of `settings`
 -- ----------------------------
 BEGIN;
-INSERT INTO `settings` VALUES ('1', 'default_homepage', '1', '2017-04-16 13:11:49', '2017-04-16 13:11:49'), ('2', 'site_title', '', '2017-04-16 13:11:49', '2017-04-16 13:11:49'), ('3', 'site_logo', '', '2017-04-16 13:11:49', '2017-04-16 13:11:49'), ('4', 'favicon', '', '2017-04-16 13:11:49', '2017-04-16 13:11:49'), ('5', 'main_menu', 'main-menu', '2017-04-16 13:28:20', '2017-04-16 13:28:20'), ('6', 'construction_mode', '1', '2017-04-16 13:43:52', '2017-04-16 13:43:52'), ('7', 'show_admin_bar', '1', '2017-04-16 13:43:52', '2017-04-16 13:43:52'), ('8', 'facebook', 'https://www.facebook.com/duyphan.developer', '2017-04-16 13:46:32', '2017-04-16 13:46:32'), ('9', 'youtube', 'https://www.youtube.com/channel/UC5XqPLFs_eeBu6LU4LZLY6w', '2017-04-16 13:46:32', '2017-04-16 13:46:32'), ('10', 'twitter', '', '2017-04-16 13:46:32', '2017-04-16 13:46:32'), ('11', 'google_plus', '', '2017-04-16 13:46:32', '2017-04-16 13:46:32'), ('12', 'instagram', '', '2017-04-16 13:46:32', '2017-04-16 13:46:32'), ('13', 'linkedin', '', '2017-04-16 13:46:32', '2017-04-16 13:46:32'), ('14', 'flickr', '', '2017-04-16 13:46:32', '2017-04-16 13:46:32'), ('15', 'google_captcha_site_key', '6Ler0xIUAAAAAC7bWMHYHcNsLdEElhNW0Dfuhl8p', '2017-04-16 17:27:37', '2017-04-16 17:27:37'), ('16', 'google_captcha_secret_key', '6Ler0xIUAAAAAC_NuVufXcldntV35d23KxCS4Dmn', '2017-04-16 17:27:37', '2017-04-16 17:27:37');
+INSERT INTO `settings` VALUES ('1', 'default_homepage', '1', '2017-04-16 13:11:49', '2017-04-16 13:11:49'), ('2', 'site_title', '', '2017-04-16 13:11:49', '2017-04-16 13:11:49'), ('3', 'site_logo', '', '2017-04-16 13:11:49', '2017-04-16 13:11:49'), ('4', 'favicon', '', '2017-04-16 13:11:49', '2017-04-16 13:11:49'), ('5', 'main_menu', 'main-menu', '2017-04-16 13:28:20', '2017-04-16 13:28:20'), ('6', 'construction_mode', '0', '2017-04-16 13:43:52', '2017-04-26 12:14:05'), ('7', 'show_admin_bar', '1', '2017-04-16 13:43:52', '2017-04-16 13:43:52'), ('8', 'facebook', 'https://www.facebook.com/duyphan.developer', '2017-04-16 13:46:32', '2017-04-16 13:46:32'), ('9', 'youtube', 'https://www.youtube.com/channel/UC5XqPLFs_eeBu6LU4LZLY6w', '2017-04-16 13:46:32', '2017-04-16 13:46:32'), ('10', 'twitter', '', '2017-04-16 13:46:32', '2017-04-16 13:46:32'), ('11', 'google_plus', '', '2017-04-16 13:46:32', '2017-04-16 13:46:32'), ('12', 'instagram', '', '2017-04-16 13:46:32', '2017-04-16 13:46:32'), ('13', 'linkedin', '', '2017-04-16 13:46:32', '2017-04-16 13:46:32'), ('14', 'flickr', '', '2017-04-16 13:46:32', '2017-04-16 13:46:32'), ('15', 'google_captcha_site_key', '6Ler0xIUAAAAAC7bWMHYHcNsLdEElhNW0Dfuhl8p', '2017-04-16 17:27:37', '2017-04-16 17:27:37'), ('16', 'google_captcha_secret_key', '6Ler0xIUAAAAAC_NuVufXcldntV35d23KxCS4Dmn', '2017-04-16 17:27:37', '2017-04-16 17:27:37');
 COMMIT;
+
+-- ----------------------------
+--  Table structure for `static_blocks`
+-- ----------------------------
+DROP TABLE IF EXISTS `static_blocks`;
+CREATE TABLE `static_blocks` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci,
+  `status` enum('activated','disabled') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'activated',
+  `created_by` int(10) unsigned DEFAULT NULL,
+  `updated_by` int(10) unsigned DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `static_blocks_created_by_foreign` (`created_by`),
+  KEY `static_blocks_updated_by_foreign` (`updated_by`),
+  CONSTRAINT `static_blocks_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `static_blocks_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 --  Table structure for `theme_options`
@@ -500,7 +521,7 @@ CREATE TABLE `theme_options` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `theme_id` int(10) unsigned NOT NULL,
   `key` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` text COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   UNIQUE KEY `theme_options_theme_id_key_unique` (`theme_id`,`key`),
   CONSTRAINT `theme_options_theme_id_foreign` FOREIGN KEY (`theme_id`) REFERENCES `themes` (`id`) ON DELETE CASCADE
@@ -576,7 +597,7 @@ CREATE TABLE `users` (
 --  Records of `users`
 -- ----------------------------
 BEGIN;
-INSERT INTO `users` VALUES ('1', 'admin', 'admin@webed.com', '$2y$10$g8Q.dKOOYsqfFVxJ3V/XVOpWsyizL99S17i1UWBJ3DGijbWil5cI.', 'Super Admin', 'Admin', '0', null, '/uploads/users/user_avatar.png', '0915428202', '0931519393', 'male', 'activated', '1993-02-25 00:00:00', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliq Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.', 'psGWrYUFoShzcEHGmS9o1SDTbhTskZI4m69hEev3CvSPG2MiLFtesKsJI8gN', null, null, '2017-04-20 11:34:59', null, null, null, '2017-04-16 12:47:24', '2017-04-20 11:34:59');
+INSERT INTO `users` VALUES ('1', 'admin', 'admin@webed.com', '$2y$10$g8Q.dKOOYsqfFVxJ3V/XVOpWsyizL99S17i1UWBJ3DGijbWil5cI.', 'Super Admin', 'Admin', '0', null, '/uploads/users/user_avatar.png', '0915428202', '0931519393', 'male', 'activated', '1993-02-25 00:00:00', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliq Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.', 'WeDIHfLjyZC1vKNW95rMHnNKfV26aeXnu2zBOVtTRSrSX6gIqKvM5wJtkITf', null, null, '2017-04-26 12:13:54', null, null, null, '2017-04-16 12:47:24', '2017-04-26 12:13:54');
 COMMIT;
 
 -- ----------------------------
@@ -619,7 +640,7 @@ CREATE TABLE `view_trackers` (
 --  Records of `view_trackers`
 -- ----------------------------
 BEGIN;
-INSERT INTO `view_trackers` VALUES ('1', 'WebEd\\Base\\Pages\\Models\\Page', '1', '354'), ('2', 'WebEd\\Base\\Pages\\Models\\Page', '3', '4'), ('3', 'WebEd\\Plugins\\Blog\\Models\\Category', '1', '80'), ('4', 'WebEd\\Plugins\\Blog\\Models\\Post', '1', '4'), ('5', 'WebEd\\Plugins\\Blog\\Models\\Post', '3', '34'), ('6', 'WebEd\\Plugins\\Blog\\Models\\Post', '2', '1'), ('7', 'WebEd\\Plugins\\Blog\\Models\\Post', '4', '3');
+INSERT INTO `view_trackers` VALUES ('1', 'WebEd\\Base\\Pages\\Models\\Page', '1', '368'), ('2', 'WebEd\\Base\\Pages\\Models\\Page', '3', '4'), ('3', 'WebEd\\Plugins\\Blog\\Models\\Category', '1', '80'), ('4', 'WebEd\\Plugins\\Blog\\Models\\Post', '1', '4'), ('5', 'WebEd\\Plugins\\Blog\\Models\\Post', '3', '34'), ('6', 'WebEd\\Plugins\\Blog\\Models\\Post', '2', '1'), ('7', 'WebEd\\Plugins\\Blog\\Models\\Post', '4', '3');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
