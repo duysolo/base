@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="/" class="logo">
+    <a href="{{ asset('') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>WE</b></span>
         <!-- logo for regular state and mobile devices -->
@@ -96,7 +96,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    <a href="{{ asset('') }}" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
                 </li>
             </ul>
         </div>
