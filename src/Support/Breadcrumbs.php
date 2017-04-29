@@ -28,10 +28,10 @@ class Breadcrumbs
     protected $itemTag = 'li';
 
     /**
-     * Add link
      * @param string $title
      * @param string $link
      * @param null|string $icon
+     * @return $this
      */
     public function addLink($title, $link = null, $icon = null)
     {
@@ -69,24 +69,24 @@ class Breadcrumbs
 
     /**
      * Set container tag name
-     * @param string $class
+     * @param string $tagName
      * @return $this
      */
-    public function setContainerTag($class)
+    public function setContainerTag($tagName)
     {
-        $this->containerTag = $class;
+        $this->containerTag = $tagName;
 
         return $this;
     }
 
     /**
      * Set item tag name
-     * @param string $class
+     * @param string $tagName
      * @return $this
      */
-    public function setItemTag($class)
+    public function setItemTag($tagName)
     {
-        $this->itemTag = $class;
+        $this->itemTag = $tagName;
 
         return $this;
     }
@@ -99,6 +99,7 @@ class Breadcrumbs
     {
         $htmlSrc = '<' . $this->containerTag . ' class="' . $this->breadcrumbClass . '">';
         foreach ($this->links as $key => $row) {
+            $icon =
             $htmlSrc .= '<' . $this->itemTag . '>' . $row . '</' . $this->itemTag . '>';
         }
         $htmlSrc .= '</' . $this->containerTag . '>';

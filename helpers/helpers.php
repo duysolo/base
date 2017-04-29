@@ -58,9 +58,9 @@ if (!function_exists('get_image')) {
     function get_image($image, $default = 'admin/images/no-image.png')
     {
         if (!$image || !trim($image)) {
-            return $default;
+            return asset($default);
         }
-        return $image;
+        return asset($image);
     }
 }
 
