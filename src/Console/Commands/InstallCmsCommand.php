@@ -158,7 +158,7 @@ class InstallCmsCommand extends Command
 
     protected function registerInstallModuleService()
     {
-        $modules = get_modules_by_type('core')->where('namespace', '!=', 'WebEd\Base');
+        $modules = get_modules_by_type('base')->where('namespace', '!=', 'WebEd\Base');
         $this->app->register(InstallModuleServiceProvider::class);
         foreach ($modules as $module) {
             $namespace = str_replace('\\\\', '\\', array_get($module, 'namespace', '') . '\Providers\InstallModuleServiceProvider');
