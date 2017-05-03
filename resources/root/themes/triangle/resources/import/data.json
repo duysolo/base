@@ -1,0 +1,357 @@
+[
+    {
+        "id": 1,
+        "title": "Homepage",
+        "status": "activated",
+        "order": "0",
+        "rules": "[[{\"name\":\"page_template\",\"type\":\"==\",\"value\":\"homepage\"}]]",
+        "items": [
+            {
+                "id": 1,
+                "field_group_id": "1",
+                "parent_id": null,
+                "order": "1",
+                "title": "Top title",
+                "slug": "top_title",
+                "type": "text",
+                "instructions": null,
+                "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":null,\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":null,\"rows\":null}",
+                "children": []
+            },
+            {
+                "id": 2,
+                "field_group_id": "1",
+                "parent_id": null,
+                "order": "2",
+                "title": "Top description",
+                "slug": "top_description",
+                "type": "textarea",
+                "instructions": null,
+                "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":null,\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":null,\"rows\":null}",
+                "children": []
+            },
+            {
+                "id": 3,
+                "field_group_id": "1",
+                "parent_id": null,
+                "order": "3",
+                "title": "Services section",
+                "slug": "services_section",
+                "type": "repeater",
+                "instructions": null,
+                "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":null,\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":\"Add service\",\"rows\":null}",
+                "children": [
+                    {
+                        "id": 4,
+                        "field_group_id": "1",
+                        "parent_id": "3",
+                        "order": "1",
+                        "title": "Title",
+                        "slug": "title",
+                        "type": "text",
+                        "instructions": null,
+                        "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":null,\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":null,\"rows\":null}",
+                        "children": []
+                    },
+                    {
+                        "id": 5,
+                        "field_group_id": "1",
+                        "parent_id": "3",
+                        "order": "2",
+                        "title": "Description",
+                        "slug": "description",
+                        "type": "textarea",
+                        "instructions": null,
+                        "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":null,\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":null,\"rows\":null}",
+                        "children": []
+                    },
+                    {
+                        "id": 6,
+                        "field_group_id": "1",
+                        "parent_id": "3",
+                        "order": "3",
+                        "title": "Icon",
+                        "slug": "icon",
+                        "type": "image",
+                        "instructions": null,
+                        "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":null,\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":null,\"rows\":null}",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": 7,
+                "field_group_id": "1",
+                "parent_id": null,
+                "order": "4",
+                "title": "Tour title",
+                "slug": "tour_title",
+                "type": "text",
+                "instructions": null,
+                "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":null,\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":null,\"rows\":null}",
+                "children": []
+            },
+            {
+                "id": 8,
+                "field_group_id": "1",
+                "parent_id": null,
+                "order": "5",
+                "title": "Tour description",
+                "slug": "tour_description",
+                "type": "textarea",
+                "instructions": null,
+                "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":null,\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":null,\"rows\":null}",
+                "children": []
+            },
+            {
+                "id": 9,
+                "field_group_id": "1",
+                "parent_id": null,
+                "order": "6",
+                "title": "Tour link",
+                "slug": "tour_link",
+                "type": "text",
+                "instructions": null,
+                "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":\"http:\\/\\/\",\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":null,\"rows\":null}",
+                "children": []
+            },
+            {
+                "id": 10,
+                "field_group_id": "1",
+                "parent_id": null,
+                "order": "7",
+                "title": "Features section",
+                "slug": "features_section",
+                "type": "repeater",
+                "instructions": null,
+                "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":null,\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":\"Add feature\",\"rows\":null}",
+                "children": [
+                    {
+                        "id": 11,
+                        "field_group_id": "1",
+                        "parent_id": "10",
+                        "order": "1",
+                        "title": "Title",
+                        "slug": "title",
+                        "type": "text",
+                        "instructions": null,
+                        "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":null,\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":null,\"rows\":null}",
+                        "children": []
+                    },
+                    {
+                        "id": 12,
+                        "field_group_id": "1",
+                        "parent_id": "10",
+                        "order": "2",
+                        "title": "Description",
+                        "slug": "description",
+                        "type": "text",
+                        "instructions": null,
+                        "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":null,\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":null,\"rows\":null}",
+                        "children": []
+                    },
+                    {
+                        "id": 13,
+                        "field_group_id": "1",
+                        "parent_id": "10",
+                        "order": "3",
+                        "title": "Feature image",
+                        "slug": "feature_image",
+                        "type": "image",
+                        "instructions": null,
+                        "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":null,\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":null,\"rows\":null}",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": 14,
+                "field_group_id": "1",
+                "parent_id": null,
+                "order": "8",
+                "title": "Clients title",
+                "slug": "clients_title",
+                "type": "text",
+                "instructions": null,
+                "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":null,\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":null,\"rows\":null}",
+                "children": []
+            },
+            {
+                "id": 15,
+                "field_group_id": "1",
+                "parent_id": null,
+                "order": "9",
+                "title": "Clients description",
+                "slug": "clients_description",
+                "type": "text",
+                "instructions": null,
+                "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":null,\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":null,\"rows\":null}",
+                "children": []
+            },
+            {
+                "id": 16,
+                "field_group_id": "1",
+                "parent_id": null,
+                "order": "10",
+                "title": "Clients",
+                "slug": "clients",
+                "type": "repeater",
+                "instructions": null,
+                "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":null,\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":\"Add client\",\"rows\":null}",
+                "children": [
+                    {
+                        "id": 17,
+                        "field_group_id": "1",
+                        "parent_id": "16",
+                        "order": "1",
+                        "title": "Name",
+                        "slug": "name",
+                        "type": "text",
+                        "instructions": null,
+                        "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":null,\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":null,\"rows\":null}",
+                        "children": []
+                    },
+                    {
+                        "id": 18,
+                        "field_group_id": "1",
+                        "parent_id": "16",
+                        "order": "2",
+                        "title": "Website",
+                        "slug": "website",
+                        "type": "text",
+                        "instructions": null,
+                        "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":\"http:\\/\\/\",\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":null,\"rows\":null}",
+                        "children": []
+                    },
+                    {
+                        "id": 19,
+                        "field_group_id": "1",
+                        "parent_id": "16",
+                        "order": "3",
+                        "title": "Logo",
+                        "slug": "logo",
+                        "type": "image",
+                        "instructions": "130x50",
+                        "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":null,\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":null,\"rows\":null}",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Footer custom fields",
+        "status": "activated",
+        "order": "0",
+        "rules": "[[{\"name\":\"page_template\",\"type\":\"==\",\"value\":\"footer_custom_fields\"}]]",
+        "items": [
+            {
+                "id": 20,
+                "field_group_id": "2",
+                "parent_id": null,
+                "order": "1",
+                "title": "Testimonials",
+                "slug": "testimonials",
+                "type": "repeater",
+                "instructions": null,
+                "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":null,\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":\"Add testimonial\",\"rows\":null}",
+                "children": [
+                    {
+                        "id": 21,
+                        "field_group_id": "2",
+                        "parent_id": "20",
+                        "order": "1",
+                        "title": "Client name",
+                        "slug": "client_name",
+                        "type": "text",
+                        "instructions": null,
+                        "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":null,\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":null,\"rows\":null}",
+                        "children": []
+                    },
+                    {
+                        "id": 22,
+                        "field_group_id": "2",
+                        "parent_id": "20",
+                        "order": "2",
+                        "title": "Description",
+                        "slug": "description",
+                        "type": "text",
+                        "instructions": null,
+                        "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":null,\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":null,\"rows\":null}",
+                        "children": []
+                    },
+                    {
+                        "id": 23,
+                        "field_group_id": "2",
+                        "parent_id": "20",
+                        "order": "3",
+                        "title": "Link",
+                        "slug": "link",
+                        "type": "text",
+                        "instructions": null,
+                        "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":\"http:\\/\\/\",\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":null,\"rows\":null}",
+                        "children": []
+                    },
+                    {
+                        "id": 24,
+                        "field_group_id": "2",
+                        "parent_id": "20",
+                        "order": "4",
+                        "title": "Avatar",
+                        "slug": "avatar",
+                        "type": "image",
+                        "instructions": null,
+                        "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":null,\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":null,\"rows\":null}",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": 25,
+                "field_group_id": "2",
+                "parent_id": null,
+                "order": "2",
+                "title": "Contacts",
+                "slug": "contacts",
+                "type": "textarea",
+                "instructions": null,
+                "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":null,\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":null,\"rows\":\"4\"}",
+                "children": []
+            },
+            {
+                "id": 26,
+                "field_group_id": "2",
+                "parent_id": null,
+                "order": "3",
+                "title": "Address",
+                "slug": "address",
+                "type": "textarea",
+                "instructions": null,
+                "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":null,\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":null,\"rows\":\"4\"}",
+                "children": []
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Video",
+        "status": "activated",
+        "order": "0",
+        "rules": "[[{\"name\":\"webed-blog.posts.post_template\",\"type\":\"==\",\"value\":\"video\"}]]",
+        "items": [
+            {
+                "id": 27,
+                "field_group_id": "3",
+                "parent_id": null,
+                "order": "1",
+                "title": "Youtube url",
+                "slug": "youtube_url",
+                "type": "text",
+                "instructions": null,
+                "options": "{\"defaultValue\":null,\"defaultValueTextarea\":null,\"placeholderText\":\"http:\\/\\/youtube...\",\"wysiwygToolbar\":null,\"selectChoices\":null,\"buttonLabel\":null,\"rows\":null}",
+                "children": []
+            }
+        ]
+    }
+]

@@ -7,7 +7,6 @@
     "version": "1.0.5",
     "autoload": "psr-4",
     "require": {
-        "webed-contact-form": "^3.1",
-        "webed-captcha": "^3.1"
+
     }
 }

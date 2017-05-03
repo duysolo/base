@@ -8,6 +8,8 @@ use WebEd\Base\Exceptions\Repositories\WrongCriteria;
 use WebEd\Base\Models\Contracts\BaseModelContract;
 use WebEd\Base\Repositories\Contracts\AbstractRepositoryContract;
 
+
+
 abstract class AbstractBaseRepository implements AbstractRepositoryContract
 {
     /**

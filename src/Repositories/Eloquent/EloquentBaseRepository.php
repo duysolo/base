@@ -14,6 +14,25 @@ use WebEd\Base\Repositories\AbstractBaseRepository;
 abstract class EloquentBaseRepository extends AbstractBaseRepository
 {
     /**
+     * @param array $where
+     */
+    protected function applyConditions(array $where)
+    {
+        foreach ($where as $field => $value) {
+            if (is_array($value)) {
+                list($field, $condition, $val) = $value;
+                if (strtoupper($condition) == 'IN') {
+                    $this->model = $this->model->whereIn($field, $val);
+                } else {
+                    $this->model = $this->model->where($field, $condition, $val);
+                }
+            } else {
+                $this->model = $this->model->where($field, '=', $value);
+            }
+        }
+    }
+
+    /**
      * @return int
      */
     public function count()
@@ -64,7 +83,8 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
      */
     public function findWhere(array $condition)
     {
-        $result = $this->model->where($condition)->first();
+        $this->applyConditions($condition);
+        $result = $this->model->first();
 
         $this->resetModel();
 
@@ -122,9 +142,9 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
     {
         $this->applyCriteria();
 
-        $result = $this->model
-            ->where($condition)
-            ->get($columns);
+        $this->applyConditions($condition);
+
+        $result = $this->model->get($columns);
 
         $this->resetModel();
 
