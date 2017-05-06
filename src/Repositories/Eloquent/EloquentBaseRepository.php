@@ -231,6 +231,7 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
             $this->resetModel();
+            dd($exception->getMessage());
             return null;
         }
         $this->resetModel();

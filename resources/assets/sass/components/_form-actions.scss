@@ -1,0 +1,46 @@
+.form-actions {
+    &.form-actions-fixed-top {
+        margin-top: 0;
+        position: fixed;
+        top : 0;
+        left: 230px;
+        right: 0;
+        z-index: 999;
+        padding: 15px;
+        background-color: #fff;
+        border-bottom: 1px solid #ccc;
+        box-shadow: 0 2px 2px -2px rgba(0,0,0,.5);
+        text-align: right;
+        display : block !important;
+        @include lib-css(transform, translateY(-100%));
+        @include lib-css(transition, all 0.3s ease-in-out);
+        &:not(.hidden) {
+            @include lib-css(transform, none);
+        }
+        &.action-vertical {
+            display : flex;
+            width: 100%;
+            flex-direction: row;
+            align-items: center;
+            .widget-title {
+                flex: 1;
+                border: 0 none;
+                font-size: 16px !important;
+                font-weight: 700 !important;
+                color: #666 !important;
+                text-transform: uppercase !important;
+                padding : 15px !important;
+                height: auto !important;
+                > h4 > span {
+                    margin : 0 !important;
+                }
+            }
+        }
+        .btn {
+            margin-left: 5px;
+        }
+        body.sidebar-collapse & {
+            left : 50px;
+        }
+    }
+}
