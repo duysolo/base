@@ -23,6 +23,7 @@ class ConsoleServiceProvider extends ServiceProvider
     {
         $this->commands([
             \WebEd\Base\Console\Commands\InstallCmsCommand::class,
+            \WebEd\Base\Console\Commands\UpdateCmsCommand::class,
         ]);
     }
 }
