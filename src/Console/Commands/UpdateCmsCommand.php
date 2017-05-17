@@ -63,9 +63,9 @@ class UpdateCmsCommand extends Command
     {
         $this->info('Updating module: ' . $module['alias']);
 
-        $namespace = str_replace('\\\\', '\\', array_get($module, 'namespace', '') . '\Providers\UpdateModuleServiceProvider');
-        if (class_exists($namespace)) {
-            $this->app->register($namespace);
+        $updateModuleProvider = str_replace('\\\\', '\\', array_get($module, 'namespace', '') . '\Providers\UpdateModuleServiceProvider');
+        if (class_exists($updateModuleProvider)) {
+            $this->app->register($updateModuleProvider);
         }
 
         webed_core_modules()->saveModule($module, [

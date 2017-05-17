@@ -20,6 +20,10 @@ Route::group(['prefix' => $adminRoute], function (Router $router) use ($adminRou
     $router->get('system/call-composer-dump-autoload', 'SystemCommandController@getCallDumpAutoload')
         ->name('admin::system.commands.composer-dump-autoload.get')
         ->middleware('has-permission:use-system-commands');
+
+    $router->get('system/update-cms', 'SystemCommandController@getUpdateCms')
+        ->name('admin::system.commands.update-cms.get')
+        ->middleware('has-permission:use-system-commands');
 });
 
 //Route::get('{slugNum?}', 'ResolveSlug@index')->where('slugNum', '(.*)');
