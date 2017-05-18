@@ -27,15 +27,5 @@
             </a>
         </div>
         {!! $cmsMenuHtml or '' !!}
-        @if (webed_plugins()->isActivated('webed-blog'))
-            <div class="search">
-                <form role="form" method="GET" action="{{ route('front.search.get') }}">
-                    <i class="fa fa-search"></i>
-                    <div class="field-toggle">
-                        <input type="text" class="search-form" autocomplete="off" placeholder="Search" name="k">
-                    </div>
-                </form>
-            </div>
-        @endif
     </div>
 </div>

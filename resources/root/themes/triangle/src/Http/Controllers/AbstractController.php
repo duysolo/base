@@ -29,11 +29,6 @@ abstract class AbstractController extends BaseFrontController implements Cacheab
              */
             ->setCacheLifetime(-1)
             ->setCacheDriver('file');
-
-        google_recaptcha()
-            ->setLanguage(app()->getLocale())
-            ->registerForm('contactFormRecaptcha')
-            ->renderScript('front_footer_js');
     }
 
     /**
