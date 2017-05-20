@@ -12,6 +12,8 @@ use WebEd\Base\Repositories\Contracts\AbstractRepositoryContract;
 
 abstract class AbstractRepositoryCacheDecorator implements AbstractRepositoryContract, CacheableContract
 {
+    use Cacheable;
+
     /**
      * @var AbstractBaseRepository|Cacheable
      */
@@ -23,37 +25,24 @@ abstract class AbstractRepositoryCacheDecorator implements AbstractRepositoryCon
     protected $cache;
 
     /**
-     * @param CacheableContract $repository
+     * @var bool
      */
-    public function __construct(CacheableContract $repository, $cacheKeyGroup = null)
+    protected $cacheEnabled = true;
+
+    /**
+     * @param $repository
+     */
+    public function __construct($repository, $cacheKeyGroup = null)
     {
         $this->repository = $repository;
 
         $this->cache = app(\WebEd\Base\Caching\Services\Contracts\CacheServiceContract::class);
 
         $this->cache
-            ->setCacheObject($this->repository)
+            ->setCacheObject($this)
             ->setCacheGroup($cacheKeyGroup)
             ->setCacheLifetime(config('webed-caching.repository.lifetime'))
             ->setCacheFile(config('webed-caching.repository.store_keys'));
-    }
-
-    /**
-     * @return bool
-     */
-    public function isUseCache()
-    {
-        return call_user_func_array([$this->repository, __FUNCTION__], func_get_args());
-    }
-
-    /**
-     * @param bool $bool
-     * @return $this
-     */
-    public function withCache($bool = true)
-    {
-        call_user_func_array([$this->repository, __FUNCTION__], func_get_args());
-        return $this;
     }
 
     /**
