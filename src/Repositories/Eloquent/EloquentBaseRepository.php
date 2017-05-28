@@ -330,21 +330,13 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
             $this->model = $this->model->with($with);
         }
 
-        $result = -1;
-
         if ($params['take'] == 1) {
             $result = $this->model->first();
-        }
-
-        if ($params['take']) {
+        } elseif ($params['take']) {
             $result = $this->model->take($params['take'])->get();
-        }
-
-        if ($params['paginate']['per_page']) {
+        } elseif ($params['paginate']['per_page']) {
             $result = $this->model->paginate($params['paginate']['per_page'], ['*'], 'page', $params['paginate']['current_paged']);
-        }
-
-        if ($result == -1) {
+        } else {
             $result = $this->model->get();
         }
 
