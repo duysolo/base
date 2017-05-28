@@ -56,6 +56,8 @@ class UpdateCmsCommand extends Command
         }
         if (!$updated) {
             $this->error('You have nothing to update');
+        } else {
+            \Artisan::call('cache:clear');
         }
     }
 

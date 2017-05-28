@@ -32,12 +32,16 @@ if (!function_exists('load_module_helpers')) {
 
 if (!function_exists('get_image')) {
     /**
-     * @param $fields
-     * @param $updateTo
+     * @param $image
+     * @param string $default
+     * @return null|string
      */
     function get_image($image, $default = 'admin/images/no-image.png')
     {
         if (!$image || !trim($image)) {
+            if (!$default) {
+                return null;
+            }
             return asset($default);
         }
         return asset($image);

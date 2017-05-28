@@ -198,6 +198,7 @@ class InstallCmsCommand extends Command
             '--tag' => 'webed-public-assets',
             '--force' => true,
         ]);
+        \Artisan::call('cache:clear');
     }
 
     /**

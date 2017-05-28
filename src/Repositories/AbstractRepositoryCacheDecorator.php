@@ -27,7 +27,7 @@ abstract class AbstractRepositoryCacheDecorator implements AbstractRepositoryCon
     /**
      * @var bool
      */
-    protected $cacheEnabled = true;
+    protected $cacheEnabled;
 
     /**
      * @param $repository
@@ -43,6 +43,8 @@ abstract class AbstractRepositoryCacheDecorator implements AbstractRepositoryCon
             ->setCacheGroup($cacheKeyGroup)
             ->setCacheLifetime(config('webed-caching.repository.lifetime'))
             ->setCacheFile(config('webed-caching.repository.store_keys'));
+
+        $this->cacheEnabled = !!config('webed-caching.repository.enabled');
     }
 
     /**
