@@ -248,4 +248,10 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract
      * @return mixed
      */
     abstract public function delete($id, $force = false);
+
+    /**
+     * @param array $params
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|Collection|mixed|null
+     */
+    abstract public function advancedGet(array $params = []);
 }

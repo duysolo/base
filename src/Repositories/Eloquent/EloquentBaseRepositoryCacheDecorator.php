@@ -160,4 +160,13 @@ abstract class EloquentBaseRepositoryCacheDecorator extends AbstractRepositoryCa
     {
         return $this->afterUpdate(__FUNCTION__, func_get_args());
     }
+
+    /**
+     * @param array $params
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Database\Eloquent\Collection|Collection|mixed
+     */
+    public function advancedGet(array $params = [])
+    {
+        return $this->beforeGet(__FUNCTION__, func_get_args());
+    }
 }

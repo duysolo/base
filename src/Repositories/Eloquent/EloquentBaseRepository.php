@@ -290,4 +290,66 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         $this->resetModel();
         return true;
     }
+
+    /**
+     * @param array $params
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Database\Eloquent\Collection|Collection|mixed
+     */
+    public function advancedGet(array $params = [])
+    {
+        $this->applyCriteria();
+
+        $params = array_merge([
+            'condition' => [
+                'status' => 'activated',
+            ],
+            'order_by' => [
+                'order' => 'ASC',
+                'created_at' => 'DESC',
+            ],
+            'take' => null,
+            'paginate' => [
+                'per_page' => null,
+                'current_paged' => 1
+            ],
+            'select' => ['*'],
+            'with' => [
+
+            ],
+        ], $params);
+
+        $this->applyConditions($params['condition']);
+
+        $this->model = $this->model->select($params['select']);
+
+        foreach ($params['order_by'] as $column => $direction) {
+            $this->model = $this->model->orderBy($column, $direction);
+        }
+
+        foreach ($params['with'] as $with) {
+            $this->model = $this->model->with($with);
+        }
+
+        $result = -1;
+
+        if ($params['take'] == 1) {
+            $result = $this->model->first();
+        }
+
+        if ($params['take']) {
+            $result = $this->model->take($params['take'])->get();
+        }
+
+        if ($params['paginate']['per_page']) {
+            $result = $this->model->paginate($params['paginate']['per_page'], ['*'], 'page', $params['paginate']['current_paged']);
+        }
+
+        if ($result == -1) {
+            $result = $this->model->get();
+        }
+
+        $this->resetModel();
+
+        return $result;
+    }
 }
