@@ -83,6 +83,8 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
      */
     public function findWhere(array $condition)
     {
+        $this->applyCriteria();
+
         $this->applyConditions($condition);
         $result = $this->model->first();
 
