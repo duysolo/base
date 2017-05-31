@@ -97,12 +97,11 @@ class Breadcrumbs
      */
     public function render()
     {
-        $htmlSrc = '<' . $this->containerTag . ' class="' . $this->breadcrumbClass . '">';
+        $htmlSrc = '<' . $this->containerTag . ' class="' . $this->breadcrumbClass . '">' . PHP_EOL;
         foreach ($this->links as $key => $row) {
-            $icon =
-            $htmlSrc .= '<' . $this->itemTag . '>' . $row . '</' . $this->itemTag . '>';
+            $htmlSrc .= '<' . $this->itemTag . '>' . $row . '</' . $this->itemTag . '>' . PHP_EOL;
         }
-        $htmlSrc .= '</' . $this->containerTag . '>';
+        $htmlSrc .= '</' . $this->containerTag . '>' . PHP_EOL;
 
         return $htmlSrc;
     }
