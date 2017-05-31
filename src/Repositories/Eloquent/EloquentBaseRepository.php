@@ -322,7 +322,9 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
 
         $this->applyConditions($params['condition']);
 
-        $this->model = $this->model->select($params['select']);
+        if ($params['select']) {
+            $this->model = $this->model->select($params['select']);
+        }
 
         foreach ($params['order_by'] as $column => $direction) {
             $this->model = $this->model->orderBy($column, $direction);
