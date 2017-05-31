@@ -178,14 +178,11 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
     public function create(array $data, $force = false)
     {
         $method = $force ? 'forceCreate' : 'create';
-        try {
-            $item = $this->model->$method($data);
-        } catch (\Exception $exception) {
-            Log::error($exception->getMessage());
-            $this->resetModel();
-            return null;
-        }
+
+        $item = $this->model->$method($data);
+
         $primaryKey = $this->getPrimaryKey();
+
         return $item->$primaryKey;
     }
 
@@ -203,13 +200,8 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
 
         $item = $item->fill($data);
 
-        try {
-            $item->save();
-        } catch (\Exception $exception) {
-            Log::error($exception->getMessage());
-            $this->resetModel();
-            return null;
-        }
+        $item->save();
+
         $this->resetModel();
         $primaryKey = $this->getPrimaryKey();
         return $item->$primaryKey;
@@ -228,15 +220,14 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
             $item = $this->model->find($id);
         }
 
-        try {
-            $item->update($data);
-        } catch (\Exception $exception) {
-            Log::error($exception->getMessage());
-            $this->resetModel();
-            dd($exception->getMessage());
+        $result = $item->update($data);
+
+        $this->resetModel();
+
+        if (!$result) {
             return null;
         }
-        $this->resetModel();
+
         $primaryKey = $this->getPrimaryKey();
         return $item->$primaryKey;
     }
@@ -250,15 +241,11 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
     {
         $items = $this->model->whereIn('id', $ids);
 
-        try {
-            $items->update($data);
-        } catch (\Exception $exception) {
-            Log::error($exception->getMessage());
-            $this->resetModel();
-            return false;
-        }
+        $result = $items->update($data);
+
         $this->resetModel();
-        return true;
+
+        return $result;
     }
 
     /**
@@ -282,15 +269,11 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
 
         $method = $force ? 'forceDelete' : 'delete';
 
-        try {
-            $this->model->$method();
-        } catch (\Exception $exception) {
-            Log::error($exception->getMessage());
-            $this->resetModel();
-            return false;
-        }
+        $result = $this->model->$method();
+
         $this->resetModel();
-        return true;
+
+        return !!$result;
     }
 
     /**
