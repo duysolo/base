@@ -21,10 +21,16 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         foreach ($where as $field => $value) {
             if (is_array($value)) {
                 list($field, $condition, $val) = $value;
-                if (strtoupper($condition) == 'IN') {
-                    $this->model = $this->model->whereIn($field, $val);
-                } else {
-                    $this->model = $this->model->where($field, $condition, $val);
+                switch (strtoupper($condition)) {
+                    case 'IN':
+                        $this->model = $this->model->whereIn($field, $val);
+                        break;
+                    case 'NOT_IN':
+                        $this->model = $this->model->whereNotIn($field, $val);
+                        break;
+                    default:
+                        $this->model = $this->model->where($field, $condition, $val);
+                        break;
                 }
             } else {
                 $this->model = $this->model->where($field, '=', $value);
@@ -200,9 +206,10 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
 
         $item = $item->fill($data);
 
-        $item->save();
+        if (!$item->save()) {
+            return null;
+        }
 
-        $this->resetModel();
         $primaryKey = $this->getPrimaryKey();
         return $item->$primaryKey;
     }
