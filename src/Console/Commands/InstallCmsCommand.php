@@ -192,7 +192,9 @@ class InstallCmsCommand extends Command
             if ($currentPackage) {
                 $data['installed_version'] = $currentPackage['version'];
             }
-            $this->coreModulesRepository->create($data);
+            $this->coreModulesRepository->findWhereOrCreate([
+                'alias' => $module['alias'],
+            ], $data);
         }
         \Artisan::call('vendor:publish', [
             '--tag' => 'webed-public-assets',
