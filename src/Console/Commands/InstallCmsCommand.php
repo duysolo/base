@@ -96,7 +96,7 @@ class InstallCmsCommand extends Command
         \Artisan::call('cache:clear');
         \Artisan::call('view:clear');
 
-        $this->info("\nWebEd installed. Current version is " . config('webed.version'));
+        $this->info("\nWebEd installed. Current version is " . get_cms_version());
     }
 
     /**
@@ -172,9 +172,21 @@ class InstallCmsCommand extends Command
 
         $data = [
             'alias' => 'webed-core',
-            'installed_version' => get_cms_version(),
         ];
-        $this->coreModulesRepository->create($data);
+
+        $cmsVersion = get_cms_version();
+
+        $baseCore = $this->coreModulesRepository->findWhere($data);
+
+        if (!$baseCore) {
+            $this->coreModulesRepository->create(array_merge($data, [
+                'installed_version' => $cmsVersion,
+            ]));
+        } else {
+            $this->coreModulesRepository->update($baseCore, [
+                'installed_version' => get_cms_version(),
+            ]);
+        }
 
         $modules = get_core_module()->where('namespace', '!=', 'WebEd\Base');
 
@@ -190,7 +202,7 @@ class InstallCmsCommand extends Command
                 'alias' => $module['alias'],
             ];
             if ($currentPackage) {
-                $data['installed_version'] = $currentPackage['version'];
+                $data['installed_version'] = isset($module['version']) ? $module['version'] : $currentPackage['version'];
             }
             $coreModule = $this->coreModulesRepository->findWhere([
                 'alias' => $module['alias'],
