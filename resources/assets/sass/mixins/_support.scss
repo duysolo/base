@@ -1,4 +1,4 @@
-@mixin lib-css($_property, $_value, $_addPrefix: 0) {
+@mixin lib-css($_property, $_value, $_addPrefix: 1) {
     #{$_property}: $_value;
     @if($_addPrefix == 1) {
         -webkit-#{$_property}: $_value;
@@ -26,10 +26,16 @@
     }
 }
 
-@mixin opacity($opacity) {
-    opacity: $opacity;
+@mixin opacity($opacity, $is-important: 0) {
     $opacity-ie: $opacity * 100;
-    filter: alpha(opacity=$opacity-ie); //IE8
+    @if ($is-important != 1) {
+        opacity: $opacity;
+        filter: alpha(opacity=$opacity-ie); //IE8
+    }
+    @if ($is-important == 1) {
+        opacity: $opacity !important;
+        filter: alpha(opacity=$opacity-ie) !important; //IE8
+    }
 }
 
 @mixin placeholder() {
@@ -45,4 +51,12 @@
     :-ms-input-placeholder {
         @content;
     }
+}
+
+@mixin animation($str) {
+    -webkit-animation: #{$str};
+    -moz-animation: #{$str};
+    -ms-animation: #{$str};
+    -o-animation: #{$str};
+    animation: #{$str};
 }

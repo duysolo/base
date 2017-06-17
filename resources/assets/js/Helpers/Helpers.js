@@ -39,9 +39,12 @@ export class Helpers {
         if (url.substring(0, 2) == '//' || url.substring(0, 7) == 'http://' || url.substring(0, 8) == 'https://') {
             return url;
         }
+
+        let baseUrl = BASE_URL.substr(-1, 1) != '/' ? BASE_URL + '/' : BASE_URL;
+
         if (url.substring(0, 1) == '/') {
-            return BASE_URL + url.substring(1);
+            return baseUrl + url.substring(1);
         }
-        return BASE_URL + url;
+        return baseUrl + url;
     }
 }

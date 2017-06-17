@@ -46,9 +46,10 @@ abstract class EloquentBaseRepositoryCacheDecorator extends AbstractRepositoryCa
 
     /**
      * @param array $condition
+     * @param array $columns
      * @return EloquentBase|Builder|null|mixed
      */
-    public function findWhere(array $condition)
+    public function findWhere(array $condition, array $columns = ['*'])
     {
         return $this->beforeGet(__FUNCTION__, func_get_args());
     }
@@ -105,7 +106,7 @@ abstract class EloquentBaseRepositoryCacheDecorator extends AbstractRepositoryCa
 
     /**
      * @param array $data
-     * @return int
+     * @return int|null|EloquentBase
      */
     public function create(array $data)
     {
@@ -114,7 +115,7 @@ abstract class EloquentBaseRepositoryCacheDecorator extends AbstractRepositoryCa
 
     /**
      * @param array $data
-     * @return int
+     * @return int|null|EloquentBase
      */
     public function forceCreate(array $data)
     {
@@ -124,7 +125,7 @@ abstract class EloquentBaseRepositoryCacheDecorator extends AbstractRepositoryCa
     /**
      * @param EloquentBase|Builder|int|null $id
      * @param array $data
-     * @return int|null
+     * @return int|null|EloquentBase
      */
     public function createOrUpdate($id, array $data)
     {
@@ -134,7 +135,7 @@ abstract class EloquentBaseRepositoryCacheDecorator extends AbstractRepositoryCa
     /**
      * @param EloquentBase|Builder|int $id
      * @param array $data
-     * @return int|null
+     * @return int|null|EloquentBase
      */
     public function update($id, array $data)
     {
@@ -157,6 +158,16 @@ abstract class EloquentBaseRepositoryCacheDecorator extends AbstractRepositoryCa
      * @return bool
      */
     public function delete($id, $force = false)
+    {
+        return $this->afterUpdate(__FUNCTION__, func_get_args());
+    }
+
+    /**
+     * @param array $condition
+     * @param bool $force
+     * @return bool
+     */
+    public function deleteWhere(array $condition, $force = false)
     {
         return $this->afterUpdate(__FUNCTION__, func_get_args());
     }

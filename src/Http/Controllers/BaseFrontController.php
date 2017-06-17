@@ -41,15 +41,21 @@ class BaseFrontController extends BaseController
      * By now, we will get assets from theme if it exists.
      * @param $viewName
      * @param null $data
+     * @param null|string $module
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    protected function view($viewName, $data = null)
+    protected function view($viewName, $data = null, $module = null)
     {
         if ($data === null) {
             $data = $this->dis;
         }
-        if(view()->exists($this->currentThemeName . '::' . $viewName)) {
-            return view($this->currentThemeName . '::' . $viewName, $data);
+
+        if ($module === null) {
+            $module = $this->currentThemeName;
+        }
+
+        if(view()->exists($module . '::' . $viewName)) {
+            return view($module . '::' . $viewName, $data);
         }
         return view($viewName, $data);
     }

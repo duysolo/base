@@ -27,6 +27,11 @@ abstract class BaseController extends Controller
      */
     public $dis = [];
 
+    /**
+     * @var null|string
+     */
+    protected $module = null;
+
     public function __construct()
     {
         $this->request = request();
@@ -59,18 +64,59 @@ abstract class BaseController extends Controller
     }
 
     /**
-     * @param $viewName
-     * @param null $data
+     * Set view
+     * @param $view
+     * @param array|null $data
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    protected function view($viewName, $data = null)
+    protected function view($view, $data = null, $module = null)
     {
         if ($data === null || !is_array($data)) {
             $data = $this->dis;
         }
-        if(property_exists($this, 'module')) {
-            return view($this->module . '::' . $viewName, $data);
+        if ($module === null) {
+            if (property_exists($this, 'module') && $this->module) {
+                return view($this->module . '::' . $view, $data);
+            }
         }
-        return view($viewName, $data);
+        return view($view, $data);
+    }
+
+    /**
+     * Set view admin
+     * @param $view
+     * @param array|null $data
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    protected function viewAdmin($view, $data = null, $module = null)
+    {
+        if ($data === null || !is_array($data)) {
+            $data = $this->dis;
+        }
+        if ($module === null) {
+            if (property_exists($this, 'module') && $this->module) {
+                return view($this->module . '::admin.' . $view, $data);
+            }
+        }
+        return view('admin.' . $view, $data);
+    }
+
+    /**
+     * Set view front
+     * @param $view
+     * @param array|null $data
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    protected function viewFront($view, $data = null, $module = null)
+    {
+        if ($data === null || !is_array($data)) {
+            $data = $this->dis;
+        }
+        if ($module === null) {
+            if (property_exists($this, 'module') && $this->module) {
+                return view($this->module . '::front.' . $view, $data);
+            }
+        }
+        return view('front.' . $view, $data);
     }
 }

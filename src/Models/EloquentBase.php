@@ -17,7 +17,20 @@ abstract class EloquentBase extends Model implements BaseModelContract
      */
     public function getPrimaryKey()
     {
-        return $this->primaryKey;
+        return $this->getKeyName();
+    }
+
+    /**
+     * @param array|string $attribute
+     * @return $this
+     */
+    public function expandFillable($attribute)
+    {
+        $attributes = is_array($attribute) ? $attribute : func_get_args();
+
+        $this->fillable = array_unique(array_merge($attributes, $this->fillable));
+
+        return $this;
     }
 
     /**

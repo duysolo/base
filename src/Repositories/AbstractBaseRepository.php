@@ -175,9 +175,10 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract
 
     /**
      * @param array $condition
+     * @param array $columns
      * @return BaseModelContract|null|mixed
      */
-    abstract public function findWhere(array $condition);
+    abstract public function findWhere(array $condition, array $columns = ['*']);
 
     /**
      * @param array $condition
@@ -217,21 +218,21 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract
     /**
      * @param array $data
      * @param bool $force
-     * @return int|null
+     * @return int|null|BaseModelContract
      */
     abstract public function create(array $data, $force = false);
 
     /**
      * @param BaseModelContract|int|null $id
      * @param array $data
-     * @return int|null
+     * @return int|null|BaseModelContract
      */
     abstract public function createOrUpdate($id, array $data);
 
     /**
      * @param BaseModelContract|int $id
      * @param array $data
-     * @return int|null
+     * @return int|null|BaseModelContract
      */
     abstract public function update($id, array $data);
 
@@ -248,6 +249,13 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract
      * @return mixed
      */
     abstract public function delete($id, $force = false);
+
+    /**
+     * @param array $condition
+     * @param bool $force
+     * @return bool
+     */
+    abstract public function deleteWhere(array $condition, $force = false);
 
     /**
      * @param array $params

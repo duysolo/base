@@ -10,7 +10,7 @@
     <base href="{{ asset('') }}">
 
     <meta charset="utf-8"/>
-    <title>{{ $pageTitle or 'Dashboard' }} | WebEd</title>
+    <title>{{ $pageTitle or 'Dashboard' }} | {{ get_setting('site_title', 'WebEd') }}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -24,16 +24,18 @@
     <link rel="stylesheet" href="{{ asset('admin/theme/lte/css/skins/_all-skins.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
 
-    @yield('css')
-
-    <link rel="shortcut icon" href="{{ get_setting('favicon', 'favicon.png') }}"/>
-
     <script type="text/javascript">
         var BASE_URL = '{{ asset('') }}',
             FILE_MANAGER_URL = '{{ route('admin::elfinder.popup.get') }}';
     </script>
 
+    <link rel="shortcut icon" href="{{ get_setting('favicon', 'favicon.png') }}"/>
+
     {!! \Assets::renderScripts('top') !!}
+
+    @stack('head')
+
+    @yield('head')
 
     @php do_action(BASE_ACTION_HEADER_JS) @endphp
 </head>
@@ -106,7 +108,11 @@
 
 <script src="{{ asset('admin/js/script.js') }}"></script>
 
+@stack('js')
+
 @yield('js')
+
+@stack('js-init')
 
 @yield('js-init')
 

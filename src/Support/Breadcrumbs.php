@@ -31,7 +31,7 @@ class Breadcrumbs
      * @param string $title
      * @param string $link
      * @param null|string $icon
-     * @return $this
+     * @return \WebEd\Base\Support\Breadcrumbs
      */
     public function addLink($title, $link = null, $icon = null)
     {
@@ -58,7 +58,7 @@ class Breadcrumbs
     /**
      * Set breadcrumb class
      * @param string $class
-     * @return $this
+     * @return \WebEd\Base\Support\Breadcrumbs
      */
     public function setBreadcrumbClass($class)
     {
@@ -70,7 +70,7 @@ class Breadcrumbs
     /**
      * Set container tag name
      * @param string $tagName
-     * @return $this
+     * @return \WebEd\Base\Support\Breadcrumbs
      */
     public function setContainerTag($tagName)
     {
@@ -82,7 +82,7 @@ class Breadcrumbs
     /**
      * Set item tag name
      * @param string $tagName
-     * @return $this
+     * @return \WebEd\Base\Support\Breadcrumbs
      */
     public function setItemTag($tagName)
     {
@@ -108,7 +108,7 @@ class Breadcrumbs
 
     /**
      * Reset all value to default
-     * @return $this
+     * @return \WebEd\Base\Support\Breadcrumbs
      */
     public function reset()
     {

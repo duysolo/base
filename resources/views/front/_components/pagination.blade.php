@@ -1,12 +1,12 @@
 @if ($paginator->lastPage() > 1)
-    <nav class="{{ $wrapperClass }}">
-        <ul class="{{ $groupClass }}">
-            <li class="{{ ($paginator->currentPage() == 1) ? ' ' . $disabledClass : '' }} go-first">
-                <a href="{{ $paginator->url(1) }}" class="arrow">{!! $goFirstTitle !!}</a>
-            </li>
-            <li class="{{ (!$paginator->previousPageUrl()) ? ' ' . $disabledClass : '' }} previous">
-                <a href="{{ $paginator->previousPageUrl() }}" class="arrow">{!! $goPrevTitle !!}</a>
-            </li>
+    <{!! $wrapperTag !!} class="{!! $wrapperClass !!}">
+        <{!! $groupTag !!} class="{!! $groupClass !!}">
+            <{!! $itemTag !!} class="{!! $itemClass . ($paginator->currentPage() == 1) ? ' ' . $disabledClass : '' !!} go-first">
+                <a href="{!! $paginator->url(1) !!}" class="arrow">{!! $goFirstTitle !!}</a>
+            </{!! $itemTag !!}>
+            <{!! $itemTag !!} class="{!! $itemClass . (!$paginator->previousPageUrl()) ? ' ' . $disabledClass : '' !!} previous">
+                <a href="{!! $paginator->previousPageUrl() !!}" class="arrow">{!! $goPrevTitle !!}</a>
+            </{!! $itemTag !!}>
             @for ($i = 1; $i <= $paginator->lastPage(); $i++)
                 @php
                     $half_total_links = floor($limit / 2);
@@ -20,18 +20,18 @@
                     }
                 @endphp
                 @if ($from < $i && $i < $to)
-                    <li class="{{ ($paginator->currentPage() == $i) ? ' ' . $activatedClass : '' }}">
-                        <a href="{{ $paginator->url($i) }}">{{ $i }}</a>
-                    </li>
+                    <{!! $itemTag !!} class="{!! $itemClass . ($paginator->currentPage() == $i) ? ' ' . $activatedClass : '' !!}">
+                        <a href="{!! $paginator->url($i) !!}">{!! $i !!}</a>
+                    </{!! $itemTag !!}>
                 @endif
             @endfor
-            <li class="{{ (!$paginator->nextPageUrl()) ? ' ' . $disabledClass : '' }} next">
-                <a href="{{ $paginator->nextPageUrl() }}" class="arrow">{!! $goNextTitle !!}</a>
-            </li>
-            <li class="{{ ($paginator->currentPage() == $paginator->lastPage()) ? ' ' . $disabledClass : '' }} go-last">
-                <a href="{{ $paginator->url($paginator->lastPage()) }}" class="arrow">{!! $goLastTitle !!}</a>
-            </li>
-        </ul>
-        <span class="pagination-text">Page {{ $paginator->currentPage() . '/' . $paginator->lastPage() }}</span>
-    </nav>
+            <{!! $itemTag !!} class="{!! $itemClass . (!$paginator->nextPageUrl()) ? ' ' . $disabledClass : '' !!} next">
+                <a href="{!! $paginator->nextPageUrl() !!}" class="arrow">{!! $goNextTitle !!}</a>
+            </{!! $itemTag !!}>
+            <{!! $itemTag !!} class="{!! $itemClass . ($paginator->currentPage() == $paginator->lastPage()) ? ' ' . $disabledClass : '' !!} go-last">
+                <a href="{!! $paginator->url($paginator->lastPage()) !!}" class="arrow">{!! $goLastTitle !!}</a>
+            </{!! $itemTag !!}>
+        </{!! $groupTag !!}>
+        <span class="pagination-text">Page {!! $paginator->currentPage() . '/' . $paginator->lastPage() !!}</span>
+    </{!! $wrapperTag !!}>
 @endif

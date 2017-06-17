@@ -13,9 +13,13 @@ if (!function_exists('pagination_advanced')) {
     {
         $params = array_merge([
             'limit' => 7,
-            'allowed_query_string' => request()->only([]),
+            'allowed_query_string' => request()->only(['page']),
+            'wrapper_tag' => 'nav',
+            'group_tag' => 'ul',
+            'item_tag' => 'li',
             'wrapper_class' => 'pagination-wrap',
             'group_class' => 'pagination',
+            'item_class' => '',
             'disabled_class' => 'disabled',
             'activated_class' => 'active',
             'go_first_title' => '&laquo;',
@@ -30,8 +34,12 @@ if (!function_exists('pagination_advanced')) {
         return view($params['view'], [
             'limit' => $params['limit'],
             'paginator' => $paginator,
+            'wrapperTag' => $params['wrapper_tag'],
+            'groupTag' => $params['group_tag'],
+            'itemTag' => $params['item_tag'],
             'wrapperClass' => $params['wrapper_class'],
             'groupClass' => $params['group_class'],
+            'itemClass' => $params['item_class'],
             'disabledClass' => $params['disabled_class'],
             'activatedClass' => $params['activated_class'],
             'goFirstTitle' => $params['go_first_title'],

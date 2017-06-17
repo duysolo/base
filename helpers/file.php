@@ -125,20 +125,20 @@ if (!function_exists('save_file_data')) {
 if (!function_exists('format_file_size')) {
     /**
      * Format the file size to bytes, KB, MB, GB, TB...
-     * @param $size
+     * @param $bytes
      * @param int $precision
      * @return int|string
      */
-    function format_file_size($size, $precision = 2)
+    function format_file_size($bytes, $precision = 2)
     {
-        if ($size > 0) {
-            $size = (int)$size;
-            $precision = (int)$precision;
+        $bytes = (int)$bytes;
+        $precision = (int)$precision;
 
+        if ($bytes > 0) {
             $units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-            $power = $size > 0 ? floor(log($size, 1024)) : 0;
-            return number_format($size / pow(1024, $power), $precision, '.', ',') . ' ' . $units[$power];
+            $power = $bytes > 0 ? floor(log($bytes, 1024)) : 0;
+            return number_format($bytes / pow(1024, $power), $precision, '.', ',') . ' ' . $units[$power];
         }
-        return $size;
+        return $bytes;
     }
 }

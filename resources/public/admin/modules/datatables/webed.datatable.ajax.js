@@ -1,2 +1,92 @@
-!function(e){"use strict";var a=function(e,a){var t=this;e.each(function(){var e=$(this);e.closest(".table-container").hasClass("initialized")||t.initEachItem(this,a)})};a.prototype.initEachItem=function(e,a){var t=$(e),o=new WebEd.DataTable(t,a);e.dataTableHelper=o,o.getTableWrapper().on("confirmed.bs.confirmation",".table-group-action-submit",function(e){e.preventDefault();var a=$(".table-group-action-input",o.getTableWrapper());""!=a.val()&&o.getSelectedRowsCount()>0?(o.setAjaxParam("customActionType","group_action"),o.setAjaxParam("customActionValue",a.val()),o.setAjaxParam("id",o.getSelectedRows()),o.getDataTable().ajax.reload(),o.clearAjaxParams(),o.getTableWrapper().find("input[name=group_checkable]").prop("checked",!1),setTimeout(function(){},0)):""==a.val()?WebEd.showNotification("Please select an action","danger"):0===o.getSelectedRowsCount()&&WebEd.showNotification("No record selected","warning")}),o.getTableWrapper().on("confirmed.bs.confirmation",".ajax-link",function(e){e.preventDefault();var t=$(this);$.ajax({url:t.attr("data-ajax"),type:t.attr("data-method")||"POST",dataType:"json",beforeSend:function(){WebEd.blockUI({target:o.getTableWrapper()})},success:function(e){a.ajaxActionsSuccess&&a.ajaxActionsSuccess.call(void 0,t,e)},complete:function(e){o.getTableWrapper().find(".blockUI").remove(),"undefined"!=typeof e.responseJSON?e.responseJSON.error?WebEd.showNotification(e.responseJSON.messages,"danger"):WebEd.showNotification(e.responseJSON.messages,"success"):WebEd.showNotification("Some error occurred. View console log for more information","danger"),o.getDataTable().ajax.reload()}})}),o.getTableWrapper().on("keyup",".filter input",function(e){13==e.which&&o.getDataTableHelper().submitFilter()})},WebEd.DataTableAjax=a}(this.LaravelElixirBundle=this.LaravelElixirBundle||{});
+(function (exports) {
+'use strict';
+
+var DataTableAjax = function DataTableAjax($tables, options) {
+    var _self = this;
+    $tables.each(function () {
+        var $current = $(this);
+        if (!$current.closest('.table-container').hasClass('initialized')) {
+            _self.initEachItem(this, options);
+        }
+    });
+};
+
+DataTableAjax.prototype.initEachItem = function initEachItem (table, options) {
+    var $table = $(table);
+    var dataTableHelper = new WebEd.DataTable($table, options);
+
+    table.dataTableHelper = dataTableHelper;
+
+    dataTableHelper.getTableWrapper().on('confirmed.bs.confirmation', '.table-group-action-submit', function (e) {
+        e.preventDefault();
+        var action = $(".table-group-action-input", dataTableHelper.getTableWrapper());
+        if (action.val() != "" && dataTableHelper.getSelectedRowsCount() > 0) {
+            dataTableHelper.setAjaxParam("customActionType", "group_action");
+            dataTableHelper.setAjaxParam("customActionValue", action.val());
+            dataTableHelper.setAjaxParam("id", dataTableHelper.getSelectedRows());
+            dataTableHelper.getDataTable().ajax.reload();
+            dataTableHelper.clearAjaxParams();
+            dataTableHelper.getTableWrapper().find('input[name=group_checkable]').prop('checked', false);
+            /*Cheat here to fix some bugs*/
+            setTimeout(function () {
+                //dataTableHelper.getDataTable().ajax.reload();
+            }, 0);
+        } else if (action.val() == "") {
+            WebEd.showNotification('Please select an action', 'danger');
+        } else if (dataTableHelper.getSelectedRowsCount() === 0) {
+            WebEd.showNotification('No record selected', 'warning');
+        }
+    });
+
+    /**
+     * Handle ajax link
+     */
+    dataTableHelper.getTableWrapper().on('confirmed.bs.confirmation', '.ajax-link', function (e) {
+        e.preventDefault();
+        var $current = $(this);
+        $.ajax({
+            url: $current.attr('data-ajax'),
+            type: $current.attr('data-method') || 'POST',
+            dataType: 'json',
+            beforeSend: function () {
+                WebEd.blockUI({
+                    target: dataTableHelper.getTableWrapper()
+                });
+            },
+            success: function (data) {
+                if (options.ajaxActionsSuccess) {
+                    options.ajaxActionsSuccess.call(undefined, $current, data);
+                }
+            },
+            complete: function (data) {
+                dataTableHelper.getTableWrapper().find('.blockUI').remove();
+                if (typeof data.responseJSON !== 'undefined') {
+                    if (data.responseJSON.error) {
+                        WebEd.showNotification(data.responseJSON.messages, 'danger');
+                    }
+                    else {
+                        WebEd.showNotification(data.responseJSON.messages, 'success');
+                    }
+                }
+                else {
+                    WebEd.showNotification('Some error occurred. View console log for more information', 'danger');
+                }
+                dataTableHelper.getDataTable().ajax.reload();
+            }
+        });
+    });
+
+    /**
+     * When user press enter on filter's inputs, call filter
+     */
+    dataTableHelper.getTableWrapper().on('keyup', '.filter input', function (event) {
+        if (event.which == 13) {
+            dataTableHelper.getDataTableHelper().submitFilter();
+        }
+    });
+};
+
+WebEd.DataTableAjax = DataTableAjax;
+
+}((this.LaravelElixirBundle = this.LaravelElixirBundle || {})));
 //# sourceMappingURL=webed.datatable.ajax.js.map

@@ -1,6 +1,6 @@
 @extends('webed-core::admin._master')
 
-@section('css')
+@section('head')
 
 @endsection
 

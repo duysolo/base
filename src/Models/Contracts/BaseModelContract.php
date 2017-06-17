@@ -14,4 +14,10 @@ interface BaseModelContract
      * @return string
      */
     public function getTable();
+
+    /**
+     * @param array|string $attribute
+     * @return $this
+     */
+    public function expandFillable($attribute);
 }

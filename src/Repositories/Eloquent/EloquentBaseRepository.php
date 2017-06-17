@@ -85,14 +85,17 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
 
     /**
      * @param array $condition
+     * @param array $columns
      * @return EloquentBase|Builder|null|mixed
      */
-    public function findWhere(array $condition)
+    public function findWhere(array $condition, array $columns = ['*'])
     {
         $this->applyCriteria();
 
         $this->applyConditions($condition);
-        $result = $this->model->first();
+        $result = $this->model
+            ->select($columns)
+            ->first();
 
         $this->resetModel();
 
@@ -179,7 +182,7 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
     /**
      * @param array $data
      * @param bool $force
-     * @return int|null
+     * @return int|null|EloquentBase
      */
     public function create(array $data, $force = false)
     {
@@ -189,13 +192,13 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
 
         $primaryKey = $this->getPrimaryKey();
 
-        return $item->$primaryKey;
+        return $item->$primaryKey ?: $item;
     }
 
     /**
      * @param EloquentBase|Builder|int|null $id
      * @param array $data
-     * @return int|null
+     * @return int|null|EloquentBase
      */
     public function createOrUpdate($id, array $data)
     {
@@ -211,13 +214,14 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         }
 
         $primaryKey = $this->getPrimaryKey();
-        return $item->$primaryKey;
+
+        return $item->$primaryKey ?: $item;
     }
 
     /**
      * @param EloquentBase|Builder|int $id
      * @param array $data
-     * @return int|null
+     * @return int|null|EloquentBase
      */
     public function update($id, array $data)
     {
@@ -236,7 +240,8 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         }
 
         $primaryKey = $this->getPrimaryKey();
-        return $item->$primaryKey;
+
+        return $item->$primaryKey ?: $item;
     }
 
     /**
@@ -273,6 +278,24 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         } else {
             $this->applyCriteria();
         }
+
+        $method = $force ? 'forceDelete' : 'delete';
+
+        $result = $this->model->$method();
+
+        $this->resetModel();
+
+        return !!$result;
+    }
+
+    /**
+     * @param array $condition
+     * @param bool $force
+     * @return bool
+     */
+    public function deleteWhere(array $condition, $force = false)
+    {
+        $this->applyConditions($condition);
 
         $method = $force ? 'forceDelete' : 'delete';
 

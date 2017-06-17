@@ -71,7 +71,7 @@ class UpdateCmsCommand extends Command
         }
 
         webed_core_modules()->saveModule($module, [
-            'installed_version' => get_core_module_composer_version(array_get($module, 'repos')),
+            'installed_version' => isset($module['version']) ? $module['version'] : get_core_module_composer_version(array_get($module, 'repos')),
         ]);
 
         $moduleProvider = str_replace('\\\\', '\\', array_get($module, 'namespace', '') . '\Providers\ModuleProvider');

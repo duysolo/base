@@ -39,6 +39,21 @@ if (!function_exists('get_core_module_composer_version')) {
     }
 }
 
+if (!function_exists('get_core_module_version')) {
+    /**
+     * @param string $alias
+     * @return string|null
+     */
+    function get_core_module_version($alias)
+    {
+        $module = get_core_module($alias);
+        if ($module) {
+            return array_get($module, 'version');
+        }
+        return null;
+    }
+}
+
 if (!function_exists('get_cms_version')) {
     /**
      * @return string

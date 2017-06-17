@@ -5,7 +5,7 @@ if (!function_exists('response_with_messages')) {
      * @param string|array $messages
      * @param bool $error
      * @param int $responseCode
-     * @param array $data
+     * @param array|string|null $data
      * @return array
      */
     function response_with_messages($messages, $error = false, $responseCode = null, $data = null)

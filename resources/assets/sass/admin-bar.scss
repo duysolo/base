@@ -3,6 +3,12 @@
 body.show-admin-bar {
     margin-top : 40px !important;
     position   : relative;
+    header.header {
+        padding : 0;
+        .navbar {
+            position : static;
+        }
+    }
 }
 
 #admin_bar {
