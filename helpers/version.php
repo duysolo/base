@@ -137,7 +137,7 @@ if (!function_exists('check_module_require')) {
         $messages = [];
         $error = false;
         foreach ($required as $moduleName => $version) {
-            $module = get_module_information($moduleName);
+            $module = get_plugin($moduleName);
             if (!$module || !array_get($module, 'installed') || !array_get($module, 'enabled')) {
                 $messages[] = 'Missing required module: ' . $moduleName;
                 $error = true;

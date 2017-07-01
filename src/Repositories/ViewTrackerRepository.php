@@ -13,8 +13,9 @@ class ViewTrackerRepository extends EloquentBaseRepository implements ViewTracke
      */
     public function increase(ViewTrackerModelContract $viewTracker)
     {
-        return $this->update($viewTracker, [
+        $this->update($viewTracker, [
             'count' => $viewTracker->count + 1
         ]);
+        return $viewTracker->count + 1;
     }
 }

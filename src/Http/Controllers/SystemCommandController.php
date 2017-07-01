@@ -28,8 +28,8 @@ class SystemCommandController extends BaseAdminController
 
         foreach ($modules as $namespace => $module) {
             if (
-                get_core_module_composer_version(array_get($module, 'repos')) === array_get($module, 'installed_version')
-                || !module_version_compare(get_core_module_composer_version(array_get($module, 'repos')), '^' . array_get($module, 'installed_version', 0))
+                get_core_module_version($module['alias']) === array_get($module, 'installed_version')
+                || !module_version_compare(get_core_module_version($module['alias']), '^' . array_get($module, 'installed_version', 0))
             ) {
                 continue;
             }
@@ -40,7 +40,7 @@ class SystemCommandController extends BaseAdminController
             }
 
             webed_core_modules()->saveModule($module, [
-                'installed_version' => get_core_module_composer_version(array_get($module, 'repos')),
+                'installed_version' => get_core_module_version($module['alias']),
             ]);
 
             $moduleProvider = str_replace('\\\\', '\\', array_get($module, 'namespace', '') . '\Providers\ModuleProvider');

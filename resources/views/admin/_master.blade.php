@@ -16,7 +16,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content="Admin dashboard - WebEd" name="description"/>
 
-    {!! \Assets::renderStylesheets() !!}
+    {!! assets_management()->renderStylesheets() !!}
 
     @php do_action(BASE_ACTION_HEADER_CSS) @endphp
 
@@ -31,7 +31,7 @@
 
     <link rel="shortcut icon" href="{{ get_setting('favicon', 'favicon.png') }}"/>
 
-    {!! \Assets::renderScripts('top') !!}
+    {!! assets_management()->renderScripts('top') !!}
 
     @stack('head')
 
@@ -101,7 +101,7 @@
 <script src="{{ asset('admin/theme/lte/js/app.js') }}"></script>
 <script src="{{ asset('admin/js/webed-core.js') }}"></script>
 <script src="{{ asset('admin/theme/lte/js/demo.js') }}"></script>
-{!! \Assets::renderScripts('bottom') !!}
+{!! assets_management()->renderScripts('bottom') !!}
 {{--END plugins--}}
 
 @php do_action(BASE_ACTION_FOOTER_JS) @endphp

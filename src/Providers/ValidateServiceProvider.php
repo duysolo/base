@@ -2,6 +2,7 @@
 
 namespace WebEd\Base\Providers;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,8 +15,9 @@ class ValidateServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->_validator_UniqueMultiple();
-        $this->_validator_DateMultiFormat();
+        $this->validatorUniqueMultiple();
+        $this->validatorDateMultiFormat();
+        $this->validatorCheckOldPassword();
     }
 
     /**
@@ -28,7 +30,7 @@ class ValidateServiceProvider extends ServiceProvider
 
     }
 
-    protected function _validator_UniqueMultiple()
+    protected function validatorUniqueMultiple()
     {
         Validator::extend('unique_multiple', function ($attribute, $value, $parameters, $validator) {
             $table = array_shift($parameters);
@@ -44,7 +46,7 @@ class ValidateServiceProvider extends ServiceProvider
         });
     }
 
-    protected function _validator_DateMultiFormat()
+    protected function validatorDateMultiFormat()
     {
         /**
          * @see http://stackoverflow.com/questions/32006092/laravel-5-1-date-format-validation-allow-two-formats
@@ -63,6 +65,19 @@ class ValidateServiceProvider extends ServiceProvider
 
             // value did not match any of the provided formats, so return false=validation failed
             return false;
+        });
+    }
+
+    protected function validatorCheckOldPassword()
+    {
+        Validator::extend('old_password', function ($attribute, $value, $parameters, $validator) {
+            $table = array_shift($parameters);
+
+            $field = $parameters[0];
+
+            $currentModel = \DB::table($table)->find($parameters[1]);
+
+            return Hash::check($validator->getData()[$attribute], $currentModel->$field);
         });
     }
 }

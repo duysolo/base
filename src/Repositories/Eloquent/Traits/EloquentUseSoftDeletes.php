@@ -33,7 +33,12 @@ trait EloquentUseSoftDeletes
      */
     public function onlyTrashed($bool = true)
     {
-        $this->model = $this->model->onlyTrashed();
+        if ($bool) {
+            $this->model = $this->model->onlyTrashed();
+        } else {
+            $this->model = $this->model->withTrashed();
+        }
+
         return $this;
     }
 

@@ -14,6 +14,6 @@
         </div>
     </div>
     <div class="box-body">
-        {!! Form::selectImageBox($name, $value) !!}
+        {!! form()->selectImageBox($name, $value) !!}
     </div>
 </div>

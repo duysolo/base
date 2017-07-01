@@ -316,11 +316,11 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
 
         $params = array_merge([
             'condition' => [
-                'status' => 'activated',
+                //'status' => 'activated',
             ],
             'order_by' => [
-                'order' => 'ASC',
-                'created_at' => 'DESC',
+                //'order' => 'ASC',
+                //'created_at' => 'DESC',
             ],
             'take' => null,
             'paginate' => [
