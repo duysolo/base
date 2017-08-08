@@ -9,15 +9,17 @@ class RouteServiceProvider extends ServiceProvider
 {
     protected $namespace = 'WebEd\Base\Http\Controllers';
 
-    public function map()
+    public function boot()
     {
-        Route::middleware('web')
-            ->namespace($this->namespace)
-            ->group(__DIR__ . '/../../routes/web.php');
+        $this->app->booted(function () {
+            Route::middleware('web')
+                ->namespace($this->namespace)
+                ->group(__DIR__ . '/../../routes/web.php');
 
-        Route::prefix(config('webed.api_route', 'api'))
-            ->middleware('api')
-            ->namespace($this->namespace)
-            ->group(__DIR__ . '/../../routes/api.php');
+            Route::prefix(config('webed.api_route', 'api'))
+                ->middleware('api')
+                ->namespace($this->namespace)
+                ->group(__DIR__ . '/../../routes/api.php');
+        });
     }
 }

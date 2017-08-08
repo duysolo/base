@@ -35,7 +35,7 @@ abstract class BaseAdminController extends BaseController
         $this->middleware(function (Request $request, $next) {
             $this->breadcrumbs = breadcrumbs()->setBreadcrumbClass('breadcrumb')
                 ->setContainerTag('ol')
-                ->addLink('WebEd', route('admin::dashboard.index.get'), '<i class="icon-home mr5"></i>');
+                ->addLink(config('app.name') ?: 'WebEd', route('admin::dashboard.index.get'), '<i class="icon-home mr5"></i>');
 
             $this->loggedInUser = get_current_logged_user();
 
