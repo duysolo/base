@@ -1,6 +1,13 @@
 <?php
 
 /**
+ * Filters routes
+ */
+if (!defined('BASE_FILTER_PUBLIC_ROUTE')) {
+    define('BASE_FILTER_PUBLIC_ROUTE', 'webed.hook-filter.public-route');
+}
+
+/**
  * Filters when update data
  */
 if (!defined('BASE_FILTER_BEFORE_CREATE')) {
@@ -102,6 +109,40 @@ if (!defined('BASE_ACTION_META_BOXES')) {
  */
 if (!defined('BASE_FILTER_CONTROLLER')) {
     define('BASE_FILTER_CONTROLLER', 'base.filter-controller');
+}
+if (!defined('FRONT_FILTER_FIND_DATA')) {
+    define('FRONT_FILTER_FIND_DATA', 'base.front.filter-find-data');
+}
+
+/**
+ * Filter Data Tables
+ */
+if (!defined('FRONT_FILTER_DATA_TABLES')) {
+    define('FRONT_FILTER_DATA_TABLES', 'base.filter-data-tables');
+}
+if (!defined('FRONT_FILTER_DATA_TABLES_MODEL')) {
+    define('FRONT_FILTER_DATA_TABLES_MODEL', 'base.filter-data-tables.model');
+}
+if (!defined('FRONT_FILTER_DATA_TABLES_HEADINGS')) {
+    define('FRONT_FILTER_DATA_TABLES_HEADINGS', 'base.filter-data-tables.headings');
+}
+if (!defined('FRONT_FILTER_DATA_TABLES_COLUMNS')) {
+    define('FRONT_FILTER_DATA_TABLES_COLUMNS', 'base.filter-data-tables.columns');
+}
+if (!defined('FRONT_FILTER_DATA_TABLES_FILTERS')) {
+    define('FRONT_FILTER_DATA_TABLES_FILTERS', 'base.filter-data-tables.filters');
+}
+if (!defined('FRONT_FILTER_DATA_TABLES_FETCH')) {
+    define('FRONT_FILTER_DATA_TABLES_FETCH', 'base.filter-data-tables.fetch');
+}
+if (!defined('FRONT_FILTER_DATA_TABLES_GROUP_ACTIONS')) {
+    define('FRONT_FILTER_DATA_TABLES_GROUP_ACTIONS', 'base.filter-data-tables.group-actions');
+}
+if (!defined('FRONT_FILTER_DATA_TABLES_SELECTORS')) {
+    define('FRONT_FILTER_DATA_TABLES_SELECTORS', 'base.filter-data-tables.selectors');
+}
+if (!defined('FRONT_FILTER_DATA_TABLES_AJAX_URL')) {
+    define('FRONT_FILTER_DATA_TABLES_AJAX_URL', 'base.filter-data-tables.ajax-url');
 }
 
 /**

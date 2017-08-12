@@ -13,14 +13,34 @@ abstract class AbstractDataTables
      */
     protected $collection;
 
+    /**
+     * @var array
+     */
     protected $filters = [];
 
+    /**
+     * @var array
+     */
     protected $groupActions = [];
 
+    /**
+     * @var array
+     */
     protected $ajaxUrl = [];
 
+    /**
+     * @var string
+     */
     protected $selector = 'table.datatables';
 
+    /**
+     * @var string
+     */
+    protected $screenName;
+
+    /**
+     * @var string
+     */
     public $dataTableView = 'webed-core::admin._components.datatables.table';
 
     /**
@@ -36,7 +56,7 @@ abstract class AbstractDataTables
     public function __call($method, $params)
     {
         if (!$this->fetch) {
-            $this->fetch = $this->fetchDataForAjax();
+            $this->fetch = do_filter(FRONT_FILTER_DATA_TABLES_FETCH, $this->fetchDataForAjax(), $this->screenName);
         }
 
         call_user_func_array([$this->fetch, $method], $params);
@@ -111,12 +131,17 @@ abstract class AbstractDataTables
      */
     protected function view()
     {
-        $filters = $this->filters;
-        $headings = $this->headings();
-        $columns = json_encode($this->columns());
-        $groupActions = $this->groupActions;
-        $selector = $this->selector;
-        $ajaxUrl = $this->ajaxUrl;
+        $filters = do_filter(FRONT_FILTER_DATA_TABLES_FILTERS, $this->filters, $this->screenName);
+
+        $headings = do_filter(FRONT_FILTER_DATA_TABLES_HEADINGS, $this->headings(), $this->screenName);
+
+        $columns = json_encode(do_filter(FRONT_FILTER_DATA_TABLES_COLUMNS, $this->columns(), $this->screenName));
+
+        $groupActions = do_filter(FRONT_FILTER_DATA_TABLES_GROUP_ACTIONS, $this->groupActions, $this->screenName);
+
+        $selector = do_filter(FRONT_FILTER_DATA_TABLES_SELECTORS, $this->selector, $this->screenName);
+
+        $ajaxUrl = do_filter(FRONT_FILTER_DATA_TABLES_AJAX_URL, $this->ajaxUrl, $this->screenName);
 
         assets_management()->addJavascripts('jquery-datatables');
 
@@ -136,27 +161,11 @@ abstract class AbstractDataTables
      */
     public function ajax()
     {
-        $this->fetch = $this->fetchDataForAjax();
+        if (!$this->fetch) {
+            $this->fetch = do_filter(FRONT_FILTER_DATA_TABLES_FETCH, $this->fetchDataForAjax(), $this->screenName);
+        }
+
         return $this->fetch->make(true, true);
-    }
-
-    /**
-     * @return mixed|CollectionEngine|EloquentEngine|QueryBuilderEngine
-     */
-    public function getDataTableData()
-    {
-        return $this->fetch;
-    }
-
-    /**
-     * @param CollectionEngine|EloquentEngine|QueryBuilderEngine|mixed $engine
-     * @return $this
-     */
-    public function setDataTableData($engine)
-    {
-        $this->fetch = $engine;
-
-        return $this;
     }
 
     /**
