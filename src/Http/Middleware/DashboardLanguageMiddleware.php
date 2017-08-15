@@ -15,6 +15,7 @@ class DashboardLanguageMiddleware
     public function handle($request, Closure $next)
     {
         $locale = DashboardLanguageFacade::getDashboardLanguage();
+
         app()->setLocale($locale);
 
         return $next($request);

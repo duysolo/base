@@ -2,6 +2,7 @@
     $hasFilter = isset($filters) && $filters ? true : false;
     $hasTableActions = isset($groupActions) && $groupActions ? true : false;
     $totalColumns = sizeof($headings);
+    $actionPosition = array_search('actions', array_keys($headings));
 @endphp
 <div class="table-container">
     @if($hasTableActions)
@@ -16,37 +17,54 @@
         </div>
     @endif
     <table class="table table-striped table-bordered table-hover vertical-middle datatables">
+        <colgroup>
+            @if($hasTableActions)
+                <col width="1%">
+            @endif
+            @foreach($headings as $key => $heading)
+                <col width="{{ $heading['width'] or '' }}" data-item="{{ $key }}">
+            @endforeach
+        </colgroup>
         <thead>
         <tr role="row" class="heading">
             @if($hasTableActions)
-                <th width="1%" class="no-sort no-search sorting_disabled">
+                <th class="no-sort no-search sorting_disabled">
                     {!! form()->customCheckbox([
                         ['group_checkable', 1]
                     ]) !!}
                 </th>
             @endif
-            @foreach($headings as $heading)
-                <th width="{{ $heading['width'] or '' }}">{{ $heading['title'] or '' }}</th>
+            @foreach($headings as $key => $heading)
+                <th data-item="{{ $key }}">{{ $heading['title'] or '' }}</th>
             @endforeach
         </tr>
         @if($hasFilter)
+            @php
+                $i = 1;
+            @endphp
             <tr role="row" class="filter">
                 @if($hasTableActions)
-                    <td></td>
+                    <td data-item="id-checkbox"></td>
                 @endif
-                @for($i = 1; $i < $totalColumns; $i++)
-                    <td>
-                        {!! $filters[(($hasTableActions) ? $i : $i - 1)] or '' !!}
-                    </td>
-                @endfor
-                <td>
-                    <button class="btn btn-sm green filter-submit">
-                        <i class="fa fa-search"></i>
-                    </button>
-                    <button class="btn btn-sm yellow-lemon filter-cancel">
-                        <i class="fa fa-times"></i>
-                    </button>
-                </td>
+                @foreach($headings as $key => $heading)
+                    @if(($key == 'actions'))
+                        <td data-item="actions">
+                            <button class="btn btn-sm green filter-submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            <button class="btn btn-sm yellow-lemon filter-cancel">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </td>
+                    @else
+                        <td data-item="{{ $key }}">
+                            {!! $filters[(($hasTableActions) ? $i : $i - 1)] or '' !!}
+                        </td>
+                    @endif
+                    @php
+                        $i++;
+                    @endphp
+                @endforeach
             </tr>
         @endif
         </thead>
