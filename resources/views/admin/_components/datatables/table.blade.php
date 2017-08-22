@@ -35,7 +35,7 @@
                 </th>
             @endif
             @foreach($headings as $key => $heading)
-                <th data-item="{{ $key }}">{{ $heading['title'] or '' }}</th>
+                <th data-item="{{ $key }}">{!! $heading['title'] or '' !!}</th>
             @endforeach
         </tr>
         @if($hasFilter)
