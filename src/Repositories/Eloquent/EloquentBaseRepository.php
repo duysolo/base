@@ -113,7 +113,16 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         $result = $this->findWhere($condition);
         if (!$result) {
             $data = array_merge((array)$optionalFields, $condition);
-            $id = $this->create($data);
+
+            $fieldsToCreate = [];
+
+            foreach ($data as $key => $value) {
+                if (!is_array($value)) {
+                    $fieldsToCreate[$key] = $value;
+                }
+            }
+
+            $id = $this->create($fieldsToCreate);
             $result = $this->find($id);
         }
         $this->resetModel();
@@ -126,7 +135,7 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
      */
     public function findOrNew($id)
     {
-        $result = $this->model->find($id) ?: new $this->model;
+        $result = $this->model->find($id) ?: new $this->originalModel;
 
         $this->resetModel();
 
