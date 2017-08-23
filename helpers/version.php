@@ -61,7 +61,7 @@ if (!function_exists('get_cms_version')) {
     function get_cms_version()
     {
         $coreModule = get_core_module('webed-core');
-        return isset($coreModule['version']) ? $coreModule['version'] : get_core_module_composer_version('sgsoft-studio/base') ?: '3.1';
+        return isset($coreModule['version']) ? $coreModule['version'] : get_core_module_composer_version('sgsoft-studio/base') ?: '4.0';
     }
 }
 

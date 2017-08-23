@@ -7,10 +7,12 @@ if (!function_exists('get_templates')) {
      */
     function get_templates($type = null)
     {
+        $types = config('webed-templates');
         if ($type === null) {
-            return config('webed-templates');
+            return $types;
         }
-        $templates = config('webed-templates.' . $type, []);
+
+        $templates = array_get($types, $type, []);
         return $templates ?: [];
     }
 }
@@ -22,7 +24,14 @@ if (!function_exists('add_new_template')) {
      */
     function add_new_template(array $template, $type)
     {
-        $currentTemplates = config('webed-templates.' . $type, []);
-        config(['webed-templates.' . $type => array_merge($currentTemplates, $template)]);
+        $types = config('webed-templates');
+
+        $currentTemplates = array_get($types, $type, []);
+
+        $types[$type] = array_merge($currentTemplates, $template);
+
+        config([
+            'webed-templates' => $types,
+        ]);
     }
 }

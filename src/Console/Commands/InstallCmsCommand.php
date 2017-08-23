@@ -3,10 +3,13 @@
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use WebEd\Base\ACL\Models\Role;
+use WebEd\Base\ACL\Repositories\Contracts\RoleRepositoryContract;
+use WebEd\Base\ACL\Repositories\RoleRepository;
 use WebEd\Base\ModulesManagement\Repositories\Contracts\CoreModulesRepositoryContract;
 use WebEd\Base\ModulesManagement\Repositories\CoreModulesRepository;
 use WebEd\Base\Providers\InstallModuleServiceProvider;
-use WebEd\Base\Users\Models\User;
+use WebEd\Base\Users\Repositories\Contracts\UserRepositoryContract;
+use WebEd\Base\Users\Repositories\UserRepository;
 
 class InstallCmsCommand extends Command
 {
@@ -55,11 +58,26 @@ class InstallCmsCommand extends Command
     protected $coreModulesRepository;
 
     /**
+     * @var RoleRepository
+     */
+    protected $roleRepository;
+
+    /**
+     * @var UserRepository
+     */
+    protected $userRepository;
+
+    /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct(Filesystem $filesystem, CoreModulesRepositoryContract $coreModulesRepository)
+    public function __construct(
+        Filesystem $filesystem,
+        CoreModulesRepositoryContract $coreModulesRepository,
+        RoleRepositoryContract $roleRepository,
+        UserRepositoryContract $userRepository
+    )
     {
         parent::__construct();
 
@@ -68,6 +86,10 @@ class InstallCmsCommand extends Command
         $this->app = app();
 
         $this->coreModulesRepository = $coreModulesRepository;
+
+        $this->roleRepository = $roleRepository;
+
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -82,7 +104,7 @@ class InstallCmsCommand extends Command
          * Migrate tables
          */
         $this->line('Migrate database...');
-        \Artisan::call('migrate');
+        $this->app->register(InstallModuleServiceProvider::class);
 
         $this->line('Create super admin role...');
         $this->createSuperAdminRole();
@@ -121,21 +143,21 @@ class InstallCmsCommand extends Command
 
     protected function createSuperAdminRole()
     {
-        $role = Role::where('slug', '=', 'super-admin')->first();
+        $role = $this->roleRepository->findWhere([
+            'slug' => 'super-admin',
+        ]);
         if ($role) {
             $this->role = $role;
             $this->info('Admin role already exists...');
             return;
         }
 
-        $role = new Role();
-        $role->name = 'Super Admin';
-        $role->slug = 'super-admin';
-
         try {
-            $role->save();
+            $this->role = $this->roleRepository->find($this->roleRepository->create([
+                'name' => 'Super Admin',
+                'slug' => 'super-admin',
+            ]));
             $this->info('Admin role created successfully...');
-            $this->role = $role;
         } catch (\Exception $exception) {
             $this->error('Error occurred when create role...');
         }
@@ -143,33 +165,26 @@ class InstallCmsCommand extends Command
 
     protected function createAdminUser()
     {
-        $user = new User();
-        $user->username = $this->ask('Your username', 'admin');
-        $user->email = $this->ask('Your email', 'admin@webed.com');
-        $user->password = $this->secret('Your password');
-        $user->display_name = $this->ask('Your display name', 'Super Admin');
-        $user->first_name = $this->ask('Your first name', 'Admin');
-        $user->last_name = $this->ask('Your last name', false);
-
         try {
-            $user->save();
+            $user = $this->userRepository->find($this->userRepository->create([
+                'username' => $this->ask('Your username', 'admin'),
+                'email' => $this->ask('Your email', 'admin@webed.com'),
+                'password' => $this->secret('Your password'),
+                'display_name' => $this->ask('Your display name', 'Super Admin'),
+                'first_name' => $this->ask('Your first name', 'Admin'),
+                'last_name' => $this->ask('Your last name', false),
+            ]));
+            if ($this->role) {
+                $this->role->users()->save($user);
+            }
             $this->info('User created successfully...');
         } catch (\Exception $exception) {
             $this->error('Error occurred when create user...');
-        }
-
-        /**
-         * Assign this user to super admin
-         */
-        if ($this->role) {
-            $this->role->users()->save($user);
         }
     }
 
     protected function registerInstallModuleService()
     {
-        $this->app->register(InstallModuleServiceProvider::class);
-
         $data = [
             'alias' => 'webed-core',
         ];

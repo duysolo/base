@@ -24,11 +24,6 @@
     <link rel="stylesheet" href="{{ asset('admin/theme/lte/css/skins/_all-skins.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
 
-    <script type="text/javascript">
-        var BASE_URL = '{{ asset('') }}',
-            FILE_MANAGER_URL = '{{ route('admin::elfinder.popup.get') }}';
-    </script>
-
     <link rel="shortcut icon" href="{{ get_setting('favicon', 'favicon.png') }}"/>
 
     {!! assets_management()->renderScripts('top') !!}
@@ -36,6 +31,10 @@
     @stack('head')
 
     @yield('head')
+
+    <script type="text/javascript">
+        var BASE_URL = '{{ asset('') }}';
+    </script>
 
     @php do_action(BASE_ACTION_HEADER_JS) @endphp
 </head>

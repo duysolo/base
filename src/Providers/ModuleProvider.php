@@ -4,11 +4,7 @@ use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use WebEd\Base\Exceptions\Handler;
-use WebEd\Base\Facades\AdminBarFacade;
-use WebEd\Base\Facades\BreadcrumbsFacade;
-use WebEd\Base\Facades\FlashMessagesFacade;
 use WebEd\Base\Facades\SeoFacade;
-use WebEd\Base\Facades\ViewCountFacade;
 use WebEd\Base\Http\Middleware\BootstrapModuleMiddleware;
 use WebEd\Base\Support\Helper;
 
@@ -25,8 +21,6 @@ class ModuleProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'webed-core');
         /*Load translations*/
         $this->loadTranslationsFrom(__DIR__ . '/../../resources/lang', 'webed-core');
-        /*Load migrations*/
-        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
 
         $this->publishes([
             __DIR__ . '/../../resources/views' => config('view.paths')[0] . '/vendor/webed-core',
@@ -64,10 +58,6 @@ class ModuleProvider extends ServiceProvider
 
         //Register related facades
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-        $loader->alias('Breadcrumbs', BreadcrumbsFacade::class);
-        $loader->alias('FlashMessages', FlashMessagesFacade::class);
-        $loader->alias('AdminBar', AdminBarFacade::class);
-        $loader->alias('ViewCount', ViewCountFacade::class);
         $loader->alias('Form', \Collective\Html\FormFacade::class);
         $loader->alias('Html', \Collective\Html\HtmlFacade::class);
         $loader->alias('Seo', SeoFacade::class);
@@ -111,15 +101,15 @@ class ModuleProvider extends ServiceProvider
         $this->app->register(\WebEd\Base\ACL\Providers\ModuleProvider::class);
         $this->app->register(\WebEd\Base\ModulesManagement\Providers\ModuleProvider::class);
         $this->app->register(\WebEd\Base\AssetsManagement\Providers\ModuleProvider::class);
-        $this->app->register(\WebEd\Base\Elfinder\Providers\ModuleProvider::class);
+
         $this->app->register(\WebEd\Base\Hook\Providers\ModuleProvider::class);
         $this->app->register(\WebEd\Base\Menu\Providers\ModuleProvider::class);
         $this->app->register(\WebEd\Base\Settings\Providers\ModuleProvider::class);
         $this->app->register(\WebEd\Base\ThemesManagement\Providers\ModuleProvider::class);
         $this->app->register(\WebEd\Base\Users\Providers\ModuleProvider::class);
-        $this->app->register(\WebEd\Base\Pages\Providers\ModuleProvider::class);
 
-        $this->app->register(\WebEd\Base\CustomFields\Providers\ModuleProvider::class);
-        $this->app->register(\WebEd\Base\StaticBlocks\Providers\ModuleProvider::class);
+        foreach (config('webed.external_core', []) as $item) {
+            $this->app->register($item);
+        }
     }
 }

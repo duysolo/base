@@ -9,6 +9,6 @@ class AdminBreadcrumbsViewComposer
      */
     public function compose(View $view)
     {
-        $view->with('pageBreadcrumbs', \Breadcrumbs::render());
+        $view->with('pageBreadcrumbs', breadcrumbs()->render());
     }
 }
