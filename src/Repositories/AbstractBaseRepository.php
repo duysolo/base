@@ -195,6 +195,12 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract
     abstract public function findOrNew($id);
 
     /**
+     * @param array $condition
+     * @return BaseModelContract
+     */
+    abstract public function firstOrNew(array $condition);
+
+    /**
      * @param array $columns
      * @return Collection
      */

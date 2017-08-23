@@ -126,7 +126,26 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
      */
     public function findOrNew($id)
     {
-        return $this->model->find($id) ?: new $this->model;
+        $result = $this->model->find($id) ?: new $this->model;
+
+        $this->resetModel();
+
+        return $result;
+    }
+
+    /**
+     * @param int $id
+     * @return EloquentBase|Builder
+     */
+    public function firstOrNew(array $condition)
+    {
+        $this->applyConditions($condition);
+
+        $result = $this->model->first() ?: new $this->originalModel;
+
+        $this->resetModel();
+
+        return $result;
     }
 
     /**
