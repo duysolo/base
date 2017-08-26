@@ -17,7 +17,7 @@
             </div>
         @endif
         <ul class="sidebar-menu">
-            {!! DashboardMenu::render() !!}
+            {!! dashboard_menu()->render() !!}
         </ul>
     </section>
 </aside>

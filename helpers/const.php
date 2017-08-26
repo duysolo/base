@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('WEBED_DB_PREFIX')) {
+    define('WEBED_DB_PREFIX', 'we_');
+}
+
 /**
  * Filters routes
  */
@@ -10,10 +14,6 @@ if (!defined('BASE_FILTER_PUBLIC_ROUTE')) {
 /**
  * Filters when update data
  */
-if (!defined('BASE_FILTER_BEFORE_CREATE')) {
-    define('BASE_FILTER_BEFORE_CREATE', 'webed.hook-filter.before-create');
-}
-
 if (!defined('BASE_FILTER_BEFORE_UPDATE')) {
     define('BASE_FILTER_BEFORE_UPDATE', 'webed.hook-filter.before-update');
 }
@@ -22,16 +22,12 @@ if (!defined('BASE_FILTER_BEFORE_DELETE')) {
     define('BASE_FILTER_BEFORE_DELETE', 'webed.hook-filter.before-delete');
 }
 
-if (!defined('BASE_FILTER_AFTER_CREATE')) {
-    define('BASE_FILTER_AFTER_CREATE', 'webed.hook-filter.after-create');
+if (!defined('BASE_FILTER_BEFORE_FORCE_DELETE')) {
+    define('BASE_FILTER_BEFORE_FORCE_DELETE', 'webed.hook-filter.before-force-delete');
 }
 
-if (!defined('BASE_FILTER_AFTER_UPDATE')) {
-    define('BASE_FILTER_AFTER_UPDATE', 'webed.hook-filter.after-update');
-}
-
-if (!defined('BASE_FILTER_AFTER_DELETE')) {
-    define('BASE_FILTER_AFTER_DELETE', 'webed.hook-filter.after-delete');
+if (!defined('BASE_FILTER_BEFORE_RESTORE')) {
+    define('BASE_FILTER_BEFORE_RESTORE', 'webed.hook-filter.before-restore');
 }
 
 /**
@@ -39,14 +35,6 @@ if (!defined('BASE_FILTER_AFTER_DELETE')) {
  */
 if (!defined('BASE_ACTION_BEFORE_CREATE')) {
     define('BASE_ACTION_BEFORE_CREATE', 'webed.hook-action.before-create');
-}
-
-if (!defined('BASE_ACTION_BEFORE_UPDATE')) {
-    define('BASE_ACTION_BEFORE_UPDATE', 'webed.hook-action.before-update');
-}
-
-if (!defined('BASE_ACTION_BEFORE_DELETE')) {
-    define('BASE_ACTION_BEFORE_DELETE', 'webed.hook-action.before-delete');
 }
 
 if (!defined('BASE_ACTION_AFTER_CREATE')) {

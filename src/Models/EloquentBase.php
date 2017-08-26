@@ -12,6 +12,20 @@ abstract class EloquentBase extends Model implements BaseModelContract
     protected $primaryKey = false;
 
     /**
+     * @var string
+     */
+    protected $prefix = WEBED_DB_PREFIX;
+
+    public function __construct(array $attributes = [])
+    {
+        if (isset($this->prefix)) {
+            $this->table = $this->prefix . $this->table;
+        }
+
+        parent::__construct($attributes);
+    }
+
+    /**
      * Get primary key
      * @return string
      */

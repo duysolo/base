@@ -5,7 +5,7 @@ use WebEd\Base\Models\EloquentBase as BaseModel;
 
 class ViewTracker extends BaseModel implements ViewTrackerModelContract
 {
-    protected $table = 'we_view_trackers';
+    protected $table = 'view_trackers';
 
     protected $primaryKey = 'id';
 

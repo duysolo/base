@@ -5,45 +5,11 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use WebEd\Base\Exceptions\Handler;
 use WebEd\Base\Facades\SeoFacade;
-use WebEd\Base\Http\Middleware\BootstrapModuleMiddleware;
+use WebEd\Base\Http\Middleware\StartSessionMiddleware;
 use WebEd\Base\Support\Helper;
 
 class ModuleProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap the application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        /*Load views*/
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'webed-core');
-        /*Load translations*/
-        $this->loadTranslationsFrom(__DIR__ . '/../../resources/lang', 'webed-core');
-
-        $this->publishes([
-            __DIR__ . '/../../resources/views' => config('view.paths')[0] . '/vendor/webed-core',
-        ], 'views');
-        $this->publishes([
-            __DIR__ . '/../../resources/lang' => base_path('resources/lang/vendor/webed-core'),
-        ], 'lang');
-        $this->publishes([
-            __DIR__ . '/../../config' => base_path('config'),
-        ], 'config');
-        $this->publishes([
-            __DIR__ . '/../../resources/assets' => resource_path('assets'),
-        ], 'webed-assets');
-        $this->publishes([
-            __DIR__ . '/../../resources/root' => base_path(),
-            __DIR__ . '/../../resources/public' => public_path(),
-        ], 'webed-public-assets');
-
-        app()->booted(function () {
-            $this->app->register(BootstrapModuleServiceProvider::class);
-        });
-    }
-
     /**
      * Register the application services.
      *
@@ -91,7 +57,7 @@ class ModuleProvider extends ServiceProvider
          * @var Router $router
          */
         $router = $this->app['router'];
-        $router->pushMiddlewareToGroup('web', BootstrapModuleMiddleware::class);
+        $router->pushMiddlewareToGroup('web', StartSessionMiddleware::class);
 
         /**
          * Other module providers
@@ -111,5 +77,39 @@ class ModuleProvider extends ServiceProvider
         foreach (config('webed.external_core', []) as $item) {
             $this->app->register($item);
         }
+    }
+
+    /**
+     * Bootstrap the application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        /*Load views*/
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'webed-core');
+        /*Load translations*/
+        $this->loadTranslationsFrom(__DIR__ . '/../../resources/lang', 'webed-core');
+
+        $this->publishes([
+            __DIR__ . '/../../resources/views' => config('view.paths')[0] . '/vendor/webed-core',
+        ], 'views');
+        $this->publishes([
+            __DIR__ . '/../../resources/lang' => base_path('resources/lang/vendor/webed-core'),
+        ], 'lang');
+        $this->publishes([
+            __DIR__ . '/../../config' => base_path('config'),
+        ], 'config');
+        $this->publishes([
+            __DIR__ . '/../../resources/assets' => resource_path('assets'),
+        ], 'webed-assets');
+        $this->publishes([
+            __DIR__ . '/../../resources/root' => base_path(),
+            __DIR__ . '/../../resources/public' => public_path(),
+        ], 'webed-public-assets');
+
+        app()->booted(function () {
+            $this->app->register(BootstrapModuleServiceProvider::class);
+        });
     }
 }

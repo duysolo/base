@@ -84,11 +84,7 @@ export class DataTable {
                             WebEd.showNotification(res.customActionMessage, res.customActionStatus);
                         }
 
-                        if (res.customActionStatus) {
-                            if (tableOptions.resetGroupActionInputOnSuccess) {
-                                $('.table-group-action-input', _self.$tableWrapper).val("");
-                            }
-                        }
+                        $('input[name=group_checkable]').trigger('change');
 
                         if ($('.group-checkable', $table).size() === 1) {
                             $('.group-checkable', $table).attr("checked", false);
@@ -121,6 +117,8 @@ export class DataTable {
         $.fn.dataTableExt.oStdClasses.sLengthSelect = "form-control input-xs input-sm input-inline";
 
         this.datatable = this.$table.DataTable(this.options.dataTableParams);
+
+        _self.resetFilter();
 
         this.$tableContainer = this.$table.closest('.table-container');
         this.$tableWrapper = this.$table.closest('.dataTables_wrapper');
@@ -269,8 +267,13 @@ export class DataTable {
     }
 
     resetFilter() {
-        $('textarea.form-filter, select.form-filter, input.form-filter', this.$table).each(function () {
+        $('textarea.form-filter, input.form-filter', this.$table).each(function () {
             $(this).val("");
+        });
+        $('select.form-filter', this.$table).each(function () {
+            let $current = $(this);
+            let first_value = $current.find('option:first-child').attr('value');
+            $current.val(first_value);
         });
         $('input.form-filter[type="checkbox"]', this.$table).each(function () {
             $(this).attr("checked", false);

@@ -326,6 +326,12 @@ export class WebEd {
             extraPlugins: 'codeTag,insertpre',
             allowedContent: true,
             height: '400px',
+            htmlEncodeOutput: false,
+            protectedSource: [
+                /<\?[\s\S]*?\?>/g,
+                /<%[\s\S]*?%>/g,
+                /(<asp:[^\>]+>[\s|\S]*?<\/asp:[^\>]+>)|(<asp:[^\>]+\/>)/gi,
+            ],
         }, config);
         $elements.each(function () {
             let $_self = $(this);
@@ -344,15 +350,18 @@ export class WebEd {
         if (!$().confirmation) {
             return;
         }
-        $('[data-toggle=confirmation]').confirmation({
-            container: 'body',
-            btnOkClass: 'btn btn-sm green',
-            btnCancelClass: 'btn btn-sm red-sunglo',
-            //placement: 'left',
-            btnOkLabel: 'OK',
-            btnCancelLabel: 'Cancel',
-            popout: true,
-            singleton: true
+        $('[data-toggle=confirmation]').each(function () {
+            let $current = $(this);
+            $('[data-toggle=confirmation]').confirmation({
+                container: 'body',
+                btnOkClass: 'btn btn-sm green',
+                btnCancelClass: 'btn btn-sm red-sunglo',
+                placement: $current.data('placement') || 'left',
+                btnOkLabel: 'OK',
+                btnCancelLabel: 'Cancel',
+                popout: true,
+                singleton: true
+            });
         });
     }
 

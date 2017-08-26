@@ -340,26 +340,26 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
      */
     public function advancedGet(array $params = [])
     {
-        $this->applyCriteria();
-
         $params = array_merge([
-            'condition' => [
-                //'status' => 'activated',
-            ],
-            'order_by' => [
-                //'order' => 'ASC',
-                //'created_at' => 'DESC',
-            ],
+            'condition' => [],
+            'order_by' => [],
             'take' => null,
             'paginate' => [
                 'per_page' => null,
                 'current_paged' => 1
             ],
             'select' => ['*'],
-            'with' => [
-
-            ],
+            'with' => [],
+            'criteria' => [],
         ], $params);
+
+        $criteria = array_get($params, 'criteria');
+
+        foreach ($criteria as $criterion) {
+            $this->pushCriteria($criterion);
+        }
+
+        $this->applyCriteria();
 
         $this->applyConditions($params['condition']);
 

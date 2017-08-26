@@ -75,6 +75,15 @@ abstract class EloquentBaseRepositoryCacheDecorator extends AbstractRepositoryCa
     }
 
     /**
+     * @param array $condition
+     * @return EloquentBase|Builder
+     */
+    public function firstOrNew(array $condition)
+    {
+        return $this->beforeGet(__FUNCTION__, func_get_args());
+    }
+
+    /**
      * @param array $columns
      * @return Collection
      */
@@ -106,9 +115,10 @@ abstract class EloquentBaseRepositoryCacheDecorator extends AbstractRepositoryCa
 
     /**
      * @param array $data
+     * @param bool $force
      * @return int|null|EloquentBase
      */
-    public function create(array $data)
+    public function create(array $data, $force = false)
     {
         return $this->afterUpdate(__FUNCTION__, func_get_args());
     }

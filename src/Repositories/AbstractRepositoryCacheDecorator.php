@@ -3,7 +3,6 @@
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use WebEd\Base\Criterias\AbstractCriteria;
-use WebEd\Base\Criterias\Contracts\CriteriaContract;
 use WebEd\Base\Exceptions\Repositories\WrongCriteria;
 use WebEd\Base\Models\Contracts\BaseModelContract;
 use WebEd\Base\Caching\Services\Contracts\CacheableContract;
@@ -154,7 +153,7 @@ abstract class AbstractRepositoryCacheDecorator implements AbstractRepositoryCon
      * @return $this
      * @throws WrongCriteria
      */
-    public function pushCriteria(CriteriaContract $criteria)
+    public function pushCriteria(AbstractCriteria $criteria)
     {
         call_user_func_array([$this->repository, __FUNCTION__], func_get_args());
         return $this;
@@ -193,7 +192,7 @@ abstract class AbstractRepositoryCacheDecorator implements AbstractRepositoryCon
      * @param AbstractCriteria|string $criteria
      * @return Collection|BaseModelContract|LengthAwarePaginator|null|mixed
      */
-    public function getByCriteria(CriteriaContract $criteria)
+    public function getByCriteria(AbstractCriteria $criteria)
     {
         return $this->beforeGet(__FUNCTION__, func_get_args());
     }

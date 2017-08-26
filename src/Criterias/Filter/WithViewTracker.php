@@ -1,17 +1,28 @@
 <?php namespace WebEd\Base\Criterias\Filter;
 
 use Illuminate\Database\Eloquent\Builder;
+use WebEd\Base\Models\Contracts\BaseModelContract;
 use WebEd\Base\Models\EloquentBase;
 use WebEd\Base\Repositories\Contracts\AbstractRepositoryContract;
 use WebEd\Base\Criterias\AbstractCriteria;
 
 class WithViewTracker extends AbstractCriteria
 {
+    /**
+     * @var BaseModelContract
+     */
     protected $relatedModel;
 
-    public function __construct(EloquentBase $relatedModel)
+    /**
+     * @var string
+     */
+    protected $screenName;
+
+    public function __construct(BaseModelContract $relatedModel, $screenName)
     {
         $this->relatedModel = $relatedModel;
+
+        $this->screenName = $screenName;
     }
 
     /**
@@ -22,7 +33,7 @@ class WithViewTracker extends AbstractCriteria
     public function apply($model, AbstractRepositoryContract $repository)
     {
         return $model
-            ->leftJoin('view_trackers', $this->relatedModel->getTable() . '.' . $this->relatedModel->getPrimaryKey(), '=', 'view_trackers.entity_id')
-            ->where('view_trackers.entity', '=', get_class($this->relatedModel));
+            ->leftJoin(webed_db_prefix() . 'view_trackers', $this->relatedModel->getTable() . '.' . $this->relatedModel->getPrimaryKey(), '=', webed_db_prefix() . 'view_trackers.entity_id')
+            ->where(webed_db_prefix() . 'view_trackers.entity', '=', $this->screenName);
     }
 }

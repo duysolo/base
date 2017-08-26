@@ -2,7 +2,7 @@
 
 use WebEd\Base\Models\Contracts\ViewTrackerModelContract;
 
-interface ViewTrackerRepositoryContract
+interface ViewTrackerRepositoryContract extends AbstractRepositoryContract
 {
     /**
      * @param ViewTrackerModelContract $viewTracker
