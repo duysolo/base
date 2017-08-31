@@ -36,6 +36,12 @@ class ModuleProvider extends ServiceProvider
         }
 
         /**
+         * @var Router $router
+         */
+        $router = $this->app['router'];
+        $router->pushMiddlewareToGroup('web', StartSessionMiddleware::class);
+
+        /**
          * Other packages
          */
         $this->app->register(\Yajra\Datatables\DatatablesServiceProvider::class);
@@ -52,12 +58,7 @@ class ModuleProvider extends ServiceProvider
         $this->app->register(ComposerServiceProvider::class);
         $this->app->register(RepositoryServiceProvider::class);
         $this->app->register(CollectiveServiceProvider::class);
-
-        /**
-         * @var Router $router
-         */
-        $router = $this->app['router'];
-        $router->pushMiddlewareToGroup('web', StartSessionMiddleware::class);
+        $this->app->register(BootstrapModuleServiceProvider::class);
 
         /**
          * Other module providers
@@ -107,9 +108,5 @@ class ModuleProvider extends ServiceProvider
             __DIR__ . '/../../resources/root' => base_path(),
             __DIR__ . '/../../resources/public' => public_path(),
         ], 'webed-public-assets');
-
-        app()->booted(function () {
-            $this->app->register(BootstrapModuleServiceProvider::class);
-        });
     }
 }

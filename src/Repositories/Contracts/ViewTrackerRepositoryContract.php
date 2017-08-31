@@ -1,12 +1,11 @@
 <?php namespace WebEd\Base\Repositories\Contracts;
 
-use WebEd\Base\Models\Contracts\ViewTrackerModelContract;
-
 interface ViewTrackerRepositoryContract extends AbstractRepositoryContract
 {
     /**
-     * @param ViewTrackerModelContract $viewTracker
-     * @return array
+     * @param string $entityName
+     * @param string $entityId
+     * @return int
      */
-    public function increase(ViewTrackerModelContract $viewTracker);
+    public function increase($entityName, $entityId);
 }

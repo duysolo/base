@@ -1,7 +1,5 @@
 <?php namespace WebEd\Base\Support;
 
-use WebEd\Base\Models\Contracts\BaseModelContract;
-use WebEd\Base\Models\EloquentBase;
 use WebEd\Base\Repositories\Contracts\ViewTrackerRepositoryContract;
 use WebEd\Base\Repositories\ViewTrackerRepository;
 
@@ -22,18 +20,12 @@ class ViewCount
     }
 
     /**
-     * @param EloquentBase|string $entity
+     * @param $entityName
      * @param $entityId
+     * @return int
      */
-    public function increase($entity, $entityId)
+    public function increase($entityName, $entityId)
     {
-        if ($entity instanceof BaseModelContract) {
-            $entity = get_class($entity);
-        }
-        $viewTracker = $this->repository->findWhereOrCreate([
-            'entity' => $entity,
-            'entity_id' => $entityId,
-        ]);
-        return $this->repository->increase($viewTracker);
+        return $this->repository->increase($entityName, $entityId);
     }
 }

@@ -8,11 +8,17 @@ use WebEd\Base\Repositories\Eloquent\EloquentBaseRepository;
 class ViewTrackerRepository extends EloquentBaseRepository implements ViewTrackerRepositoryContract
 {
     /**
-     * @param ViewTracker $viewTracker
+     * @param string $entityName
+     * @param string $entityId
      * @return int
      */
-    public function increase(ViewTrackerModelContract $viewTracker)
+    public function increase($entityName, $entityId)
     {
+        $viewTracker = $this->findWhereOrCreate([
+            'entity' => $entityName,
+            'entity_id' => $entityId,
+        ]);
+
         $this->update($viewTracker, [
             'count' => $viewTracker->count + 1
         ]);

@@ -13,14 +13,11 @@ class InstallModuleServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function register()
     {
-        app()->booted(function () {
-            $this->dropCurrentDb();
-            $this->createDatabase();
-
-            $this->registerPermissions();
-        });
+        $this->dropCurrentDb();
+        $this->createDatabase();
+        $this->registerPermissions();
     }
 
     protected function dropCurrentDb()

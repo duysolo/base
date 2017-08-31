@@ -17,7 +17,7 @@ class BlogSidebar
             ]),
             'popularPosts' => get_posts([
                 'condition' => [
-                    'status' => 'activated',
+                    'status' => 1,
                     'is_featured' => 1
                 ],
                 'order_by' => [
