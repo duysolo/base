@@ -1,6 +1,7 @@
 <?php namespace WebEd\Base\Repositories;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use WebEd\Base\Criterias\AbstractCriteria;
 use WebEd\Base\Criterias\Contracts\CriteriaContract;
@@ -44,7 +45,7 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract
     }
 
     /**
-     * @return BaseModelContract
+     * @return BaseModelContract|Builder
      */
     public function getModel()
     {
