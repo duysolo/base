@@ -5,8 +5,8 @@ use Illuminate\Filesystem\Filesystem;
 use WebEd\Base\ACL\Models\Role;
 use WebEd\Base\ACL\Repositories\Contracts\RoleRepositoryContract;
 use WebEd\Base\ACL\Repositories\RoleRepository;
-use WebEd\Base\ModulesManagement\Repositories\Contracts\CoreModulesRepositoryContract;
-use WebEd\Base\ModulesManagement\Repositories\CoreModulesRepository;
+use WebEd\Base\ModulesManagement\Repositories\Contracts\CoreModuleRepositoryContract;
+use WebEd\Base\ModulesManagement\Repositories\CoreModuleRepository;
 use WebEd\Base\Providers\InstallModuleServiceProvider;
 use WebEd\Base\Users\Repositories\Contracts\UserRepositoryContract;
 use WebEd\Base\Users\Repositories\UserRepository;
@@ -53,9 +53,9 @@ class InstallCmsCommand extends Command
     protected $app;
 
     /**
-     * @var CoreModulesRepository
+     * @var CoreModuleRepository
      */
-    protected $coreModulesRepository;
+    protected $coreModuleRepository;
 
     /**
      * @var RoleRepository
@@ -74,7 +74,7 @@ class InstallCmsCommand extends Command
      */
     public function __construct(
         Filesystem $filesystem,
-        CoreModulesRepositoryContract $coreModulesRepository,
+        CoreModuleRepositoryContract $coreModuleRepository,
         RoleRepositoryContract $roleRepository,
         UserRepositoryContract $userRepository
     )
@@ -85,7 +85,7 @@ class InstallCmsCommand extends Command
 
         $this->app = app();
 
-        $this->coreModulesRepository = $coreModulesRepository;
+        $this->coreModuleRepository = $coreModuleRepository;
 
         $this->roleRepository = $roleRepository;
 
@@ -143,24 +143,11 @@ class InstallCmsCommand extends Command
 
     protected function createSuperAdminRole()
     {
-        $role = $this->roleRepository->findWhere([
+        $this->role = $this->roleRepository->findWhereOrCreate([
             'slug' => 'super-admin',
+        ], [
+            'name' => 'Super Admin',
         ]);
-        if ($role) {
-            $this->role = $role;
-            $this->info('Admin role already exists...');
-            return;
-        }
-
-        try {
-            $this->role = $this->roleRepository->find($this->roleRepository->create([
-                'name' => 'Super Admin',
-                'slug' => 'super-admin',
-            ]));
-            $this->info('Admin role created successfully...');
-        } catch (\Exception $exception) {
-            $this->error('Error occurred when create role...');
-        }
     }
 
     protected function createAdminUser()
@@ -191,14 +178,14 @@ class InstallCmsCommand extends Command
 
         $cmsVersion = get_cms_version();
 
-        $baseCore = $this->coreModulesRepository->findWhere($data);
+        $baseCore = $this->coreModuleRepository->findWhere($data);
 
         if (!$baseCore) {
-            $this->coreModulesRepository->create(array_merge($data, [
+            $this->coreModuleRepository->create(array_merge($data, [
                 'installed_version' => $cmsVersion,
             ]));
         } else {
-            $this->coreModulesRepository->update($baseCore, [
+            $this->coreModuleRepository->update($baseCore, [
                 'installed_version' => get_cms_version(),
             ]);
         }
@@ -219,10 +206,10 @@ class InstallCmsCommand extends Command
             if ($currentPackage) {
                 $data['installed_version'] = isset($module['version']) ? $module['version'] : $currentPackage['version'];
             }
-            $coreModule = $this->coreModulesRepository->findWhere([
+            $coreModule = $this->coreModuleRepository->findWhere([
                 'alias' => $module['alias'],
             ]);
-            $this->coreModulesRepository->createOrUpdate($coreModule, $data);
+            $this->coreModuleRepository->createOrUpdate($coreModule, $data);
         }
         \Artisan::call('vendor:publish', [
             '--tag' => 'webed-public-assets',

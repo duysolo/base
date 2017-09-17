@@ -52,8 +52,8 @@ class InstallModuleServiceProvider extends ServiceProvider
             $table->increments('id');
             $table->string('username', 100)->unique();
             $table->string('email')->unique();
-            $table->string('password', 60);
-            $table->string('display_name', 150);
+            $table->string('password', 60)->nullable();
+            $table->string('display_name', 150)->nullable();
             $table->string('first_name', 150);
             $table->string('last_name', 150)->nullable();
             $table->string('activation_code', 150)->nullable();

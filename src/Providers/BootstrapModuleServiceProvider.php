@@ -274,5 +274,24 @@ class BootstrapModuleServiceProvider extends ServiceProvider
                     ['class' => 'form-control']
                 ];
             });
+
+        config([
+            /**
+             * Mail config
+             */
+            'mail.driver' => get_setting('smtp_driver', config('mail.driver')),
+            'mail.host' => get_setting('smtp_host', config('mail.host')),
+            'mail.port' => get_setting('smtp_port', config('mail.port')),
+            'mail.from.address' => get_setting('smtp_from_address', config('mail.from.address')),
+            'mail.from.name' => get_setting('smtp_from_name', config('mail.from.name')),
+            'mail.encryption' => get_setting('smtp_encryption', config('mail.encryption')),
+            'mail.username' => get_setting('smtp_username', config('mail.username')),
+            'mail.password' => get_setting('smtp_password', config('mail.password')),
+
+            /**
+             * App name
+             */
+            'app.name' => get_setting('app_name') ?: config('app.name', 'WebEd CMS'),
+        ]);
     }
 }
