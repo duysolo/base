@@ -20,23 +20,6 @@ class UpdateCmsCommand extends Command
     protected $description = 'Update CMS command';
 
     /**
-     * @var UpdateCoreModuleAction
-     */
-    protected $action;
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct(UpdateCoreModuleAction $action)
-    {
-        parent::__construct();
-
-        $this->action = $action;
-    }
-
-    /**
      * Execute the console command.
      */
     public function handle()
@@ -44,25 +27,28 @@ class UpdateCmsCommand extends Command
         $modules = get_core_module();
 
         $updated = 0;
+        $errors = 0;
 
         foreach ($modules as $module) {
-            if (
-                get_core_module_composer_version(array_get($module, 'repos')) === array_get($module, 'installed_version')
-                || module_version_compare(get_core_module_composer_version(array_get($module, 'repos')), '^' . array_get($module, 'installed_version', 0))
-            ) {
+            if (get_core_module_composer_version(array_get($module, 'repos')) === array_get($module, 'installed_version')) {
                 continue;
             }
 
-            $this->info('Updating module: ' . $module['alias']);
+            $result = app(UpdateCoreModuleAction::class)->run($module['alias']);
 
-            $this->action->run($module['alias']);
-
-            $this->info('Module ' . $module['alias'] . ' has been updated');
-
-            $updated++;
+            if ($result['error']) {
+                foreach ($result['messages'] as $message) {
+                    $this->error($message);
+                    $errors++;
+                }
+            } else {
+                foreach ($result['messages'] as $message) {
+                    $this->info($message);
+                    $updated++;
+                }
+            }
         }
-        if (!$updated) {
-            $this->error('You have nothing to update');
-        }
+        $this->info($updated . ' modules updated');
+        $this->info($errors . ' modules error');
     }
 }
