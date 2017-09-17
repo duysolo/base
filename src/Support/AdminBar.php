@@ -5,22 +5,7 @@ class AdminBar
     /**
      * @var array
      */
-    protected $groups = [
-        'appearance' => [
-            'link' => 'javascript:;',
-            'title' => 'Appearance',
-            'items' => [
-
-            ],
-        ],
-        'add-new' => [
-            'link' => 'javascript:;',
-            'title' => 'Add new',
-            'items' => [
-
-            ],
-        ],
-    ];
+    protected $groups = [];
 
     /**
      * @var array
@@ -29,13 +14,23 @@ class AdminBar
 
     public function __construct()
     {
-        $this->groups['appearance']['items'] = [
-            'Menus' => route('admin::menus.index.get'),
-            'Settings' => route('admin::settings.index.get'),
-        ];
-
-        $this->groups['add-new']['items'] = [
-            'User' => route('admin::users.create.get'),
+        $this->groups = [
+            'appearance' => [
+                'link' => 'javascript:;',
+                'title' => trans('webed-core::admin_bar.appearance'),
+                'items' => [
+                    trans('webed-core::admin_bar.menus') => route('admin::menus.index.get'),
+                    trans('webed-core::admin_bar.settings') => route('admin::settings.index.get'),
+                    trans('webed-core::admin_bar.theme_options') => route('admin::theme-options.index.get'),
+                ],
+            ],
+            'add-new' => [
+                'link' => 'javascript:;',
+                'title' => trans('webed-core::admin_bar.add_new'),
+                'items' => [
+                    trans('webed-core::admin_bar.user') => route('admin::users.create.get'),
+                ],
+            ],
         ];
     }
 

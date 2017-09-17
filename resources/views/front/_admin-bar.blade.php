@@ -2,7 +2,7 @@
     <div class="admin-bar-container">
         <div class="admin-bar-logo">
             <a href="{{ route('admin::dashboard.index.get') }}" title="Go to dashboard">
-                WebEd CMS
+                {{ config('app.name') ?: 'WebEd CMS' }}
             </a>
         </div>
         <ul class="admin-navbar-nav">

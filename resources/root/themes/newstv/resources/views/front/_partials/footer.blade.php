@@ -2,7 +2,7 @@
     {!! $footerMenuHtml !!}
     <div class="footer-txt">
         <p>
-            <a href=".">
+            <a href="{{ get_homepage_link() }}">
                 <img src="{{ asset('themes/news-tv/images/logo.png') }}" alt="{{ get_setting('site_title') }}">
             </a>
         </p>

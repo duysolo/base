@@ -58,6 +58,10 @@ return [
             'label' => 'Tiêu đề trang',
             'helper' => 'Tiêu đề trang sẽ giúp khách hàng dễ nhớ tới ứng dụng của chúng ta'
         ],
+        'app_name' => [
+            'label' => 'Tên ứng dụng',
+            'helper' => 'Tên của ứng dụng hiện tại',
+        ],
         'site_logo' => [
             'label' => 'Ảnh đại diện',
             'helper' => 'Thêm ảnh đại diện. Ảnh này sẽ được dùng cho mục đích SEO'

@@ -14,7 +14,7 @@
     <div class="header-content">
         <div class="container">
             <h1 class="logo">
-                <a href="{{ url('') }}" title="{{ get_setting('site_title') }}">
+                <a href="{{ get_homepage_link() }}" title="{{ get_setting('site_title') }}">
                     <img src="{{ asset('themes/news-tv/images/logo.png') }}" alt="{{ get_setting('site_title') }}">
                 </a>
             </h1>

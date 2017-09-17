@@ -1,10 +1,10 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="{{ asset('') }}" class="logo">
+    <a href="{{ get_homepage_link() }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>WE</b></span>
+        <span class="logo-mini"><b>CMS</b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>WebEd</b></span>
+        <span class="logo-lg"><b>{{ config('app.name') }}</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -96,7 +96,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="{{ asset('') }}" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    <a href="{{ get_homepage_link() }}" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
                 </li>
             </ul>
         </div>

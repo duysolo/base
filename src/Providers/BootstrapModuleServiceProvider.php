@@ -59,10 +59,23 @@ class BootstrapModuleServiceProvider extends ServiceProvider
                     ['class' => 'form-control']
                 ];
             })
+            ->addSettingField('app_name', [
+                'group' => 'basic',
+                'type' => 'text',
+                'priority' => 6,
+                'label' => trans('webed-core::base.settings.app_name.label'),
+                'helper' => trans('webed-core::base.settings.app_name.helper')
+            ], function () {
+                return [
+                    'app_name',
+                    get_setting('app_name') ?: config('app.name'),
+                    ['class' => 'form-control']
+                ];
+            })
             ->addSettingField('site_logo', [
                 'group' => 'basic',
                 'type' => 'selectImageBox',
-                'priority' => 5,
+                'priority' => 7,
                 'label' => trans('webed-core::base.settings.site_logo.label'),
                 'helper' => trans('webed-core::base.settings.site_logo.helper')
             ], function () {
@@ -76,7 +89,7 @@ class BootstrapModuleServiceProvider extends ServiceProvider
             ->addSettingField('favicon', [
                 'group' => 'basic',
                 'type' => 'selectImageBox',
-                'priority' => 5,
+                'priority' => 8,
                 'label' => trans('webed-core::base.settings.favicon.label'),
                 'helper' => trans('webed-core::base.settings.favicon.helper'),
             ], function () {

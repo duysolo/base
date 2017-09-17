@@ -58,6 +58,10 @@ return [
             'label' => 'Site title',
             'helper' => 'Our site title'
         ],
+        'app_name' => [
+            'label' => 'Application name',
+            'helper' => 'Name of this application',
+        ],
         'site_logo' => [
             'label' => 'Site logo',
             'helper' => 'Our site logo'

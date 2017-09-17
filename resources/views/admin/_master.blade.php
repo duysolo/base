@@ -10,11 +10,11 @@
     <base href="{{ asset('') }}">
 
     <meta charset="utf-8"/>
-    <title>{{ $pageTitle or 'Dashboard' }} | {{ get_setting('site_title', 'WebEd') }}</title>
+    <title>{{ $pageTitle or 'Dashboard' }} | {{ config('app.name', 'WebEd') }}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta content="Admin dashboard - WebEd" name="description"/>
+    <meta content="{{ config('app.name', 'WebEd') }}" name="description"/>
 
     {!! assets_management()->renderStylesheets() !!}
 
