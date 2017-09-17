@@ -1,0 +1,10 @@
+{
+    "alias": "newstv",
+    "name": "NewsTV theme for WebEd",
+    "author": "Tedozi Manson",
+    "description": "NewsTV theme for WebEd",
+    "namespace": "NewsTV",
+    "version": "4.0.1",
+    "autoload": "psr-4",
+    "require": {}
+}

@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="author" content=""/>
+    <title>WebApp</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="images/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="images/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="images/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="images/favicons/manifest.json">
+    <link rel="mask-icon" href="images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="images/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="images/favicons/mstile-144x144.png">
+    <meta name="msapplication-config" content="images/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="css/style.css">
+    <link id="style_color" rel="stylesheet" href="dist/themes/blue.css">
+    <link rel="stylesheet" href="demo/demo.min.css">
+    <script src="third_party/modernizr.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="wrapper" id="site_wrapper">
+    <header class="header" id="header">
+        <div class="header-wrap">
+            <nav class="nav-top">
+                <div class="container">
+                    <ul class="pull-left">
+                        <li><a href="/" class="active">Trang chủ</a></li>
+                        <li><a href="/gioi-thieu.html">Giới Thiệu</a></li>
+                        <li><a href="/gui-bai.html">Gửi Bài</a></li>
+                        <li><a href="/dieu-khoan-su-dung.html">Điều Khoản</a></li>
+                        <li><a href="/lien-he.html">Liên Hệ</a></li>
+                    </ul>
+                    <div class="pull-right">
+                        <div class="hi-icon-wrap hi-icon-effect-3 hi-icon-effect-3a">
+                            <a href="#set-3" class="hi-icon fa fa-facebook"></a>
+                            <a href="#set-3" class="hi-icon fa fa-google-plus"></a>
+                            <a href="#set-3" class="hi-icon fa fa-youtube"></a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div class="header-content">
+                <div class="container">
+                    <h1 class="logo">
+                        <a href="/" title="TẠP CHÍ TỔNG HỢP VỀ NÔNG NGHIỆP">
+                            <img src="images/logo.png" alt="Nongdanviet.com">
+                        </a>
+                    </h1>
+                    <div class="header-content-right">
+                        <a href="#">
+                            <img src="dummy/ad-728x90.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="header-hotnews">
+            <div class="container">
+                <div class="hotnews-content">
+                    <h2 class="hotnews-tt">TIÊU ĐIỂM TRONG NGÀY</h2>
+                    <div class="hotnews-dv">
+                        <div class="hotnews-slideshow">
+                            <div class="js-marquee">
+                                <a href="#"> Bộ ảnh ngộ nghĩnh về sự khác biệt giữa đàn ông và phụ nữ </a>
+                                <a href="#"> Bộ ảnh ngộ nghĩnh về sự khác biệt giữa đàn ông và phụ nữ </a>
+                                <a href="#"> Bộ ảnh ngộ nghĩnh về sự khác biệt giữa đàn ông và phụ nữ </a>
+                                <a href="#"> Bộ ảnh ngộ nghĩnh về sự khác biệt giữa đàn ông và phụ nữ </a>
+                                <a href="#"> Bộ ảnh ngộ nghĩnh về sự khác biệt giữa đàn ông và phụ nữ </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/"><img src="images/logo.png" alt="Nongdanviet.com"></a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Trang chủ</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Tin tức <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">menu1</a></li>
+                                <li><a href="#">menu2</a></li>
+                                <li><a href="#">menu3</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Tư vấn <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">menu1</a></li>
+                                <li><a href="#">menu2</a></li>
+                                <li><a href="#">menu3</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Chuyện nhà nông <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">menu1</a></li>
+                                <li><a href="#">menu2</a></li>
+                                <li><a href="#">menu3</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Vật tư nông nghiệp <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">menu1</a></li>
+                                <li><a href="#">menu2</a></li>
+                                <li><a href="#">menu3</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Giá cả thị trường <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">menu1</a></li>
+                                <li><a href="#">menu2</a></li>
+                                <li><a href="#">menu3</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Thời tiết nông vụ <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">menu1</a></li>
+                                <li><a href="#">menu2</a></li>
+                                <li><a href="#">menu3</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-right" role="search">
+                        <div class="tn-searchtop">
+                            <button type="button" class="btn btn-default js-btn-searchtop">
+                                <i class="fa fa-times"></i>
+                            </button>
+                            <button type="submit" class="btn btn-default">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Tìm kiếm Thông tin..">
+                            </div>
+                        </div>
+                        <button id="tn-searchtop" class="js-btn-searchtop" type="button"><i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                </div><!-- /.navbar-collapse -->
+            </div>
+        </nav>
+    </header>
+    <main class="main" id="main">
+        <div class="container">
+            <div class="main-feature">
+                <div class="feature-item">
+                    <div class="feature-item-dv">
+                        <a href="#">
+                            <img class="img-full img-bg" src="images/img-size/news.png"
+                                 style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                 alt="">
+                            <div class="feature-item-link">
+                                <ul class="feature-item-meta">
+                                    <li class="feature-item-category">
+                                        <span>Life</span>
+                                    </li>
+                                </ul>
+                                <p>Tân Sơn Nhất kẹt cứng, nhiều hành khách phải xuống ôtô, kéo valy chạy bộ vào sân bay cho kịp giờ làm thủ tục.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-dv">
+                        <a href="#">
+                            <img class="img-full img-bg" src="images/img-size/news.png"
+                                 style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                 alt="">
+                            <div class="feature-item-link">
+                                <ul class="feature-item-meta">
+                                    <li class="feature-item-category">
+                                        <span>Life</span>
+                                    </li>
+                                </ul>
+                                <p>Tân Sơn Nhất kẹt cứng, nhiều hành khách phải xuống ôtô, kéo valy chạy bộ vào sân bay cho kịp giờ làm thủ tục.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-dv">
+                        <a href="#">
+                            <img class="img-full img-bg" src="images/img-size/news.png"
+                                 style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                 alt="">
+                            <div class="feature-item-link">
+                                <ul class="feature-item-meta">
+                                    <li class="feature-item-category">
+                                        <span>Life</span>
+                                    </li>
+                                </ul>
+                                <p>Tân Sơn Nhất kẹt cứng, nhiều hành khách phải xuống ôtô, kéo valy chạy bộ vào sân bay cho kịp giờ làm thủ tục.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-dv">
+                        <a href="#">
+                            <img class="img-full img-bg" src="images/img-size/news.png"
+                                 style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                 alt="">
+                            <div class="feature-item-link">
+                                <ul class="feature-item-meta">
+                                    <li class="feature-item-category">
+                                        <span>Life</span>
+                                    </li>
+                                </ul>
+                                <p>Tân Sơn Nhất kẹt cứng, nhiều hành khách phải xuống ôtô, kéo valy chạy bộ vào sân bay cho kịp giờ làm thủ tục.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-dv">
+                        <a href="#">
+                            <img class="img-full img-bg" src="images/img-size/news.png"
+                                 style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                 alt="">
+                            <div class="feature-item-link">
+                                <ul class="feature-item-meta">
+                                    <li class="feature-item-category">
+                                        <span>Life</span>
+                                    </li>
+                                </ul>
+                                <p>Tân Sơn Nhất kẹt cứng, nhiều hành khách phải xuống ôtô, kéo valy chạy bộ vào sân bay cho kịp giờ làm thủ tục.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="main-content">
+                <div class="main-left">
+                    <section class="main-box">
+                        <div class="main-box-header">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    Chọn <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="/category.html">Viet nam </a></li>
+                                    <li><a href="/category.html">Thoi gioi </a></li>
+                                    <li><a href="/category.html">Sau benh </a></li>
+                                    <li><a href="/category.html">Su kien </a></li>
+                                </ul>
+                            </div>
+                            <h2><i class="fa fa-leaf"></i> TIN TỨC NÔNG NGHIỆP</h2>
+                        </div>
+                        <div class="main-box-content">
+                            <div class="box-style box-style-1">
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                    <section class="main-box">
+                        <div class="main-box-header">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    Chọn <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="/category.html">Viet nam </a></li>
+                                    <li><a href="/category.html">Thoi gioi </a></li>
+                                    <li><a href="/category.html">Sau benh </a></li>
+                                    <li><a href="/category.html">Su kien </a></li>
+                                </ul>
+                            </div>
+                            <h2><i class="fa fa-leaf"></i> TIN TỨC NÔNG NGHIỆP</h2>
+                        </div>
+                        <div class="main-box-content">
+                            <div class="box-style box-style-2">
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+
+                    <section class="main-box">
+                        <div class="main-box-header">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    Chọn <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="/category.html">Viet nam </a></li>
+                                    <li><a href="/category.html">Thoi gioi </a></li>
+                                    <li><a href="/category.html">Sau benh </a></li>
+                                    <li><a href="/category.html">Su kien </a></li>
+                                </ul>
+                            </div>
+                            <h2><i class="fa fa-leaf"></i> TIN TỨC NÔNG NGHIỆP</h2>
+                        </div>
+                        <div class="main-box-content">
+                            <div class="box-style box-style-1">
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                    <section class="main-box">
+                        <div class="main-box-header">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    Chọn <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="/category.html">Viet nam </a></li>
+                                    <li><a href="/category.html">Thoi gioi </a></li>
+                                    <li><a href="/category.html">Sau benh </a></li>
+                                    <li><a href="/category.html">Su kien </a></li>
+                                </ul>
+                            </div>
+                            <h2><i class="fa fa-leaf"></i> TIN TỨC NÔNG NGHIỆP</h2>
+                        </div>
+                        <div class="main-box-content">
+                            <div class="box-style box-style-2">
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+
+                    <section class="main-box">
+                        <div class="main-box-header">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    Chọn <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="/category.html">Viet nam </a></li>
+                                    <li><a href="/category.html">Thoi gioi </a></li>
+                                    <li><a href="/category.html">Sau benh </a></li>
+                                    <li><a href="/category.html">Su kien </a></li>
+                                </ul>
+                            </div>
+                            <h2><i class="fa fa-leaf"></i> TIN TỨC NÔNG NGHIỆP</h2>
+                        </div>
+                        <div class="main-box-content">
+                            <div class="box-style box-style-1">
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                    <section class="main-box">
+                        <div class="main-box-header">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    Chọn <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="/category.html">Viet nam </a></li>
+                                    <li><a href="/category.html">Thoi gioi </a></li>
+                                    <li><a href="/category.html">Sau benh </a></li>
+                                    <li><a href="/category.html">Su kien </a></li>
+                                </ul>
+                            </div>
+                            <h2><i class="fa fa-leaf"></i> TIN TỨC NÔNG NGHIỆP</h2>
+                        </div>
+                        <div class="main-box-content">
+                            <div class="box-style box-style-2">
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-news">
+                                    <a href="/detail.html" class="media-news-img">
+                                        <img class="img-full img-bg" src="images/img-size/news.png"
+                                             style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                             alt="">
+                                    </a>
+                                    <div class="media-news-body">
+                                        <p class="common-title">
+                                            <a href="/detail.html">
+                                                Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế
+                                                này đây</a>
+                                        </p>
+                                        <p class="common-date">
+                                            <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                        </p>
+                                        <div class="common-summary">
+                                            Cách đây ít lâu, Vy Oanh từ đăng đàn "kể tội" Hari Won và Trấn Thành.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                </div>
+                <aside class="main-right">
+                    <div class="aside-box">
+                        <div class="aside-box-header">
+                            <h4>Xem nhiều nhất</h4>
+                        </div>
+                        <div class="aside-box-content">
+                            <div class="media-news">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aside-box">
+                        <div class="aside-box-header">
+                            <h4>Video bạn nên xem</h4>
+                        </div>
+                        <div class="aside-box-content">
+                            <div class="media-news media-video">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                    <p class="common-date">
+                                        <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news media-video">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                    <p class="common-date">
+                                        <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news media-video">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                    <p class="common-date">
+                                        <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news media-video">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                    <p class="common-date">
+                                        <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news media-video">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                    <p class="common-date">
+                                        <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news media-video">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                    <p class="common-date">
+                                        <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news media-video">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                    <p class="common-date">
+                                        <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news media-video">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                    <p class="common-date">
+                                        <time datetime="">08:01:00 AM | 01/01/2017</time>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fb-page" data-href="https://www.facebook.com/facebook/" data-tabs="timeline"
+                         data-width="300"
+                         data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"
+                         data-show-facepile="true">
+                        <blockquote cite="https://www.facebook.com/facebook/" class="fb-xfbml-parse-ignore"><a
+                            href="https://www.facebook.com/facebook/">Facebook</a></blockquote>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+    <footer class="footer" id="footer">
+        <div class="container">
+            <ul class="footer-menu">
+                <li>
+                    <h5>Tin tức <span class="footer-menu-btn"><i class="caret"></i></span></h5>
+                    <ul class="footer-menu-sub">
+                        <li><a href="/category.html">Việt Nam</a></li>
+                        <li><a href="/category.html">Thế Giới</a></li>
+                        <li><a href="/category.html">Sự Kiện</a></li>
+                        <li><a href="/category.html">Sâu Bệnh</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h5>Tin tức <span class="footer-menu-btn"><i class="caret"></i></span></h5>
+                    <ul class="footer-menu-sub">
+                        <li><a href="/category.html">Việt Nam</a></li>
+                        <li><a href="/category.html">Thế Giới</a></li>
+                        <li><a href="/category.html">Sự Kiện</a></li>
+                        <li><a href="/category.html">Sâu Bệnh</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h5>Tin tức <span class="footer-menu-btn"><i class="caret"></i></span></h5>
+                    <ul class="footer-menu-sub">
+                        <li><a href="/category.html">Việt Nam</a></li>
+                        <li><a href="/category.html">Thế Giới</a></li>
+                        <li><a href="/category.html">Sự Kiện</a></li>
+                        <li><a href="/category.html">Sâu Bệnh</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h5>Tin tức <span class="footer-menu-btn"><i class="caret"></i></span></h5>
+                    <ul class="footer-menu-sub">
+                        <li><a href="/category.html">Việt Nam</a></li>
+                        <li><a href="/category.html">Thế Giới</a></li>
+                        <li><a href="/category.html">Sự Kiện</a></li>
+                        <li><a href="/category.html">Sâu Bệnh</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h5>Tin tức <span class="footer-menu-btn"><i class="caret"></i></span></h5>
+                    <ul class="footer-menu-sub">
+                        <li><a href="/category.html">Việt Nam</a></li>
+                        <li><a href="/category.html">Thế Giới</a></li>
+                        <li><a href="/category.html">Sự Kiện</a></li>
+                        <li><a href="/category.html">Sâu Bệnh</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h5>Tin tức <span class="footer-menu-btn"><i class="caret"></i></span></h5>
+                    <ul class="footer-menu-sub">
+                        <li><a href="/category.html">Việt Nam</a></li>
+                        <li><a href="/category.html">Thế Giới</a></li>
+                        <li><a href="/category.html">Sự Kiện</a></li>
+                        <li><a href="/category.html">Sâu Bệnh</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="footer-txt">
+                <p><a href="."><img src="images/logo.png" alt="logo"></a></p>
+                <p>Được vận hành bởi Công ty Nông Dân Việt </p>
+                <div class="hi-icon-wrap hi-icon-effect-3 hi-icon-effect-3a">
+                    <a href="#set-3" class="hi-icon fa fa-facebook"></a>
+                    <a href="#set-3" class="hi-icon fa fa-google-plus"></a>
+                    <a href="#set-3" class="hi-icon fa fa-youtube"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-end">
+            <div class="container"> &copy; Copyright 2017 by NongDanViet.com. All Rights Reserved.</div>
+        </div>
+    </footer>
+</div>
+
+<div class="theme-panel-wrap">
+    <span class="theme-panel-control">
+        <i class="fa fa-cogs"></i>
+        <i class="fa fa-times"></i>
+    </span>
+    <div class="theme-panel">
+        <div class="theme-options">
+            <div class="theme-option theme-colors">
+                <h4>THEME COLOR</h4>
+                <ul>
+                    <li><a href="#" data-style="blue"></a></li>
+                    <li><a href="#" data-style="green"></a></li>
+                    <li><a href="#" data-style="red"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8&appId=867766230033521";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script src="dist/core.min.js"></script>
+<script src="dist/app.min.js"></script>
+<script src="demo/demo.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+.btn {
+  &,
+  &:active,
+  &.active {
+    &:focus,
+    &.focus {
+      outline: 0 none;
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &.focus {
+    outline: 0 none;
+  }
+}
+
+.btn-primary-inline {
+}
+
+.btn-primary-outline {
+}
+
+.btn-rounded {
+
+}

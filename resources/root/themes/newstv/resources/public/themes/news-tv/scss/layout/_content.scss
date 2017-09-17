@@ -1,0 +1,32 @@
+/* ==========================================================================
+Content
+========================================================================== */
+.main {
+  padding-bottom: 20px;
+}
+
+.main-content {
+  @include flexbox();
+  @include align-items(flex-start);
+
+  @media (max-width: $screen-xs-max) {
+    margin-left: -$grid-gutter-width/2;
+    margin-right: -$grid-gutter-width/2;
+  }
+
+  .main-full {
+    @include flex(1);
+  }
+
+  .main-left {
+    @include flex(1);
+  }
+  .main-right {
+    float: right;
+    width: 300px;
+    margin-left: 20px;
+    @media (max-width: $screen-xs-max) {
+      display: none;
+    }
+  }
+}

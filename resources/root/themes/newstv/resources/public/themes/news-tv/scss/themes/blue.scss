@@ -1,0 +1,140 @@
+@import "../custom-variables";
+@import "../themes-color";
+
+/*!
+ * Change themes color
+ */
+
+//
+// Variables
+// --------------------------------------------------
+$theme-color: #4089ea;
+$theme-color-inverse: #262626;
+$theme-border-color: #e7e7e7;
+
+//
+// Body
+// --------------------------------------------------
+$body-bg: #f2f4f7;
+$body-color: #45484f;
+
+//
+// Header Layout
+// --------------------------------------------------
+$header-bg: #FFFFFF;
+$header-color: $text-color;
+
+// Navigation on top
+$nav-top-bg: #f5f5f5;
+$nav-top-color: #666666;
+
+// Hot News
+$header-hotnews-bg: $theme-color;
+$header-hotnews-color: #FFFFFF;
+
+//
+// Footer Layout
+// --------------------------------------------------
+$footer-bg: #222222;
+$footer-color: #FFFFFF;
+
+// Footer Bottom
+$footer-bottom-bg: #222222;
+$footer-bottom-color: #FFFFFF;
+
+//
+// Category
+// --------------------------------------------------
+$category-bg: #2fcc71;
+$category-color: #FFFFFF;
+
+//
+// Pagination
+// --------------------------------------------------
+$pagination-bg: #FFF;
+$pagination-color: $theme-color;
+$pagination-border-color: $theme-color;
+$pagination-bg-active: $theme-color;
+$pagination-color-active: #FFF;
+$pagination-border-color-active: $theme-color;
+
+//
+// Main box
+// --------------------------------------------------
+$main-box-header-bg: #fff;
+$main-box-header-color: $text-color;
+$main-box-header-border-color: $theme-color;
+$main-box-content-bg: #fff;
+$main-box-content-color: $text-color;
+$main-box-content-border-color: transparent;
+
+//
+// Aside box
+// --------------------------------------------------
+$aside-box-header-bg: $theme-color;
+$aside-box-header-color: #fff;
+$aside-box-header-border-color: $theme-color;
+$aside-box-content-bg: #fff;
+$aside-box-content-color: $text-color;
+$aside-box-content-border-color: transparent;
+
+@include themes-global(
+        $theme-color,
+        $theme-color-inverse,
+        $theme-border-color,
+        $body-bg,
+        $body-color,
+        $header-bg,
+        $header-color,
+        $nav-top-bg,
+        $nav-top-color,
+        $header-hotnews-bg,
+        $header-hotnews-color,
+        $footer-bg,
+        $footer-color,
+        $footer-bottom-bg,
+        $footer-bottom-color,
+        $category-bg,
+        $category-color,
+        $pagination-bg,
+        $pagination-color,
+        $pagination-border-color,
+        $pagination-bg-active,
+        $pagination-color-active,
+        $pagination-border-color-active,
+        $main-box-header-bg,
+        $main-box-header-color,
+        $main-box-content-bg,
+        $main-box-content-color,
+        $aside-box-header-bg,
+        $aside-box-header-color,
+        $aside-box-header-border-color,
+        $aside-box-content-bg,
+        $aside-box-content-color,
+        $aside-box-content-border-color
+);
+
+.header-content {
+    //background-image: url('../../images/themes/green/header-bg.png');
+    //-webkit-background-size: cover;
+    //background-size: cover;
+}
+
+.footer-end {
+    .container {
+        border-top: 1px solid rgba(#FFF, 0.5);
+        padding-top: 10px;
+    }
+}
+
+
+.hi-icon-effect-3 {
+    @include hi-icon-effect-3(2px, $theme-color);
+}
+.hi-icon-effect-3a {
+    @include hi-icon-effect-3a(#FFF, $theme-color);
+}
+
+.hi-icon-effect-3b {
+    @include hi-icon-effect-3b($theme-color, #FFF);
+}

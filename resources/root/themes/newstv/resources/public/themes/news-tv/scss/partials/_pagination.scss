@@ -1,0 +1,14 @@
+.pagination-wrap {
+    text-align: center;
+    margin: 20px 0;
+    > .pagination > li {
+        > a, > span {
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            border-radius: 0;
+        }
+    }
+    .pagination-text {
+        display: none;
+    }
+}

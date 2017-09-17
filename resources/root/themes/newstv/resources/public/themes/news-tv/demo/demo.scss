@@ -1,0 +1,97 @@
+@import "../scss/custom-variables";
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import "../scss/partials/constants";
+@import "../scss/partials/colors";
+@import "../scss/general/mixin";
+
+
+.theme-panel-wrap {
+    position: fixed;
+    right: 0;
+    top: 25%;
+    z-index: 9999;
+
+    .theme-panel-control {
+        width: 50px;
+        height: 50px;
+        display: inline-block;
+        text-align: center;
+        position: absolute;
+        right: 0;
+        top: -50px;
+        background-color: #FFF;
+        cursor: pointer;
+        @include box-shadow(0px 2px 4px 0px rgba(73, 73, 73, 0.40));
+        @include border-left-radius(4px);
+        .fa {
+            line-height: 50px;
+            font-size: 30px;
+        }
+        .fa-times {
+            display: none;
+        }
+    }
+    &.active {
+        .theme-panel-control {
+            .fa-cogs {
+                display: none;
+            }
+            .fa-times {
+                display: inline-block;
+            }
+        }
+    }
+
+    .theme-panel {
+        background-color: #ffffff;
+        padding: 15px;
+        @include box-shadow(0px 2px 4px 0px rgba(73, 73, 73, 0.40));
+        @include border-left-radius(4px);
+        position: relative;
+        width: 200px;
+        right: -200px;
+        @include transition($transition-base);
+    }
+    &.active {
+        .theme-panel {
+            right: 0;
+        }
+    }
+    .theme-options {
+        h4 {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #cdcdcd;
+        }
+    }
+    .theme-colors {
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            li {
+                display: inline-block;
+                margin-right: 5px;
+                a {
+                    display: inline-block;
+                    height: 40px;
+                    width: 40px;
+                    margin-right: 0;
+                    &[data-style="blue"] {
+                        background-color: #4089ea;
+                    }
+                    &[data-style="green"] {
+                        background-color: #4ddab7;
+                    }
+                    &[data-style="red"] {
+                        background-color: #d8403f;
+                    }
+                }
+            }
+        }
+    }
+}
+

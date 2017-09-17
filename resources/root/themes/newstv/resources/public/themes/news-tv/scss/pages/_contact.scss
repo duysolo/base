@@ -1,0 +1,15 @@
+.page-contact {
+  .embed-responsive.embed-responsive-16by9 {
+    @media (min-width: $screen-sm-min) {
+      padding-bottom: 28.25%;
+    }
+  }
+  .contact-form {
+    max-width: 900px;
+    margin: auto;
+    color: #333;
+    h2 {
+      font-weight: bold;
+    }
+  }
+}

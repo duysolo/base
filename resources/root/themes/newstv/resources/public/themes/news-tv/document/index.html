@@ -1,0 +1,436 @@
+<!doctype html>
+<!--[if IE 6 ]>
+<html lang="en-us" class="ie6"> <![endif]-->
+<!--[if IE 7 ]>
+<html lang="en-us" class="ie7"> <![endif]-->
+<!--[if IE 8 ]>
+<html lang="en-us" class="ie8"> <![endif]-->
+<!--[if (gt IE 7)|!(IE)]><!-->
+<html lang="en-us"><!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+
+    <title>WebEd CMS Documentation</title>
+
+    <meta name="description" content="Document for how to use the WebEd CMS">
+    <meta name="author" content="WebEd CMS">
+    <meta name="copyright" content="WebEd CMS">
+    <meta name="generator" content="Documenter v2.0 http://rxa.li/documenter">
+    <meta name="date" content="2017-01-13T00:00:00+01:00">
+
+    <link rel="stylesheet" href="assets/css/documenter_style.css" media="all">
+    <link rel="stylesheet" href="assets/css/highlight.css" media="all">
+    <link rel="stylesheet" href="assets/css/custom.css" media="all">
+    <link href="assets/plugins/jstree/dist/themes/default/style.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery-migrate.js"></script>
+    <script src="assets/js/jquery.scrollTo.js"></script>
+    <script src="assets/js/jquery.easing.js"></script>
+    <script src="assets/js/highlight.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/plugins/jstree/dist/jstree.min.js"></script>
+</head>
+<body class="documenter-project-wp-eli-starter-theme">
+<div id="documenter_sidebar">
+    <a href="#documenter_cover" id="documenter_logo"></a>
+    <ul id="documenter_nav">
+        <li><a class="current" href="#documenter_cover">Introduction</a></li>
+        <li><a href="#installation" title="Installation">Installation</a></li>
+        <li><a href="#upgrade-guide" title="Upgrade Guide">Upgrade Guide</a></li>
+        <li><a href="#dashboard" title="Dashboard">Dashboard</a></li>
+        <li><a href="#categories" title="Categories">Categories</a></li>
+        <li><a href="#menus" title="menus">Menus</a></li>
+        <li><a href="#posts" title="Posts">Posts</a></li>
+        <li><a href="#themes" title="Themes">Themes</a></li>
+        <li><a href="#theme-options" title="Theme options">Theme options</a></li>
+        <li><a href="#configuration-settings" title="Configuration Settings">Configuration Settings</a></li>
+        <li><a href="#getting-google-analytics" title="Getting Google Analytics API KEY">Getting Google Analytics API
+            KEY</a></li>
+        <li><a href="#screenshots" title="Screenshot">Screenshots</a></li>
+        <li><a href="#changelog" title="Changelog">Changelog</a></li>
+
+    </ul>
+    <div id="documenter_copyright">Copyright &copy; WebEd CMS 2017</div>
+</div>
+<div id="documenter_content">
+    <section id="documenter_cover">
+        <h1>WebEd CMS</h1>
+
+        <ul>
+            <li>Created: 04/20/2017</li>
+            <li>Latest update: 04/20/2017</li>
+            <li>By: WebEd</li>
+        </ul>
+        <p>WebEd CMS is used in Laravel project, some cool features of WebEd CMS:</p>
+        <ul>
+            <li>- Modular packages.</li>
+            <li>- Manage files with Elfinder.</li>
+            <li>- ACL.</li>
+            <li>- Menu management with drag & drop.</li>
+            <li>- Database caching.</li>
+            <li>- Themes & plugins management.</li>
+            <li>- Hook (actions hook, filters hook).</li>
+            <li>- Manage pages, blocks, blog, contact form, Google Analytics, custom fields...</li>
+        </ul>
+        <p>If you have problem when install this package or found any bugs, feel free to contact me via email:
+            <a href="mailto:sgsoftware.net@gmail.com">sgsoftware.net@gmail.com</a>.</p>
+        <p>Once again, thank you so much for purchasing this theme. As I said at the beginning, I'd be glad to help you
+            if you have any questions relating to this theme. No guarantees, but I'll do my best to assist.</p>
+
+        <p>* <strong>Folder Structure</strong></p>
+        <div class="docs-level-1">
+            <div id="tree_1" class="tree-demo">
+                <ul>
+                    <li>
+                        <span>config</span>
+                    </li>
+                    <li>
+                        <span>database</span>
+                    </li>
+                    <li>
+                        <span>resources</span>
+                    </li>
+                    <li>
+                        <span>routes</span>
+                    </li>
+                    <li>
+                        <span>src</span>
+                        <ul>
+                            <li>
+                                <span>Http</span>
+                            </li>
+                            <li>
+                                <span>Providers</span>
+                            </li>
+                            <li>
+                                <span>Services</span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="installation">
+        <div class="page-header"><h3>Installation</h3>
+            <hr class="notop">
+        </div>
+        <p>Please follow below steps to setup Avatar component in your laravel project.</p>
+
+        <div class="docs-level-1">
+            <ul>
+                <li>
+                    <span>Install Laravel 5.x if you don't have exists project: <a
+                        href="https://github.com/laravel/laravel" target="_blank">https://github.com/laravel/laravel</a></span>
+                </li>
+
+                <li>
+                    <span>Extract file laravel-avatar then copy folder <strong>Component</strong> to /app folder.</span>
+                </li>
+
+                <li>
+                    <span>Add below code to psr-4 section of <strong>composer.json</strong>, then run <strong>composer dump-autoload</strong> to re-generate autoload files</span>
+                    <pre>
+                                <code class="php">
+"WebEd CMS\\Avatar\\": "app/Components/Avatar/src"
+                                </code>
+                            </pre>
+                    <p>Then it will be look like:</p>
+                    <pre>
+                                <code class="php">
+"psr-4": {
+    "App\\": "app/",
+    "WebEd CMS\\Avatar\\": "app/Components/Avatar/src"
+}
+                                </code>
+                            </pre>
+                </li>
+
+                <li>
+                    <span>Open <strong>/config/app.php</strong> and add AvatarServiceProvider.php to <strong>provider</strong> section.</span>
+                    <pre>
+                                <code class="php">
+'providers' => [
+    ...
+    // After others service providers
+    WebEd CMS\Avatar\Providers\AvatarServiceProvider::class,
+],
+                                </code>
+                            </pre>
+                </li>
+
+                <li>
+                    <span>Create scaffold Laravel Auth if you don't create it yet.</span>
+                    <pre>
+                                <code class="js">
+php artisan make:auth
+                                </code>
+                            </pre>
+                </li>
+
+                <li>
+                    <span>Export public assets for Avatar component</span>
+                    <pre>
+                                <code class="js">
+php artisan vendor:publish --provider="App\Components\Avatar\Providers\AvatarServiceProvider" --tag=assets
+                                </code>
+                            </pre>
+                </li>
+
+                <li>
+                    <span>Open your application then go to http://{your-domain}/<strong>profile</strong></span>
+                </li>
+
+            </ul>
+        </div>
+    </section>
+
+    <section id="upgrade-guide">
+        <div class="page-header"><h3>Upgrade Guide</h3>
+            <hr class="notop">
+        </div>
+        <p>When you got a new version of WebEd CMS Laravel Avatar from Codecanyon. You just need to do below steps to
+            upgrade it.</p>
+
+        <div class="docs-level-1">
+            <ul>
+                <li>
+                    <span>Extract file laravel-avatar then copy folder <strong>Component</strong> to <strong>/app</strong> folder.</span>
+                </li>
+                <li>
+                    <span>Update psr-4 autoload section in composer.json</span>
+                    <pre>
+                                <code class="php">
+"WebEd CMS\\Avatar\\": "app/Components/Avatar/src"
+                                </code>
+                            </pre>
+                </li>
+                <li>
+                    <span>Update public assets for Avatar component. Namespace changed from App\Components\Avatar to <strong>WebEd CMS\Avatar</strong></span>
+                    <pre>
+                                <code class="js">
+php artisan vendor:publish --provider="WebEd CMS\Avatar\Providers\AvatarServiceProvider" --tag=assets --force
+                                </code>
+                            </pre>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="dashboard">
+        <div class="page-header"><h3>Dashboard</h3>
+            <hr class="notop">
+        </div>
+        <p>Index Page display videos simple statistics per month. and you can choose the year, the month and the day to
+            display
+            their statistics.</p>
+
+        <div class="docs-level-1">
+            <p>
+                <img class="img-responsive" src="assets/images/dashboard.png" alt="dashboard">
+            </p>
+        </div>
+    </section>
+
+    <section id="categories">
+        <div class="page-header"><h3>Categories</h3>
+            <hr class="notop">
+        </div>
+        <p>Categories Page display categories inserted by admin and you can add, edit and delete each category.</p>
+
+        <div class="docs-level-1">
+            <p>
+                <img class="img-responsive" src="assets/images/categories.png" alt="categories">
+            </p>
+        </div>
+    </section>
+
+    <section id="menus">
+        <div class="page-header"><h3>Menus</h3>
+            <hr class="notop">
+        </div>
+        <p>Menus Page display menus inserted by admin and you can add, edit and delete each menu.
+            Also you can drag and drop menus to reorder them.</p>
+
+        <div class="docs-level-1">
+            <p>
+                <img class="img-responsive" src="assets/images/menus.png" alt="Menus">
+            </p>
+            <p>
+                <img class="img-responsive" src="assets/images/menus-2.png" alt="Menus">
+            </p>
+        </div>
+    </section>
+    <section id="posts">
+        <div class="page-header"><h3>Posts & Videos</h3>
+            <hr class="notop">
+        </div>
+        <p>Posts Page Display published posts in addition to deleted posts and you can search for post(s). Also you can
+            delete multi-posts</p>
+
+        <div class="docs-level-1">
+            <p>
+                <img class="img-responsive" src="assets/images/posts.png" alt="Posts">
+            </p>
+        </div>
+
+        <p>To Add a single Post</p>
+        <div class="docs-level-1">
+            <p>
+                <img class="img-responsive" src="assets/images/posts-2.png" alt="Posts">
+            </p>
+        </div>
+
+        <p>To Add a single Video You Must Insert the Video link.</p>
+        <p>the youtube video url can be found at youtube.com as : <span class="info">https://www.youtube.com/watch?v=WvjUkUTreks</span>
+        </p>
+        <div class="docs-level-1">
+            <p>
+                <img class="img-responsive" src="assets/images/posts-3.png" alt="Posts">
+            </p>
+        </div>
+    </section>
+    <section id="pages">
+        <div class="page-header"><h3>Pages</h3>
+            <hr class="notop">
+        </div>
+        <p>Pages Page Display custom content published by user such as (Homepage, About us, Contact us .. etc).
+            You can Add, Edit and Delete pages.</p>
+
+        <div class="docs-level-1">
+            <p>
+                <img class="img-responsive" src="assets/images/pages.png" alt="Pages">
+            </p>
+        </div>
+    </section>
+
+    <section id="themes">
+        <div class="page-header"><h3>Themes</h3>
+            <hr class="notop">
+        </div>
+        <p>Themes Page display themes inserted by admin and you can Active, Disable and Uninstall each theme.</p>
+
+        <div class="docs-level-1">
+            <p>
+                <img class="img-responsive" src="assets/images/themes.png" alt="Themes">
+            </p>
+        </div>
+    </section>
+
+    <section id="theme-options">
+        <div class="page-header"><h3>Theme options</h3>
+            <hr class="notop">
+        </div>
+        <p>Theme options contains the Theme setting which allow you to choose the site color, items per page and Google
+            site verification. Also you can choose the site template (Theme) from Themes page.</p>
+
+        <div class="docs-level-1">
+            <p>
+                <img class="img-responsive" src="assets/images/theme-options.png" alt="Theme options">
+            </p>
+        </div>
+    </section>
+
+    <section id="configuration-settings">
+        <div class="page-header"><h3>Configuration Settings</h3>
+            <hr class="notop">
+        </div>
+        <p>Configuration contains the configuration setting which allow you to choose config:</p>
+        <ul>
+            <li><strong>Basic</strong>: default homepage, main menu, site title, logo, favicon</li>
+            <li><strong>Advanced</strong>: construction mode, Show admin bar</li>
+            <li><strong>Google analytics</strong>: Google analytics script code</li>
+            <li><strong>Captcha</strong>: Google captcha site key, Google captcha secret key</li>
+            <li><strong>Social networks</strong>: Facebook, Youtube, Twitter, Google+, Instagram, Linkedin, Flickr</li>
+        </ul>
+
+        <div class="docs-level-1">
+            <p>
+                <img class="img-responsive" src="assets/images/settings.png" alt="Configuration">
+            </p>
+            <p>
+                <img class="img-responsive" src="assets/images/settings-2.png" alt="Configuration">
+            </p>
+            <p>
+                <img class="img-responsive" src="assets/images/settings-3.png" alt="Configuration">
+            </p>
+            <p>
+                <img class="img-responsive" src="assets/images/settings-4.png" alt="Configuration">
+            </p>
+            <p>
+                <img class="img-responsive" src="assets/images/settings-5.png" alt="Configuration">
+            </p>
+        </div>
+    </section>
+
+    <section id="getting-google-analytics">
+        <div class="page-header"><h3>Getting Google Analytics API KEY</h3>
+            <hr class="notop">
+        </div>
+        <ul>
+            <li>First you should have a Google Account</li>
+            <li>Go to API Console: <a href="https://console.developers.google.com/iam-admin/projects">https://console.developers.google.com/iam-admin/projects</a>
+            </li>
+            <li>Create Project</li>
+        </ul>
+        <div class="docs-level-1">
+            <p>
+                <img class="img-responsive" src="assets/images/getting-google-analytics.png"
+                     alt="Getting Google Analytics API KEY">
+            </p>
+        </div>
+        <ul>
+            <li>Enable Api</li>
+        </ul>
+        <div class="docs-level-1">
+            <p>
+                <img class="img-responsive" src="assets/images/getting-google-analytics-2.png"
+                     alt="Getting Google Analytics API KEY">
+            </p>
+        </div>
+        <ul>
+            <li>Credentials</li>
+        </ul>
+        <div class="docs-level-1">
+            <p>
+                <img class="img-responsive" src="assets/images/getting-google-analytics-3.png"
+                     alt="Getting Google Analytics API KEY">
+            </p>
+        </div>
+        <ul>
+            <li>Create service account key</li>
+        </ul>
+        <div class="docs-level-1">
+            <p>
+                <img class="img-responsive" src="assets/images/getting-google-analytics-4.png"
+                     alt="Getting Google Analytics API KEY">
+            </p>
+        </div>
+        <ul>
+            <li>Go to Analytics management: <a href="https://analytics.google.com/analytics">https://analytics.google.com/analytics</a>
+            </li>
+        </ul>
+        <div class="docs-level-1">
+            <p>
+                <img class="img-responsive" src="assets/images/getting-google-analytics-5.png"
+                     alt="Getting Google Analytics API KEY">
+            </p>
+        </div>
+    </section>
+
+    <section id="changelog">
+        <strong>- 03/06/2017</strong>
+        <ul>
+            <li>Move source code to namespace</li>
+            <li>Using autoload psr-4 standard.</li>
+        </ul>
+    </section>
+</div>
+</body>
+</html>

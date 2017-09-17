@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="author" content=""/>
+    <title>WebApp</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="images/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="images/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="images/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="images/favicons/manifest.json">
+    <link rel="mask-icon" href="images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="images/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="images/favicons/mstile-144x144.png">
+    <meta name="msapplication-config" content="images/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/themes/red.css">
+    <script src="third_party/modernizr.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="wrapper" id="site_wrapper">
+    <header class="header" id="header">
+        <div class="header-wrap">
+            <nav class="nav-top">
+                <div class="container">
+                    <ul class="pull-left">
+                        <li><a href="/" class="active">Trang chủ</a></li>
+                        <li><a href="/gioi-thieu.html">Giới Thiệu</a></li>
+                        <li><a href="/gui-bai.html">Gửi Bài</a></li>
+                        <li><a href="/dieu-khoan-su-dung.html">Điều Khoản</a></li>
+                        <li><a href="/lien-he.html">Liên Hệ</a></li>
+                    </ul>
+                    <div class="pull-right">
+                        <div class="hi-icon-wrap hi-icon-effect-3 hi-icon-effect-3a">
+                            <a href="#set-3" class="hi-icon fa fa-facebook"></a>
+                            <a href="#set-3" class="hi-icon fa fa-google-plus"></a>
+                            <a href="#set-3" class="hi-icon fa fa-youtube"></a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div class="header-content">
+                <div class="container">
+                    <h1 class="logo">
+                        <a href="/" title="TẠP CHÍ TỔNG HỢP VỀ NÔNG NGHIỆP">
+                            <img src="/images/logo.png" alt="Nongdanviet.com">
+                        </a>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <section class="header-hotnews">
+            <div class="container">
+                <div class="hotnews-content">
+                    <h2 class="hotnews-tt">TIÊU ĐIỂM TRONG NGÀY</h2>
+                    <div class="hotnews-dv">
+                        <div class="hotnews-slideshow">
+                            <div class="js-marquee">
+                                <a href="#"> Bộ ảnh ngộ nghĩnh về sự khác biệt giữa đàn ông và phụ nữ </a>
+                                <a href="#"> Bộ ảnh ngộ nghĩnh về sự khác biệt giữa đàn ông và phụ nữ </a>
+                                <a href="#"> Bộ ảnh ngộ nghĩnh về sự khác biệt giữa đàn ông và phụ nữ </a>
+                                <a href="#"> Bộ ảnh ngộ nghĩnh về sự khác biệt giữa đàn ông và phụ nữ </a>
+                                <a href="#"> Bộ ảnh ngộ nghĩnh về sự khác biệt giữa đàn ông và phụ nữ </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/"><img src="/images/logo.png" alt="Nongdanviet.com"></a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Trang chủ</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Tin tức <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">menu1</a></li>
+                                <li><a href="#">menu2</a></li>
+                                <li><a href="#">menu3</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Tư vấn <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">menu1</a></li>
+                                <li><a href="#">menu2</a></li>
+                                <li><a href="#">menu3</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Chuyện nhà nông <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">menu1</a></li>
+                                <li><a href="#">menu2</a></li>
+                                <li><a href="#">menu3</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Vật tư nông nghiệp <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">menu1</a></li>
+                                <li><a href="#">menu2</a></li>
+                                <li><a href="#">menu3</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Giá cả thị trường <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">menu1</a></li>
+                                <li><a href="#">menu2</a></li>
+                                <li><a href="#">menu3</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">Thời tiết nông vụ <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">menu1</a></li>
+                                <li><a href="#">menu2</a></li>
+                                <li><a href="#">menu3</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-right" role="search">
+                        <div class="tn-searchtop">
+                            <button type="button" class="btn btn-default js-btn-searchtop">
+                                <i class="fa fa-times"></i>
+                            </button>
+                            <button type="submit" class="btn btn-default">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Tìm kiếm Thông tin..">
+                            </div>
+                        </div>
+                        <button id="tn-searchtop" class="js-btn-searchtop" type="button"><i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                </div><!-- /.navbar-collapse -->
+            </div>
+        </nav>
+    </header>
+    <main class="main" id="main">
+        <div class="container">
+            <div class="main-content">
+                <div class="main-left">
+                    <section class="main-box">
+                        <div class="main-box-header">
+                            <ol class="breadcrumb">
+                                <li><a href="#">Trang chủ</a></li>
+                                <li class="active">Giới thiệu</li>
+                            </ol>
+                        </div>
+                        <div class="main-box-content">
+                            <h1 class="article-content-title">
+                                Giới thiệu văn phòng NongDanViet
+                            </h1>
+                            <div class="article-content">
+                                <!-- Replace content here -->
+                                <div style="text-align: center;">
+                                    <img src="http://padco.vn/upload/qqqqq.jpg" alt="">
+                                </div>
+                                <div style="text-align: justify;"><span style="color: rgb(51, 153, 102);"><strong><br>
+Công ty Cổ Phần Nông Nghiệp HP (HORIZON PACIFIC)</strong></span> tiền thân là <span
+                                    style="color: rgb(51, 153, 102);"><strong>Công Ty TNHH TM XNK Hữu Nghị</strong></span>&nbsp;
+                                    được
+                                    thành lập năm 2004 với số vốn ban đầu là 10 tỷ đồng Việt Nam .<br>
+                                    Công ty có trụ sở tại 9/189 Giảng Võ, Cát Linh, Đống Đa, Hà Nội.
+                                </div>
+                                <div style="text-align: justify;">Công ty hoạt động với chức năng ngành nghề: Thuốc Bảo
+                                    Vệ Thực vật
+                                </div>
+                                <div style="text-align: justify;">Mặc dù là một công ty còn non trẻ trong ngành thuốc
+                                    Bảo Vệ Thực Vật,
+                                    nhưng công&nbsp; ty đã từng bước vượt qua những khó khăn, bằng nỗ lực của toàn thể
+                                    CBCNV trong toàn
+                                    công ty, cùng với sự ủng hộ của các cấp, ban, ngành, các vị khách hàng quý mến và
+                                    những đối tác tin
+                                    cậy. Công ty đã từng bước xây dựng vị thế của mình trong ngành thuốc bảo vệ thực vật&nbsp;
+                                    nói riêng
+                                    và doanh nghiệp VN nói chung.
+                                </div>
+                                <p style="text-align: justify;">Với đà tăng trưởng tốt&nbsp; được bà con nông dân tin
+                                    tưởng đón nhận,
+                                    sau 2 năm kể từ khi thành lập (2006) công ty đã phát triển thêm chi nhánh phân phối
+                                    tại Miền Nam.
+                                    Đồng thời xây dựng cơ sở hạ tầng: Văn phòng, kho chứa hàng nhằm đáp ứng kịp thời đối
+                                    với khách hàng
+                                    .<br>
+                                    <br>
+                                    Với mục đích đáp ứng nhu cầu chất lượng sản phẩm đồng thời phát triển kinh doanh của
+                                    công ty và&nbsp;
+                                    góp phần giải quyết công ăn việc làm cho người lao động tại địa phương. Năm 2008
+                                    Công ty khánh thành
+                                    nhà máy sản xuất tại số MD3,&nbsp; Khu công nghiệp Đức Hòa 1, Long An với tổng vốn
+                                    đầu tư thực hiện
+                                    dự án là 68 tỷ đồng VN.</p>
+
+                                <p style="text-align: left;">Bằng đường lối, chính sách đúng đắn với chiến lược rõ ràng.
+                                    Xác định rõ
+                                    sứ mệnh của công ty. Cuối năm 2009 từ Công Ty TNHH đã chuyển sang mô hình Công ty Cổ
+                                    Phần và được
+                                    đổi tên thành Công Ty Cổ Phần Nông nghiệp HP do Bà Bùi Thị Trúc Quỳnh - Chủ Tịch Hội
+                                    Đồng Quản Trị&nbsp;
+                                    làm Tổng&nbsp; Giám đốc Công ty .</p>
+                                <p style="text-align: justify;">Tốc độ tăng trưởng ổn định qua các năm, cũng như uy tín
+                                    trên thị
+                                    trường trong và ngoài&nbsp; nước.&nbsp; Công ty CP Nông Nghiệp HP đã từng bước khẳng
+                                    định vị trí của
+                                    mình không những ở vùng Đồng Bằng Sông Cửu Long mà còn được các tỉnh Miền Bắc, Miền
+                                    Trung và Tây
+                                    nguyên&nbsp; đón nhận các sản phẩm của HP rất nhiệt tình. Bằng nhiều kinh nghiệm
+                                    trong công tác quản
+                                    lý và điều hành sản xuất. Hội đồng quản trị quyết định tái cấu trúc và chuẩn hóa lại
+                                    hệ thống quản
+                                    lý các Công ty.</p>
+                                <p style="text-align: justify;">•&nbsp;Đối với Nhà máy tại Đức Hòa Long An. Nơi sản xuất
+                                    - nguồn cung
+                                    cấp chính các sản phẩm cho các công ty thành viên tại Miền Bắc và Miền Nam. Chính vì
+                                    vậy Hội Đồng
+                                    Quản Trị luôn luôn chú&nbsp; trọng việc cải tiến máy móc công nghệ. Đầu năm 2010&nbsp;
+                                    HĐQT đã quyết
+                                    định nhập khẩu dây chuyền sản xuất hiện đại từ nước ngoài với trị giá hàng&nbsp;
+                                    triệu USD. Đến nay
+                                    toàn bộ dây chuyền sản xuất đã ổn định, đạt công suất cao, cho ra những mẫu mã sản
+                                    phẩm đẹp, chất
+                                    lượng cao, phù hợp, được nông dân tin dùng.<br>
+                                    •&nbsp;Đối với 2 Công Ty tại Thành Phố HCM và Hà Nội. Đây là hai điểm phân phối&nbsp;
+                                    lớn để cung
+                                    cấp cho các đại lý cấp 1 tại hai miền Nam và Bắc. Tính đến thời điểm này HP đã có
+                                    hàng ngàn đại lý
+                                    cấp 1 và đại lý cấp 2.</p>
+                                <p style="text-align: justify;">Nguồn nhân lực của Công ty không ngừng được trao dồi và
+                                    phát triển để
+                                    đáp ứng tốc độ phát triển nhanh của HP, từ 18 thành viên khi bắt đầu thành lập. Đến
+                                    nay HP&nbsp; đã
+                                    có hơn 150 nhân viên chính thức làm việc trong các lĩnh vực khác nhau dưới ngọn cờ
+                                    HP. Có thể nói
+                                    đội ngũ nhân viên của HP được đào tạo chuyên nghiệp, có kinh nghiệm lâu năm trong
+                                    ngành, đảm bảo đáp
+                                    ứng ngày càng cao của khách hàng và thị trường.</p>
+                                <p style="text-align: justify;">HP luôn đặt quyền lợi và sự thỏa mãn khách hàng lên hàng
+                                    đầu,&nbsp;
+                                    luôn lấy chữ tâm và chữ&nbsp; tín làm kim chỉ nam trong hoạt động kinh doanh của
+                                    mình.&nbsp; Chính
+                                    vì vậy khách hàng ngày càng tín nhiệm và an tâm khi giao dịch với HP. Với slogan của
+                                    chúng tôi là&nbsp;
+                                    “<strong><span style="color: #ff6600;">Bạn tri kỷ của nhà nông</span></strong>”&nbsp;
+                                    <br>
+                                    <br>
+                                    Chúng tôi luôn luôn giữ uy tín:</p>
+                                <p style="text-align: justify;">* Giao hàng đúng chất lượng, đúng thời gian quy
+                                    định.<br>
+                                    * Giá cả cạnh tranh.<br>
+                                    * Tận tình, chu đáo, chuyên nghiệp.<br>
+                                    * Hợp tác, hòa hợp cùng phát triển bền vững.</p>
+                                <p style="text-align: justify;">Bước vào thời kỳ mới - thời kỳ hội nhập, HP hy vọng cùng
+                                    với sự cố
+                                    gắng của toàn thể CBCNV, sự giúp đỡ ủng hộ nhiệt tình quý báu của quý vị. HP sẽ gặt
+                                    hái thành công
+                                    nhiều hơn nữa.</p>
+                                <p style="text-align: justify;"><strong><span
+                                    style="color: rgb(255, 0, 0);">Trân trọng cám ơn!</span></strong>
+                                </p>
+                                <!-- End replace content here -->
+                            </div>
+                            <div class="tags-wrap">
+                                <span>Tags:</span>
+                                <a itemprop="keywords" title="kinh tế"
+                                   href="/con-bao-da-cap-lien-ket-viet.html">kinh tế</a>
+                                <a itemprop="keywords" title="kinh tế"
+                                   href="/con-bao-da-cap-lien-ket-viet.html">kinh tế</a>
+                                <a itemprop="keywords" title="kinh tế"
+                                   href="/con-bao-da-cap-lien-ket-viet.html">kinh tế</a>
+                                <a itemprop="keywords" title="kinh tế"
+                                   href="/con-bao-da-cap-lien-ket-viet.html">kinh tế</a>
+                            </div>
+
+
+                            <div class='share-post'>
+                                <span class='share-text'>Chia sẻ bài viết này !</span>
+                                <div class='share-post-btn btn-tweet'>
+                                    <a class='twitter-share-button' data-count='horizontal' data-lang='en'
+                                       data-related=' '
+                                       data-text='Truyền thông nước ngoài làm xấu hình ảnh cá tra của Việt Nam'
+                                       data-url='http://www.tintucnongnghiep.com/2017/01/truyen-thong-nuoc-ngoai-lam-xau-hinh.html'
+                                       data-via=' ' href='http://twitter.com/share' rel='nofollow'></a>
+                                    <script src='http://platform.twitter.com/widgets.js' type='text/javascript'>
+                                    </script>
+                                </div>
+                                <div class='share-post-btn btn-like'>
+                                    <iframe allowTransparency='true' frameborder='0' scrolling='no'
+                                            src='http://www.facebook.com/plugins/like.php?href=http://www.news-tv.com/2017/01/truyen-thong-nuoc-ngoai-lam-xau-hinh.html&send=false&layout=button_count&show_faces=false&width=90&action=like&font=arial&colorscheme=light&height=32'
+                                            style='border:none; overflow:hidden; width:90px; height:32px;'></iframe>
+                                </div>
+                                <div class='share-post-btn btn-plus'>
+                                    <script src='https://apis.google.com/js/plusone.js' type='text/javascript'></script>
+                                    <g:plusone count='true'
+                                               href='http://news-tv.com/2017/01/truyen-thong-nuoc-ngoai-lam-xau-hinh.html'
+                                               size='medium'></g:plusone>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+
+
+                </div>
+                <aside class="main-right">
+                    <div class="aside-box">
+                        <div class="aside-box-header">
+                            <h4>Xem nhiều nhất</h4>
+                        </div>
+                        <div class="aside-box-content">
+                            <div class="media-news">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="/images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="/images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="/images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="/images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="/images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="/images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="/images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="/images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="/images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-news">
+                                <a href="/detail.html" class="media-news-img">
+                                    <img class="img-full img-bg" src="/images/img-size/news.png"
+                                         style="background-image: url('http://nongnghiepvietnam.edu.vn/wp-content/uploads/phong-benh-cho-tho-500x330.jpg');"
+                                         alt="">
+                                </a>
+                                <div class="media-news-body">
+                                    <p class="common-title">
+                                        <a href="/detail.html">
+                                            Có "hiềm khích" nhưng phải diễn chung, Hari Won và Vy Oanh hành xử thế này
+                                            đây</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fb-page" data-href="https://www.facebook.com/facebook/" data-tabs="timeline"
+                         data-width="300"
+                         data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"
+                         data-show-facepile="true">
+                        <blockquote cite="https://www.facebook.com/facebook/" class="fb-xfbml-parse-ignore"><a
+                            href="https://www.facebook.com/facebook/">Facebook</a></blockquote>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+    <footer class="footer" id="footer">
+        <div class="container">
+            <ul class="footer-menu">
+                <li>
+                    <h5>Tin tức <span class="footer-menu-btn"><i class="caret"></i></span></h5>
+                    <ul class="footer-menu-sub">
+                        <li><a href="/category.html">Việt Nam</a></li>
+                        <li><a href="/category.html">Thế Giới</a></li>
+                        <li><a href="/category.html">Sự Kiện</a></li>
+                        <li><a href="/category.html">Sâu Bệnh</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h5>Tin tức <span class="footer-menu-btn"><i class="caret"></i></span></h5>
+                    <ul class="footer-menu-sub">
+                        <li><a href="/category.html">Việt Nam</a></li>
+                        <li><a href="/category.html">Thế Giới</a></li>
+                        <li><a href="/category.html">Sự Kiện</a></li>
+                        <li><a href="/category.html">Sâu Bệnh</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h5>Tin tức <span class="footer-menu-btn"><i class="caret"></i></span></h5>
+                    <ul class="footer-menu-sub">
+                        <li><a href="/category.html">Việt Nam</a></li>
+                        <li><a href="/category.html">Thế Giới</a></li>
+                        <li><a href="/category.html">Sự Kiện</a></li>
+                        <li><a href="/category.html">Sâu Bệnh</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h5>Tin tức <span class="footer-menu-btn"><i class="caret"></i></span></h5>
+                    <ul class="footer-menu-sub">
+                        <li><a href="/category.html">Việt Nam</a></li>
+                        <li><a href="/category.html">Thế Giới</a></li>
+                        <li><a href="/category.html">Sự Kiện</a></li>
+                        <li><a href="/category.html">Sâu Bệnh</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h5>Tin tức <span class="footer-menu-btn"><i class="caret"></i></span></h5>
+                    <ul class="footer-menu-sub">
+                        <li><a href="/category.html">Việt Nam</a></li>
+                        <li><a href="/category.html">Thế Giới</a></li>
+                        <li><a href="/category.html">Sự Kiện</a></li>
+                        <li><a href="/category.html">Sâu Bệnh</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h5>Tin tức <span class="footer-menu-btn"><i class="caret"></i></span></h5>
+                    <ul class="footer-menu-sub">
+                        <li><a href="/category.html">Việt Nam</a></li>
+                        <li><a href="/category.html">Thế Giới</a></li>
+                        <li><a href="/category.html">Sự Kiện</a></li>
+                        <li><a href="/category.html">Sâu Bệnh</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="footer-txt">
+                <p><a href="."><img src="images/logo.png" alt="logo"></a></p>
+                <p>Được vận hành bởi Công ty Nông Dân Việt </p>
+                <div class="hi-icon-wrap hi-icon-effect-3 hi-icon-effect-3a">
+                    <a href="#set-3" class="hi-icon fa fa-facebook"></a>
+                    <a href="#set-3" class="hi-icon fa fa-google-plus"></a>
+                    <a href="#set-3" class="hi-icon fa fa-youtube"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-end">
+            <div class="container"> &copy; Copyright 2017 by NongDanViet.com. All Rights Reserved.</div>
+        </div>
+    </footer>
+</div>
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8&appId=867766230033521";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script src="dist/core.min.js"></script>
+<script src="dist/app.min.js"></script>
+
+</body>
+</html>

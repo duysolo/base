@@ -1,0 +1,123 @@
+.img-responsive {
+    max-width: 100%;
+    height: auto;
+}
+
+.docs-level-1 {
+    margin-left: 20px;
+}
+
+#documenter_content .docs-level-1 > ul > li,
+#documenter_content .docs-level-1 > ol > li,
+#documenter_content .docs-level-2 > ul > li,
+#documenter_content .docs-level-2 > ol > li,
+#documenter_content .docs-level-1 > ul > li > span,
+#documenter_content .docs-level-1 > ol > li > span,
+#documenter_content .docs-level-2 > ul > li > span,
+#documenter_content .docs-level-2 > ol > li > span {
+    font-size: 14px !important;
+    color: #333;
+}
+
+ul#documenter_nav li, ol li {
+    font-size: 13px !important;
+}
+
+.docs-level-2 {
+    margin-left: 15px;
+}
+
+.mt0 {
+    margin-top: 0;
+}
+
+h5 {
+    font-weight: bold !important;
+    font-size: 18px;
+    color: #1d9977;
+}
+
+#documenter_sidebar, #documenter_sidebar ul a {
+    background-color: #222d32;
+    color: #FFFFFF;
+}
+#documenter_sidebar ul a.current {
+
+}
+
+#documenter_content a {
+    color: #366aed;
+    font-weight: 800;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+#documenter_content ul li a.jstree-anchor {
+    color: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    text-decoration: inherit;
+}
+
+#documenter_cover h1,
+#documenter_content h3 {
+    font-size: 25pt;
+    margin: 18px 0 0;
+    font-weight: bold;
+    color: #0a6aa1;
+    text-transform: uppercase;
+}
+
+html, body {
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+#documenter_content h5 {
+    font-size: 20px;
+    margin: 18px 0;
+    font-weight: 100;
+    background-color: lightyellow;
+    padding: 10px 21px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+#documenter_content p {
+    margin: 18px 0;
+    padding-left: 5px;
+    font-size: 14px;
+}
+
+#documenter_content ul li,
+#documenter_content ol li {
+    margin-bottom: 2px;
+}
+
+#documenter_content section > p {
+    font-weight: bold;
+}
+
+#installation .docs-level-2 ul > li strong {
+    text-decoration: underline;
+}
+
+#documenter_content .docs-level-1 > ul > li.important-notify {
+    background-color: white;
+    padding: 9px 8px;
+    color: red;
+    padding-bottom: 1px;
+    margin-bottom: 20px;
+}
+
+#documenter_content .docs-level-1 > ul > li.important-notify > span {
+    color: red;
+    font-weight: bold;
+}
+
+#documenter_content .docs-level-1 > ul > li.important-notify .docs-level-2 {
+    margin-top: 8px;
+}
+
+#screenshots img {
+    max-width: 100%;
+}

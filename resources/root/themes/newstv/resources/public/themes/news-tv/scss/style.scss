@@ -1,0 +1,62 @@
+/*!--------------------------------------------------------------------------------
+
+    Theme Name: WebApp
+    Version:    1.0.0
+    Author:     trungnghia112 <trungnghia112@gmail.com>
+
+-----------------------------------------------------------------------------------*/
+//  Bootstrap
+//  Fonts
+//  Global
+//  Third party
+//  Layout
+//  Content
+//---------------------------------------------------------------------------------*/
+//
+// =Bootstrap
+// --------------------------------------------------
+@import "custom-bootstrap";
+//
+// =Fonts
+// --------------------------------------------------
+@import "partials/fonts";
+//
+// =Third party
+// --------------------------------------------------
+@import "../bower_components/slick-carousel/slick/slick.scss";
+//
+// =Global
+// --------------------------------------------------
+@import "partials/constants";
+@import "general/mixin";
+@import "general/setting";
+@import "partials/colors";
+@import "partials/typography";
+@import "partials/forms";
+@import "partials/buttons";
+@import "partials/scrollbar-measure";
+@import "partials/modals";
+@import "partials/pagination";
+@import "partials/breadcrumbs";
+//
+// =Modules
+// --------------------------------------------------
+@import "modules/IconHoverEffects";
+@import "modules/facebook-responsive";
+@import "modules/list";
+@import "modules/item";
+@import "modules/article";
+@import "modules/slick-slider";
+//
+//
+// =Layout
+// --------------------------------------------------
+@import "layout/header";
+@import "layout/footer";
+@import "layout/content";
+@import "layout/aside";
+//
+// =Content
+// --------------------------------------------------
+@import "pages/home";
+@import "pages/contact";
