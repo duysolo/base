@@ -6,7 +6,7 @@
             <div class="main-left">
                 <section class="main-box">
                     <div class="main-box-header">
-                        <h2><i class="fa fa-leaf"></i> {{ trans('webed-theme::base.search') }}: {{ Request::get('k') }}</h2>
+                        <h2><i class="fa fa-leaf"></i> {{ trans('webed-theme::base.search') }}: {{ request()->query('k') }}</h2>
                     </div>
                     <div class="main-box-content">
                         <div class="box-style box-style-4">
@@ -16,7 +16,7 @@
                                        class="media-news-img"
                                        title="{{ $post->title }}">
                                         <img class="img-full img-bg"
-                                             src="themes/news-tv/images/img-size/news.png"
+                                             src="{{ asset('themes/news-tv/images/img-size/news.png') }}"
                                              style="background-image: url('{{ get_image($post->thumbnail) }}');"
                                              alt="{{ $post->title }}">
                                     </a>
@@ -39,6 +39,7 @@
 
                 </section>
                 {!! pagination_advanced($posts, [
+                    'allowed_query_string' => request()->only(['page', 'k']),
                     'group_class' => 'pagination pagination-lg'
                 ]) !!}
             </div>

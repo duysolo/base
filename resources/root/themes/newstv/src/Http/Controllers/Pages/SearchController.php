@@ -29,14 +29,18 @@ class SearchController extends AbstractController
             ->pushCriteria(new SearchPostsCriteria($k))
             ->advancedGet([
                 'condition' => [
-                    webed_db_prefix() . 'posts.id' => 1,
+                    webed_db_prefix() . 'posts.status' => 1,
                 ],
                 'select' => [
-                    'posts.id', 'posts.title', 'posts.slug', 'posts.description', 'posts.created_at', 'posts.thumbnail',
-                    'posts.page_template'
+                    webed_db_prefix() . 'posts.id',
+                    webed_db_prefix() . 'posts.title',
+                    webed_db_prefix() . 'posts.slug',
+                    webed_db_prefix() . 'posts.description',
+                    webed_db_prefix() . 'posts.created_at',
+                    webed_db_prefix() . 'posts.thumbnail',
                 ],
                 'paginate' => [
-                    'per_page' => get_theme_option('items_per_page', 10),
+                    'per_page' => get_theme_option('items_per_page', 9),
                     'current_paged' => ($this->request->input('page') ?: 1),
                 ],
             ]);

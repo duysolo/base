@@ -6,5 +6,7 @@
     "namespace": "NewsTV",
     "version": "4.0.1",
     "autoload": "psr-4",
-    "require": {}
+    "require": {
+        "webed-blog": "^4.0"
+    }
 }
