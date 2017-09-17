@@ -1,6 +1,7 @@
 <?php namespace WebEd\Base\Console\Commands;
 
 use Illuminate\Console\Command;
+use WebEd\Base\ModulesManagement\Actions\UpdateCoreModuleAction;
 
 class UpdateCmsCommand extends Command
 {
@@ -19,20 +20,20 @@ class UpdateCmsCommand extends Command
     protected $description = 'Update CMS command';
 
     /**
-     * @var \Illuminate\Foundation\Application|mixed
+     * @var UpdateCoreModuleAction
      */
-    protected $app;
+    protected $action;
 
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UpdateCoreModuleAction $action)
     {
         parent::__construct();
 
-        $this->app = app();
+        $this->action = $action;
     }
 
     /**
@@ -51,36 +52,17 @@ class UpdateCmsCommand extends Command
             ) {
                 continue;
             }
-            $this->registerUpdateModuleService($module);
+
+            $this->info('Updating module: ' . $module['alias']);
+
+            $this->action->run($module['alias']);
+
+            $this->info('Module ' . $module['alias'] . ' has been updated');
+
             $updated++;
         }
         if (!$updated) {
             $this->error('You have nothing to update');
-        } else {
-            \Artisan::call('cache:clear');
         }
-    }
-
-    protected function registerUpdateModuleService($module)
-    {
-        $this->info('Updating module: ' . $module['alias']);
-
-        $updateModuleProvider = str_replace('\\\\', '\\', array_get($module, 'namespace', '') . '\Providers\UpdateModuleServiceProvider');
-        if (class_exists($updateModuleProvider)) {
-            $this->app->register($updateModuleProvider);
-        }
-
-        webed_core_modules()->saveModule($module, [
-            'installed_version' => isset($module['version']) ? $module['version'] : get_core_module_composer_version(array_get($module, 'repos')),
-        ]);
-
-        $moduleProvider = str_replace('\\\\', '\\', array_get($module, 'namespace', '') . '\Providers\ModuleProvider');
-        \Artisan::call('vendor:publish', [
-            '--provider' => $moduleProvider,
-            '--tag' => 'webed-public-assets',
-            '--force' => true
-        ]);
-
-        $this->info('Module ' . $module['alias'] . ' has been updated');
     }
 }

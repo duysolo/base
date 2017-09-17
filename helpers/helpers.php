@@ -1,25 +1,5 @@
 <?php
 
-if (!function_exists('admin_bar')) {
-    /**
-     * @return \WebEd\Base\Support\AdminBar
-     */
-    function admin_bar()
-    {
-        return \WebEd\Base\Facades\AdminBarFacade::getFacadeRoot();
-    }
-}
-
-if (!function_exists('dashboard_menu')) {
-    /**
-     * @return \WebEd\Base\Menu\Support\DashboardMenu
-     */
-    function dashboard_menu()
-    {
-        return \WebEd\Base\Menu\Facades\DashboardMenuFacade::getFacadeRoot();
-    }
-}
-
 if (!function_exists('load_module_helpers')) {
     /**
      * @param $dir
@@ -155,5 +135,41 @@ if (!function_exists('limit_chars')) {
             return $string . $append;
         }
         return mb_substr($string, 0, $limit) . $append;
+    }
+}
+
+if (!function_exists('array_equal')) {
+    /**
+     * @param array $a
+     * @param array $b
+     * @return bool
+     */
+    function array_equal(array $a, array $b) {
+        if (count($a) != count($b)) {
+            return false;
+        }
+
+        $checkValue = (!array_diff($a, $b) && !array_diff($b, $a));
+
+        return $checkValue;
+    }
+}
+
+if (!function_exists('array_equal_with_key')) {
+    /**
+     * @param array $a
+     * @param array $b
+     * @return bool
+     */
+    function array_equal_with_key(array $a, array $b) {
+        if (count($a) != count($b)) {
+            return false;
+        }
+
+        $checkValue = (!array_diff($a, $b) && !array_diff($b, $a));
+
+        $checkKey = (!array_diff_key($a, $b) && !array_diff_key($b, $a));
+
+        return $checkKey && $checkValue;
     }
 }

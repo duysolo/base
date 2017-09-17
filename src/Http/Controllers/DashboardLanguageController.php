@@ -6,6 +6,10 @@ class DashboardLanguageController extends BaseController
 {
     protected $module = 'webed-core';
 
+    /**
+     * @param $languageSlug
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function getChangeLanguage($languageSlug)
     {
         DashboardLanguageFacade::setDashboardLanguage($languageSlug);

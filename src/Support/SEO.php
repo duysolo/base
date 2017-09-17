@@ -1,6 +1,7 @@
 <?php namespace WebEd\Base\Support;
 
-class SEO {
+class SEO
+{
     /**
      * @var array
      */
@@ -64,7 +65,7 @@ class SEO {
     /**
      * @return string
      */
-    public function render()
+    public function render(): string
     {
         return view('webed-core::front._partials.meta-seo', [
             'seoMeta' => $this->seoMeta,

@@ -44,7 +44,7 @@ class HookServiceProvider extends ServiceProvider
             if ($screenName !== WEBED_SETTINGS) {
                 return $data;
             }
-            if($this->request->get('_tab') === 'advanced') {
+            if($this->request->input('_tab') === 'advanced') {
                 $data['construction_mode'] = (int)($this->request->has('construction_mode'));
                 $data['show_admin_bar'] = (int)($this->request->has('show_admin_bar'));
             }

@@ -9,6 +9,7 @@ return [
     'active_these_items' => 'Active these items',
     'disable_these_items' => 'Disable these items',
     'delete_these_items' => 'Delete these items',
+    'restore_these_items' => 'Restore these items',
 
     'view_this_item' => 'View this item',
     'active_this_item' => 'Active this item',

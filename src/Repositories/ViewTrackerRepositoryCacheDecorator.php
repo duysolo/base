@@ -8,10 +8,11 @@ use WebEd\Base\Repositories\Contracts\ViewTrackerRepositoryContract;
 class ViewTrackerRepositoryCacheDecorator extends EloquentBaseRepositoryCacheDecorator  implements ViewTrackerRepositoryContract
 {
     /**
-     * @param ViewTrackerModelContract $viewTracker
-     * @return array
+     * @param string $entityName
+     * @param string $entityId
+     * @return mixed
      */
-    public function increase(ViewTrackerModelContract $viewTracker)
+    public function increase($entityName, $entityId)
     {
         return $this->afterUpdate(__FUNCTION__, func_get_args());
     }

@@ -1,11 +1,11 @@
 <?php
 
-if (!function_exists('datatable')) {
+if (!function_exists('webed_datatable')) {
     /**
-     * @return \Yajra\Datatables\Datatables
+     * @return \Yajra\DataTables\DataTables
      */
-    function datatable()
+    function webed_datatable()
     {
-        return \Yajra\Datatables\Facades\Datatables::getFacadeRoot();
+        return \Yajra\DataTables\Facades\DataTables::getFacadeRoot();
     }
 }

@@ -154,5 +154,112 @@ class BootstrapModuleServiceProvider extends ServiceProvider
                 ];
             });
         }
+
+        cms_settings()
+            ->addGroup('smtp', 'SMTP', 4)
+            ->addSettingField('smtp_driver', [
+                'group' => 'smtp',
+                'type' => 'text',
+                'priority' => 1,
+                'label' => trans('webed-core::base.settings.smtp.smtp_driver.label'),
+                'helper' => trans('webed-core::base.settings.smtp.smtp_driver.helper'),
+            ], function () {
+                return [
+                    'smtp_driver',
+                    get_setting('smtp_driver', config('mail.driver')),
+                    ['class' => 'form-control']
+                ];
+            })
+            ->addSettingField('smtp_host', [
+                'group' => 'smtp',
+                'type' => 'text',
+                'priority' => 1,
+                'label' => trans('webed-core::base.settings.smtp.smtp_host.label'),
+                'helper' => trans('webed-core::base.settings.smtp.smtp_host.helper'),
+            ], function () {
+                return [
+                    'smtp_host',
+                    get_setting('smtp_host', config('mail.host')),
+                    ['class' => 'form-control']
+                ];
+            })
+            ->addSettingField('smtp_port', [
+                'group' => 'smtp',
+                'type' => 'text',
+                'priority' => 1,
+                'label' => trans('webed-core::base.settings.smtp.smtp_port.label'),
+                'helper' => trans('webed-core::base.settings.smtp.smtp_port.helper'),
+            ], function () {
+                return [
+                    'smtp_port',
+                    get_setting('smtp_port', config('mail.port')),
+                    ['class' => 'form-control']
+                ];
+            })
+            ->addSettingField('smtp_encryption', [
+                'group' => 'smtp',
+                'type' => 'text',
+                'priority' => 1,
+                'label' => trans('webed-core::base.settings.smtp.smtp_encryption.label'),
+                'helper' => trans('webed-core::base.settings.smtp.smtp_encryption.helper'),
+            ], function () {
+                return [
+                    'smtp_encryption',
+                    get_setting('smtp_encryption', config('mail.encryption')),
+                    ['class' => 'form-control']
+                ];
+            })
+            ->addSettingField('smtp_from_address', [
+                'group' => 'smtp',
+                'type' => 'text',
+                'priority' => 1,
+                'label' => trans('webed-core::base.settings.smtp.smtp_from_address.label'),
+                'helper' => trans('webed-core::base.settings.smtp.smtp_from_address.helper'),
+            ], function () {
+                return [
+                    'smtp_from_address',
+                    get_setting('smtp_from_address', config('mail.from.address')),
+                    ['class' => 'form-control']
+                ];
+            })
+            ->addSettingField('smtp_from_name', [
+                'group' => 'smtp',
+                'type' => 'text',
+                'priority' => 1,
+                'label' => trans('webed-core::base.settings.smtp.smtp_from_name.label'),
+                'helper' => trans('webed-core::base.settings.smtp.smtp_from_name.helper'),
+            ], function () {
+                return [
+                    'smtp_from_name',
+                    get_setting('smtp_from_name', config('mail.from.name')),
+                    ['class' => 'form-control']
+                ];
+            })
+            ->addSettingField('smtp_username', [
+                'group' => 'smtp',
+                'type' => 'text',
+                'priority' => 1,
+                'label' => trans('webed-core::base.settings.smtp.smtp_username.label'),
+                'helper' => trans('webed-core::base.settings.smtp.smtp_username.helper'),
+            ], function () {
+                return [
+                    'smtp_username',
+                    get_setting('smtp_username', config('mail.username')),
+                    ['class' => 'form-control']
+                ];
+            })
+            ->addSettingField('smtp_password', [
+                'group' => 'smtp',
+                'type' => 'text',
+                'priority' => 1,
+                'label' => trans('webed-core::base.settings.smtp.smtp_password.label'),
+                'helper' => trans('webed-core::base.settings.smtp.smtp_password.helper'),
+            ], function () {
+                return [
+                    'smtp_password',
+                    get_setting('smtp_password', config('mail.password')),
+                    ['class' => 'form-control']
+                ];
+            });
     }
 }

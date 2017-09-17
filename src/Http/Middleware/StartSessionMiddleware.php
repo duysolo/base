@@ -5,6 +5,7 @@ use Illuminate\Session\SessionManager;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Session\Middleware\StartSession as IlluminateStartSession;
 use WebEd\Base\Events\SessionStarted;
+use WebEd\Base\Facades\DashboardLanguageFacade;
 
 class StartSessionMiddleware extends IlluminateStartSession
 {
@@ -23,9 +24,13 @@ class StartSessionMiddleware extends IlluminateStartSession
      */
     protected function startSession(Request $request)
     {
-        Event::fire(new SessionStarted(
-            $session = parent::startSession($request)
-        ));
+        $session = parent::startSession($request);
+
+        $locale = DashboardLanguageFacade::getDashboardLanguage();
+
+        app()->setLocale($locale);
+
+        Event::fire(new SessionStarted($session));
 
         return $session;
     }

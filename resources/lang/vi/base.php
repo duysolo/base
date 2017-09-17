@@ -83,6 +83,41 @@ return [
             'linkedin' => 'Linkedin',
             'flickr' => 'Flickr',
         ],
+
+        'smtp' => [
+            'smtp_driver' => [
+                'label' => 'SMTP driver',
+                'helper' => 'WebEd hỗ trợ cả <b>SMTP</b> và hàm <b>mail</b> của PHP làm driver để gửi các thư điện tử. Ban có thể chỉ định driver nào bạn muốn sử dụng trong ứng dụng của bạn tại đây. Mặc định, WebEd được cài đặt với giao thức <b>SMTP</b>.',
+            ],
+            'smtp_host' => [
+                'label' => 'SMTP host',
+                'helper' => 'Bạn cần cung cấp địa chỉ hosting máy chủ SMTP được sử dụng bởi ứng dụng.',
+            ],
+            'smtp_port' => [
+                'label' => 'SMTP port',
+                'helper' => 'Đây là cổng giao thức SMTP được sử dụng bởi ứng dụng để gửi thư điện tử tới người dùng.',
+            ],
+            'smtp_encryption' => [
+                'label' => 'E-Mail encryption protocol',
+                'helper' => 'Tại đây bạn có thể chỉ định giao thức mã hóa phù hợp khi ứng dụng gửi thư điện tử.',
+            ],
+            'smtp_from_address' => [
+                'label' => 'Global "From" address',
+                'helper' => 'Có thể bạn muốn tất cả các thư điện tử được gửi bởi ứng dụng sẽ được gửi từ cùng một địa chỉ. Tại đây bạn có thể chỉ định địa chỉ thư điện tử mặc định.',
+            ],
+            'smtp_from_name' => [
+                'label' => 'Global "From" name',
+                'helper' => 'Có thể bạn muốn tất cả các thư điện tử được gửi bởi ứng dụng sẽ được gửi từ cùng một địa chỉ. Tại đây bạn có thể chỉ định tên mặc định.',
+            ],
+            'smtp_username' => [
+                'label' => 'SMTP server username',
+                'helper' => 'Nếu máy chủ SMTP của bạn yêu cầu xác thực, bạn cần thiết lập nó ở đây.',
+            ],
+            'smtp_password' => [
+                'label' => 'SMTP server password',
+                'helper' => 'Nếu máy chủ SMTP của bạn yêu cầu xác thực, bạn cần thiết lập nó ở đây.',
+            ],
+        ],
     ],
     'status' => [
         'disabled' => 'Đã vô hiệu hóa',

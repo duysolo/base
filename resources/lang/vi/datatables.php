@@ -9,6 +9,7 @@ return [
     'active_these_items' => 'Kích hoạt các mục này',
     'disable_these_items' => 'Vô hiệu hóa các mục này',
     'delete_these_items' => 'Xóa các mục này',
+    'restore_these_items' => 'Phục hồi các mục này',
 
     'view_this_item' => 'Xem mục này',
     'active_this_item' => 'Kích hoạt mục này',

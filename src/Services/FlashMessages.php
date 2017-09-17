@@ -6,8 +6,20 @@ class FlashMessages
      * @var array
      */
     protected $errorMessages = [];
+
+    /**
+     * @var array
+     */
     protected $infoMessages = [];
+
+    /**
+     * @var array
+     */
     protected $successMessages = [];
+
+    /**
+     * @var array
+     */
     protected $warningMessages = [];
 
     /**

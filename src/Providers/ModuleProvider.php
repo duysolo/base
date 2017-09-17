@@ -24,8 +24,6 @@ class ModuleProvider extends ServiceProvider
 
         //Register related facades
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-        $loader->alias('Form', \Collective\Html\FormFacade::class);
-        $loader->alias('Html', \Collective\Html\HtmlFacade::class);
         $loader->alias('Seo', SeoFacade::class);
 
         //Merge configs
@@ -40,12 +38,6 @@ class ModuleProvider extends ServiceProvider
          */
         $router = $this->app['router'];
         $router->pushMiddlewareToGroup('web', StartSessionMiddleware::class);
-
-        /**
-         * Other packages
-         */
-        $this->app->register(\Yajra\Datatables\DatatablesServiceProvider::class);
-        $this->app->register(\Collective\Html\HtmlServiceProvider::class);
 
         /**
          * Base providers
@@ -78,6 +70,19 @@ class ModuleProvider extends ServiceProvider
         foreach (config('webed.external_core', []) as $item) {
             $this->app->register($item);
         }
+
+        $this->app->booted(function () {
+            config([
+                'mail.driver' => get_theme_option('smtp_driver', config('mail.driver')),
+                'mail.host' => get_theme_option('smtp_host', config('mail.host')),
+                'mail.port' => get_theme_option('smtp_port', config('mail.port')),
+                'mail.from.address' => get_theme_option('smtp_from_address', config('mail.from.address')),
+                'mail.from.name' => get_theme_option('smtp_from_name', config('mail.from.name')),
+                'mail.encryption' => get_theme_option('smtp_encryption', config('mail.encryption')),
+                'mail.username' => get_theme_option('smtp_username', config('mail.username')),
+                'mail.password' => get_theme_option('smtp_password', config('mail.password')),
+            ]);
+        });
     }
 
     /**
