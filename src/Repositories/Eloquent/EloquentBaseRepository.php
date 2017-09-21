@@ -15,26 +15,37 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
 {
     /**
      * @param array $where
+     * @param null|EloquentBase|Builder $model
      */
-    protected function applyConditions(array $where)
+    protected function applyConditions(array $where, &$model = null)
     {
+        if (!$model) {
+            $newModel = $this->model;
+        } else {
+            $newModel = $model;
+        }
         foreach ($where as $field => $value) {
             if (is_array($value)) {
                 list($field, $condition, $val) = $value;
                 switch (strtoupper($condition)) {
                     case 'IN':
-                        $this->model = $this->model->whereIn($field, $val);
+                        $newModel = $newModel->whereIn($field, $val);
                         break;
                     case 'NOT_IN':
-                        $this->model = $this->model->whereNotIn($field, $val);
+                        $newModel = $newModel->whereNotIn($field, $val);
                         break;
                     default:
-                        $this->model = $this->model->where($field, $condition, $val);
+                        $newModel = $newModel->where($field, $condition, $val);
                         break;
                 }
             } else {
-                $this->model = $this->model->where($field, '=', $value);
+                $newModel = $newModel->where($field, '=', $value);
             }
+        }
+        if (!$model) {
+            $this->model = $newModel;
+        } else {
+            $model = $newModel;
         }
     }
 
@@ -380,7 +391,7 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         } elseif ($params['take']) {
             $result = $this->model->take($params['take'])->get();
         } elseif ($params['paginate']['per_page']) {
-            $result = $this->model->paginate($params['paginate']['per_page'], ['*'], 'page', $params['paginate']['current_paged']);
+            $result = $this->model->paginate($params['paginate']['per_page'], $params['select'], 'page', $params['paginate']['current_paged']);
         } else {
             $result = $this->model->get();
         }
