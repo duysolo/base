@@ -391,7 +391,7 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         } elseif ($params['take']) {
             $result = $this->model->take($params['take'])->get();
         } elseif ($params['paginate']['per_page']) {
-            $result = $this->model->paginate($params['paginate']['per_page'], $params['select'], 'page', $params['paginate']['current_paged']);
+            $result = $this->model->paginate($params['paginate']['per_page'], $params['select'] ?: ['*'], 'page', $params['paginate']['current_paged']);
         } else {
             $result = $this->model->get();
         }
