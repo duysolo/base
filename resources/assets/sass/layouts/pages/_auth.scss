@@ -1,15 +1,84 @@
 .auth-actions-bar {
     background-color: #333;
-    padding : 0 10px;
+    padding: 0 10px;
     .dropdown {
-        position : relative;
+        position: relative;
         display: inline-block;
-        padding : 10px;
+        padding: 10px;
         .dropdown-menu {
-            margin-top : 0;
+            margin-top: 0;
         }
         > a {
             color: #fff;
+        }
+    }
+}
+
+body.auth-actions {
+    margin: 0 !important;
+    background-image: url("../images/auth-page-bg.jpg");
+    @include flexbox;
+    @include flex-direction(column);
+    .login-box {
+        @include flex(1);
+        @include flexbox;
+        @include flex-direction(column);
+        @include justify-content(center);
+        margin: 0 auto;
+        width: 500px;
+        max-width: 100%;
+        .form-wrapper {
+            background-color: rgba(#000, 0.3);
+            margin: 30px 0;
+        }
+    }
+    .login-logo,
+    .register-logo {
+        margin: 0;
+        padding: 15px;
+        &,
+        a {
+            color: #fff;
+            @include lib-css(text-shadow, 1px 1px 1px #333);
+        }
+    }
+    .login-box-messages {
+        color: #fff;
+    }
+    .login-box-body,
+    .register-box-body {
+        background-color: transparent;
+        color: #fff;
+        .form-control {
+            background-color: transparent;
+            color: #fff;
+            border-color: rgba(#fff, 0.3);
+            @include placeholder {
+                color: rgba(#fff, 0.3);
+            }
+            &:hover {
+
+            }
+            &:focus {
+                border-color: #fff;
+                ~ .form-control-feedback {
+                    color: #fff;
+                }
+            }
+        }
+        .mt-checkbox {
+            input:checked ~ span:not(.text) {
+                background-color: #F2784B !important;
+            }
+            > span:not(.text) {
+                &:after {
+                    border-color: #fff;
+                }
+            }
+        }
+        .form-control-feedback {
+            color: rgba(#fff, 0.3);
+            @include lib-css(transition, all 0.3s ease-in-out);
         }
     }
 }
