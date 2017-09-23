@@ -2,27 +2,25 @@
 .box-header > .glyphicon,
 .box-header > .ion,
 .box-header .box-title {
-    font-weight    : 700;
-    text-transform : uppercase;
-    font-size      : 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 15px;
 }
 
 .box-header {
-    display : table;
-    width   : 100%;
+    @include flexbox;
+    @include flex-direction(row);
+    @include justify-content(center);
+    @include align-items(center);
     .box-title,
     .box-tools {
-        display        : table-cell;
-        vertical-align : middle;
-        float          : none !important;
-        position       : static !important;
+        float: none !important;
+        position: static !important;
     }
     .box-title {
-        width : 100%;
+        @include flex(1);
     }
     .box-tools {
-        width       : 1%;
-        white-space : nowrap;
-        text-align  : right;
+        white-space: nowrap;
     }
 }
