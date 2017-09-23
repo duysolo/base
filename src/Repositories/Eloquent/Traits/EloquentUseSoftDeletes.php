@@ -80,7 +80,7 @@ trait EloquentUseSoftDeletes
             } elseif ($id instanceof \Illuminate\Database\Eloquent\SoftDeletes) {
                 $this->model = $id;
             } else {
-                $this->model = $this->model->withTrashed()->where('id', '=', $id);
+                $this->model = $this->model->withTrashed()->where('id', '=', $id)->first();
             }
         } else {
             $this->applyCriteria();
