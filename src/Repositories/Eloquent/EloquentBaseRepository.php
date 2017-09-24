@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
 use WebEd\Base\Models\Contracts\BaseModelContract;
 use WebEd\Base\Models\EloquentBase;
 use WebEd\Base\Repositories\AbstractBaseRepository;
@@ -391,7 +390,12 @@ abstract class EloquentBaseRepository extends AbstractBaseRepository
         } elseif ($params['take']) {
             $result = $this->model->take($params['take'])->get();
         } elseif ($params['paginate']['per_page']) {
-            $result = $this->model->paginate($params['paginate']['per_page'], ['*'], 'page', $params['paginate']['current_paged']);
+            $result = $this->model->paginate(
+                $params['paginate']['per_page'],
+                [$this->originalModel->getTable() . '.' . $this->originalModel->getPrimaryKey()],
+                'page',
+                $params['paginate']['current_paged']
+            );
         } else {
             $result = $this->model->get();
         }
