@@ -17,6 +17,7 @@
 body.auth-actions {
     margin: 0 !important;
     background-image: url("../images/auth-page-bg.jpg");
+    background-size: cover;
     @include flexbox;
     @include flex-direction(column);
     .login-box {
