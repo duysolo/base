@@ -2,9 +2,9 @@
 
 use Illuminate\Http\JsonResponse;
 use WebEd\Base\Repositories\Eloquent\EloquentBaseRepository;
-use Yajra\Datatables\Engines\CollectionEngine;
-use Yajra\Datatables\Engines\EloquentEngine;
-use Yajra\Datatables\Engines\QueryBuilderEngine;
+use Yajra\DataTables\CollectionDataTable;
+use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\QueryDataTable;
 
 abstract class AbstractDataTables
 {
@@ -44,7 +44,7 @@ abstract class AbstractDataTables
     public $dataTableView = 'webed-core::admin._components.datatables.table';
 
     /**
-     * @var CollectionEngine|EloquentEngine|QueryBuilderEngine|mixed
+     * @return CollectionDataTable|EloquentDataTable|QueryDataTable|mixed
      */
     protected $fetch;
 
@@ -165,26 +165,31 @@ abstract class AbstractDataTables
             $this->fetch = do_filter(FRONT_FILTER_DATA_TABLES_FETCH, $this->fetchDataForAjax(), $this->screenName);
         }
 
-        return $this->fetch->make(true, true);
+        return $this->fetch->with($this->groupAction())->make(true, true);
     }
 
     /**
      * @return array
      */
-    abstract public function headings();
+    abstract public function headings(): array;
 
     /**
      * @return array
      */
-    abstract public function columns();
+    abstract public function columns(): array;
 
     /**
      * @return string
      */
-    abstract public function run();
+    abstract public function run(): string;
 
     /**
-     * @return CollectionEngine|EloquentEngine|QueryBuilderEngine|mixed
+     * @return CollectionDataTable|EloquentDataTable|QueryDataTable|mixed
      */
     abstract protected function fetchDataForAjax();
+
+    /**
+     * @return array
+     */
+    abstract protected function groupAction(): array;
 }
