@@ -321,22 +321,26 @@ export class WebEd {
      * @param config
      */
     static wysiwyg($elements, config) {
-        config = $.extend(true, {
-            filebrowserBrowseUrl: FILE_MANAGER_URL + '?method=ckeditor',
-            extraPlugins: 'codeTag,insertpre',
-            allowedContent: true,
-            height: '400px',
-            htmlEncodeOutput: false,
-            protectedSource: [
-                /<\?[\s\S]*?\?>/g,
-                /<%[\s\S]*?%>/g,
-                /(<asp:[^\>]+>[\s|\S]*?<\/asp:[^\>]+>)|(<asp:[^\>]+\/>)/gi,
-            ],
-        }, config);
         $elements.each(function () {
             let $_self = $(this);
+
+            config = $.extend(true, {
+                filebrowserBrowseUrl: FILE_MANAGER_URL + '?method=ckeditor',
+                forcePasteAsPlainText: true,
+                extraPlugins: 'codeTag,insertpre',
+                allowedContent: true,
+                height: $_self.data('height') || '400px',
+                htmlEncodeOutput: false,
+                protectedSource: [
+                    /<\?[\s\S]*?\?>/g,
+                    /<%[\s\S]*?%>/g,
+                    /(<asp:[^\>]+>[\s|\S]*?<\/asp:[^\>]+>)|(<asp:[^\>]+\/>)/gi,
+                ],
+                toolbar: $_self.data('toolbar') || 'basic',
+            }, config);
+
             let data = $_self.data() || {};
-            if ($_self.data('toolbar') == 'basic' || data.toolbar == 'basic') {
+            if ($_self.data('toolbar') === 'basic') {
                 data.toolbar = [['mode', 'Source', 'Image', 'TextColor', 'BGColor', 'Styles', 'Format', 'Font', 'FontSize', 'CreateDiv', 'PageBreak', 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', 'RemoveFormat']];
             }
             $_self.ckeditor($.noop, $.extend(true, config, data));

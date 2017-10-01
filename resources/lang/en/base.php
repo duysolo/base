@@ -45,6 +45,7 @@ return [
         'publish' => 'Publish',
 
         'model_not_exists' => 'Model not exists with id:',
+        'item_not_exists' => 'Item not exists',
         'request_completed' => 'Request completed',
         'error_occurred' => 'Some error occurred during your request',
     ],
