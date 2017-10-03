@@ -10,11 +10,10 @@ if (!function_exists('format_date')) {
      */
     function format_date($time, $format = 'Y-m-d')
     {
-        $dateTime = Carbon::parse($time);
-
-        $first = Carbon::create(0000, 0, 0, 00, 00, 00);
-        if ($time->lte($first)) {
-            return '';
+        if ($time instanceof Carbon) {
+            $dateTime = $time;
+        } else {
+            $dateTime = Carbon::parse($time);
         }
 
         return $dateTime->format($format);
