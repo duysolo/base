@@ -159,4 +159,15 @@ abstract class AbstractBaseRepository implements AbstractRepositoryContract
 
         return $this;
     }
+
+    /**
+     * @param array $attributes
+     * @return $this
+     */
+    public function unsetFillable(array $attributes)
+    {
+        $this->model = $this->model->unsetFillable($attributes);
+
+        return $this;
+    }
 }

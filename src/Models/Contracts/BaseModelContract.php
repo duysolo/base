@@ -20,4 +20,10 @@ interface BaseModelContract
      * @return $this
      */
     public function expandFillable($attribute);
+
+    /**
+     * @param array|string $attribute
+     * @return $this
+     */
+    public function unsetFillable($attribute);
 }

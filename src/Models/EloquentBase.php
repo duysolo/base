@@ -48,6 +48,21 @@ abstract class EloquentBase extends Model implements BaseModelContract
     }
 
     /**
+     * @param array|string $attribute
+     * @return $this
+     */
+    public function unsetFillable($attribute)
+    {
+        $attributes = is_array($attribute) ? $attribute : func_get_args();
+
+        $this->fillable = array_filter($this->fillable, function ($item) use ($attributes) {
+            return !in_array($item, $attributes);
+        });
+
+        return $this;
+    }
+
+    /**
      * This is where to put some scope query
      */
 }
