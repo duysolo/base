@@ -23,7 +23,6 @@ class StoreSettingsHook
     public function execute($data, $screenName, $action = null)
     {
         if ($screenName !== WEBED_SETTINGS) {
-            dd($screenName);
             return $data;
         }
 
