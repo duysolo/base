@@ -321,30 +321,45 @@ export class WebEd {
      * @param config
      */
     static wysiwyg($elements, config) {
+
+        window.initializedEditor = window.initializedEditor || 0;
+
         $elements.each(function () {
             let $_self = $(this);
 
-            config = $.extend(true, {
-                filebrowserBrowseUrl: FILE_MANAGER_URL + '?method=ckeditor',
-                forcePasteAsPlainText: true,
-                extraPlugins: 'codeTag,insertpre',
-                allowedContent: true,
-                height: $_self.data('height') || '400px',
-                htmlEncodeOutput: false,
-                protectedSource: [
-                    /<\?[\s\S]*?\?>/g,
-                    /<%[\s\S]*?%>/g,
-                    /(<asp:[^\>]+>[\s|\S]*?<\/asp:[^\>]+>)|(<asp:[^\>]+\/>)/gi,
-                ],
-                toolbar: $_self.data('toolbar') || 'basic',
-            }, config);
+            $_self.attr('id', 'editor_initialized_' + window.initializedEditor);
 
-            let data = $_self.data() || {};
-            if ($_self.data('toolbar') === 'basic') {
-                data.toolbar = [['mode', 'Source', 'Image', 'TextColor', 'BGColor', 'Styles', 'Format', 'Font', 'FontSize', 'CreateDiv', 'PageBreak', 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', 'RemoveFormat']];
-            }
-            $_self.ckeditor($.noop, $.extend(true, config, data));
+            window.initializedEditor++;
+
+            setTimeout(function () {
+                config = $.extend(true, {
+                    forcePasteAsPlainText: true,
+                    extraPlugins: 'codeTag,insertpre',
+                    allowedContent: true,
+                    htmlEncodeOutput: false,
+                    protectedSource: [
+                        /<\?[\s\S]*?\?>/g,
+                        /<%[\s\S]*?%>/g,
+                        /(<asp:[^\>]+>[\s|\S]*?<\/asp:[^\>]+>)|(<asp:[^\>]+\/>)/gi,
+                    ],
+                    filebrowserBrowseUrl: FILE_MANAGER_URL + '?method=ckeditor',
+                    height: $_self.data('height') || '400px',
+                    toolbar: $_self.data('toolbar') || 'full',
+                }, config);
+
+                config = $.extend(true, config, $_self.data());
+
+                if (config.toolbar === 'basic') {
+                    config.toolbar = [['mode', 'Source', 'Image', 'TextColor', 'BGColor', 'Styles', 'Format', 'Font', 'FontSize', 'CreateDiv', 'PageBreak', 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', 'RemoveFormat']];
+                }
+
+                CKEDITOR.replace($_self.attr('id'), config);
+            }, 100);
         });
+    }
+
+    static wysiwygGetContent($element) {
+        return CKEDITOR.instances[$element.attr('id')].getData();
     }
 
     /**
