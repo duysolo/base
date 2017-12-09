@@ -19,7 +19,7 @@ class ModuleProvider extends ServiceProvider
         //Load helpers
         Helper::loadModuleHelpers(__DIR__);
 
-        $this->app->singleton(ExceptionHandler::class, Handler::class);
+        $this->app->singleton(ExceptionHandler::class, config('webed.exception_handler', Handler::class));
 
         //Merge configs
         $configs = split_files_with_basename($this->app['files']->glob(__DIR__ . '/../../config/*.php'));

@@ -23,4 +23,6 @@ return [
         WebEd\Base\CustomFields\Providers\ModuleProvider::class,
         WebEd\Base\StaticBlocks\Providers\ModuleProvider::class,
     ],
+
+    'exception_handler' => \WebEd\Base\Exceptions\Handler::class,
 ];
