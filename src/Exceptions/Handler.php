@@ -3,6 +3,7 @@
 use App\Exceptions\Handler as ExceptionHandler;
 use Exception;
 use Illuminate\Http\Response;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
@@ -14,6 +15,28 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($request->ajax() || $request->wantsJson()) {
+            if ($exception instanceof ValidationException) {
+                /**
+                 * @var ValidationException $exception
+                 */
+                return response()->json(
+                    response_with_messages(
+                        $exception->validator->errors()->all(),
+                        true,
+                        \Constants::ERROR_CODE
+                    )
+                );
+            }
+            return response()->json(
+                response_with_messages(
+                    $exception->getMessage(),
+                    true,
+                    \Constants::ERROR_CODE
+                )
+            );
+        }
+
         if ($this->isHttpException($exception)) {
             /**
              * @var HttpException $exception
