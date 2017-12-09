@@ -83,7 +83,6 @@ class InstallModuleServiceProvider extends ServiceProvider
             $table->increments('id');
             $table->string('email', 170)->index();
             $table->string('token', 170)->index();
-            $table->datetime('expired_at');
             $table->timestamps();
         });
 
