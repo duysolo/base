@@ -30,7 +30,6 @@
         "sgsoft-studio/users": "4.0.*",
         "sgsoft-studio/pages": "4.0.*",
         "sgsoft-studio/shortcode": "4.0.*",
-        "sgsoft-studio/custom-fields": "4.0.*",
         "sgsoft-studio/static-blocks": "4.0.*"
     },
     "autoload": {

@@ -20,7 +20,6 @@ return [
     'external_core' => [
         WebEd\Base\Elfinder\Providers\ModuleProvider::class,
         WebEd\Base\Pages\Providers\ModuleProvider::class,
-        WebEd\Base\CustomFields\Providers\ModuleProvider::class,
         WebEd\Base\StaticBlocks\Providers\ModuleProvider::class,
     ],
 
